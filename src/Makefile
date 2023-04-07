@@ -64,7 +64,7 @@ clang:
 	rm .clang-format
 
 cppcheck:
-	cppcheck --enable=all --suppress=missingIncludeSystem **/*s21*.c **/*s21*.h *s21*.c
+	cppcheck --enable=all --suppress=missingIncludeSystem **/*s21*.cc **/*s21*.h *s21*.cc
 
 push:
 	git push origin develop
