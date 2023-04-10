@@ -6,6 +6,8 @@
 
 #include "../controller/s21_controller.h"
 
+enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
+
 namespace s21 {
 class Model {
  public:
