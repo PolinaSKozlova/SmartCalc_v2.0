@@ -5,9 +5,14 @@ TEST_FLAGS = -lgtest -pthread
 COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
 SANITIZER_FLAGS = #-fsanitize=address
 PROJECT_NAME = s21_SmartCalc_v_2_0
-SRCS=$(wildcard s21*.cc)
+SRCS=$(wildcard s21*.cc,*/s21*.cc)
 OBJ_FILES=$(patsubst %.cc,%.o,$(SRCS))
 REPORT_DIR = report
+
+run: clean
+	clear
+	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_model.cc run.cc -o run
+#	$(OBJ_FILES)
 
 
 all: 
