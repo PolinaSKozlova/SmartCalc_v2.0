@@ -12,7 +12,10 @@ namespace s21 {
 class Model {
  public:
   Model(std::string other) : src_(other) {}
-  ~Model() { ClearStack(); }
+  ~Model() {
+    // src_ = nullptr;
+    // ClearStack();
+  }
   bool CheckHooks(std::string src) noexcept;
   bool CheckDots(std::string src) noexcept;
   bool IsFunction(std::string src) noexcept;
@@ -34,7 +37,7 @@ class Model {
     int priority_;
     char type_;
   };
-  std::stack<Token> input_;
+  // std::stack<Token> input_;
   std::string src_;
 };
 };  // namespace s21
