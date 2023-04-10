@@ -1,8 +1,8 @@
 #ifndef S21_MODEL_H_
 #define S21_MODEL_H_
 
-#include <stack>
 #include <string>
+#include <vector>
 
 // #include "../controller/s21_controller.h"
 
@@ -10,20 +10,23 @@ enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
 namespace s21 {
 class Model {
+  struct Token;
+
  public:
   Model(std::string other) : src_(other) {}
   ~Model() {
     // src_ = nullptr;
-    // ClearStack();
+    input_.clear();
   }
   bool CheckHooks(std::string src) noexcept;
   bool CheckDots(std::string src) noexcept;
   bool IsFunction(std::string src) noexcept;
   bool IsOperator(std::string src) noexcept;
   bool IsHooks(std::string src) noexcept;
+  std::vector<Token> input_;
+  std::string src_;
 
  private:
-  void ClearStack();
   struct Token {
     // нужен ли конструктор и деструктор
     Token(double value, int priority, char type)
@@ -37,8 +40,6 @@ class Model {
     int priority_;
     char type_;
   };
-  // std::stack<Token> input_;
-  std::string src_;
 };
 };  // namespace s21
 
