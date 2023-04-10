@@ -18,11 +18,11 @@ class Model {
     // src_ = nullptr;
     input_.clear();
   }
-  bool CheckHooks(std::string src) noexcept;
-  bool CheckDots(std::string src) noexcept;
-  bool IsFunction(std::string src) noexcept;
-  bool IsOperator(std::string src) noexcept;
-  bool IsHooks(std::string src) noexcept;
+  bool CheckHooks(const std::string &src) noexcept;
+  bool CheckDots(const std::string &src) noexcept;
+  bool IsFunction(const char &sym) noexcept;
+  bool IsOperator(const char &sym) noexcept;
+  bool IsHooks(const char &sym) const noexcept;
   std::vector<Token> input_;
   std::string src_;
 
