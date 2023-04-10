@@ -47,12 +47,16 @@ gcov_report: clean
 %.o:%.cc
 	$(CC) -c $(FLAGS) $< -o $@ -I .
 
-valgrind: tests
-	valgrind --leak-check=full \
-        	 --show-leak-kinds=all \
-         	 --track-origins=yes \
-         	 --verbose \
-			 ./tests
+# valgrind: tests
+# 	valgrind --leak-check=full \
+#         	 --show-leak-kinds=all \
+#          	 --track-origins=yes \
+#          	 --verbose \
+# 			 ./tests
+
+valgrind:
+#	brew install valgrind
+	valgrind --tool=memcheck --leak-check=yes  ./main.out
 
 .PHONY:
 	all, clean, tests, gcov_report, install, uninstall, dvi, dist
