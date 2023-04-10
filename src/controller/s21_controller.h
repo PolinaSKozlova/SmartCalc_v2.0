@@ -8,16 +8,16 @@ namespace s21 {
 class Controller {
  public:
   Controller();
-  Controller(Model *other) : model_(other) {}
-  Controller &operator=(Model *other) {
-    model_ = other;
-    return *this;
-  }
+  // Controller(Model *other) : model_(other) {}
+  // Controller &operator=(Model *other) {
+  //   model_ = other;
+  //   return *this;
+  // }
   ~Controller();
 
  private:
-  Model *model_;
-  View *view_;
+  // Model *model_;
+  // View *view_;
 };
 };  // namespace s21
 

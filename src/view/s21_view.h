@@ -10,15 +10,15 @@ namespace s21 {
 class View {
  public:
   View(const std::string& other) : src_(other) {}
-  explicit View(Controller* other) : controller_(other) {}
-  View& operator=(Controller* other) {
-    controller_ = other;
-    return *this;
-  }
+  // explicit View(Controller* other) : controller_(other) {}
+  // View& operator=(Controller* other) {
+  //   controller_ = other;
+  //   return *this;
+  // }
   ~View() {}
 
  private:
-  Controller* controller_;
+  // Controller* controller_;
   std::string src_;
 };
 };  // namespace s21
