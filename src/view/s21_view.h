@@ -4,27 +4,23 @@
 #include <stack>
 #include <string>
 
+#include "../controller/s21_controller.h"
+
 enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
 namespace s21 {
 class View {
  public:
-  View() : calc_notation_() {}
-  ~View() { ClearStack(); }
-  bool CheckHooks(std::string src);
-  bool CheckDots(std::string src);
-  bool IsFunction(std::string src);
-  bool IsOperator(std::string src);
-  bool IsHooks(std::string src);
+  View() {}
+  explicit View(Controller* other) : controller_(other) {}
+  View& operator=(Controller* other) {
+    controller_ = other;
+    return *this;
+  }
+  ~View() {}
 
  private:
-  void ClearStack();
-  struct Token {
-    double value_;
-    int priority_;
-    char type_;
-  };
-  std::stack<Token> calc_notation_;
+  Controller* controller_;
 };
 };  // namespace s21
 
