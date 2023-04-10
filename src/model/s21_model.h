@@ -19,17 +19,24 @@
 enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
 namespace s21 {
-class Model {
-  struct Token;
+struct Token {
+  // нужен ли конструктор и деструктор
+  Token(double value, int priority, char type)
+      : value_(value), priority_(priority), type_(type) {}
+  ~Token() = default;
+  double value_;
+  int priority_;
+  char type_;
+};
 
+class Model {
  public:
   Model(std::string other) : src_(other) {}
   ~Model() = default;
-  // bool ValidationSrc(const std::string &src) noexcept;
   bool ValidationSrc(const Model &m) noexcept;
-  bool CreateTokens(const std::string &src) noexcept;
-  std::vector<s21::Model::Token> input_;
-  std::string src_;
+  bool ValidationTokens(const std::string &src) noexcept;
+  bool CreateTokens() noexcept;
+  void CreateNotation() noexcept;
 
   // extra method
   void print() {
@@ -40,26 +47,15 @@ class Model {
   }
 
  private:
-  struct Token {
-    // нужен ли конструктор и деструктор
-    Token(double value, int priority, char type)
-        : value_(value), priority_(priority), type_(type) {}
-    ~Token() {
-      // value_ = 0.0;
-      // priority_ = 0;
-      // type_ = '\0';
-    }
-    double value_;
-    int priority_;
-    char type_;
-  };
-  bool CheckHooks(const std::string &src) noexcept;
-  bool CheckDots(const std::string &src) noexcept;
+  bool CheckHooks() noexcept;
+  bool CheckDots() noexcept;
   bool IsFunction(const char &sym) noexcept;
   bool IsOperator(const char &sym) noexcept;
   bool IsHooks(const char &sym) const noexcept;
-  bool TokenFunction(const std::string &src, size_t pos) noexcept;
+  bool TokenFunction(size_t pos) noexcept;
   void TokenOperator(const char &sym) noexcept;
+  std::vector<s21::Token> input_;
+  std::string src_;
 };
 };  // namespace s21
 
