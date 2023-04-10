@@ -4,7 +4,15 @@
 #include <string>
 #include <vector>
 
-// #include "../controller/s21_controller.h"
+#include "../controller/s21_controller.h"
+
+/*
+ * ZERO - x, number
+ * FIRST - sum, sub
+ * SECOND - div, mult, mod
+ * THIRD - hooks, pow, unary plus, unary minus
+ * FOURTH - sin, cos, tan, acos, asin, atan, sqrt, ln, log
+ */
 
 enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
@@ -23,7 +31,9 @@ class Model {
   bool IsFunction(const char &sym) noexcept;
   bool IsOperator(const char &sym) noexcept;
   bool IsHooks(const char &sym) const noexcept;
-  std::vector<Token> input_;
+  bool WhatFunction(const std::string &src, size_t pos) noexcept;
+  bool WhatOperator(const std::string &src, size_t pos) noexcept;
+  std::vector<s21::Model::Token> input_;
   std::string src_;
 
  private:
@@ -32,9 +42,9 @@ class Model {
     Token(double value, int priority, char type)
         : value_(value), priority_(priority), type_(type) {}
     ~Token() {
-      value_ = 0;
-      priority_ = 0;
-      type_ = '\0';
+      // value_ = 0.0;
+      // priority_ = 0;
+      // type_ = '\0';
     }
     double value_;
     int priority_;
