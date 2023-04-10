@@ -1,6 +1,8 @@
 #ifndef S21_MODEL_H_
 #define S21_MODEL_H_
 
+#include <cctype>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -22,19 +24,20 @@ class Model {
 
  public:
   Model(std::string other) : src_(other) {}
-  ~Model() {
-    // src_ = nullptr;
-    input_.clear();
-  }
-  bool CheckHooks(const std::string &src) noexcept;
-  bool CheckDots(const std::string &src) noexcept;
-  bool IsFunction(const char &sym) noexcept;
-  bool IsOperator(const char &sym) noexcept;
-  bool IsHooks(const char &sym) const noexcept;
-  bool WhatFunction(const std::string &src, size_t pos) noexcept;
-  bool WhatOperator(const std::string &src, size_t pos) noexcept;
+  ~Model() = default;
+  // bool ValidationSrc(const std::string &src) noexcept;
+  bool ValidationSrc(const Model &m) noexcept;
+  bool CreateTokens(const std::string &src) noexcept;
   std::vector<s21::Model::Token> input_;
   std::string src_;
+
+  // extra method
+  void print() {
+    for (size_t i = 0; i < input_.size(); ++i) {
+      std::cout << input_[i].value_ << " " << input_[i].priority_ << " "
+                << input_[i].type_ << std::endl;
+    }
+  }
 
  private:
   struct Token {
@@ -50,6 +53,13 @@ class Model {
     int priority_;
     char type_;
   };
+  bool CheckHooks(const std::string &src) noexcept;
+  bool CheckDots(const std::string &src) noexcept;
+  bool IsFunction(const char &sym) noexcept;
+  bool IsOperator(const char &sym) noexcept;
+  bool IsHooks(const char &sym) const noexcept;
+  bool TokenFunction(const std::string &src, size_t pos) noexcept;
+  void TokenOperator(const char &sym) noexcept;
 };
 };  // namespace s21
 
