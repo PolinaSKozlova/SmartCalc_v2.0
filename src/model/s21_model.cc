@@ -8,6 +8,7 @@ std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
     if (CreateTokens().first) {
       // CreateNotation();
     } else {
+      input_.clear();
       result = {false, "Tokens parcing error"};
     }
   }
@@ -18,7 +19,7 @@ std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
   std::pair<bool, std::string> result = {true, "OK"};
   size_t pos = 0;
   while (src_[pos] != '\0' && result.first) {
-    if ((std::isdigit(src_[pos]) || src_[pos] == '.') && CheckDots()) {
+    if ((std::isdigit(src_[pos]) || src_[pos] == '.')) {
       size_t shift = 0;
       input_.emplace_back(std::stod(&src_[pos], &shift), ZERO, 'n');
       pos += shift;
@@ -53,6 +54,7 @@ std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
   if (!input_.empty()) {
     CheckUnarySign();
     result = CheckFinalExpression();
+    std::cout << result.first << " " << result.second << std::endl;
   }
   return result;
 }
