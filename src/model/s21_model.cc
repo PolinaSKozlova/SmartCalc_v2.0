@@ -1,14 +1,14 @@
 #include "s21_model.h"
 
-bool s21::Model::ValidationSrc() noexcept {
-  bool result = true;
+std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
+  std::pair<bool, std::string> result = {true, "OK"};
   if (!CheckHooks() || !CheckDots()) {
-    result = false;
+    result = {false, "Hooks or dots error"};
   } else {
-    if (CreateTokens()) {
+    if (CreateTokens().first) {
       CreateNotation();
     } else {
-      result = false;
+      result = {false, "Tokens parcing error"};
     }
   }
   return result;
@@ -20,36 +20,39 @@ bool s21::Model::ValidationTokens() const noexcept {
   return result;
 }
 
-bool s21::Model::CreateTokens() noexcept {
-  bool result = true;
+std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
+  std::pair<bool, std::string> result = {true, "OK"};
   size_t pos = 0;
-  while (src_[pos] != '\0') {
+  while (src_[pos] != '\0' && result.first) {
     if ((std::isdigit(src_[pos]) || src_[pos] == '.') && CheckDots()) {
       size_t shift = 0;
       input_.emplace_back(std::stod(&src_[pos], &shift), ZERO, 'n');
       pos += shift;
-    } else if (IsFunction(src_[pos])) {
-      TokenFunction(pos);
-      std::string cmp_3_letters = "cstg%";
-      std::string cmp_4_letters = "oiaq";
-      if (cmp_3_letters.find(input_.back().type_) != std::string::npos) {
-        pos += 3;
-      } else if (cmp_4_letters.find(input_.back().type_) != std::string::npos) {
-        pos += 4;
-      } else {
-        pos += 2;
+    } else if (TokenIsFunction(src_[pos])) {
+      result = FillTokenFunction(pos);
+      if (result.first) {
+        std::string cmp_3_letters = "cstg%";
+        std::string cmp_4_letters = "oiaq";
+        if (cmp_3_letters.find(input_.back().type_) != std::string::npos) {
+          pos += 3;
+        } else if (cmp_4_letters.find(input_.back().type_) !=
+                   std::string::npos) {
+          pos += 4;
+        } else {
+          pos += 2;
+        }
       }
-    } else if (IsOperator(src_[pos])) {
-      TokenOperator(src_[pos]);
+    } else if (TokenIsOperator(src_[pos])) {
+      FillTokenOperator(src_[pos]);
       ++pos;
-    } else if (IsHooks(src_[pos])) {
+    } else if (TokenIsHooks(src_[pos])) {
       input_.emplace_back(0.0, THIRD, src_[pos]);
       ++pos;
     } else if (src_[pos] == 'x') {
       input_.emplace_back(0.0, ZERO, src_[pos]);
       ++pos;
     } else {
-      result = false;
+      result = {false, "Incorrect tokens"};
       break;
     }
   }

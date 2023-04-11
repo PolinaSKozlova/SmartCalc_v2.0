@@ -22,39 +22,40 @@ bool s21::Model::CheckDots() const noexcept {
   if (src_[0] == '.' && !(std::isdigit(src_[1]))) {
     result = false;
   }
-  for (size_t i = 1; i < src_.length() - 1; ++i) {
+  for (size_t i = 1; i < src_.length() - 1 && result; ++i) {
     if ((src_[i] == '.' && !std::isdigit(src_[i + 1]) &&
          !std::isdigit(src_[i - 1])) ||
         (src_[i] == '.' && src_[i + 1] == '.')) {
       result = false;
-      break;
+      // break;
     }
   }
   return result;
 }
 
-bool s21::Model::IsFunction(const char& sym) const noexcept {
+bool s21::Model::TokenIsFunction(const char& sym) const noexcept {
   bool result = true;
   std::string cmp = "cstoiaqnlm";
   if (cmp.find(sym) == std::string::npos) result = false;
   return result;
 }
 
-bool s21::Model::IsOperator(const char& sym) const noexcept {
+bool s21::Model::TokenIsOperator(const char& sym) const noexcept {
   bool result = true;
   std::string cmp = "+-*/^";
   if (cmp.find(sym) == std::string::npos) result = false;
   return result;
 }
 
-bool s21::Model::IsHooks(const char& sym) const noexcept {
+bool s21::Model::TokenIsHooks(const char& sym) const noexcept {
   bool result = false;
   if (sym == '(' || sym == ')') result = true;
   return result;
 }
 
-bool s21::Model::TokenFunction(size_t pos) noexcept {
-  bool result = true;
+std::pair<bool, std::string> s21::Model::FillTokenFunction(
+    size_t pos) noexcept {
+  std::pair<bool, std::string> result = {true, "OK"};
   if (!src_.compare(pos, 3, "cos")) {
     input_.emplace_back(0.0, FOURTH, 'c');
   } else if (!src_.compare(pos, 3, "sin")) {
@@ -76,12 +77,12 @@ bool s21::Model::TokenFunction(size_t pos) noexcept {
   } else if (!src_.compare(pos, 3, "mod")) {
     input_.emplace_back(0.0, THIRD, '%');
   } else {
-    result = false;
+    result = {false, "Function not found"};
   }
   return result;
 }
 
-void s21::Model::TokenOperator(const char& sym) noexcept {
+void s21::Model::FillTokenOperator(const char& sym) noexcept {
   if (sym == '+') {
     input_.emplace_back(0.0, FIRST, 'p');
   } else if (sym == '-') {
@@ -160,10 +161,11 @@ bool s21::Model::CheckEdgeValues() const noexcept {
   return result;
 }
 
-bool s21::Model::CheckFinalExpression() const noexcept {
-  bool result = true;
-  if (!CheckHooksAfterFunctions() || !CheckEdgeValues()) result = false;
-  if (result) {
+std::pair<bool, std::string> s21::Model::CheckFinalExpression() const noexcept {
+  std::pair<bool, std::string> result = {true, "OK"};
+  if (!CheckHooksAfterFunctions() || !CheckEdgeValues())
+    result = {false, "Hooks or edge values error"};
+  if (result.first) {
     for (size_t i = 1; i < input_.size() - 1; ++i) {
       if ((input_[i].priority_ == SECOND || input_[i].priority_ == FIRST ||
            input_[i].type_ == '^') &&
@@ -172,7 +174,7 @@ bool s21::Model::CheckFinalExpression() const noexcept {
             input_[i + 1].priority_ != FOURTH) &&
            (input_[i + 1].type_ == ')' || input_[i + 1].type_ == '^' ||
             input_[i + 1].priority_ == FIRST))) {
-        result = false;
+        result = {false, "Missing values"};
         break;
       }
       if (input_[i].priority_ == ZERO &&
@@ -182,11 +184,11 @@ bool s21::Model::CheckFinalExpression() const noexcept {
            input_[i + 1].priority_ == FOURTH ||
            (input_[i + 1].priority_ == THIRD && input_[i + 1].type_ != '^' &&
             input_[i + 1].type_ != ')'))) {
-        result = false;
+        result = {false, "Missing operator"};
         break;
       }
       if (input_[i].priority_ == FIRST && input_[i + 1].priority_ == SECOND) {
-        result = false;
+        result = {false, "Sign error"};
         break;
       }
     }

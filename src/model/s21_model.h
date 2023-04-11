@@ -20,7 +20,6 @@ enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
 namespace s21 {
 struct Token {
-  // нужен ли конструктор и деструктор
   Token(double value, int priority, char type)
       : value_(value), priority_(priority), type_(type) {}
   ~Token() = default;
@@ -33,9 +32,9 @@ class Model {
  public:
   Model(std::string other) : src_(other) {}
   ~Model() = default;
-  bool ValidationSrc() noexcept;
+  std::pair<bool, std::string> ValidationSrc() noexcept;
   bool ValidationTokens() const noexcept;
-  bool CreateTokens() noexcept;
+  std::pair<bool, std::string> CreateTokens() noexcept;
   void CreateNotation() noexcept;
 
   // extra method
@@ -49,15 +48,15 @@ class Model {
  private:
   bool CheckHooks() const noexcept;
   bool CheckDots() const noexcept;
-  bool IsFunction(const char &sym) const noexcept;
-  bool IsOperator(const char &sym) const noexcept;
-  bool IsHooks(const char &sym) const noexcept;
-  bool TokenFunction(size_t pos) noexcept;
-  void TokenOperator(const char &sym) noexcept;
+  bool TokenIsFunction(const char &sym) const noexcept;
+  bool TokenIsOperator(const char &sym) const noexcept;
+  bool TokenIsHooks(const char &sym) const noexcept;
+  std::pair<bool, std::string> FillTokenFunction(size_t pos) noexcept;
+  void FillTokenOperator(const char &sym) noexcept;
   void CheckUnarySign() noexcept;
   bool CheckHooksAfterFunctions() const noexcept;
   bool CheckEdgeValues() const noexcept;
-  bool CheckFinalExpression() const noexcept;
+  std::pair<bool, std::string> CheckFinalExpression() const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
 };
