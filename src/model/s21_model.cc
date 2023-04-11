@@ -54,6 +54,7 @@ bool s21::Model::CreateTokens() noexcept {
     }
   }
   CheckUnarySign();
+  result = CheckFinalExpression();
   return result;
 }
 

@@ -45,23 +45,19 @@ class Model {
                 << input_[i].type_ << std::endl;
     }
   }
-  bool CheckEdgeValues() const noexcept;
 
  private:
-  bool CheckHooks() noexcept;  // проверка корректности скобок
-  bool CheckDots() noexcept;  // проверка корректности точек
-  bool IsFunction(const char &sym) noexcept;  // проверка функции
-  bool IsOperator(const char &sym) noexcept;  // проверка оператора
-  bool IsHooks(const char &sym) const noexcept;  // проверка скобок
-  bool TokenFunction(size_t pos) noexcept;  // заполнение токена для функции
-  // заполнение токена для оператора
+  bool CheckHooks() const noexcept;
+  bool CheckDots() const noexcept;
+  bool IsFunction(const char &sym) const noexcept;
+  bool IsOperator(const char &sym) const noexcept;
+  bool IsHooks(const char &sym) const noexcept;
+  bool TokenFunction(size_t pos) noexcept;
   void TokenOperator(const char &sym) noexcept;
-  bool CheckUnarySign() noexcept;  // проверка унарного оператора
-  // проверка скобок после функций
+  void CheckUnarySign() noexcept;
   bool CheckHooksAfterFunctions() const noexcept;
-  // проверка выражения
-
-  bool CheckExpression() const noexcept;
+  bool CheckEdgeValues() const noexcept;
+  bool CheckFinalExpression() const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
 };
