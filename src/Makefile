@@ -26,7 +26,7 @@ uninstall:
 	rm -rf build
 
 clean:
-	rm -rf *.o *.gcno *.gcda *.info *.a $(REPORT_DIR) tests run *.dSYM SmartCalcPro.tar.gz
+	rm -rf *.o *.gcno *.gcda *.info *.a $(REPORT_DIR) c_tests run *.dSYM SmartCalcPro.tar.gz
 
 dvi: clean
 	makeinfo -o report --html --no-warn --no-validate --force doc.texi
@@ -37,7 +37,7 @@ dist: clean
 
 tests: clean
 	clear
-	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
+	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
 	./c_tests
 
 gcov_report: clean
