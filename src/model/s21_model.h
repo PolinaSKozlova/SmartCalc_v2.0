@@ -3,6 +3,7 @@
 
 #include <cctype>
 #include <iostream>
+#include <stack>
 #include <string>
 #include <vector>
 
@@ -33,7 +34,6 @@ class Model {
   Model(std::string other) : src_(other) {}
   ~Model() = default;
   std::pair<bool, std::string> ValidationSrc() noexcept;
-  bool ValidationTokens() const noexcept;
   std::pair<bool, std::string> CreateTokens() noexcept;
   void CreateNotation() noexcept;
 

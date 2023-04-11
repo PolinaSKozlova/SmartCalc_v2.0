@@ -2,21 +2,15 @@
 
 std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
   std::pair<bool, std::string> result = {true, "OK"};
-  if (!CheckHooks() || !CheckDots()) {
+  if (!CheckHooks() || !CheckDots() || src_.size() > 255) {
     result = {false, "Hooks or dots error"};
   } else {
     if (CreateTokens().first) {
-      CreateNotation();
+      // CreateNotation();
     } else {
       result = {false, "Tokens parcing error"};
     }
   }
-  return result;
-}
-
-bool s21::Model::ValidationTokens() const noexcept {
-  bool result = true;
-
   return result;
 }
 
@@ -56,13 +50,16 @@ std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
       break;
     }
   }
-  CheckUnarySign();
-  result = CheckFinalExpression();
+  if (!input_.empty()) {
+    CheckUnarySign();
+    result = CheckFinalExpression();
+  }
   return result;
 }
 
 void s21::Model::CreateNotation() noexcept {
   const std::vector<s21::Token> template_input(input_);
+  std::stack<Token> template_stack;
   input_.clear();
   for (size_t i = 0; i < template_input.size(); ++i) {
     if (template_input[i].priority_ == ZERO) {

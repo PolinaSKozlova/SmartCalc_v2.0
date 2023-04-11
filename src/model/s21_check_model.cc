@@ -22,14 +22,19 @@ bool s21::Model::CheckDots() const noexcept {
   if (src_[0] == '.' && !(std::isdigit(src_[1]))) {
     result = false;
   }
+  if (src_[src_.length() - 1] == '.' &&
+      !(std::isdigit(src_[src_.length() - 2]))) {
+    result = false;
+  }
   for (size_t i = 1; i < src_.length() - 1 && result; ++i) {
     if ((src_[i] == '.' && !std::isdigit(src_[i + 1]) &&
          !std::isdigit(src_[i - 1])) ||
         (src_[i] == '.' && src_[i + 1] == '.')) {
       result = false;
-      // break;
+      break;
     }
   }
+
   return result;
 }
 
