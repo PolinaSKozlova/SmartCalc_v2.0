@@ -1,6 +1,6 @@
 #include "s21_model.h"
 
-bool s21::Model::CheckHooks() noexcept {
+bool s21::Model::CheckHooks() const noexcept {
   int count_hooks = 0;
   bool result = true;
   for (size_t i = 0; i < src_.length() && count_hooks >= 0; ++i) {
@@ -17,7 +17,7 @@ bool s21::Model::CheckHooks() noexcept {
   return result;
 }
 
-bool s21::Model::CheckDots() noexcept {
+bool s21::Model::CheckDots() const noexcept {
   bool result = true;
   if (src_[0] == '.' && !(std::isdigit(src_[1]))) {
     result = false;
@@ -33,14 +33,14 @@ bool s21::Model::CheckDots() noexcept {
   return result;
 }
 
-bool s21::Model::IsFunction(const char& sym) noexcept {
+bool s21::Model::IsFunction(const char& sym) const noexcept {
   bool result = true;
   std::string cmp = "cstoiaqnlm";
   if (cmp.find(sym) == std::string::npos) result = false;
   return result;
 }
 
-bool s21::Model::IsOperator(const char& sym) noexcept {
+bool s21::Model::IsOperator(const char& sym) const noexcept {
   bool result = true;
   std::string cmp = "+-*/^";
   if (cmp.find(sym) == std::string::npos) result = false;
@@ -95,14 +95,16 @@ void s21::Model::TokenOperator(const char& sym) noexcept {
   }
 }
 
-bool s21::Model::CheckUnarySign() noexcept {
-  bool result = true;
+void s21::Model::CheckUnarySign() noexcept {
   if (input_[0].priority_ == FIRST &&
       (input_[1].priority_ == ZERO || input_[1].priority_ == FOURTH ||
        input_[1].type_ == '(')) {
     input_[0].priority_ = THIRD;
-    // if (input_[0].type_ == 'p') input_[0].type_ == '+';
-    // if (input_[0].type_ == 'm') input_[0].type_ == '-';
+    if (input_[0].type_ == 'p') {
+      input_[0].type_ = '+';
+    } else if (input_[0].type_ == 'm') {
+      input_[0].type_ = '-';
+    }
   }
   for (size_t i = 1; i < input_.size() - 1; i++) {
     if (input_[i].priority_ == FIRST &&
@@ -118,27 +120,27 @@ bool s21::Model::CheckUnarySign() noexcept {
       }
     }
   }
-  return result;
 }
 
 bool s21::Model::CheckHooksAfterFunctions() const noexcept {
   bool result = true;
-  for (auto iterator_current = input_.cbegin();
-       iterator_current != input_.cend(); ++iterator_current) {
-    auto iterator_next = ++iterator_current;
-    if (iterator_current->priority_ == FOURTH && iterator_next->type_ != '(') {
-      result = false;
-      break;
-    } else if (iterator_next == input_.cend()) {
-      break;
-    }
-  }
-  // for (size_t i = 0; i < input_.size()-1; ++i) {
-  //   if (input_[i].priority_ == FOURTH && input_[i + 1].type_ != '(') {
+  // for (auto iterator_current = input_.cbegin();
+  //      iterator_current != input_.cend(); ++iterator_current) {
+  //   auto iterator_next = ++iterator_current;
+  //   if (iterator_current->priority_ == FOURTH && iterator_next->type_ != '(')
+  //   {
   //     result = false;
+  //     break;
+  //   } else if (iterator_next == input_.cend()) {
   //     break;
   //   }
   // }
+  for (size_t i = 0; i < input_.size() - 1; ++i) {
+    if (input_[i].priority_ == FOURTH && input_[i + 1].type_ != '(') {
+      result = false;
+      break;
+    }
+  }
   return result;
 }
 
@@ -158,11 +160,36 @@ bool s21::Model::CheckEdgeValues() const noexcept {
   return result;
 }
 
-bool s21::Model::CheckExpression() const noexcept {
+bool s21::Model::CheckFinalExpression() const noexcept {
   bool result = true;
-  if (!CheckHooksAfterFunctions()) result = false;
-  if (result && CheckEdgeValues()) {
-    ;
+  if (!CheckHooksAfterFunctions() || !CheckEdgeValues()) result = false;
+  if (result) {
+    for (size_t i = 1; i < input_.size() - 1; ++i) {
+      if ((input_[i].priority_ == SECOND || input_[i].priority_ == FIRST ||
+           input_[i].type_ == '^') &&
+          (input_[i - 1].priority_ != ZERO || input_[i - 1].type_ != ')') &&
+          ((input_[i + 1].priority_ != ZERO &&
+            input_[i + 1].priority_ != FOURTH) &&
+           (input_[i + 1].type_ == ')' || input_[i + 1].type_ == '^' ||
+            input_[i + 1].priority_ == FIRST))) {
+        result = false;
+        break;
+      }
+      if (input_[i].priority_ == ZERO &&
+          (input_[i - 1].priority_ == ZERO ||
+           input_[i - 1].priority_ == FOURTH || input_[i - 1].type_ == ')' ||
+           input_[i + 1].priority_ == ZERO ||
+           input_[i + 1].priority_ == FOURTH ||
+           (input_[i + 1].priority_ == THIRD && input_[i + 1].type_ != '^' &&
+            input_[i + 1].type_ != ')'))) {
+        result = false;
+        break;
+      }
+      if (input_[i].priority_ == FIRST && input_[i + 1].priority_ == SECOND) {
+        result = false;
+        break;
+      }
+    }
   }
   return result;
 }
