@@ -48,13 +48,12 @@ std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
       // ++pos;
     } else {
       result = {false, "Incorrect tokens"};
-      break;
+      input_.clear();
     }
   }
   if (!input_.empty()) {
     CheckUnarySign();
     result = CheckFinalExpression();
-    std::cout << result.first << " " << result.second << std::endl;
   }
   return result;
 }
