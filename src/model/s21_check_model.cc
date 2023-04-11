@@ -34,7 +34,6 @@ bool s21::Model::CheckDots() const noexcept {
       break;
     }
   }
-
   return result;
 }
 
@@ -80,7 +79,7 @@ std::pair<bool, std::string> s21::Model::FillTokenFunction(
   } else if (!src_.compare(pos, 3, "log")) {
     input_.emplace_back(0.0, FOURTH, 'g');
   } else if (!src_.compare(pos, 3, "mod")) {
-    input_.emplace_back(0.0, THIRD, '%');
+    input_.emplace_back(0.0, SECOND, '%');
   } else {
     result = {false, "Function not found"};
   }
@@ -178,7 +177,8 @@ std::pair<bool, std::string> s21::Model::CheckFinalExpression() const noexcept {
           ((input_[i + 1].priority_ != ZERO &&
             input_[i + 1].priority_ != FOURTH) &&
            (input_[i + 1].type_ == ')' || input_[i + 1].type_ == '^' ||
-            input_[i + 1].priority_ == FIRST))) {
+            input_[i + 1].priority_ == FIRST ||
+            input_[i + 1].priority_ == SECOND))) {
         result = {false, "Missing values"};
         break;
       }
