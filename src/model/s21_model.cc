@@ -43,14 +43,14 @@ std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
         }
       }
     } else if (TokenIsOperator(src_[pos])) {
-      FillTokenOperator(src_[pos]);
-      ++pos;
+      FillTokenOperator(src_[pos++]);
+      // ++pos;
     } else if (TokenIsHooks(src_[pos])) {
-      input_.emplace_back(0.0, THIRD, src_[pos]);
-      ++pos;
+      input_.emplace_back(0.0, THIRD, src_[pos++]);
+      // ++pos;
     } else if (src_[pos] == 'x') {
-      input_.emplace_back(0.0, ZERO, src_[pos]);
-      ++pos;
+      input_.emplace_back(0.0, ZERO, src_[pos++]);
+      // ++pos;
     } else {
       result = {false, "Incorrect tokens"};
       break;
