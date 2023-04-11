@@ -126,10 +126,10 @@ bool s21::Model::CheckHooksAfterFunctions() const noexcept {
   for (auto iterator_current = input_.cbegin();
        iterator_current != input_.cend(); ++iterator_current) {
     auto iterator_next = ++iterator_current;
-    if ((iterator_current->priority_ == FOURTH &&
-         iterator_next->type_ != '(') ||
-        iterator_next == input_.cend()) {
+    if (iterator_current->priority_ == FOURTH && iterator_next->type_ != '(') {
       result = false;
+      break;
+    } else if (iterator_next == input_.cend()) {
       break;
     }
   }
