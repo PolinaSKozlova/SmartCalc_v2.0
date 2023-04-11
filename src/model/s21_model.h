@@ -33,8 +33,8 @@ class Model {
  public:
   Model(std::string other) : src_(other) {}
   ~Model() = default;
-  bool ValidationSrc(const Model &m) noexcept;
-  bool ValidationTokens(const std::string &src) noexcept;
+  bool ValidationSrc() noexcept;
+  bool ValidationTokens() const noexcept;
   bool CreateTokens() noexcept;
   void CreateNotation() noexcept;
 
@@ -45,15 +45,23 @@ class Model {
                 << input_[i].type_ << std::endl;
     }
   }
+  bool CheckEdgeValues() const noexcept;
 
  private:
-  bool CheckHooks() noexcept;
-  bool CheckDots() noexcept;
-  bool IsFunction(const char &sym) noexcept;
-  bool IsOperator(const char &sym) noexcept;
-  bool IsHooks(const char &sym) const noexcept;
-  bool TokenFunction(size_t pos) noexcept;
+  bool CheckHooks() noexcept;  // проверка корректности скобок
+  bool CheckDots() noexcept;  // проверка корректности точек
+  bool IsFunction(const char &sym) noexcept;  // проверка функции
+  bool IsOperator(const char &sym) noexcept;  // проверка оператора
+  bool IsHooks(const char &sym) const noexcept;  // проверка скобок
+  bool TokenFunction(size_t pos) noexcept;  // заполнение токена для функции
+  // заполнение токена для оператора
   void TokenOperator(const char &sym) noexcept;
+  bool CheckUnarySign() noexcept;  // проверка унарного оператора
+  // проверка скобок после функций
+  bool CheckHooksAfterFunctions() const noexcept;
+  // проверка выражения
+
+  bool CheckExpression() const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
 };
