@@ -11,7 +11,7 @@ REPORT_DIR = report
 
 run: clean
 	clear
-	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_model.cc run.cc -o run
+	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_model.cc model/s21_check_model.cc run.cc -o run -g
 #	$(OBJ_FILES)
 
 
