@@ -6,26 +6,11 @@
 // #include "view/s21_view.h"
 
 int main() {
-  std::string src = "3+asin(x)";
-  // std::cout << "compare " << src.compare(7, 6, "cos(x)");
+  std::string src = "567--2";
   s21::Model m(src);
-  std::cout << "is function " << m.IsFunction(src[2]) << std::endl;
-  // std::cout << "is operator " << m.IsOperator(src[3]) << std::endl;
-  // std::cout << "is hooks " << m.IsHooks(src[2]) << std::endl;
-  //   size_t n = 0;
-  //   static int i = 0;
-  //   double num = std::stod(&src[i], &n);
-  //   std::cout << "stod: " << num << std::endl;
-  //   std::cout << n << std::endl;
-  //   for (size_t j = n; j < 14; ++j) {
-  //     std::cout << src[j];
-  //   }
-  //   i += n;
-  //   num = std::stod(&src[i], &n);
-  //   std::cout << std::endl << "stod: " << num << std::endl;
-  //   std::cout << n << std::endl;
-  //   for (size_t j = n + i; j < 14; ++j) {
-  //     std::cout << src[j];
-  //   }
+  auto res = m.ValidationSrc();
+  std::cout << "result validation " << res.first << " " << res.second
+            << std::endl;
+  // m.print();
   return 0;
 }
