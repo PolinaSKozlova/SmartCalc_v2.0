@@ -26,12 +26,14 @@ bool s21::Model::CheckDots() const noexcept {
       !(std::isdigit(src_[src_.length() - 2]))) {
     result = false;
   }
-  for (size_t i = 1; i < src_.length() - 1 && result; ++i) {
-    if ((src_[i] == '.' && !std::isdigit(src_[i + 1]) &&
-         !std::isdigit(src_[i - 1])) ||
-        (src_[i] == '.' && src_[i + 1] == '.')) {
-      result = false;
-      break;
+  if (src_.size()) {
+    for (size_t i = 1; i < src_.length() - 1 && result; ++i) {
+      if ((src_[i] == '.' && !std::isdigit(src_[i + 1]) &&
+           !std::isdigit(src_[i - 1])) ||
+          (src_[i] == '.' && src_[i + 1] == '.')) {
+        result = false;
+        break;
+      }
     }
   }
   return result;
@@ -114,7 +116,8 @@ void s21::Model::CheckUnarySign() noexcept {
   for (size_t i = 1; i < input_.size() - 1; i++) {
     if (input_[i].priority_ == FIRST &&
         (input_[i - 1].priority_ == FIRST ||
-         input_[i - 1].priority_ == SECOND || input_[i - 1].type_ == '(') &&
+         input_[i - 1].priority_ == SECOND || input_[i - 1].type_ == '(' ||
+         input_[i - 1].type_ == '^') &&
         (input_[i + 1].priority_ == ZERO ||
          input_[i + 1].priority_ == FOURTH)) {
       input_[i].priority_ = THIRD;

@@ -2,8 +2,8 @@
 
 std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
   std::pair<bool, std::string> result = {true, "OK"};
-  if (!CheckHooks() || !CheckDots() || src_.size() > 255) {
-    result = {false, "Hooks or dots error"};
+  if (!CheckHooks() || !CheckDots() || src_.length() > 255) {
+    result = {false, "Hooks or dots error or source length > 255"};
   } else {
     if (CreateTokens().first) {
       // CreateNotation();

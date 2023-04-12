@@ -33,7 +33,7 @@ TEST(validation_src_test_correct_third_priority, test_5) {
 }
 
 TEST(validation_src_test_correct_third_priority, test_6) {
-  std::string src = "(-35^4.553)+567^(-2)";
+  std::string src = "(-35^4.553)+567^-2";
   s21::Model m(src);
   EXPECT_EQ(m.ValidationSrc().first, true);
 }
