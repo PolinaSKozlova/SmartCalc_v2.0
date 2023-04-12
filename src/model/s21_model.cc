@@ -6,7 +6,7 @@ std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
     result = {false, "Hooks or dots error or source length > 255"};
   } else {
     if (CreateTokens().first) {
-      // CreateNotation();
+      CreateNotation();
     } else {
       input_.clear();
       result = {false, "Tokens parcing error"};
@@ -59,14 +59,52 @@ std::pair<bool, std::string> s21::Model::CreateTokens() noexcept {
 }
 
 void s21::Model::CreateNotation() noexcept {
-  const std::vector<s21::Token> template_input(input_);
-  std::stack<Token> template_stack;
+  std::vector<s21::Token> copy_input(input_);
+  std::stack<s21::Token> my_stack;
+  my_stack.emplace(0.0, 0, 0);
   input_.clear();
-  for (size_t i = 0; i < template_input.size(); ++i) {
-    if (template_input[i].priority_ == ZERO) {
-      input_.push_back(template_input[i]);
-      ++i;
-    } else if (template_input[i].priority_ == FOURTH) {
+  for (auto index = copy_input.cbegin(); index != copy_input.cend(); ++index) {
+    if (index->priority_ == ZERO) {
+      input_.push_back(*index);
+    } else if (index->priority_ == FOURTH || index->type_ == '(') {
+      my_stack.push(*index);
+    } else if (index->type_ == ')') {
+      while (true) {
+        if (my_stack.top().type_ == '(') {
+          my_stack.pop();
+          break;
+        } else {
+          input_.push_back(my_stack.top());
+          my_stack.pop();
+        }
+      }
+    } else {
+      if (my_stack.top().priority_ < index->priority_ || my_stack.size() == 1) {
+        my_stack.push(*index);
+      } else {
+        if (my_stack.top().type_ == '(') {
+          my_stack.push(*index);
+        } else {
+          if (index->type_ == '^') {
+            while (my_stack.top().priority_ > index->priority_ &&
+                   my_stack.top().type_ != '(' && my_stack.size() > 1) {
+              input_.push_back(my_stack.top());
+              my_stack.pop();
+            }
+          } else {
+            while (my_stack.top().priority_ >= index->priority_ &&
+                   my_stack.top().type_ != '(' && my_stack.size() > 1) {
+              input_.push_back(my_stack.top());
+              my_stack.pop();
+            }
+          }
+          my_stack.push(*index);
+        }
+      }
     }
+  }
+  while (my_stack.size() > 1) {
+    input_.push_back(my_stack.top());
+    my_stack.pop();
   }
 }
