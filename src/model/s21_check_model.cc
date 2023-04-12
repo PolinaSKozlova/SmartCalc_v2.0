@@ -132,17 +132,6 @@ void s21::Model::CheckUnarySign() noexcept {
 
 bool s21::Model::CheckHooksAfterFunctions() const noexcept {
   bool result = true;
-  // for (auto iterator_current = input_.cbegin();
-  //      iterator_current != input_.cend(); ++iterator_current) {
-  //   auto iterator_next = ++iterator_current;
-  //   if (iterator_current->priority_ == FOURTH && iterator_next->type_ != '(')
-  //   {
-  //     result = false;
-  //     break;
-  //   } else if (iterator_next == input_.cend()) {
-  //     break;
-  //   }
-  // }
   for (size_t i = 0; i < input_.size() - 1; ++i) {
     if (input_[i].priority_ == FOURTH && input_[i + 1].type_ != '(') {
       result = false;
