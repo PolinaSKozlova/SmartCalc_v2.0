@@ -27,7 +27,7 @@ TEST(validation_src_test_correct_third_priority, test_4) {
 }
 
 TEST(validation_src_test_correct_third_priority, test_5) {
-  std::string src = "-5678+(36^2.45)-(-1000000)";
+  std::string src = "-5678+(36^2.45)-(-1000000)mod5";
   s21::Model m(src);
   EXPECT_EQ(m.ValidationSrc().first, true);
 }
