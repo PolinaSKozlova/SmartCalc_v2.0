@@ -20,8 +20,10 @@
 enum TokenPriority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
 namespace s21 {
-struct Token {
-  Token(double value, int priority, char type)
+class Token {
+ public:
+  Token() = default;
+  explicit Token(double value, int priority, char type)
       : value_(value), priority_(priority), type_(type) {}
   ~Token() = default;
   double value_;
@@ -63,6 +65,9 @@ class Model {
   bool TokenIsUnary(const s21::Token &sym) const noexcept;
   bool TokenIsBinary(const s21::Token &sym) const noexcept;
   bool TokenIsNumber(const s21::Token &sym) const noexcept;
+  Token UnaryOperations(const char &sym, s21::Token &token) const noexcept;
+  Token BinaryOperations(const char &sym, s21::Token &token_1,
+                         s21::Token &token_2) const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
 };
