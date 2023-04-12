@@ -36,6 +36,7 @@ class Model {
   std::pair<bool, std::string> ValidationSrc() noexcept;
   std::pair<bool, std::string> CreateTokens() noexcept;
   void CreateNotation() noexcept;
+  double CalculateExpression() const noexcept;
 
   // extra method
   void print() {
@@ -46,6 +47,7 @@ class Model {
   }
 
  private:
+  // методы для парсинга строки
   bool CheckHooks() const noexcept;
   bool CheckDots() const noexcept;
   bool TokenIsFunction(const char &sym) const noexcept;
@@ -57,6 +59,10 @@ class Model {
   bool CheckHooksAfterFunctions() const noexcept;
   bool CheckEdgeValues() const noexcept;
   std::pair<bool, std::string> CheckFinalExpression() const noexcept;
+  // методы для вычислений
+  bool TokenIsUnary(const s21::Token &sym) const noexcept;
+  bool TokenIsBinary(const s21::Token &sym) const noexcept;
+  bool TokenIsNumber(const s21::Token &sym) const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
 };
