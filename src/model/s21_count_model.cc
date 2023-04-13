@@ -21,6 +21,7 @@ double s21::Model::CalculateExpression() const noexcept {
     }
   }
   result = my_stack.top().value_;
+
   return result;
 }
 
@@ -70,22 +71,22 @@ s21::Token s21::Model::BinaryOperations(const char& sym, s21::Token& token_1,
   s21::Token result;
   switch (sym) {
     case 'p':
-      result.value_ = token_1.value_ + token_2.value_;
+      result.value_ = token_2.value_ + token_1.value_;
       break;
     case 'm':
-      result.value_ = token_1.value_ - token_2.value_;
+      result.value_ = token_2.value_ - token_1.value_;
       break;
     case '*':
-      result.value_ = token_1.value_ * token_2.value_;
+      result.value_ = token_2.value_ * token_1.value_;
       break;
     case '/':
-      result.value_ = token_1.value_ / token_2.value_;
+      result.value_ = token_2.value_ / token_1.value_;
       break;
     case '^':
-      result.value_ = pow(token_1.value_, token_2.value_);
+      result.value_ = pow(token_2.value_, token_1.value_);
       break;
     case '%':
-      result.value_ = fmod(token_1.value_, token_2.value_);
+      result.value_ = fmod(token_2.value_, token_1.value_);
       break;
   }
   return result;
