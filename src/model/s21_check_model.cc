@@ -194,3 +194,19 @@ std::pair<bool, std::string> s21::Model::CheckFinalExpression() const noexcept {
   }
   return result;
 }
+
+std::pair<bool, std::string> s21::Model::CheckXValue() const noexcept {
+  std::pair<bool, std::string> result = {true, "OK"};
+  for (size_t pos = 0; pos < x_value_.length(); ++pos) {
+    if (!(std::isdigit(x_value_[pos])) && x_value_[pos] != '.') {
+      result = {false, "X value is not a number"};
+      break;
+    }
+    if ((x_value_[pos] == '.' && x_value_[pos + 1] == '.') ||
+        (x_value_[pos] == '.' && x_value_.length() == 1)) {
+      result = {false, "Incorrect X value"};
+      break;
+    }
+  }
+  return result;
+}
