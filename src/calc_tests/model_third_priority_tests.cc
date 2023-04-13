@@ -62,6 +62,12 @@ TEST(validation_src_test_correct_third_priority, test_10) {
   EXPECT_EQ(m.ValidationSrc().first, true);
 }
 
+TEST(validation_src_test_correct_third_priority, test_11) {
+  std::string src = "1e-7+cos(4)*1e+3";
+  s21::Model m(src);
+  EXPECT_EQ(m.ValidationSrc().first, true);
+}
+
 TEST(validation_src_test_incorrect_third_priority, test_1) {
   std::string src = "^247^(0.4379)";
   s21::Model m(src);
@@ -94,6 +100,12 @@ TEST(validation_src_test_incorrect_third_priority, test_5) {
 
 TEST(validation_src_test_incorrect_third_priority, test_6) {
   std::string src = "100000.00/478.23472(381389)";
+  s21::Model m(src);
+  EXPECT_EQ(m.ValidationSrc().first, false);
+}
+
+TEST(validation_src_test_incorrect_third_priority, test_7) {
+  std::string src = "1ee-7+cos(4)*1e+3";
   s21::Model m(src);
   EXPECT_EQ(m.ValidationSrc().first, false);
 }

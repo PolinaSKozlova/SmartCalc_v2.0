@@ -62,7 +62,7 @@ TEST(validation_src_test_correct_second_priority, test_10) {
   EXPECT_EQ(m.ValidationSrc().first, true);
 }
 
-TEST(validation_src_test_correct_second_priority, test_10) {
+TEST(validation_src_test_correct_second_priority, test_11) {
   std::string src = "1e+4*0.8743";
   s21::Model m(src);
   EXPECT_EQ(m.ValidationSrc().first, true);
