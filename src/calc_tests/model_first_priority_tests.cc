@@ -62,6 +62,12 @@ TEST(validation_src_test_correct_first_priority, test_10) {
   EXPECT_EQ(m.ValidationSrc().first, true);
 }
 
+TEST(validation_src_test_correct_first_priority, test_11) {
+  std::string src = "x-0.0001+1.2e-03-890317+x";
+  s21::Model m(src);
+  EXPECT_EQ(m.ValidationSrc().first, true);
+}
+
 TEST(validation_src_test_incorrect_first_priority, test_1) {
   std::string src = "10000000-478.23472-381389+.";
   s21::Model m(src);
