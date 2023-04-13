@@ -33,7 +33,7 @@ class Token {
 
 class Model {
  public:
-  Model(std::string other) : src_(other) {}
+  Model(std::string other, std::string x = "0.0") : src_(other), x_value_(x) {}
   ~Model() = default;
   std::pair<bool, std::string> ValidationSrc() noexcept;
   std::pair<bool, std::string> CreateTokens() noexcept;
@@ -42,10 +42,6 @@ class Model {
 
   // extra method
   void print() {
-    // for (size_t i = 0; i < input_.size(); ++i) {
-    //   std::cout << input_[i].value_ << " " << input_[i].priority_ << " "
-    //             << input_[i].type_ << std::endl;
-    // }
     for (auto it = input_.cbegin(); it != input_.cend(); ++it) {
       std::cout << it->value_ << " " << it->priority_ << " " << it->type_
                 << std::endl;
@@ -74,6 +70,7 @@ class Model {
                          s21::Token &token_2) const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
+  std::string x_value_;
 };
 };  // namespace s21
 
