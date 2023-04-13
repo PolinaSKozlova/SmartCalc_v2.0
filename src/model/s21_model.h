@@ -33,11 +33,10 @@ class Token {
 
 class Model {
  public:
-  Model(std::string other, std::string x = "0.0") : src_(other), x_value_(x) {}
+  explicit Model(std::string other, std::string x = "0.0")
+      : src_(other), x_value_(x) {}
   ~Model() = default;
   std::pair<bool, std::string> ValidationSrc() noexcept;
-  std::pair<bool, std::string> CreateTokens() noexcept;
-  void CreateNotation() noexcept;
   double CalculateExpression() const noexcept;
 
   // extra method
@@ -61,6 +60,9 @@ class Model {
   bool CheckHooksAfterFunctions() const noexcept;
   bool CheckEdgeValues() const noexcept;
   std::pair<bool, std::string> CheckFinalExpression() const noexcept;
+  void CreateNotation() noexcept;
+  std::pair<bool, std::string> CreateTokens() noexcept;
+  void GetXValue() noexcept;
   // методы для вычислений
   bool TokenIsUnary(const s21::Token &sym) const noexcept;
   bool TokenIsBinary(const s21::Token &sym) const noexcept;

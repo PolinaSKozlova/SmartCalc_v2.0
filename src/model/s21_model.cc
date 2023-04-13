@@ -7,6 +7,7 @@ std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
   } else {
     if (CreateTokens().first) {
       CreateNotation();
+      GetXValue();
     } else {
       input_.clear();
       result = {false, "Tokens parcing error"};
@@ -103,5 +104,15 @@ void s21::Model::CreateNotation() noexcept {
   while (my_stack.size() > 1) {
     input_.push_back(my_stack.top());
     my_stack.pop();
+  }
+}
+
+void s21::Model::GetXValue() noexcept {
+  double x = 0.0;
+  x = std::stod(x_value_, nullptr);
+  for (auto it = input_.begin(); it != input_.end(); ++it) {
+    if (it->type_ == 'x') {
+      it->value_ = x;
+    }
   }
 }
