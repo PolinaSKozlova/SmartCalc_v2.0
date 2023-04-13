@@ -21,7 +21,6 @@ double s21::Model::CalculateExpression() const noexcept {
     }
   }
   result = my_stack.top().value_;
-
   return result;
 }
 

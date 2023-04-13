@@ -38,7 +38,8 @@ class Model {
   ~Model() = default;
   std::pair<bool, std::string> ValidationSrc() noexcept;
   double CalculateExpression() const noexcept;
-
+  std::pair<bool, std::string> StartCalculations() noexcept;
+  std::string GetOutput() const noexcept;
   // extra method
   void print() {
     for (auto it = input_.cbegin(); it != input_.cend(); ++it) {
@@ -74,6 +75,7 @@ class Model {
   std::vector<s21::Token> input_;
   std::string src_;
   std::string x_value_;
+  std::string output_;
 };
 };  // namespace s21
 
