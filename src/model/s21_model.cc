@@ -5,12 +5,18 @@ std::pair<bool, std::string> s21::Model::ValidationSrc() noexcept {
   if (!CheckHooks() || !CheckDots() || src_.length() > 255) {
     result = {false, "Hooks or dots error or source length > 255"};
   } else {
-    if (CreateTokens().first) {
+    std::pair<bool, std::string> create_token_result = CreateTokens();
+    std::pair<bool, std::string> check_x_value_result = CheckXValue();
+    if (create_token_result.first && check_x_value_result.first) {
       CreateNotation();
       GetXValue();
     } else {
       input_.clear();
-      result = {false, "Tokens parcing error"};
+      if (!create_token_result.first) {
+        result = create_token_result;
+      } else if (!check_x_value_result.first) {
+        result = check_x_value_result;
+      }
     }
   }
   return result;
@@ -107,12 +113,25 @@ void s21::Model::CreateNotation() noexcept {
   }
 }
 
+std::pair<bool, std::string> s21::Model::CheckXValue() const noexcept {
+  std::pair<bool, std::string> result = {true, "OK"};
+  for (size_t pos = 0; pos < x_value_.length(); ++pos) {
+    if (!(std::isdigit(x_value_[pos])) && x_value_[pos] != '.') {
+      result = {false, "X value is not a number"};
+      break;
+    }
+    if (x_value_[pos] == '.' && x_value_[pos + 1] == '.') {
+      result = {false, "Incorrect X value"};
+      break;
+    }
+  }
+  return result;
+}
+
 void s21::Model::GetXValue() noexcept {
-  double x = 0.0;
-  x = std::stod(x_value_, nullptr);
   for (auto it = input_.begin(); it != input_.end(); ++it) {
     if (it->type_ == 'x') {
-      it->value_ = x;
+      it->value_ = std::stod(x_value_, nullptr);
     }
   }
 }

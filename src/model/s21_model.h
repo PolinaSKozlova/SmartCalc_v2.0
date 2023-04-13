@@ -62,6 +62,7 @@ class Model {
   std::pair<bool, std::string> CheckFinalExpression() const noexcept;
   void CreateNotation() noexcept;
   std::pair<bool, std::string> CreateTokens() noexcept;
+  std::pair<bool, std::string> CheckXValue() const noexcept;
   void GetXValue() noexcept;
   // методы для вычислений
   bool TokenIsUnary(const s21::Token &sym) const noexcept;
