@@ -42,9 +42,13 @@ class Model {
 
   // extra method
   void print() {
-    for (size_t i = 0; i < input_.size(); ++i) {
-      std::cout << input_[i].value_ << " " << input_[i].priority_ << " "
-                << input_[i].type_ << std::endl;
+    // for (size_t i = 0; i < input_.size(); ++i) {
+    //   std::cout << input_[i].value_ << " " << input_[i].priority_ << " "
+    //             << input_[i].type_ << std::endl;
+    // }
+    for (auto it = input_.cbegin(); it != input_.cend(); ++it) {
+      std::cout << it->value_ << " " << it->priority_ << " " << it->type_
+                << std::endl;
     }
   }
 
