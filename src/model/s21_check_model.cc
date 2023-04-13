@@ -148,8 +148,10 @@ bool s21::Model::CheckEdgeValues() const noexcept {
     result = false;
   if (input_.cbegin()->priority_ == ZERO &&
       ((++input_.cbegin())->priority_ == ZERO ||
-       (++input_.cbegin())->priority_ == FOURTH))
+       (++input_.cbegin())->priority_ == FOURTH) &&
+      input_.size() > 1) {
     result = false;
+  }
   if ((--input_.cend())->priority_ == SECOND ||
       (--input_.cend())->priority_ == FOURTH ||
       (--input_.cend())->priority_ == FIRST || (--input_.cend())->type_ == '^')
