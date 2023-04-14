@@ -2,7 +2,7 @@
 
 #include "s21_model.h"
 
-double s21::Model::CalculateExpression() const noexcept {
+double s21::Model::CalculateResultFromInput() const noexcept {
   double result = 0.0;
   std::stack<s21::Token> my_stack;
   for (auto pos = input_.cbegin(); pos != input_.cend(); ++pos) {

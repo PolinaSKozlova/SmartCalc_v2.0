@@ -33,11 +33,12 @@ class Token {
 
 class Model {
  public:
+  Model() : src_(""), x_value_("0.0") {}
   explicit Model(std::string other, std::string x = "0.0")
       : src_(other), x_value_(x) {}
   ~Model() = default;
   std::pair<bool, std::string> ValidationSrc() noexcept;
-  double CalculateExpression() const noexcept;
+  double CalculateResultFromInput() const noexcept;
   std::pair<bool, std::string> StartCalculations() noexcept;
   std::string GetOutput() const noexcept;
   // extra method

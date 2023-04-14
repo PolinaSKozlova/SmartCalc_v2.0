@@ -6,7 +6,7 @@ std::pair<bool, std::string> s21::Model::StartCalculations() noexcept {
   if (result.first) {
     // double answer = CalculateExpression();
     // output_ = std::to_string(answer);
-    output_ = std::to_string(CalculateExpression());
+    output_ = std::to_string(CalculateResultFromInput());
   }
   return result;
 }
