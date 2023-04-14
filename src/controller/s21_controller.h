@@ -7,16 +7,27 @@
 namespace s21 {
 class Controller {
  public:
-  Controller();
-  // Controller(Model *other) : model_(other) {}
-  // Controller &operator=(Model *other) {
+  Controller() = default;
+  // explicit Controller(const s21::Model &other) : model_(other) {}
+  // Controller &operator=(const s21::Model &other) {
   //   model_ = other;
   //   return *this;
   // }
-  ~Controller();
+  ~Controller() = default;
+  std::pair<bool, std::string> ParceAndCalculateExpression() noexcept {
+    std::pair<bool, std::string> count_result = {true, "OK"};
+    count_result = model_.StartSmartCalc();
+    if (count_result.first) {
+      count_result.second = model_.GetOutput();
+    } else {
+      count_result.second = count_result.second;
+    }
+    return count_result;
+  }
 
  private:
-  // Model *model_;
+  Model model_;
+
   // View *view_;
 };
 };  // namespace s21
