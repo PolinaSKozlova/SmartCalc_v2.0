@@ -3,6 +3,7 @@
 
 #include <cctype>
 #include <iostream>
+#include <sstream>
 #include <stack>
 #include <string>
 #include <vector>
@@ -40,7 +41,9 @@ class Model {
   std::pair<bool, std::string> ValidationSrc() noexcept;
   double CalculateResultFromInput() const noexcept;
   std::pair<bool, std::string> StartSmartCalc() noexcept;
-  std::string GetOutput() const noexcept;
+  std::string GetStringOutput() const noexcept;
+  double GetOutput() const noexcept;
+
   // extra method
   void print() {
     for (auto it = input_.cbegin(); it != input_.cend(); ++it) {
@@ -75,8 +78,9 @@ class Model {
                          s21::Token &token_2) const noexcept;
   std::vector<s21::Token> input_;
   std::string src_;
-  std::string x_value_;
-  std::string output_;
+  std::string x_value_;  // либо сделать double x_value_
+  // std::string output_;
+  double output_;
 };
 };  // namespace s21
 
