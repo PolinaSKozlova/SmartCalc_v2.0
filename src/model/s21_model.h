@@ -39,7 +39,7 @@ class Model {
   ~Model() = default;
   std::pair<bool, std::string> ValidationSrc() noexcept;
   double CalculateResultFromInput() const noexcept;
-  std::pair<bool, std::string> StartCalculations() noexcept;
+  std::pair<bool, std::string> StartSmartCalc() noexcept;
   std::string GetOutput() const noexcept;
   // extra method
   void print() {

@@ -1,6 +1,6 @@
 #include "s21_model.h"
 
-std::pair<bool, std::string> s21::Model::StartCalculations() noexcept {
+std::pair<bool, std::string> s21::Model::StartSmartCalc() noexcept {
   std::pair<bool, std::string> result = {true, "OK"};
   result = ValidationSrc();
   if (result.first) {
