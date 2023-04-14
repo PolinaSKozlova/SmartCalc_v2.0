@@ -161,8 +161,9 @@ bool s21::Model::CheckEdgeValues() const noexcept {
 
 std::pair<bool, std::string> s21::Model::CheckFinalExpression() const noexcept {
   std::pair<bool, std::string> result = {true, "OK"};
-  if (!CheckHooksAfterFunctions() || !CheckEdgeValues())
+  if (!CheckHooksAfterFunctions() || !CheckEdgeValues()) {
     result = {false, "Hooks or edge values error"};
+  }
   if (result.first) {
     for (size_t i = 1; i < input_.size() - 1; ++i) {
       if ((input_[i].priority_ == SECOND || input_[i].priority_ == FIRST ||
@@ -178,11 +179,20 @@ std::pair<bool, std::string> s21::Model::CheckFinalExpression() const noexcept {
       }
       if (input_[i].priority_ == ZERO &&
           (input_[i - 1].priority_ == ZERO ||
-           input_[i - 1].priority_ == FOURTH || input_[i - 1].type_ == ')' ||
-           input_[i + 1].priority_ == ZERO ||
+           //  input_[i - 1].priority_ == FOURTH ||
+           input_[i - 1].type_ == ')' || input_[i + 1].priority_ == ZERO ||
            input_[i + 1].priority_ == FOURTH ||
            (input_[i + 1].priority_ == THIRD && input_[i + 1].type_ != '^' &&
             input_[i + 1].type_ != ')'))) {
+        result = {false, "Missing operator"};
+        break;
+      }
+      if (input_[i].type_ == ')' &&
+          (input_[i + 1].priority_ == FOURTH ||
+           input_[i + 1].priority_ == ZERO ||
+           (input_[i + 1].priority_ == THIRD &&
+            (input_[i + 1].type_ == '(' || input_[i + 1].type_ == '-' ||
+             input_[i + 1].type_ == '+')))) {
         result = {false, "Missing operator"};
         break;
       }

@@ -4,9 +4,9 @@ std::pair<bool, std::string> s21::Model::StartSmartCalc() noexcept {
   std::pair<bool, std::string> result = {true, "OK"};
   result = ValidationSrc();
   if (result.first) {
-    // double answer = CalculateExpression();
-    // output_ = std::to_string(answer);
     output_ = std::to_string(CalculateResultFromInput());
+  } else {
+    output_ = result.second;
   }
   return result;
 }
