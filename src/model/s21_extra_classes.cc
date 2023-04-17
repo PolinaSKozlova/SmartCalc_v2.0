@@ -9,6 +9,7 @@ void s21::Tokenizer::CreateTokenOutput() {
     CreateTokens();
     FindUnarySign();
     CheckHooksAfterFunctions();
+    print();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
@@ -34,7 +35,6 @@ void s21::Tokenizer::CreateTokens() {
       FillRecievedToken(tmp);
     }
   }
-  print();
 }
 
 void s21::Tokenizer::CheckHooksInInput() const {
@@ -72,23 +72,23 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
 
 void s21::Tokenizer::FindUnarySign() noexcept {
   for (auto current = ++tokens_.begin(); current != tokens_.end(); ++current) {
-    // if ((current->priority_ == s21::Priority::kFirst ||
-    //      current->priority_ == s21::Priority::kSecond ||
-    //      current->priority_ == s21::Priority::kFourth) &&
-    //     (current + 1)->priority_ == s21::Priority::kFirst) {
-    //   std::cout << current->type_ << std::endl;
-    //   (current + 1)->priority_ = s21::Priority::kThird;
-    //   if ((current + 1)->type_ == "sum") (current + 1)->type_ = "+";
-    //   if ((current + 1)->type_ == "sub") (current + 1)->type_ = "-";
-    // }
-    if (current->priority_ == s21::Priority::kFirst &&
-        ((current - 1)->priority_ == s21::Priority::kFirst ||
-         (current - 1)->priority_ == s21::Priority::kSecond ||
-         (current - 1)->priority_ == s21::Priority::kFourth)) {
-      current->priority_ = s21::Priority::kThird;
-      if (current->type_ == "sum") current->type_ = "+";
-      if (current->type_ == "sub") current->type_ = "-";
+    if ((current->priority_ == s21::Priority::kFirst ||
+         current->priority_ == s21::Priority::kSecond ||
+         current->priority_ == s21::Priority::kFourth) &&
+        (current + 1)->priority_ == s21::Priority::kFirst) {
+      std::cout << current->type_ << std::endl;
+      (current + 1)->priority_ = s21::Priority::kThird;
+      if ((current + 1)->type_ == "sum") (current + 1)->type_ = "+";
+      if ((current + 1)->type_ == "sub") (current + 1)->type_ = "-";
     }
+    // if (current->priority_ == s21::Priority::kFirst &&
+    //     ((current - 1)->priority_ == s21::Priority::kFirst ||
+    //      (current - 1)->priority_ == s21::Priority::kSecond ||
+    //      (current - 1)->priority_ == s21::Priority::kFourth)) {
+    //   current->priority_ = s21::Priority::kThird;
+    //   if (current->type_ == "sum") current->type_ = "+";
+    //   if (current->type_ == "sub") current->type_ = "-";
+    // }
   }
 }
 
