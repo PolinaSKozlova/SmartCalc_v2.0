@@ -24,7 +24,8 @@ class Tokenizer {
   explicit Tokenizer(const std::string& input_src) : input_src_(input_src) {}
   ~Tokenizer() = default;
   std::vector<Token> GetTokens() const noexcept { return tokens_; }
-  bool CheckHooks();
+  bool CheckHooksInInput() const;
+  bool CheckDotsInInput() const;
 
  private:
   std::string input_src_;
@@ -33,16 +34,25 @@ class Tokenizer {
 
 class Validator {
  public:
+  Validator() {}
+  ~Validator() {}
+
  private:
 };
 
-class Model {
+class MathCalculator {
  public:
+  MathCalculator() {}
+  ~MathCalculator() = default;
+
  private:
 };
 
 class CreditCalculator {
  public:
+  CreditCalculator() {}
+  ~CreditCalculator() = default;
+
  private:
 };
 
