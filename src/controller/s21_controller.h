@@ -14,19 +14,20 @@ class Controller {
   //   return *this;
   // }
   ~Controller() = default;
-  std::pair<bool, std::string> ParceAndCalculateExpression() noexcept {
-    std::pair<bool, std::string> count_result = {true, "OK"};
-    count_result = model_.StartSmartCalc();
-    if (count_result.first) {
-      count_result.second = model_.GetOutput();
-    } else {
-      count_result.second = count_result.second;
-    }
-    return count_result;
-  }
+  //   std::pair<bool, std::string> ParceAndCalculateExpression() noexcept {
+  //     std::pair<bool, std::string> count_result = {true, "OK"};
+  //     count_result = model_.StartSmartCalc();
+  //     if (count_result.first) {
+  //       count_result.second = model_.GetOutput();
+  //     } else {
+  //       count_result.second = count_result.second;
+  //     }
+  //     return count_result;
+  //   }
 
- private:
-  Model model_;
+  //  private:
+  //   Model model_;
+  // std::string output_;
 
   // View *view_;
 };
