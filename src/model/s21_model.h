@@ -1,46 +1,10 @@
 #ifndef S21_MODEL_H_
 #define S21_MODEL_H_
 
-#include <cctype>
-#include <iostream>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <vector>
+#include "s21_extra_classes.h"
 
 namespace s21 {
 enum Priority { ZERO, FIRST, SECOND, THIRD, FOURTH };
-
-class Token {
- public:
-  Token(double value, int priority, char type)
-      : value_(value), priority_(priority), type_(type) {}
-  ~Token() = default;
-  double value_;
-  int priority_;
-  char type_;
-};
-
-class Tokenizer {
- public:
-  explicit Tokenizer(const std::string& input_src) : input_src_(input_src) {}
-  ~Tokenizer() = default;
-  std::vector<Token> GetTokens() const noexcept { return tokens_; }
-  void CheckHooksInInput() const;
-  void CheckDotsInInput() const;
-
- private:
-  std::string input_src_;
-  std::vector<Token> tokens_;
-};
-
-class Validator {
- public:
-  Validator() {}
-  ~Validator() {}
-
- private:
-};
 
 class MathCalculator {
  public:
@@ -48,6 +12,10 @@ class MathCalculator {
   ~MathCalculator() = default;
 
  private:
+  std::vector<Token> output_tokens_;
+  std::string x_value_;
+  // double x_value_;
+  double answer_;
 };
 
 class CreditCalculator {
