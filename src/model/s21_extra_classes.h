@@ -9,6 +9,8 @@
 #include <vector>
 
 namespace s21 {
+enum Priority { ZERO, FIRST, SECOND, THIRD, FOURTH };
+
 class Token {
  public:
   Token(double value, int priority, char type)
@@ -25,12 +27,23 @@ class Tokenizer {
   ~Tokenizer() = default;
   std::vector<Token> GetTokens() const noexcept { return tokens_; }
   void CreateTokenOutput();
+  void CreateTokens();
   void CheckHooksInInput() const;
   void CheckDotsInInput() const;
   bool TokenIsFunction(const char& sym) const;
   bool TokenIsOperator(const char& sym) const;
   bool TokenIsNumber(const char& sym) const;
   bool TokenIsHook(const char& sym) const;
+  void FillOperatorToken(const char& sym) noexcept;
+  void FillFunctionToken();
+
+  /* вывод вектора токенов */
+  void print() {
+    for (auto it = tokens_.cbegin(); it != tokens_.cend(); ++it) {
+      std::cout << it->value_ << " " << it->priority_ << " " << it->type_
+                << std::endl;
+    }
+  }
 
  private:
   std::string input_src_;
