@@ -17,17 +17,19 @@ void s21::Tokenizer::CreateTokens() {
   while (current != input_src_.cend()) {
     if (TokenIsNumber(*current)) {
       size_t shift = 0;
-      tokens_.emplace_back(std::stod(&(*current), &shift), ZERO, 'n');
+      tokens_.emplace_back(std::stod(&(*current), &shift), s21::Priority::kZero,
+                           'n');
       current += shift;
-    } else if (TokenIsFunction(*current)) {
-    } else if (TokenIsOperator(*current)) {
-      FillOperatorToken(*(current++));
-    } else if (TokenIsHook(*current)) {
-      tokens_.emplace_back(0, THIRD, *(current++));
-    } else if (*current == 'x') {
-      tokens_.emplace_back(0, ZERO, *(current++));
+    } else if (std::isalpha(*current)) {
+      std::regex base_regex("([a-z]+)");
+      std::sregex_iterator it =
+          std::sregex_iterator(current, input_src_.cend(), base_regex);
+      std::smatch base_match = *it;
+      FillRecievedToken(base_match.str());
+      current += base_match.length();
     } else {
-      throw std::invalid_argument("Invalid token");
+      const std::string tmp{*current++};
+      FillRecievedToken(tmp);
     }
   }
   print();
@@ -40,7 +42,7 @@ void s21::Tokenizer::CheckHooksInInput() const {
     if (*current_sym == '(') ++count_hooks;
     if (*current_sym == ')') --count_hooks;
     if (*current_sym == '(' && *(current_sym + 1) == ')') {
-      throw std::invalid_argument("Hooks error");
+      throw std::invalid_argument("Empty hooks error");
       break;
     }
   }
@@ -50,26 +52,13 @@ void s21::Tokenizer::CheckHooksInInput() const {
 void s21::Tokenizer::CheckDotsInInput() const {
   for (auto current_sym = ++input_src_.cbegin();
        current_sym != input_src_.cend(); ++current_sym) {
-    if (*current_sym == '.' && !std::isdigit(*(current_sym - 1)) &&
+    if (*current_sym == '.' &&
+        (!std::isdigit(*(current_sym - 1)) || *(current_sym - 1) == '.') &&
         !std::isdigit(*(current_sym + 1))) {
       throw std::invalid_argument("Dots error: dot without number");
       break;
     }
   }
-}
-
-bool s21::Tokenizer::TokenIsFunction(const char& sym) const {
-  bool result = true;
-  std::string cmp = "cstoiaqnlm";
-  if (cmp.find(sym) == std::string::npos) result = false;
-  return result;
-}
-
-bool s21::Tokenizer::TokenIsOperator(const char& sym) const {
-  bool result = true;
-  std::string cmp = "+-*/^";
-  if (cmp.find(sym) == std::string::npos) result = false;
-  return result;
 }
 
 bool s21::Tokenizer::TokenIsNumber(const char& sym) const {
@@ -80,24 +69,9 @@ bool s21::Tokenizer::TokenIsNumber(const char& sym) const {
   return result;
 }
 
-bool s21::Tokenizer::TokenIsHook(const char& sym) const {
-  bool result = false;
-  if (sym == '(' || sym == ')') result = true;
-  return result;
+void s21::Tokenizer::FillRecievedToken(const std::string& key) {
+  auto search_token = valid_tokens.find(key);
+  if (search_token == valid_tokens.cend())
+    throw std::invalid_argument("Invalid token");
+  tokens_.emplace_back(search_token->second);
 }
-
-void s21::Tokenizer::FillOperatorToken(const char& sym) noexcept {
-  if (sym == '+') {
-    tokens_.emplace_back(0.0, FIRST, 'p');
-  } else if (sym == '-') {
-    tokens_.emplace_back(0.0, FIRST, 'm');
-  } else if (sym == '*') {
-    tokens_.emplace_back(0.0, SECOND, '*');
-  } else if (sym == '/') {
-    tokens_.emplace_back(0.0, SECOND, '/');
-  } else if (sym == '^') {
-    tokens_.emplace_back(0.0, THIRD, '^');
-  }
-}
-
-void s21::Tokenizer::FillFunctionToken() {}
