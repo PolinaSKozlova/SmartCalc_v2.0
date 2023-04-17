@@ -67,3 +67,17 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
     throw std::invalid_argument("Invalid token");
   tokens_.emplace_back(search_token->second);
 }
+
+void s21::Tokenizer::FindUnarySign() noexcept {
+  for (auto current = tokens_.begin(); current != tokens_.end(); ++current) {
+    }
+}
+
+void s21::Validator::CreateNotation() {
+  try {
+  } catch (std::invalid_argument& e) {
+    std::cerr << e.what() << std::endl;
+  }
+}
+
+void s21::Validator::CheckHooksAfterFunctions() const {}
