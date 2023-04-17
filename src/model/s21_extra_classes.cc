@@ -15,7 +15,7 @@ void s21::Tokenizer::CreateTokenOutput() {
 void s21::Tokenizer::CreateTokens() {
   auto current = input_src_.cbegin();
   while (current != input_src_.cend()) {
-    if (TokenIsNumber(*current)) {
+    if (std::isdigit(*current) || *current == '.') {
       size_t shift = 0;
       tokens_.emplace_back(std::stod(&(*current), &shift), s21::Priority::kZero,
                            'n');
@@ -59,14 +59,6 @@ void s21::Tokenizer::CheckDotsInInput() const {
       throw std::invalid_argument("Dots error: dot without number");
     }
   }
-}
-
-bool s21::Tokenizer::TokenIsNumber(const char& sym) const {
-  bool result = false;
-  if (std::isdigit(sym) || sym == '.') {
-    result = true;
-  }
-  return result;
 }
 
 void s21::Tokenizer::FillRecievedToken(const std::string& key) {

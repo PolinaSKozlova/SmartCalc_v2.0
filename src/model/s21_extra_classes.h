@@ -49,16 +49,6 @@ class Tokenizer {
   ~Tokenizer() = default;
   std::vector<Token> GetTokens() const noexcept { return tokens_; }
   void CreateTokenOutput();
-  void CreateTokens();
-  void CheckHooksInInput() const;
-  void CheckDotsInInput() const;
-  bool TokenIsFunction(const char& sym) const;
-  bool TokenIsOperator(const char& sym) const;
-  bool TokenIsNumber(const char& sym) const;
-  bool TokenIsHook(const char& sym) const;
-  void FillOperatorToken(const char& sym) noexcept;
-  void FillFunctionToken(const std::string& key);
-  void FillRecievedToken(const std::string& key);
 
   /* вывод вектора токенов */
   void print() {
@@ -68,16 +58,33 @@ class Tokenizer {
   }
 
  private:
+  void CreateTokens();
+  void CheckHooksInInput() const;
+  void CheckDotsInInput() const;
+  void FillRecievedToken(const std::string& key);
   std::string input_src_;
   std::vector<Token> tokens_;
 };
 
 class Validator {
  public:
-  Validator() {}
+  explicit Validator(const std::vector<Token>& other) : output_tokens_(other) {}
   ~Validator() {}
+  void CreateNotation();
+  void FindUnarySign() noexcept;
+  void CheckHooksAfterFunctions() const;
+
+  /* вывод вектора токенов */
+  void print() {
+    for (auto it = tokens_notation_.cbegin(); it != tokens_notation_.cend();
+         ++it) {
+      std::cout << it->value_ << " " << it->type_ << std::endl;
+    }
+  }
 
  private:
+  std::vector<Token> output_tokens_;
+  std::vector<Token> tokens_notation_;
 };
 
 }  // namespace s21
