@@ -1,4 +1,4 @@
-#include "s21_model.h"
+#include "s21_model_old.h"
 
 std::pair<bool, std::string> s21::Model::StartSmartCalc() noexcept {
   std::pair<bool, std::string> result = {true, "OK"};

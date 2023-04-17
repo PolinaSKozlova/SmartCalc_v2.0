@@ -9,6 +9,8 @@
 #include <vector>
 
 namespace s21 {
+enum Priority { ZERO, FIRST, SECOND, THIRD, FOURTH };
+
 class Token {
  public:
   Token(double value, int priority, char type)
@@ -24,8 +26,8 @@ class Tokenizer {
   explicit Tokenizer(const std::string& input_src) : input_src_(input_src) {}
   ~Tokenizer() = default;
   std::vector<Token> GetTokens() const noexcept { return tokens_; }
-  bool CheckHooksInInput() const;
-  bool CheckDotsInInput() const;
+  void CheckHooksInInput() const;
+  void CheckDotsInInput() const;
 
  private:
   std::string input_src_;
