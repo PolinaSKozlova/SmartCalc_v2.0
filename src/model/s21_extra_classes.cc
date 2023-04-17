@@ -22,9 +22,9 @@ void s21::Tokenizer::CreateTokens() {
       current += shift;
     } else if (std::isalpha(*current)) {
       std::regex base_regex("([a-z]+)");
-      std::sregex_iterator it =
+      std::sregex_iterator regex_it =
           std::sregex_iterator(current, input_src_.cend(), base_regex);
-      std::smatch base_match = *it;
+      std::smatch base_match = *regex_it;
       FillRecievedToken(base_match.str());
       current += base_match.length();
     } else {
@@ -42,7 +42,7 @@ void s21::Tokenizer::CheckHooksInInput() const {
     if (*current_sym == '(') ++count_hooks;
     if (*current_sym == ')') --count_hooks;
     if (*current_sym == '(' && *(current_sym + 1) == ')') {
-      throw std::invalid_argument("Empty hooks error");
+      throw std::invalid_argument("Empty hooks");
       break;
     }
   }
@@ -52,11 +52,11 @@ void s21::Tokenizer::CheckHooksInInput() const {
 void s21::Tokenizer::CheckDotsInInput() const {
   for (auto current_sym = ++input_src_.cbegin();
        current_sym != input_src_.cend(); ++current_sym) {
-    if (*current_sym == '.' &&
-        (!std::isdigit(*(current_sym - 1)) || *(current_sym - 1) == '.') &&
+    if (*current_sym == '.' && *(current_sym - 1) == '.')
+      throw std::invalid_argument("Dots error: two dots in input");
+    if (*current_sym == '.' && !std::isdigit(*(current_sym - 1)) &&
         !std::isdigit(*(current_sym + 1))) {
       throw std::invalid_argument("Dots error: dot without number");
-      break;
     }
   }
 }
