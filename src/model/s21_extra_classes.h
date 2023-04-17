@@ -27,8 +27,8 @@ class Token {
 const std::map<std::string, Token> valid_tokens{
     // const перед string
     {"x", Token(0.0, s21::Priority::kZero, "x")},
-    {"+", Token(0.0, s21::Priority::kFirst, "p")},
-    {"-", Token(0.0, s21::Priority::kFirst, "m")},
+    {"+", Token(0.0, s21::Priority::kFirst, "sum")},
+    {"-", Token(0.0, s21::Priority::kFirst, "sub")},
     {"*", Token(0.0, s21::Priority::kSecond, "*")},
     {"/", Token(0.0, s21::Priority::kSecond, "/")},
     {"(", Token(0.0, s21::Priority::kThird, "(")},
@@ -54,7 +54,8 @@ class Tokenizer {
   /* вывод вектора токенов */
   void print() {
     for (auto it = tokens_.cbegin(); it != tokens_.cend(); ++it) {
-      std::cout << it->value_ << " " << it->type_ << std::endl;
+      std::cout << it->value_ << " " << (int)it->priority_ << " " << it->type_
+                << std::endl;
     }
   }
 
@@ -64,6 +65,7 @@ class Tokenizer {
   void CheckDotsInInput() const;
   void FillRecievedToken(const std::string& key);
   void FindUnarySign() noexcept;
+  void CheckHooksAfterFunctions() const;
   std::string input_src_;
   std::vector<Token> tokens_;
 };
@@ -73,13 +75,13 @@ class Validator {
   explicit Validator(const std::vector<Token>& other) : output_tokens_(other) {}
   ~Validator() {}
   void CreateNotation();
-  void CheckHooksAfterFunctions() const;
 
   /* вывод вектора токенов */
   void print() {
     for (auto it = tokens_notation_.cbegin(); it != tokens_notation_.cend();
          ++it) {
-      std::cout << it->value_ << " " << it->type_ << std::endl;
+      std::cout << it->value_ << " " << (int)it->priority_ << it->type_
+                << std::endl;
     }
   }
 

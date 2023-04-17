@@ -7,6 +7,8 @@ void s21::Tokenizer::CreateTokenOutput() {
     CheckHooksInInput();
     CheckDotsInInput();
     CreateTokens();
+    FindUnarySign();
+    CheckHooksAfterFunctions();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
@@ -18,7 +20,7 @@ void s21::Tokenizer::CreateTokens() {
     if (std::isdigit(*current) || *current == '.') {
       size_t shift = 0;
       tokens_.emplace_back(std::stod(&(*current), &shift), s21::Priority::kZero,
-                           'n');
+                           "number");
       current += shift;
     } else if (std::isalpha(*current)) {
       std::regex base_regex("([a-z]+)");
@@ -69,8 +71,33 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
 }
 
 void s21::Tokenizer::FindUnarySign() noexcept {
-  for (auto current = tokens_.begin(); current != tokens_.end(); ++current) {
+  for (auto current = ++tokens_.begin(); current != tokens_.end(); ++current) {
+    // if ((current->priority_ == s21::Priority::kFirst ||
+    //      current->priority_ == s21::Priority::kSecond ||
+    //      current->priority_ == s21::Priority::kFourth) &&
+    //     (current + 1)->priority_ == s21::Priority::kFirst) {
+    //   std::cout << current->type_ << std::endl;
+    //   (current + 1)->priority_ = s21::Priority::kThird;
+    //   if ((current + 1)->type_ == "sum") (current + 1)->type_ = "+";
+    //   if ((current + 1)->type_ == "sub") (current + 1)->type_ = "-";
+    // }
+    if (current->priority_ == s21::Priority::kFirst &&
+        ((current - 1)->priority_ == s21::Priority::kFirst ||
+         (current - 1)->priority_ == s21::Priority::kSecond ||
+         (current - 1)->priority_ == s21::Priority::kFourth)) {
+      current->priority_ = s21::Priority::kThird;
+      if (current->type_ == "sum") current->type_ = "+";
+      if (current->type_ == "sub") current->type_ = "-";
     }
+  }
+}
+
+void s21::Tokenizer::CheckHooksAfterFunctions() const {
+  for (auto current = tokens_.cbegin(); current != tokens_.cend(); ++current) {
+    if (current->priority_ == s21::Priority::kFourth &&
+        (current + 1)->type_ != "(")
+      throw std::invalid_argument("Function without hooks");
+  }
 }
 
 void s21::Validator::CreateNotation() {
@@ -79,5 +106,3 @@ void s21::Validator::CreateNotation() {
     std::cerr << e.what() << std::endl;
   }
 }
-
-void s21::Validator::CheckHooksAfterFunctions() const {}
