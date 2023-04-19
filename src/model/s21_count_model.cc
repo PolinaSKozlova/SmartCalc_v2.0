@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "s21_model.h"
+#include "s21_model_old.h"
 
 double s21::Model::CalculateResultFromInput() const noexcept {
   double result = 0.0;
