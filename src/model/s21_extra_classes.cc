@@ -6,6 +6,7 @@ void s21::Tokenizer::CreateTokenOutput() {
   try {
     CheckHooksInInput();
     CheckDotsInInput();
+    CheckXValue();
     CreateTokens();
     FindUnarySign();
     CheckHooksAfterFunctions();
@@ -68,6 +69,9 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
   if (search_token == valid_tokens.cend())
     throw std::invalid_argument("Invalid token");
   tokens_.emplace_back(search_token->second);
+  if (key == "x") {
+    tokens_.back().value_ = std::stod(token_x_value_, nullptr);
+  }
 }
 
 void s21::Tokenizer::FindUnarySign() noexcept {
@@ -97,6 +101,17 @@ void s21::Tokenizer::CheckHooksAfterFunctions() const {
     if (current->priority_ == s21::Priority::kFourth &&
         (current + 1)->type_ != "(")
       throw std::invalid_argument("Function without hooks");
+  }
+}
+
+void s21::Tokenizer::CheckXValue() const {
+  for (auto iterator_to_num = token_x_value_.cbegin();
+       iterator_to_num != token_x_value_.cend(); ++iterator_to_num) {
+    if ((!std::isdigit(*iterator_to_num) && *iterator_to_num != '.') ||
+        (*iterator_to_num == '.' && *(iterator_to_num + 1) == '.') ||
+        (*iterator_to_num == '.' && token_x_value_.length() == 1)) {
+      throw std::invalid_argument("Incorrect x value");
+    }
   }
 }
 

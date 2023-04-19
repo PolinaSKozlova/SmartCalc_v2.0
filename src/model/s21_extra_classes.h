@@ -46,7 +46,8 @@ const std::map<std::string, Token> valid_tokens{
 
 class Tokenizer {
  public:
-  explicit Tokenizer(const std::string& input_src) : input_src_(input_src) {}
+  explicit Tokenizer(const std::string& input_src, const std::string& x = "0.0")
+      : input_src_(input_src), token_x_value_(x) {}
   ~Tokenizer() = default;
   std::vector<Token> GetTokens() const noexcept { return tokens_; }
   void CreateTokenOutput();
@@ -66,8 +67,10 @@ class Tokenizer {
   void FillRecievedToken(const std::string& key);
   void FindUnarySign() noexcept;
   void CheckHooksAfterFunctions() const;
+  void CheckXValue() const;
   std::string input_src_;
   std::vector<Token> tokens_;
+  std::string token_x_value_;
 };
 
 class Validator {
