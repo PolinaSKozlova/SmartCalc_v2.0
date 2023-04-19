@@ -75,14 +75,11 @@ class Tokenizer {
 
 class Validator {
  public:
-  explicit Validator(const std::vector<s21::Token>& other)
-      : output_tokens_(other) {}
+  explicit Validator(const std::vector<Token>& other) : output_tokens_(other) {}
   ~Validator() {}
   std::vector<Token> CreateNotation();
   // void CreateNotation();
-  std::vector<s21::Token> GetOutputTokens() const noexcept {
-    return output_tokens_;
-  }
+  std::vector<Token> GetOutputTokens() const noexcept { return output_tokens_; }
 
   /* вывод вектора токенов */
   void print() {
@@ -93,7 +90,7 @@ class Validator {
   }
 
  private:
-  std::vector<s21::Token> output_tokens_;
+  std::vector<Token> output_tokens_;
   // std::vector<Token> tokens_notation_;
 };
 

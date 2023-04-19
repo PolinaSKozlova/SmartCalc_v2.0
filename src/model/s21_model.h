@@ -19,7 +19,7 @@ class MathCalculator {
 
  private:
   std::string input_src_;
-  std::vector<s21::Token> output_tokens_;
+  std::vector<Token> output_tokens_;
   std::string x_value_;
   double answer_;
 };
