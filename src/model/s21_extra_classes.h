@@ -69,6 +69,7 @@ class Tokenizer {
   void FindUnarySign() noexcept;
   void CheckHooksAfterFunctions() const;
   void CheckXValue() const;
+  void FinalInputCheck() const;
   std::string input_src_;
   std::vector<Token> tokens_;
   std::string token_x_value_;
@@ -85,7 +86,7 @@ class Validator {
   /* вывод вектора токенов */
   void print() {
     for (auto it = output_tokens_.cbegin(); it != output_tokens_.cend(); ++it) {
-      std::cout << it->value_ << " " << (int)it->priority_ << it->type_
+      std::cout << it->value_ << " " << (int)it->priority_ << " " << it->type_
                 << std::endl;
     }
   }

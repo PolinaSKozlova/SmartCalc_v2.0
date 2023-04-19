@@ -9,7 +9,7 @@ void s21::Tokenizer::CreateTokenOutput() {
     CreateTokens();
     FindUnarySign();
     CheckHooksAfterFunctions();
-    print();
+    // print();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
@@ -110,3 +110,5 @@ void s21::Tokenizer::CheckXValue() const {
     }
   }
 }
+
+void s21::Tokenizer::FinalInputCheck() const {}
