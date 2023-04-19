@@ -21,7 +21,7 @@ std::string s21::MathCalculator::GetStringAnswer() const noexcept {
 }
 
 double s21::MathCalculator::GetDoubleXFromString() const noexcept {
-  return 0.0;
+  return std::stod(x_value_);
 }
 
 void s21::MathCalculator::SetOutputTokens(std::vector<Token>& other) noexcept {

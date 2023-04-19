@@ -1,5 +1,5 @@
-#ifndef S21_MODEL_H_
-#define S21_MODEL_H_
+#ifndef SRC_S21_MODEL_H_
+#define SRC_S21_MODEL_H_
 
 #include "s21_extra_classes.h"
 
@@ -21,7 +21,6 @@ class MathCalculator {
   std::string input_src_;
   std::vector<Token> output_tokens_;
   std::string x_value_;
-  // double x_value_;
   double answer_;
 };
 
@@ -35,4 +34,4 @@ class CreditCalculator {
 
 };  // namespace s21
 
-#endif  // S21_MODEL_H_
+#endif  // SRC_S21_MODEL_H_
