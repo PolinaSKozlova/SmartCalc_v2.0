@@ -17,6 +17,13 @@ class MathCalculator {
   double GetDoubleXFromString() const noexcept;
   void SetOutputTokens(std::vector<Token> &other) noexcept;
 
+  void print() {
+    for (auto it = output_tokens_.cbegin(); it != output_tokens_.cend(); ++it) {
+      std::cout << it->value_ << " " << (int)it->priority_ << " " << it->type_
+                << std::endl;
+    }
+  }
+
  private:
   std::string input_src_;
   std::vector<Token> output_tokens_;
