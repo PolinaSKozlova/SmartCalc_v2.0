@@ -11,7 +11,7 @@ class MathCalculator {
   MathCalculator(const std::string &other, std::string x_value = "0.0")
       : input_src_(other), x_value_(x_value) {}
   ~MathCalculator() = default;
-  void CalculateResultFromInput() const noexcept;
+  void CalculateResultFromInput() noexcept;
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
   double GetDoubleXFromString() const noexcept;
@@ -19,7 +19,7 @@ class MathCalculator {
 
  private:
   std::string input_src_;
-  std::vector<Token> output_tokens_;
+  std::vector<s21::Token> output_tokens_;
   std::string x_value_;
   double answer_;
 };

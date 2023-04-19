@@ -1,11 +1,12 @@
 #include "s21_model.h"
 
-void s21::MathCalculator::CalculateResultFromInput() const noexcept {
+void s21::MathCalculator::CalculateResultFromInput() noexcept {
   try {
     Tokenizer tokens_src(input_src_, x_value_);
     tokens_src.CreateTokenOutput();
     Validator validator(tokens_src.GetTokens());
-    validator.CreateNotation();
+    output_tokens_ = validator.CreateNotation();
+
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
