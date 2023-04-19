@@ -1,6 +1,7 @@
 #ifndef S21_CONTROLLER_H_
 #define S21_CONTROLLER_H_
 
+// #include "../model/s21_extra_classes.h"
 #include "../model/s21_model.h"
 #include "../view/s21_view.h"
 
@@ -8,11 +9,8 @@ namespace s21 {
 class Controller {
  public:
   Controller() = default;
-  // explicit Controller(const s21::Model &other) : model_(other) {}
-  // Controller &operator=(const s21::Model &other) {
-  //   model_ = other;
-  //   return *this;
-  // }
+  explicit Controller(const std::string &src, const std::string &x = "0.0")
+      : model_(src, x) {}
   ~Controller() = default;
   //   std::pair<bool, std::string> ParceAndCalculateExpression() noexcept {
   //     std::pair<bool, std::string> count_result = {true, "OK"};
@@ -25,9 +23,9 @@ class Controller {
   //     return count_result;
   //   }
 
-  //  private:
-  //   Model model_;
-  // std::string output_;
+ private:
+  s21::MathCalculator model_;
+  std::string output_;
 
   // View *view_;
 };
