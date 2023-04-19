@@ -1,5 +1,4 @@
 #include "s21_extra_classes.h"
-
 #include "s21_model.h"
 
 void s21::Tokenizer::CreateTokenOutput() {
@@ -80,19 +79,10 @@ void s21::Tokenizer::FindUnarySign() noexcept {
          current->priority_ == s21::Priority::kSecond ||
          current->priority_ == s21::Priority::kFourth) &&
         (current + 1)->priority_ == s21::Priority::kFirst) {
-      std::cout << current->type_ << std::endl;
       (current + 1)->priority_ = s21::Priority::kThird;
-      if ((current + 1)->type_ == "sum") (current + 1)->type_ = "+";
-      if ((current + 1)->type_ == "sub") (current + 1)->type_ = "-";
+      if ((current + 1)->type_ == "sum") (current + 1)->type_ = "u_plus";
+      if ((current + 1)->type_ == "sub") (current + 1)->type_ = "u_minus";
     }
-    // if (current->priority_ == s21::Priority::kFirst &&
-    //     ((current - 1)->priority_ == s21::Priority::kFirst ||
-    //      (current - 1)->priority_ == s21::Priority::kSecond ||
-    //      (current - 1)->priority_ == s21::Priority::kFourth)) {
-    //   current->priority_ = s21::Priority::kThird;
-    //   if (current->type_ == "sum") current->type_ = "+";
-    //   if (current->type_ == "sub") current->type_ = "-";
-    // }
   }
 }
 
@@ -112,12 +102,5 @@ void s21::Tokenizer::CheckXValue() const {
         (*iterator_to_num == '.' && token_x_value_.length() == 1)) {
       throw std::invalid_argument("Incorrect x value");
     }
-  }
-}
-
-void s21::Validator::CreateNotation() {
-  try {
-  } catch (std::invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
   }
 }

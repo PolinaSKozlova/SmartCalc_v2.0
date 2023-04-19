@@ -59,10 +59,13 @@ class Model {
   bool TokenIsFunction(const char &sym) const noexcept;
   bool TokenIsOperator(const char &sym) const noexcept;
   bool TokenIsHooks(const char &sym) const noexcept;
-  std::pair<bool, std::string> FillTokenFunction(size_t pos) noexcept;
+  std::pair<bool, std::string> FillTokenFunction(
+      size_t pos) noexcept;  // проверять сразу на наличие скобок после функции
   void FillTokenOperator(const char &sym) noexcept;
+  // после создания вектора токенов
   void CheckUnarySign() noexcept;
-  bool CheckHooksAfterFunctions() const noexcept;
+  bool CheckHooksAfterFunctions()
+      const noexcept;  // проверять сразу на наличие скобок после функции
   bool CheckEdgeValues() const noexcept;
   std::pair<bool, std::string> CheckFinalExpression() const noexcept;
   void CreateNotation() noexcept;

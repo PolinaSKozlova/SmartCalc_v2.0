@@ -4,14 +4,20 @@
 #include "s21_extra_classes.h"
 
 namespace s21 {
-enum Priority { ZERO, FIRST, SECOND, THIRD, FOURTH };
 
 class MathCalculator {
  public:
   MathCalculator() {}
+  MathCalculator(const std::string &other, std::string x_value = "0.0")
+      : input_src_(other), x_value_(x_value) {}
   ~MathCalculator() = default;
+  void CalculateResultFromInput() const noexcept;
+  double GetAnswer() const noexcept;
+  std::string GetStringAnswer() const noexcept;
+  double GetDoubleXFromString() const noexcept;
 
  private:
+  std::string input_src_;
   std::vector<Token> output_tokens_;
   std::string x_value_;
   // double x_value_;
