@@ -74,10 +74,16 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
 }
 
 void s21::Tokenizer::FindUnarySign() noexcept {
-  for (auto current = ++tokens_.begin(); current != tokens_.end(); ++current) {
+  if (tokens_.front().priority_ == s21::Priority::kFirst) {
+    tokens_.front().priority_ = s21::Priority::kThird;
+    if (tokens_.front().type_ == "sum") tokens_.front().type_ = "u_plus";
+    if (tokens_.front().type_ == "sub") tokens_.front().type_ = "u_minus";
+  }
+  for (auto current = tokens_.begin(); current != tokens_.end(); ++current) {
     if ((current->priority_ == s21::Priority::kFirst ||
          current->priority_ == s21::Priority::kSecond ||
-         current->priority_ == s21::Priority::kFourth) &&
+         current->priority_ == s21::Priority::kFourth ||
+         current->type_ == "(" || current->type_ == "^") &&
         (current + 1)->priority_ == s21::Priority::kFirst) {
       (current + 1)->priority_ = s21::Priority::kThird;
       if ((current + 1)->type_ == "sum") (current + 1)->type_ = "u_plus";

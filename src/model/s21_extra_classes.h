@@ -33,6 +33,7 @@ const std::map<std::string, Token> valid_tokens{
     {"/", Token(0.0, s21::Priority::kSecond, "/")},
     {"(", Token(0.0, s21::Priority::kThird, "(")},
     {")", Token(0.0, s21::Priority::kThird, ")")},
+    {"^", Token(0.0, s21::Priority::kThird, "^")},
     {"cos", Token(0.0, s21::Priority::kFourth, "cos")},
     {"sin", Token(0.0, s21::Priority::kFourth, "sin")},
     {"tan", Token(0.0, s21::Priority::kFourth, "tan")},
