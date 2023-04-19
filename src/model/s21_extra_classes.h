@@ -78,11 +78,11 @@ class Validator {
   explicit Validator(const std::vector<Token>& other) : output_tokens_(other) {}
   ~Validator() {}
   void CreateNotation();
+  std::vector<Token> GetOutputTokens() const noexcept { return output_tokens_; }
 
   /* вывод вектора токенов */
   void print() {
-    for (auto it = tokens_notation_.cbegin(); it != tokens_notation_.cend();
-         ++it) {
+    for (auto it = output_tokens_.cbegin(); it != output_tokens_.cend(); ++it) {
       std::cout << it->value_ << " " << (int)it->priority_ << it->type_
                 << std::endl;
     }
@@ -90,7 +90,7 @@ class Validator {
 
  private:
   std::vector<Token> output_tokens_;
-  std::vector<Token> tokens_notation_;
+  // std::vector<Token> tokens_notation_;
 };
 
 }  // namespace s21

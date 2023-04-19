@@ -15,6 +15,7 @@ class MathCalculator {
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
   double GetDoubleXFromString() const noexcept;
+  void SetOutputTokens(std::vector<Token> &other) noexcept;
 
  private:
   std::string input_src_;
