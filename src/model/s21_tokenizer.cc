@@ -18,10 +18,6 @@ void s21::Tokenizer::CreateTokenOutput() {
   }
 }
 
-double s21::Tokenizer::GetXValue() const noexcept {
-  return std::stod(token_x_value_);
-}
-
 void s21::Tokenizer::CreateTokens() {
   auto current = input_src_.cbegin();
   while (current != input_src_.cend()) {
@@ -43,6 +39,10 @@ void s21::Tokenizer::CreateTokens() {
     }
   }
   FindUnarySign();
+}
+
+double s21::Tokenizer::GetXValue() const noexcept {
+  return std::stod(token_x_value_);
 }
 
 void s21::Tokenizer::CheckHooksInInput() const {
@@ -127,4 +127,6 @@ void s21::Tokenizer::FinalInputCheck() const {
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
+  // for () {
+  // }
 }
