@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-#include "s21_validator.h"
+// #include "s21_validator.h"
 
 namespace s21 {
 enum class Priority { kZero = 0, kFirst, kSecond, kThird, kFourth };
