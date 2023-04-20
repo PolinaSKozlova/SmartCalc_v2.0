@@ -3,7 +3,6 @@
 std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
   try {
     tokens_.CreateTokenOutput();
-
   } catch (std::invalid_argument &e) {
     std::cerr << e.what() << std::endl;
   }

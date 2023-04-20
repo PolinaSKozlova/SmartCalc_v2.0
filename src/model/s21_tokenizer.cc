@@ -12,9 +12,11 @@ void s21::Tokenizer::CreateTokenOutput() {
     CheckDotsInInput();
     CheckXValue();
     CreateTokens();
+    CheckHooksAfterFunctions();
     FinalInputCheck();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
+    tokens_.clear();
   }
 }
 
@@ -122,11 +124,23 @@ void s21::Tokenizer::CheckXValue() const {
 }
 
 void s21::Tokenizer::FinalInputCheck() const {
-  try {
-    CheckHooksAfterFunctions();
-  } catch (std::invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
+  for (auto current_token = tokens_.cbegin(); current_token != --tokens_.cend();
+       ++current_token) {
+    if (current_token->priority_ == s21::Priority::kZero &&
+        ((current_token + 1)->priority_ == s21::Priority::kFourth ||
+         (current_token + 1)->type_ == "(" ||
+         (current_token + 1)->priority_ == s21::Priority::kZero)) {
+      throw std::invalid_argument("Missing operator");
+      std::cout << "Missing operator" << std::endl;
+    }
+    if (current_token->priority_ == s21::Priority::kSecond &&
+        ((current_token + 1)->priority_ == s21::Priority::kSecond ||
+         (current_token + 1)->priority_ == s21::Priority::kFirst ||
+         (current_token + 1)->type_ == ")" ||
+         (current_token + 1)->type_ == "^" ||
+         (current_token + 1)->type_ == "%")) {
+      throw std::invalid_argument("Missing operand");
+      std::cout << "Missing operand" << std::endl;
+    }
   }
-  // for () {
-  // }
 }

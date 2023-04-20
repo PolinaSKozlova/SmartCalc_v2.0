@@ -3,6 +3,14 @@
 
 #include "s21_token.h"
 
+/*
+ * ZERO - x, number
+ * FIRST - sum, sub
+ * SECOND - div, mult, mod
+ * THIRD - hooks, pow, unary plus, unary minus
+ * FOURTH - sin, cos, tan, acos, asin, atan, sqrt, ln, log
+ */
+
 namespace s21 {
 class Tokenizer {
  public:
