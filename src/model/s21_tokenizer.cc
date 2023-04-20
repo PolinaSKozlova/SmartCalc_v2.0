@@ -12,8 +12,7 @@ void s21::Tokenizer::CreateTokenOutput() {
     CheckDotsInInput();
     CheckXValue();
     CreateTokens();
-    FindUnarySign();
-    CheckHooksAfterFunctions();
+    FinalInputCheck();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
@@ -43,6 +42,7 @@ void s21::Tokenizer::CreateTokens() {
       FillRecievedToken(tmp);
     }
   }
+  FindUnarySign();
 }
 
 void s21::Tokenizer::CheckHooksInInput() const {
@@ -91,7 +91,8 @@ void s21::Tokenizer::FindUnarySign() noexcept {
     if ((current->priority_ == s21::Priority::kFirst ||
          current->priority_ == s21::Priority::kSecond ||
          current->priority_ == s21::Priority::kFourth ||
-         current->type_ == "(" || current->type_ == "^") &&
+         current->type_ == "(" || current->type_ == "^" ||
+         current->type_ == "%") &&
         (current + 1)->priority_ == s21::Priority::kFirst) {
       (current + 1)->priority_ = s21::Priority::kThird;
       (current + 1)->is_binary_ = false;
@@ -120,4 +121,10 @@ void s21::Tokenizer::CheckXValue() const {
   }
 }
 
-void s21::Tokenizer::FinalInputCheck() const {}
+void s21::Tokenizer::FinalInputCheck() const {
+  try {
+    CheckHooksAfterFunctions();
+  } catch (std::invalid_argument& e) {
+    std::cerr << e.what() << std::endl;
+  }
+}
