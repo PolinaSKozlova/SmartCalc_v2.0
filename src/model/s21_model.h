@@ -1,6 +1,8 @@
 #ifndef SRC_S21_MODEL_H_
 #define SRC_S21_MODEL_H_
 
+#include <cmath>
+
 #include "s21_tokenizer.h"
 #include "s21_validator.h"
 
