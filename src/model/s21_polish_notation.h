@@ -7,7 +7,7 @@ namespace s21 {
 
 class PolishNotation {
  public:
-  PolishNotation() {}
+  PolishNotation() = default;
   explicit PolishNotation(const std::vector<Token>& other)
       : output_tokens_(other) {}
   ~PolishNotation() {}
@@ -18,9 +18,9 @@ class PolishNotation {
   /* вывод вектора токенов */
   void print() {
     std::cout << "PolishNotation" << std::endl;
-    for (auto it = output_tokens_.cbegin(); it != output_tokens_.cend(); ++it) {
-      std::cout << it->value_ << " " << (int)it->priority_ << " " << it->type_
-                << " " << it->is_binary_ << std::endl;
+    for (auto const& it : output_tokens_) {
+      std::cout << it.value_ << " " << (int)it.priority_ << " " << it.type_
+                << " " << it.is_binary_ << std::endl;
     }
   }
 
