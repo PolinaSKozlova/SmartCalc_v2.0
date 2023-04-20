@@ -13,11 +13,6 @@ namespace s21 {
 
 class MathCalculator {
  public:
-  // MathCalculator() {}
-  // MathCalculator(const std::string &other,const std::string& x_value = "0.0")
-  //     : input_src_(other), x_value_(x_value) {}
-  // MathCalculator(const std::string &other, std::string x_value = "0.0")
-  //     : tokens_src_(other, x_value) {}
   MathCalculator(const std::string &other, const std::string &x_value = "0.0")
       : tokens_notation_(other, x_value) {}
   ~MathCalculator() = default;
@@ -41,14 +36,6 @@ class MathCalculator {
   PolishNotation tokens_notation_;
   std::vector<Token> output_tokens_{};
   double answer_{};
-};
-
-class CreditCalculator {
- public:
-  CreditCalculator() {}
-  ~CreditCalculator() = default;
-
- private:
 };
 
 };  // namespace s21
