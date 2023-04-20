@@ -9,6 +9,7 @@ TEST(calculation_src_test, test_1) {
   s21::MathCalculator m(src);
   double result = 1087.2641095702704976;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_2) {
@@ -16,6 +17,7 @@ TEST(calculation_src_test, test_2) {
   s21::MathCalculator m(src);
   double result = -0.9999014;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_3) {
@@ -23,19 +25,22 @@ TEST(calculation_src_test, test_3) {
   s21::MathCalculator m(src);
   double result = 10000011.2028204;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_4) {
   std::string src = "log(-178)+634/2/0.5";
   s21::MathCalculator m(src);
+  double result = 2538.250420002308894;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_5) {
   std::string src = "log(178)+634/2/0.5^3";
   s21::MathCalculator m(src);
-  double result = 2538.250420002308894;
   m.CalculateResultFromInput();
+  EXPECT_TRUE(std::isnan(m.GetAnswer()));
 }
 
 TEST(calculation_src_test, test_6) {
@@ -43,6 +48,7 @@ TEST(calculation_src_test, test_6) {
   s21::MathCalculator m(src);
   double result = -1.582661488475988;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_7) {
@@ -50,6 +56,7 @@ TEST(calculation_src_test, test_7) {
   s21::MathCalculator m(src);
   double result = 4247.389013;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_8) {
@@ -57,38 +64,41 @@ TEST(calculation_src_test, test_8) {
   s21::MathCalculator m(src);
   double result = 10000007.962414428;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_9) {
   std::string src = "1.0/0.0+cos(180)-1.0/0.0";
   s21::MathCalculator m(src);
   m.CalculateResultFromInput();
+  EXPECT_TRUE(std::isnan(m.GetAnswer()));
 }
 
 TEST(calculation_src_test, test_10) {
   std::string src = "cos(180)-1.0/0.0";
   s21::MathCalculator m(src);
   m.CalculateResultFromInput();
+  EXPECT_TRUE(std::isinf(m.GetAnswer()));
 }
 
 TEST(calculation_src_test, test_11) {
   std::string src = "tan(50)/3+1.0/0.0";
   s21::MathCalculator m(src);
   m.CalculateResultFromInput();
+  EXPECT_TRUE(std::isinf(m.GetAnswer()));
 }
-s TEST(calculation_src_test, test_12) {
+TEST(calculation_src_test, test_12) {
   std::string src = "150-cos(180)*150/5+(-180)";
   s21::MathCalculator m(src);
   double result = -12.046197928264263;
   m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
-// TEST(calculation_src_test, test_13) {
-//   std::string src = "(x+76.3-cos(x*4))/100";
-//   s21::MathCalculator
-// m(src);
-//   double result = 1.413056357344486;
-//   double x = 66;
-//   m.ValidationSrc();
-//   EXPECT_NEAR(m.CalculateResultFromInput(), result, ACCURACY);
-// }
+TEST(calculation_src_test, test_13) {
+  std::string src = "(x+76.3-cos(x*4))/100";
+  s21::MathCalculator m(src, "66");
+  double result = 1.413056357344486;
+  m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
