@@ -59,7 +59,7 @@ std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
   std::stack<Token> my_stack;
   std::vector<Token> copy_input(tokens_.GetTokens());
   for (auto &current_token : copy_input) {
-    if (current_token.type_ == "number") {
+    if (current_token.priority_ == s21::Priority::kZero) {
       output_notation_.push_back(current_token);
     } else if (current_token.priority_ == s21::Priority::kFourth ||
                current_token.type_ == "(") {
@@ -69,7 +69,16 @@ std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
         output_notation_.push_back(my_stack.top());
         my_stack.pop();
       }
+      my_stack.pop();
     } else {
+      while (!my_stack.empty() &&
+             my_stack.top().priority_ >= current_token.priority_) {
+        if (current_token.type_ != "^") {
+          output_notation_.push_back(my_stack.top());
+          my_stack.pop();
+        }
+      }
+      my_stack.push(current_token);
     }
   }
   while (!my_stack.empty()) {
