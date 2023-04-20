@@ -128,19 +128,20 @@ void s21::Tokenizer::FinalInputCheck() const {
        ++current_token) {
     if (current_token->priority_ == s21::Priority::kZero &&
         ((current_token + 1)->priority_ == s21::Priority::kFourth ||
-         (current_token + 1)->type_ == "(" ||
-         (current_token + 1)->priority_ == s21::Priority::kZero)) {
+         (current_token + 1)->type_ == "(")) {
       throw std::invalid_argument("Missing operator");
-      std::cout << "Missing operator" << std::endl;
     }
-    if (current_token->priority_ == s21::Priority::kSecond &&
-        ((current_token + 1)->priority_ == s21::Priority::kSecond ||
-         (current_token + 1)->priority_ == s21::Priority::kFirst ||
-         (current_token + 1)->type_ == ")" ||
+    if ((current_token->priority_ == s21::Priority::kSecond ||
+         current_token->priority_ == s21::Priority::kFirst) &&
+        ((current_token + 1)->type_ == ")" ||
          (current_token + 1)->type_ == "^" ||
          (current_token + 1)->type_ == "%")) {
       throw std::invalid_argument("Missing operand");
-      std::cout << "Missing operand" << std::endl;
+    }
+    if (current_token->priority_ == (current_token + 1)->priority_ &&
+        current_token->type_ == (current_token + 1)->type_) {
+      throw std::invalid_argument("Two equal tokens in a row");
+      std::cout << "Two equal tokens in a row" << std::endl;
     }
   }
 }
