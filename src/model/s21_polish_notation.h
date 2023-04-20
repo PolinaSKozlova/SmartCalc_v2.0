@@ -14,12 +14,14 @@ class PolishNotation {
   ~PolishNotation() {}
   std::vector<Token> CreateNotation();
   // void CreateNotation();
-  std::vector<Token> GetOutputTokens() const noexcept { return output_tokens_; }
+  std::vector<Token> GetOutputTokens() const noexcept {
+    return output_notation_;
+  }
 
   /* вывод вектора токенов */
   void print() {
     std::cout << "PolishNotation" << std::endl;
-    for (auto const& it : output_tokens_) {
+    for (auto const& it : output_notation_) {
       std::cout << it.value_ << " " << (int)it.priority_ << " " << it.type_
                 << " " << it.is_binary_ << std::endl;
     }
@@ -27,7 +29,7 @@ class PolishNotation {
 
  private:
   Tokenizer tokens_;
-  std::vector<Token> output_tokens_{};
+  std::vector<Token> output_notation_{};
 };
 
 }  // namespace s21
