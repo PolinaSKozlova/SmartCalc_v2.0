@@ -3,10 +3,13 @@
 void s21::MathCalculator::CalculateResultFromInput() noexcept {
   try {
     CreateNotationFromInput();
+    CountResult();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
 }
+
+void s21::MathCalculator::CountResult() noexcept {}
 
 double s21::MathCalculator::GetAnswer() const noexcept { return answer_; }
 

@@ -17,6 +17,7 @@ class MathCalculator {
       : tokens_src_(other, x_value) {}
   ~MathCalculator() = default;
   void CalculateResultFromInput() noexcept;
+  void CountResult() noexcept;
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
   // double GetDoubleXFromString() const noexcept;
