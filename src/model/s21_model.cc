@@ -1,8 +1,8 @@
 #include "s21_model.h"
 
-void s21::MathCalculator::CalculateResultFromInput() noexcept {
+void s21::MathCalculator::CalculateResultFromInput() {
   try {
-    tokens_notation_.CreateNotation();
+    output_tokens_ = tokens_notation_.CreateNotation();
     CountResult();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;

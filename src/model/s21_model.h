@@ -9,16 +9,18 @@
 namespace s21 {
 
 // map для функторов вычисления
-// const std::map<std::string, std::function(double arg_1, double arg_2)>{};
+// const std::map<std::string, std::function(double arg_1, double arg_2)>
+// functions_for_count{};
 
 class MathCalculator {
  public:
-  MathCalculator(const std::string &other, const std::string &x_value = "0.0")
+  explicit MathCalculator(const std::string &other,
+                          const std::string &x_value = "0.0")
       : tokens_notation_(other, x_value) {}
   ~MathCalculator() = default;
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
-  void CalculateResultFromInput() noexcept;
+  void CalculateResultFromInput();
   // нужны ли  данные методы
   // double GetDoubleXFromString() const noexcept;
   // void SetOutputTokens(std::vector<Token> &other) noexcept;
