@@ -30,10 +30,7 @@ void s21::MathCalculator::SetOutputTokens(std::vector<Token>& other) noexcept {
 
 void s21::MathCalculator::CreateNotationFromInput() {
   try {
-    // Tokenizer tokens_src(input_src_, x_value_);
-    tokens_src_.CreateTokenOutput();
-    PolishNotation p_not(tokens_src_.GetTokens());
-    output_tokens_ = p_not.CreateNotation();
+    tokens_notation_.CreateNotation();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }

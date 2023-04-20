@@ -8,8 +8,9 @@ namespace s21 {
 class PolishNotation {
  public:
   PolishNotation() = default;
-  explicit PolishNotation(const std::vector<Token>& other)
-      : output_tokens_(other) {}
+  explicit PolishNotation(const std::string& src,
+                          const std::string& x_value = "0.0")
+      : tokens_(src, x_value) {}
   ~PolishNotation() {}
   std::vector<Token> CreateNotation();
   // void CreateNotation();
@@ -25,6 +26,7 @@ class PolishNotation {
   }
 
  private:
+  Tokenizer tokens_;
   std::vector<Token> output_tokens_{};
 };
 

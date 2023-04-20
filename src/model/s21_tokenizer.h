@@ -10,8 +10,6 @@
 #include <string>
 #include <vector>
 
-// #include "s21_validator.h"
-
 namespace s21 {
 enum class Priority { kZero = 0, kFirst, kSecond, kThird, kFourth };
 
@@ -56,9 +54,9 @@ class Tokenizer {
   explicit Tokenizer(const std::string& input_src, const std::string& x = "0.0")
       : input_src_(input_src), token_x_value_(x) {}
   ~Tokenizer() = default;
-  std::vector<Token> GetTokens() const noexcept { return tokens_; }
+  std::vector<Token> GetTokens() noexcept;
   void CreateTokenOutput();
-
+  double GetXValue() const noexcept;
   /* вывод вектора токенов */
   void print() {
     std::cout << "tokenizer" << std::endl;
@@ -77,7 +75,6 @@ class Tokenizer {
   void CheckHooksAfterFunctions() const;
   void CheckXValue() const;
   void FinalInputCheck() const;
-  //   PolishNotation notation_;
   std::string input_src_;
   std::vector<Token> tokens_;
   std::string token_x_value_;

@@ -3,18 +3,20 @@
 
 #include <cmath>
 
+#include "s21_polish_notation.h"
 #include "s21_tokenizer.h"
-#include "s21_validator.h"
 
 namespace s21 {
 
 class MathCalculator {
  public:
   // MathCalculator() {}
-  // MathCalculator(const std::string &other, std::string x_value = "0.0")
+  // MathCalculator(const std::string &other,const std::string& x_value = "0.0")
   //     : input_src_(other), x_value_(x_value) {}
-  MathCalculator(const std::string &other, std::string x_value = "0.0")
-      : tokens_src_(other, x_value) {}
+  // MathCalculator(const std::string &other, std::string x_value = "0.0")
+  //     : tokens_src_(other, x_value) {}
+  MathCalculator(const std::string &other, const std::string &x_value = "0.0")
+      : tokens_notation_(other, x_value) {}
   ~MathCalculator() = default;
   void CalculateResultFromInput() noexcept;
   void CountResult() noexcept;
@@ -25,18 +27,16 @@ class MathCalculator {
 
   void print() {
     std::cout << "mathcalc" << std::endl;
-    for (auto it = output_tokens_.cbegin(); it != output_tokens_.cend(); ++it) {
-      std::cout << it->value_ << " " << (int)it->priority_ << " " << it->type_
-                << " " << it->is_binary_ << std::endl;
+    for (const auto &it : output_tokens_) {
+      std::cout << it.value_ << " " << (int)it.priority_ << " " << it.type_
+                << " " << it.is_binary_ << std::endl;
     }
   }
 
  private:
   void CreateNotationFromInput();
-  Tokenizer tokens_src_;
-  // std::string input_src_;
+  PolishNotation tokens_notation_;
   std::vector<Token> output_tokens_{};
-  // std::string x_value_;
   double answer_{};
 };
 

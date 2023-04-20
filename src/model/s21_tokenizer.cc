@@ -1,4 +1,11 @@
+#include "s21_tokenizer.h"
+
 #include "s21_model.h"
+
+std::vector<s21::Token> s21::Tokenizer::GetTokens() noexcept {
+  CreateTokenOutput();
+  return tokens_;
+}
 
 void s21::Tokenizer::CreateTokenOutput() {
   try {
@@ -12,6 +19,10 @@ void s21::Tokenizer::CreateTokenOutput() {
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
+}
+
+double s21::Tokenizer::GetXValue() const noexcept {
+  return std::stod(token_x_value_);
 }
 
 void s21::Tokenizer::CreateTokens() {
@@ -44,7 +55,6 @@ void s21::Tokenizer::CheckHooksInInput() const {
     if (*current_sym == ')') --count_hooks;
     if (*current_sym == '(' && *(current_sym + 1) == ')') {
       throw std::invalid_argument("Empty hooks");
-      break;
     }
   }
   if (count_hooks) throw std::invalid_argument("Hooks error");
@@ -68,7 +78,7 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
     throw std::invalid_argument("Invalid token");
   tokens_.emplace_back(search_token->second);
   if (key == "x") {
-    tokens_.back().value_ = std::stod(token_x_value_, nullptr);
+    tokens_.back().value_ = GetXValue();
   }
 }
 
