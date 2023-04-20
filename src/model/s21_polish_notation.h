@@ -13,7 +13,6 @@ class PolishNotation {
       : tokens_(src, x_value) {}
   ~PolishNotation() {}
   std::vector<Token> CreateNotation();
-  // void CreateNotation();
   std::vector<Token> GetOutputTokens() const noexcept {
     return output_notation_;
   }
