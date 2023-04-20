@@ -3,7 +3,7 @@ CC = g++
 CC_FLAGS = -Wall -Wextra -Werror -std=c++17 #-pedantic-errors
 TEST_FLAGS = -lgtest -pthread
 COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
-SANITIZER_FLAGS = #-fsanitize=address
+SANITIZER_FLAGS = -fsanitize=address
 PROJECT_NAME = s21_SmartCalc_v_2_0
 SRCS=$(wildcard s21*.cc,*/s21*.cc)
 OBJ_FILES=$(patsubst %.cc,%.o,$(SRCS))
@@ -11,9 +11,10 @@ REPORT_DIR = report
 
 run: clean
 	clear
-	$(CC) $(CC_FLAGS)  model/s21_*.cc  run.cc -o run -g
+	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_*.cc  run.cc -o run -g
 #	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_model.cc model/s21_validation_model.cc model/s21_check_model.cc model/s21_count_model.cc run.cc -o run -g
 #	$(OBJ_FILES)
+	./run
 
 
 all: 
