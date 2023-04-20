@@ -10,9 +10,10 @@ class Tokenizer {
   explicit Tokenizer(const std::string& input_src, const std::string& x = "0.0")
       : input_src_(input_src), token_x_value_(x) {}
   ~Tokenizer() = default;
-  std::vector<Token> GetTokens() noexcept;
-  void CreateTokenOutput();
+  std::vector<Token> GetTokens() const noexcept;
   double GetXValue() const noexcept;
+  void CreateTokenOutput();
+
   /* вывод вектора токенов */
   void print() {
     std::cout << "tokenizer" << std::endl;

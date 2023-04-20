@@ -2,8 +2,7 @@
 
 #include "s21_model.h"
 
-std::vector<s21::Token> s21::Tokenizer::GetTokens() noexcept {
-  CreateTokenOutput();
+std::vector<s21::Token> s21::Tokenizer::GetTokens() const noexcept {
   return tokens_;
 }
 
@@ -15,7 +14,6 @@ void s21::Tokenizer::CreateTokenOutput() {
     CreateTokens();
     FindUnarySign();
     CheckHooksAfterFunctions();
-    // notation_.CreateNotation();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
