@@ -1,4 +1,3 @@
-#include "s21_extra_classes.h"
 #include "s21_model.h"
 
 void s21::Tokenizer::CreateTokenOutput() {
@@ -9,7 +8,7 @@ void s21::Tokenizer::CreateTokenOutput() {
     CreateTokens();
     FindUnarySign();
     CheckHooksAfterFunctions();
-    // print();
+    // notation_.CreateNotation();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
   }
@@ -76,6 +75,7 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
 void s21::Tokenizer::FindUnarySign() noexcept {
   if (tokens_.front().priority_ == s21::Priority::kFirst) {
     tokens_.front().priority_ = s21::Priority::kThird;
+    tokens_.front().is_binary_ = false;
     if (tokens_.front().type_ == "sum") tokens_.front().type_ = "u_plus";
     if (tokens_.front().type_ == "sub") tokens_.front().type_ = "u_minus";
   }
@@ -86,6 +86,7 @@ void s21::Tokenizer::FindUnarySign() noexcept {
          current->type_ == "(" || current->type_ == "^") &&
         (current + 1)->priority_ == s21::Priority::kFirst) {
       (current + 1)->priority_ = s21::Priority::kThird;
+      (current + 1)->is_binary_ = false;
       if ((current + 1)->type_ == "sum") (current + 1)->type_ = "u_plus";
       if ((current + 1)->type_ == "sub") (current + 1)->type_ = "u_minus";
     }

@@ -1,7 +1,6 @@
-#include "s21_extra_classes.h"
 #include "s21_model.h"
 
-// std::vector<s21::Token> s21::Validator::CreateNotation() {
+// std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
 //   std::stack<Token> my_stack;
 //   std::vector<Token> copy_input(output_tokens_);
 //   output_tokens_.clear();
@@ -51,7 +50,7 @@
 //   return output_tokens_;
 // }
 
-std::vector<s21::Token> s21::Validator::CreateNotation() {
+std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
   std::stack<Token> my_stack;
   std::vector<Token> copy_input(output_tokens_);
   output_tokens_.clear();
