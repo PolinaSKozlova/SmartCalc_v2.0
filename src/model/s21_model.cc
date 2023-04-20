@@ -2,7 +2,7 @@
 
 void s21::MathCalculator::CalculateResultFromInput() noexcept {
   try {
-    CreateNotationFromInput();
+    tokens_notation_.CreateNotation();
     CountResult();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
@@ -24,14 +24,7 @@ std::string s21::MathCalculator::GetStringAnswer() const noexcept {
 //   return std::stod(x_value_);
 // }
 
-void s21::MathCalculator::SetOutputTokens(std::vector<Token>& other) noexcept {
-  output_tokens_ = other;
-}
-
-void s21::MathCalculator::CreateNotationFromInput() {
-  try {
-    tokens_notation_.CreateNotation();
-  } catch (std::invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
-  }
-}
+// void s21::MathCalculator::SetOutputTokens(std::vector<Token>& other) noexcept
+// {
+//   output_tokens_ = other;
+// }

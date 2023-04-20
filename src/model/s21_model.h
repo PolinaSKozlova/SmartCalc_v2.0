@@ -8,6 +8,9 @@
 
 namespace s21 {
 
+// map для функторов вычисления
+// const std::map<std::string, std::function(double arg_1, double arg_2)>{};
+
 class MathCalculator {
  public:
   // MathCalculator() {}
@@ -18,12 +21,12 @@ class MathCalculator {
   MathCalculator(const std::string &other, const std::string &x_value = "0.0")
       : tokens_notation_(other, x_value) {}
   ~MathCalculator() = default;
-  void CalculateResultFromInput() noexcept;
-  void CountResult() noexcept;
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
+  void CalculateResultFromInput() noexcept;
+  // нужны ли  данные методы
   // double GetDoubleXFromString() const noexcept;
-  void SetOutputTokens(std::vector<Token> &other) noexcept;
+  // void SetOutputTokens(std::vector<Token> &other) noexcept;
 
   void print() {
     std::cout << "mathcalc" << std::endl;
@@ -34,7 +37,7 @@ class MathCalculator {
   }
 
  private:
-  void CreateNotationFromInput();
+  void CountResult() noexcept;
   PolishNotation tokens_notation_;
   std::vector<Token> output_tokens_{};
   double answer_{};
