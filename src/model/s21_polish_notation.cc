@@ -26,6 +26,9 @@ std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
         if (current_token.type_ != "^") {
           output_notation_.push_back(my_stack.top());
           my_stack.pop();
+        } else {
+          my_stack.push(current_token);
+          break;
         }
       }
       my_stack.push(current_token);
