@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "../model/s21_model_old.h"
+#include "../old_model/s21_model_old.h"
 
 #define ACCURACY 1e-07
 

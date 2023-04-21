@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../model/s21_model.h"
+#include "../old_model/s21_model_old.h"
 
 TEST(validation_src_test_correct, test_1) {
   std::string src = "8-cos(x^9)*7";

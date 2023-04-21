@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../model/s21_model.h"
+#include "../old_model/s21_model_old.h"
 
 TEST(validation_src_test_correct_fourth_priority, test_1) {
   std::string src = "cos(49)+sin(345.9)*cos(1)";
