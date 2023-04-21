@@ -18,17 +18,15 @@ std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
       while (my_stack.top().type_ != "(") {
         output_notation_.push_back(my_stack.top());
         my_stack.pop();
-      }
+      };
       my_stack.pop();
     } else {
       while (!my_stack.empty() &&
-             my_stack.top().priority_ >= current_token.priority_) {
+             my_stack.top().priority_ >= current_token.priority_ &&
+             my_stack.top().type_ != "(") {
         if (current_token.type_ != "^") {
           output_notation_.push_back(my_stack.top());
           my_stack.pop();
-        } else {
-          my_stack.push(current_token);
-          break;
         }
       }
       my_stack.push(current_token);
