@@ -4,7 +4,6 @@
 #include <cmath>
 
 #include "s21_polish_notation.h"
-#include "s21_tokenizer.h"
 
 namespace s21 {
 

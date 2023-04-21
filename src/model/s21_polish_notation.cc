@@ -1,4 +1,4 @@
-#include "s21_model.h"
+#include "s21_polish_notation.h"
 
 std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
   try {
