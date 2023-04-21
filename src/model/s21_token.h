@@ -47,7 +47,7 @@ const std::map<std::string, Token> valid_tokens{
     {"sqrt", Token(0.0, s21::Priority::kFourth, "sqrt")},
     {"ln", Token(0.0, s21::Priority::kFourth, "ln")},
     {"log", Token(0.0, s21::Priority::kFourth, "log")},
-    {"mod", Token(0.0, s21::Priority::kFourth, "%", true)}};
+    {"mod", Token(0.0, s21::Priority::kThird, "%", true)}};
 };  // namespace s21
 
 #endif  // SRC_S21_TOKEN_H_
