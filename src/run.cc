@@ -7,8 +7,8 @@
 // #include "model/s21_extra_classes.h"
 
 int main() {
-  const std::string src = "*367/3782";
-
+  const std::string src = "+986*0.0000001-(91mod3)^3";
+  // const std::string src = "x*0.0001";
   // s21::Tokenizer tokenizer(src, "6.");
   // tokenizer.CreateTokenOutput();
   s21::MathCalculator mc(src);

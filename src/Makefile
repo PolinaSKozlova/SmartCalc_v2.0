@@ -14,7 +14,7 @@ run: clean
 	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_*.cc  run.cc -o run -g
 #	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_model.cc model/s21_validation_model.cc model/s21_check_model.cc model/s21_count_model.cc run.cc -o run -g
 #	$(OBJ_FILES)
-	./run
+#	./run
 
 
 all: 
@@ -39,7 +39,7 @@ dist: clean
 
 tests: clean
 	clear
-	$(CC) $(CC_FLAGS) model/*.cc calc_tests/exceptions_tests.cc calc_tests/main_tests.cc -o c_tests $(TEST_FLAGS)
+	$(CC) $(CC_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
 #	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS) $(SANITIZER_FLAGS) model/*.cc calc_tests/calculations_tests.cc calc_tests/main_tests.cc -o c_tests $(TEST_FLAGS)
 	./c_tests
 
