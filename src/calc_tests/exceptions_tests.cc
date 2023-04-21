@@ -9,6 +9,9 @@ TEST(validation_src_test_incorrect_first_priority, test_1) {
     m.CalculateResultFromInput();
   } catch (...) {
   }
+  // catch (std::invalid_argument& e) {
+  //   EXPECT_EQ(e, "");
+  // }
 }
 
 TEST(validation_src_test_incorrect_first_priority, test_2) {
@@ -229,6 +232,141 @@ TEST(validation_src_test_incorrect_fourth_priority, test_6) {
 
 TEST(validation_src_test_incorrect_fourth_priority, test_7) {
   std::string src = "tan(439-274)*cos(29) ";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_1) {
+  std::string src = "46/3+5^2*.(89+4)*sin(2)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_2) {
+  std::string src = "sin(-30)+()-34.5";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_3) {
+  std::string src = "46/3+5^2*(89+4)*san(2)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_4) {
+  std::string src = "46/3+5^2*(89+)*sin(2)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_5) {
+  std::string src = "46/3+5^2*(89+4)*sin2";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_6) {
+  std::string src = "56.-90(cos(3))";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_7) {
+  std::string src = "56.-90*cos(3))^";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_8) {
+  std::string src = "57+[-9]*(46-24/3)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_9) {
+  std::string src = ".*567.98*(-cos(x))";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_10) {
+  std::string src = "567.98*(-cos(x))mod";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_11) {
+  std::string src = "mod5-90/7";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_12) {
+  std::string src = "5467.43.290+327-cos(0)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_13) {
+  std::string src = "x456-cos(3)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_14) {
+  std::string src = "76sin(4)-9823";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_15) {
+  std::string src = "76*sin(4)-9823+";
   s21::MathCalculator m(src);
   try {
     m.CalculateResultFromInput();
