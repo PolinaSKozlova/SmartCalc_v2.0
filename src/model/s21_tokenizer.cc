@@ -145,8 +145,13 @@ void s21::Tokenizer::FinalInputCheck() const {
         ((current_token + 1)->type_ == ")" ||
          (current_token + 1)->type_ == "^" ||
          (current_token + 1)->type_ == "%")) {
-      throw std::invalid_argument("Missing operand");
+      throw std::invalid_argument("Missing value");
     }
+    if (current_token->is_binary_ &&
+        ((current_token + 1)->priority_ != s21::Priority::kZero &&
+         (current_token + 1)->priority_ != s21::Priority::kFourth &&
+         (current_token + 1)->type_ != "("))
+      throw std::invalid_argument("Missing operand");
     if (current_token->priority_ == (current_token + 1)->priority_ &&
         (current_token->type_ != "(" || current_token->type_ != ")")) {
       throw std::invalid_argument("Two equal tokens in a row");
