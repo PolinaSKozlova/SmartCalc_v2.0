@@ -27,9 +27,11 @@ class MathCalculator {
 
   void print() {
     std::cout << "mathcalc" << std::endl;
+    std::cout << "value priority type " << std::endl;
     for (const auto &it : output_tokens_) {
-      std::cout << it.value_ << " " << (int)it.priority_ << " " << it.type_
-                << " " << it.is_binary_ << std::endl;
+      std::cout << "   " << it.value_ << "    " << (int)it.priority_
+                << "       " << it.type_ << std::endl;
+      // << "     " << it.is_binary_
     }
   }
 
