@@ -4,13 +4,23 @@
 // #include "controller/s21_controller.h"
 #include "model/s21_model.h"
 // #include "view/s21_view.h"
+// #include "model/s21_extra_classes.h"
 
 int main() {
-  std::string src = "567--2";
-  s21::Model m(src);
-  auto res = m.ValidationSrc();
-  std::cout << "result validation " << res.first << " " << res.second
-            << std::endl;
+  const std::string src = "*367/3782";
+
+  // s21::Tokenizer tokenizer(src, "6.");
+  // tokenizer.CreateTokenOutput();
+  s21::MathCalculator mc(src);
+  mc.CalculateResultFromInput();
+  mc.print();
+
+  // auto res = m.StartSmartCalc();
+  // std::cout << "result " << res.first << " " << res.second << std::endl;
+  // if (res.first) {
+  //   double ans = m.CalculateExpression();
+  //   std::cout << "number " << ans << std::endl;
+  // }
   // m.print();
   return 0;
 }
