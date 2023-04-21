@@ -12,6 +12,7 @@ void s21::Tokenizer::CreateTokenOutput() {
     CheckDotsInInput();
     CheckXValue();
     CreateTokens();
+    CheckEdgeValues();
     CheckHooksAfterFunctions();
     FinalInputCheck();
   } catch (std::invalid_argument& e) {
@@ -123,6 +124,14 @@ void s21::Tokenizer::CheckXValue() const {
   }
 }
 
+void s21::Tokenizer::CheckEdgeValues() const {
+  if (tokens_.front().is_binary_)
+    throw std::invalid_argument("Missing operand");
+  if (tokens_.back().is_binary_ ||
+      tokens_.back().priority_ == s21::Priority::kFourth)
+    throw std::invalid_argument("Missing operand");
+}
+
 void s21::Tokenizer::FinalInputCheck() const {
   for (auto current_token = tokens_.cbegin(); current_token != --tokens_.cend();
        ++current_token) {
@@ -139,9 +148,8 @@ void s21::Tokenizer::FinalInputCheck() const {
       throw std::invalid_argument("Missing operand");
     }
     if (current_token->priority_ == (current_token + 1)->priority_ &&
-        current_token->type_ == (current_token + 1)->type_) {
+        (current_token->type_ != "(" || current_token->type_ != ")")) {
       throw std::invalid_argument("Two equal tokens in a row");
-      std::cout << "Two equal tokens in a row" << std::endl;
     }
   }
 }

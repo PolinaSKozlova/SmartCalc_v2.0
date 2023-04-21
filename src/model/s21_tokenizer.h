@@ -39,6 +39,7 @@ class Tokenizer {
   void FindUnarySign() noexcept;
   void CheckHooksAfterFunctions() const;
   void CheckXValue() const;
+  void CheckEdgeValues() const;
   void FinalInputCheck() const;
   std::string input_src_;
   std::vector<Token> tokens_;
