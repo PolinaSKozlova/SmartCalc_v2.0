@@ -31,11 +31,11 @@ class CreditInformation {
 
 class CreditCalculator {
  public:
-  CreditCalculator(const CreditInformation& data) : data_(data) {}
+  explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
-  CreditInformation GetData() { data_.GetInformation(); }
-  void AnnuitetMethod() {}
-  void DifferntiatedMethod() {}
+  CreditInformation GetData() const noexcept { data_.GetInformation(); }
+  void AnnuitetMethod() noexcept {}
+  void DifferntiatedMethod() noexcept {}
 
  private:
   CreditInformation data_;

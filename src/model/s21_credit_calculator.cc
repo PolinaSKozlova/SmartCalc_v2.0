@@ -2,7 +2,7 @@
 
 static double RoundNumber(double value) { return round(value * 100) / 100; }
 
-void s21::CreditCalculator::AnnuitetMethod() {
+void s21::CreditCalculator::AnnuitetMethod() noexcept {
   data_.FromYearsToMonths();
   data_.interest_rate_ = data_.interest_rate_ / 100 / 12;
   data_.monthly_payment_.front() =
@@ -14,7 +14,7 @@ void s21::CreditCalculator::AnnuitetMethod() {
   data_.payble_percents_ = data_.total_sum_ - data_.credit_sum_;
 }
 
-void s21::CreditCalculator::DifferntiatedMethod() {
+void s21::CreditCalculator::DifferntiatedMethod() noexcept {
   data_.FromYearsToMonths();
   data_.interest_rate_ = data_.interest_rate_ / 100;
   double pay = 0;
