@@ -1,5 +1,5 @@
-#ifndef SRC_S21_CREDIT_CALCULATOR_H_
-#define SRC_S21_CREDIT_CALCULATOR_H_
+#ifndef SMARTCALC_SRC_S21_CREDIT_CALCULATOR_H_
+#define SMARTCALC_SRC_S21_CREDIT_CALCULATOR_H_
 
 #include <cmath>
 #include <vector>
@@ -42,4 +42,4 @@ class CreditCalculator {
 };
 };  // namespace s21
 
-#endif  // SRC_S21_CREDIT_CALCULATOR_H_
+#endif  // SMARTCALC_SRC_S21_CREDIT_CALCULATOR_H_

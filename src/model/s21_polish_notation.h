@@ -1,5 +1,5 @@
-#ifndef SRC_S21_POLISHNOTATION_H_
-#define SRC_S21_POLISHNOTATION_H_
+#ifndef SMARTCALC_SRC_S21_POLISHNOTATION_H_
+#define SMARTCALC_SRC_S21_POLISHNOTATION_H_
 
 #include "s21_tokenizer.h"
 
@@ -33,4 +33,4 @@ class PolishNotation {
 
 }  // namespace s21
 
-#endif  // SRC_S21_POLISHNOTATION_H_
+#endif  // SMARTCALC_SRC_S21_POLISHNOTATION_H_

@@ -1,5 +1,5 @@
-#ifndef SRC_S21_TOKEN_H_
-#define SRC_S21_TOKEN_H_
+#ifndef SMARTCALC_SRC_S21_TOKEN_H_
+#define SMARTCALC_SRC_S21_TOKEN_H_
 
 #include <cctype>
 #include <iostream>
@@ -50,4 +50,4 @@ const std::map<std::string, Token> valid_tokens{
     {"mod", Token(0.0, s21::Priority::kThird, "%", true)}};
 };  // namespace s21
 
-#endif  // SRC_S21_TOKEN_H_
+#endif  // SMARTCALC_SRC_S21_TOKEN_H_

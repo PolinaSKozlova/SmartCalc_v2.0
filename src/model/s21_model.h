@@ -1,5 +1,5 @@
-#ifndef SRC_S21_MODEL_H_
-#define SRC_S21_MODEL_H_
+#ifndef SMARTCALC_SRC_S21_MODEL_H_
+#define SMARTCALC_SRC_S21_MODEL_H_
 
 #include <cmath>
 #include <functional>
@@ -52,7 +52,7 @@ class MathCalculator {
   // нужны ли  данные методы
   // double GetDoubleXFromString() const noexcept;
   // void SetOutputTokens(std::vector<Token> &other) noexcept;
-  std::function<double(double arg_1, double arg_2)> ChooseFunction;
+
   void print() {
     std::cout << "mathcalc" << std::endl;
     std::cout << "value priority type " << std::endl;
@@ -72,4 +72,4 @@ class MathCalculator {
 
 };  // namespace s21
 
-#endif  // SRC_S21_MODEL_H_
+#endif  // SMARTCALC_SRC_S21_MODEL_H_

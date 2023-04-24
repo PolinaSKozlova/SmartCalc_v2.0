@@ -1,5 +1,5 @@
-#ifndef SRC_S21_TOKENIZER_H_
-#define SRC_S21_TOKENIZER_H_
+#ifndef SMARTCALC_SRC_S21_TOKENIZER_H_
+#define SMARTCALC_SRC_S21_TOKENIZER_H_
 
 #include "s21_token.h"
 
@@ -47,4 +47,4 @@ class Tokenizer {
 };
 }  // namespace s21
 
-#endif  // SRC_S21_TOKENIZER_H_
+#endif  // SMARTCALC_SRC_S21_TOKENIZER_H_
