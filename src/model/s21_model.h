@@ -51,7 +51,6 @@ class MathCalculator {
   void CalculateResultFromInput();
   // нужны ли  данные методы
   // double GetDoubleXFromString() const noexcept;
-  // void SetOutputTokens(std::vector<Token> &other) noexcept;
 
   void print() {
     std::cout << "mathcalc" << std::endl;
