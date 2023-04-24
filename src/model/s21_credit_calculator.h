@@ -2,12 +2,13 @@
 #define SRC_S21_CREDIT_CALCULATOR_H_
 
 #include <cmath>
+#include <vector>
 
 namespace s21 {
 class CreditInformation {
  public:
   CreditInformation(double credit_sum, int credit_term, double interest_rate,
-                    double monthly_payment, double payble_percents,
+                    std::vector<double> monthly_payment, double payble_percents,
                     double total_sum, bool term_in_years)
       : credit_sum_(credit_sum),
         credit_term_(credit_term),
@@ -18,10 +19,11 @@ class CreditInformation {
         term_in_years_(term_in_years) {}
   ~CreditInformation() = default;
   CreditInformation GetInformation() const noexcept { return *this; }
+  int FromYearsToMonths();
   double credit_sum_;
   int credit_term_;
   double interest_rate_;
-  double monthly_payment_;
+  std::vector<double> monthly_payment_;
   double payble_percents_;
   double total_sum_;
   bool term_in_years_;
@@ -29,8 +31,11 @@ class CreditInformation {
 
 class CreditCalculator {
  public:
-  CreditCalculator() {}
+  CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
+  CreditInformation GetData() { data_.GetInformation(); }
+  void AnnuitetMethod() {}
+  void DifferntiatedMethod() {}
 
  private:
   CreditInformation data_;
