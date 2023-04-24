@@ -33,9 +33,9 @@ class CreditCalculator {
  public:
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
-  CreditInformation GetData() const noexcept { data_.GetInformation(); }
-  void AnnuitetMethod() noexcept {}
-  void DifferntiatedMethod() noexcept {}
+  CreditInformation GetData() const noexcept { return data_.GetInformation(); }
+  void AnnuitetMethod() noexcept;
+  void DifferntiatedMethod() noexcept;
 
  private:
   CreditInformation data_;
