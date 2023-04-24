@@ -7,18 +7,13 @@ std::vector<s21::Token> s21::Tokenizer::GetTokens() const noexcept {
 }
 
 void s21::Tokenizer::CreateTokenOutput() {
-  try {
-    CheckHooksInInput();
-    CheckDotsInInput();
-    CheckXValue();
-    CreateTokens();
-    CheckEdgeValues();
-    CheckHooksAfterFunctions();
-    FinalInputCheck();
-  } catch (std::invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
-    tokens_.clear();
-  }
+  CheckHooksInInput();
+  CheckDotsInInput();
+  CheckXValue();
+  CreateTokens();
+  CheckEdgeValues();
+  CheckHooksAfterFunctions();
+  FinalInputCheck();
 }
 
 void s21::Tokenizer::CreateTokens() {

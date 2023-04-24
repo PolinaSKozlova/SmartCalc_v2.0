@@ -1,11 +1,7 @@
 #include "s21_polish_notation.h"
 
 std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
-  try {
-    tokens_.CreateTokenOutput();
-  } catch (std::invalid_argument &e) {
-    std::cerr << e.what() << std::endl;
-  }
+  tokens_.CreateTokenOutput();
   std::stack<Token> my_stack;
   std::vector<Token> copy_input(tokens_.GetTokens());
   for (auto &current_token : copy_input) {
