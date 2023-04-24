@@ -102,3 +102,19 @@ TEST(calculation_src_test, test_13) {
   m.CalculateResultFromInput();
   // EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
+
+TEST(calculation_src_test, test_14) {
+  std::string src = "cos(76-60)*35mod7-542/982";
+  s21::MathCalculator m(src);
+  // double result = -2.89820055368;
+  m.CalculateResultFromInput();
+  // EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
+
+TEST(calculation_src_test, test_15) {
+  std::string src = "log(1000*ln(200*ln(1000)))";
+  s21::MathCalculator m(src);
+  // double result = 3.85919608528;
+  m.CalculateResultFromInput();
+  // EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
