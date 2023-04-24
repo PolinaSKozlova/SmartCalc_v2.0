@@ -19,6 +19,7 @@ void s21::MathCalculator::CountResult() noexcept {
       my_stack.pop();
       s21::Token arg_2 = my_stack.top();
       my_stack.pop();
+      ChooseFunction = current_token.type_;
       // my_stack.push();
     } else {
       s21::Token arg_1 = my_stack.top();
