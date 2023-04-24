@@ -3,9 +3,10 @@
 void s21::MathCalculator::CalculateResultFromInput() {
   try {
     output_tokens_ = tokens_notation_.CreateNotation();
-    // CountResult();
+    CountResult();
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
+    throw e;
   }
 }
 
