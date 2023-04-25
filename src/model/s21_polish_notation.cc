@@ -17,16 +17,20 @@ std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
       };
       result_stack.pop();
     } else {
-      while (!result_stack.empty() &&
-             ((result_stack.top().priority_ >= current_token.priority_ &&
-               current_token.type_ != "^") ||
-              (result_stack.top().priority_ == current_token.priority_ &&
-               current_token.type_ == "^")) &&
-             result_stack.top().type_ != "(") {
-        output_notation_.push_back(result_stack.top());
-        result_stack.pop();
+      if (current_token.type_ == "(") {
+        result_stack.push(current_token);
+      } else {
+        while (!result_stack.empty() &&
+               ((result_stack.top().priority_ >= current_token.priority_ &&
+                 current_token.type_ != "^") ||
+                (result_stack.top().priority_ > current_token.priority_ &&
+                 current_token.type_ == "^")) &&
+               result_stack.top().type_ != "(") {
+          output_notation_.push_back(result_stack.top());
+          result_stack.pop();
+        }
+        result_stack.push(current_token);
       }
-      result_stack.push(current_token);
     }
   }
   while (!result_stack.empty()) {
