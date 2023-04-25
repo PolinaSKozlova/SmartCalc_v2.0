@@ -28,8 +28,7 @@ class Token {
   bool is_binary_;
 };
 
-const std::map<std::string, Token> valid_tokens{
-    // const перед string
+const std::map<const std::string, Token> valid_tokens{
     {"x", Token(0.0, s21::Priority::kZero, "x")},
     {"+", Token(0.0, s21::Priority::kFirst, "sum", true)},
     {"-", Token(0.0, s21::Priority::kFirst, "sub", true)},
