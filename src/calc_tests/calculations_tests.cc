@@ -237,3 +237,11 @@ TEST(calculation_src_test, test_30) {
   m.CalculateResultFromInput();
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
+
+TEST(calculation_src_test, test_31) {
+  std::string src = "";
+  s21::MathCalculator m(src);
+  double result = 0.0;
+  m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
