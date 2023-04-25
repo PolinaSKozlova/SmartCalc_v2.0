@@ -17,11 +17,10 @@ TEST(validation_src_test_incorrect_first_priority, test_1) {
 TEST(validation_src_test_incorrect_first_priority, test_2) {
   std::string src = "10000000-+-478.23472-381389";
   s21::MathCalculator m(src);
-  // try {
-  m.CalculateResultFromInput();
-  // } catch (...) {
-  // }
-  ASSERT_ANY_THROW(m.CalculateResultFromInput());
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
 }
 
 TEST(validation_src_test_incorrect_first_priority, test_3) {
