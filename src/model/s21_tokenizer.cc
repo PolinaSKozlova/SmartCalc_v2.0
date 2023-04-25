@@ -135,22 +135,25 @@ void s21::Tokenizer::FinalInputCheck() const {
          (current_token + 1)->type_ == "(")) {
       throw std::invalid_argument("Missing operator");
     }
-    // if ((current_token->priority_ == s21::Priority::kSecond ||
-    //      current_token->priority_ == s21::Priority::kFirst) &&
-    //     ((current_token + 1)->type_ == ")" ||
-    //      (current_token + 1)->type_ == "^" ||
-    //      (current_token + 1)->type_ == "%")) {
-    //   throw std::invalid_argument("Missing value");
-    // }
+    if ((current_token->priority_ == s21::Priority::kSecond ||
+         current_token->priority_ == s21::Priority::kFirst) &&
+        ((current_token + 1)->type_ == ")" ||
+         (current_token + 1)->type_ == "^" ||
+         (current_token + 1)->type_ == "%")) {
+      throw std::invalid_argument("Missing value");
+    }
     if (current_token->is_binary_ &&
         ((current_token + 1)->priority_ != s21::Priority::kZero &&
          (current_token + 1)->priority_ != s21::Priority::kFourth &&
          (current_token + 1)->type_ != "("))
       throw std::invalid_argument("Missing value");
-    if ((current_token->priority_ == (current_token + 1)->priority_ &&
-         current_token->type_ == (current_token + 1)->type_) &&
-        (current_token->type_ != "(" || current_token->type_ != ")")) {
-      throw std::invalid_argument("Two equal tokens in a row");
-    }
+    // if (((current_token->priority_ == (current_token + 1)->priority_ ||
+    //       current_token->type_ == (current_token + 1)->type_)) &&
+    //     ((current_token->type_ != "(" || current_token->type_ != ")") &&
+    //      (current_token + 1)->priority_ != s21::Priority::kThird)) {
+    //   std::cout << current_token->type_ << " " << (current_token + 1)->type_
+    //             << std::endl;
+    //   throw std::invalid_argument("Two equal tokens in a row");
+    // }
   }
 }
