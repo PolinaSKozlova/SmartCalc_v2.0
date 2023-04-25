@@ -12,21 +12,21 @@ class Controller {
   explicit Controller(const std::string &src, const std::string &x = "0.0")
       : model_(src, x) {}
   ~Controller() = default;
-  //   std::pair<bool, std::string> ParceAndCalculateExpression() noexcept {
-  //     std::pair<bool, std::string> count_result = {true, "OK"};
-  //     count_result = model_.StartSmartCalc();
-  //     if (count_result.first) {
-  //       count_result.second = model_.GetOutput();
-  //     } else {
-  //       count_result.second = count_result.second;
-  //     }
-  //     return count_result;
-  //   }
+  std::string ParceAndCalculateExpression() noexcept {
+    std::string count_result{};
+    try {
+      model_.CalculateResultFromInput();
+      count_result = model_.GetStringAnswer();
+    } catch (std::invalid_argument &e) {
+      count_result = e.what();
+    }
+    return count_result;
+  }
 
  private:
   s21::MathCalculator model_;
   std::string output_;
-
+  std::string x_value_;
   // View *view_;
 };
 };  // namespace s21
