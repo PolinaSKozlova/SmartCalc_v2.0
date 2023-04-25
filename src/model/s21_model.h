@@ -7,7 +7,6 @@
 #include "s21_polish_notation.h"
 
 namespace s21 {
-// map для функторов вычисления
 const std::map<std::string, std::function<double(double, double)>>
     functions_for_count{
         {"u_minus", [](double arg_1,
@@ -48,8 +47,6 @@ class MathCalculator {
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
   void CalculateResultFromInput();
-  // нужны ли  данные методы
-  // double GetDoubleXFromString() const noexcept;
 
   void print() {
     std::cout << "mathcalc" << std::endl;
@@ -57,7 +54,6 @@ class MathCalculator {
     for (const auto &it : output_tokens_) {
       std::cout << "   " << it.value_ << "    " << (int)it.priority_
                 << "       " << it.type_ << std::endl;
-      // << "     " << it.is_binary_
     }
   }
 

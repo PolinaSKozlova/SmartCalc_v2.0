@@ -5,14 +5,13 @@ void s21::MathCalculator::CalculateResultFromInput() {
     output_tokens_ = tokens_notation_.CreateNotation();
     CountResult();
   } catch (std::invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
+    // std::cerr << e.what() << std::endl;
     throw e;
   }
 }
 
 void s21::MathCalculator::CountResult() noexcept {
   std::stack<double> result_stack;
-  print();
   for (auto& current_token : output_tokens_) {
     if (current_token.priority_ == s21::Priority::kZero) {
       result_stack.push(current_token.value_);
@@ -23,15 +22,13 @@ void s21::MathCalculator::CountResult() noexcept {
       result_stack.pop();
       result_stack.push(
           functions_for_count.find(current_token.type_)->second(arg_1, arg_2));
-      std::cout << result_stack.top() << " " << result_stack.size()
-                << std::endl;
     } else {
       double arg_1 = result_stack.top();
       result_stack.pop();
       result_stack.push(
           functions_for_count.find(current_token.type_)->second(arg_1, 0.0));
     }
-    std::cout << result_stack.top() << " " << result_stack.size() << std::endl;
+    // std::cout << result_stack.top() << std::endl;
   }
   answer_ = result_stack.top();
 }
@@ -44,12 +41,3 @@ std::string s21::MathCalculator::GetStringAnswer() const noexcept {
   oss << answer_;
   return oss.str();
 }
-
-// double s21::MathCalculator::GetDoubleXFromString() const noexcept {
-//   return std::stod(x_value_);
-// }
-
-// void s21::MathCalculator::SetOutputTokens(std::vector<Token>& other) noexcept
-// {
-//   output_tokens_ = other;
-// }
