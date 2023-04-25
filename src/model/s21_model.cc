@@ -29,7 +29,7 @@ void s21::MathCalculator::CountResult() noexcept {
           functions_for_count.find(current_token.type_)->second(arg_1, 0.0));
     }
   }
-  answer_ = result_stack.top();
+  if (result_stack.size()) answer_ = result_stack.top();
 }
 
 double s21::MathCalculator::GetAnswer() const noexcept { return answer_; }

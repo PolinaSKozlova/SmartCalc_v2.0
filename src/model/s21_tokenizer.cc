@@ -7,13 +7,15 @@ std::vector<s21::Token> s21::Tokenizer::GetTokens() const noexcept {
 }
 
 void s21::Tokenizer::CreateTokenOutput() {
-  CheckHooksInInput();
-  CheckDotsInInput();
-  CheckXValue();
-  CreateTokens();
-  CheckEdgeValues();
-  CheckHooksAfterFunctions();
-  FinalInputCheck();
+  if (!input_src_.empty()) {
+    CheckHooksInInput();
+    CheckDotsInInput();
+    CheckXValue();
+    CreateTokens();
+    CheckEdgeValues();
+    CheckHooksAfterFunctions();
+    FinalInputCheck();
+  }
 }
 
 void s21::Tokenizer::CreateTokens() {
@@ -57,15 +59,13 @@ void s21::Tokenizer::CheckHooksInInput() const {
 }
 
 void s21::Tokenizer::CheckDotsInInput() const {
-  if (!input_src_.empty()) {
-    for (auto current_sym = ++input_src_.cbegin();
-         current_sym != input_src_.cend(); ++current_sym) {
-      if (*current_sym == '.' && *(current_sym - 1) == '.')
-        throw std::invalid_argument("Dots error: two dots in input");
-      if (*current_sym == '.' && !std::isdigit(*(current_sym - 1)) &&
-          !std::isdigit(*(current_sym + 1))) {
-        throw std::invalid_argument("Dots error: dot without number");
-      }
+  for (auto current_sym = ++input_src_.cbegin();
+       current_sym != input_src_.cend(); ++current_sym) {
+    if (*current_sym == '.' && *(current_sym - 1) == '.')
+      throw std::invalid_argument("Dots error: two dots in input");
+    if (*current_sym == '.' && !std::isdigit(*(current_sym - 1)) &&
+        !std::isdigit(*(current_sym + 1))) {
+      throw std::invalid_argument("Dots error: dot without number");
     }
   }
 }
