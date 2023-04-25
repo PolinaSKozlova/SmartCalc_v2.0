@@ -12,6 +12,7 @@ void s21::MathCalculator::CalculateResultFromInput() {
 
 void s21::MathCalculator::CountResult() noexcept {
   std::stack<double> result_stack;
+  print();
   for (auto& current_token : output_tokens_) {
     if (current_token.priority_ == s21::Priority::kZero) {
       result_stack.push(current_token.value_);
@@ -22,12 +23,15 @@ void s21::MathCalculator::CountResult() noexcept {
       result_stack.pop();
       result_stack.push(
           functions_for_count.find(current_token.type_)->second(arg_1, arg_2));
+      std::cout << result_stack.top() << " " << result_stack.size()
+                << std::endl;
     } else {
       double arg_1 = result_stack.top();
       result_stack.pop();
       result_stack.push(
           functions_for_count.find(current_token.type_)->second(arg_1, 0.0));
     }
+    std::cout << result_stack.top() << " " << result_stack.size() << std::endl;
   }
   answer_ = result_stack.top();
 }

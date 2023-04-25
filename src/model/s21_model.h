@@ -36,9 +36,8 @@ const std::map<std::string, std::function<double(double, double)>>
         {"sub", [](double arg_1, double arg_2) { return (arg_1 - arg_2); }},
         {"*", [](double arg_1, double arg_2) { return (arg_1 * arg_2); }},
         {"/", [](double arg_1, double arg_2) { return (arg_1 / arg_2); }},
-        {"pow", [](double arg_1, double arg_2) { return (pow(arg_1, arg_2)); }},
-        {"mod",
-         [](double arg_1, double arg_2) { return (fmod(arg_1, arg_2)); }}};
+        {"^", [](double arg_1, double arg_2) { return (pow(arg_1, arg_2)); }},
+        {"%", [](double arg_1, double arg_2) { return (fmod(arg_1, arg_2)); }}};
 
 class MathCalculator {
  public:
