@@ -104,7 +104,7 @@ TEST(calculation_src_test, test_13) {
 }
 
 TEST(calculation_src_test, test_14) {
-  std::string src = "cos(76-60)*35mod7-542/982";
+  std::string src = "cos(76-60)*(35mod7)-542/982";
   s21::MathCalculator m(src);
   double result = -0.55193482688;
   m.CalculateResultFromInput();
@@ -160,16 +160,16 @@ TEST(calculation_src_test, test_20) {
 
 TEST(calculation_src_test, test_21) {
   std::string src = "8-cos(x^9)*7";
-  s21::MathCalculator m(src, "897");
-  double result = 4.8220665018231;
+  s21::MathCalculator m(src, "8");
+  double result = 3.4785444;
   m.CalculateResultFromInput();
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_22) {
-  std::string src = "187/5+9*(ln(10))^3.5)";
+  std::string src = "187/5+9*(ln(10)^3.5)";
   s21::MathCalculator m(src);
-  double result = 204.124;
+  double result = 204.1237307;
   m.CalculateResultFromInput();
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
@@ -191,9 +191,9 @@ TEST(calculation_src_test, test_24) {
 }
 
 TEST(calculation_src_test, test_25) {
-  std::string src = "987.65^1/2+7*tan(3/0.5)";
+  std::string src = "987.65^(1/2)+7*tan(3/0.5)";
   s21::MathCalculator m(src);
-  double result = 29.3899;
+  double result = 29.3898559;
   m.CalculateResultFromInput();
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
