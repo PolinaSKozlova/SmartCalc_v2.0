@@ -28,7 +28,6 @@ void s21::MathCalculator::CountResult() noexcept {
       result_stack.push(
           functions_for_count.find(current_token.type_)->second(arg_1, 0.0));
     }
-    // std::cout << result_stack.top() << std::endl;
   }
   answer_ = result_stack.top();
 }
