@@ -7,11 +7,12 @@ TEST(validation_src_test_incorrect_first_priority, test_1) {
   s21::MathCalculator m(src);
   try {
     m.CalculateResultFromInput();
-  } catch (...) {
+    // } catch (...) {
+    // }
+  } catch (std::invalid_argument& e) {
+    std::invalid_argument s("Dots error: dot without number");
+    EXPECT_EQ(*e.what(), *s.what());
   }
-  // catch (std::invalid_argument& e) {
-  //   EXPECT_EQ(e, "");
-  // }
 }
 
 TEST(validation_src_test_incorrect_first_priority, test_2) {
@@ -367,6 +368,96 @@ TEST(validation_src_test_incorrect, test_14) {
 
 TEST(validation_src_test_incorrect, test_15) {
   std::string src = "76*sin(4)-9823+";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_16) {
+  std::string src = "7.9-gd(x)+652-cos(3)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_17) {
+  std::string src = "901/67*1-546+coscos(984)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_18) {
+  std::string src = "tan(50)/3+./0.0";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_19) {
+  std::string src = "(x+76.3-cos(x*4))/100x";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_20) {
+  std::string src = "10000..000+98/100000-cos(90)*(sqrt(625))";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_21) {
+  std::string src = "10000.000+98/10.00.00-cos(90)*(sqrt(625))";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_22) {
+  std::string src = "10000000+98/10.0000-cos(90)**(sqrt(625))";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_23) {
+  std::string src = "10000000+98/10.0000-c-os(90)*(sqrt(625))";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_24) {
+  std::string src = "10000000+98/100000-cos(90)*(sqrt(625),)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_25) {
+  std::string src = "sqrt(5647*(9-(-78)+))+46^3/250-log(1000)-783*-1.0";
   s21::MathCalculator m(src);
   try {
     m.CalculateResultFromInput();
