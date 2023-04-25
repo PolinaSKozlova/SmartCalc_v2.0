@@ -8,12 +8,12 @@
 
 namespace s21 {
 // map для функторов вычисления
-const std::map<std::string, std::function<double(double arg_1, double arg_2)>>
+const std::map<std::string, std::function<double(double, double)>>
     functions_for_count{
         {"u_minus", [](double arg_1,
                        double arg_2 = 0.0) { return (arg_1 * -1.0 + arg_2); }},
         {"u_plus", [](double arg_1,
-                      double arg_2 = 0.0) { return (arg_1 * -1.0 + arg_2); }},
+                      double arg_2 = 0.0) { return (arg_1 * 1.0 + arg_2); }},
         {"cos",
          [](double arg_1, double arg_2 = 0.0) { return (cos(arg_1) + arg_2); }},
         {"sin",
