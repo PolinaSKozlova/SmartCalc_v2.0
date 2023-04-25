@@ -80,10 +80,7 @@ void s21::Tokenizer::FillRecievedToken(const std::string& key) {
 
 void s21::Tokenizer::FindUnarySign() noexcept {
   if (tokens_.front().priority_ == s21::Priority::kFirst) {
-    tokens_.front().priority_ = s21::Priority::kThird;
-    tokens_.front().is_binary_ = false;
-    if (tokens_.front().type_ == "sum") tokens_.front().type_ = "u_plus";
-    if (tokens_.front().type_ == "sub") tokens_.front().type_ = "u_minus";
+    tokens_.front() = FillUnarySign(tokens_.front());
   }
   for (auto current = tokens_.begin(); current != tokens_.end(); ++current) {
     if ((current->priority_ == s21::Priority::kFirst ||
@@ -92,12 +89,17 @@ void s21::Tokenizer::FindUnarySign() noexcept {
          current->type_ == "(" || current->type_ == "^" ||
          current->type_ == "%") &&
         (current + 1)->priority_ == s21::Priority::kFirst) {
-      (current + 1)->priority_ = s21::Priority::kThird;
-      (current + 1)->is_binary_ = false;
-      if ((current + 1)->type_ == "sum") (current + 1)->type_ = "u_plus";
-      if ((current + 1)->type_ == "sub") (current + 1)->type_ = "u_minus";
+      *(current + 1) = FillUnarySign(*(current + 1));
     }
   }
+}
+
+s21::Token s21::Tokenizer::FillUnarySign(Token& other) noexcept {
+  other.priority_ = s21::Priority::kThird;
+  other.is_binary_ = false;
+  if (other.type_ == "sum") other.type_ = "u_plus";
+  if (other.type_ == "sub") other.type_ = "u_minus";
+  return other;
 }
 
 void s21::Tokenizer::CheckHooksAfterFunctions() const {

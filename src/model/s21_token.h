@@ -2,6 +2,8 @@
 #define SMARTCALC_SRC_S21_TOKEN_H_
 
 #include <cctype>
+#include <cmath>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <regex>

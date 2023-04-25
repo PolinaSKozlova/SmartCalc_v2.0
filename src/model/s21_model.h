@@ -1,9 +1,6 @@
 #ifndef SMARTCALC_SRC_S21_MODEL_H_
 #define SMARTCALC_SRC_S21_MODEL_H_
 
-#include <cmath>
-#include <functional>
-
 #include "s21_polish_notation.h"
 
 namespace s21 {

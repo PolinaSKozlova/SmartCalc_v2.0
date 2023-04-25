@@ -22,20 +22,12 @@ class Tokenizer {
   double GetXValue() const noexcept;
   void CreateTokenOutput();
 
-  /* вывод вектора токенов */
-  void print() {
-    std::cout << "tokenizer" << std::endl;
-    for (auto it = tokens_.cbegin(); it != tokens_.cend(); ++it) {
-      std::cout << it->value_ << " " << (int)it->priority_ << " " << it->type_
-                << " " << it->is_binary_ << std::endl;
-    }
-  }
-
  private:
   void CreateTokens();
   void CheckHooksInInput() const;
   void CheckDotsInInput() const;
   void FillRecievedToken(const std::string& key);
+  Token FillUnarySign(Token& other) noexcept;
   void FindUnarySign() noexcept;
   void CheckHooksAfterFunctions() const;
   void CheckXValue() const;
