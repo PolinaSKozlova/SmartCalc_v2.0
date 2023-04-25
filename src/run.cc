@@ -7,20 +7,14 @@
 // #include "model/s21_extra_classes.h"
 
 int main() {
-  const std::string src = "+986*0.0000001-(91mod3)^3";
-  // const std::string src = "x*0.0001";
-  // s21::Tokenizer tokenizer(src, "6.");
-  // tokenizer.CreateTokenOutput();
+  const std::string src = "187/5+9*(ln(10)^3.5)";
+  // std::string src = "sqrt(5647*(9-(-78)))+46^3/250-log(1000)";
+  // std::string src = "log(178)+634/2/0.5^3";
   s21::MathCalculator mc(src);
   mc.CalculateResultFromInput();
+  std::cout << "result " << mc.GetAnswer() << std::endl;
   mc.print();
-
-  // auto res = m.StartSmartCalc();
-  // std::cout << "result " << res.first << " " << res.second << std::endl;
-  // if (res.first) {
-  //   double ans = m.CalculateExpression();
-  //   std::cout << "number " << ans << std::endl;
-  // }
-  // m.print();
+  // double res = 987.65 ^ (1 / 2) + 7 * tan(3 / 0.5);
+  // std::cout << "res " << res << std::endl;
   return 0;
 }
