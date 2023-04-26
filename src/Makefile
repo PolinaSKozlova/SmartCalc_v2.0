@@ -3,7 +3,7 @@ CC = g++
 CC_FLAGS = -Wall -Wextra -Werror -std=c++17 #-pedantic-errors
 TEST_FLAGS = -lgtest -pthread
 COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
-SANITIZER_FLAGS = -fsanitize=address
+SANITIZER_FLAGS = #-fsanitize=address
 PROJECT_NAME = s21_SmartCalc_v_2_0
 SRCS=$(wildcard s21*.cc,*/s21*.cc)
 OBJ_FILES=$(patsubst %.cc,%.o,$(SRCS))
@@ -55,16 +55,16 @@ gcov_report: clean
 %.o:%.cc
 	$(CC) -c $(FLAGS) $< -o $@ -I .
 
-# valgrind: tests
-# 	valgrind --leak-check=full \
-#         	 --show-leak-kinds=all \
-#          	 --track-origins=yes \
-#          	 --verbose \
-# 			 ./tests
+valgrind: tests
+	valgrind --leak-check=full \
+        	 --show-leak-kinds=all \
+         	 --track-origins=yes \
+         	 --verbose \
+			 ./c_tests
 
-valgrind:
-#	brew install valgrind
-	valgrind --tool=memcheck --leak-check=yes  ./main.out
+# valgrind:
+# #	brew install valgrind
+# 	valgrind --tool=memcheck --leak-check=yes  ./main.out
 
 .PHONY:
 	all, clean, tests, gcov_report, install, uninstall, dvi, dist
@@ -76,7 +76,7 @@ clang:
 	rm .clang-format
 
 cppcheck:
-	cppcheck --enable=all --suppress=missingIncludeSystem **/*s21*.cc **/*s21*.h *s21*.cc
+	cppcheck --enable=all --language=c++ --suppress=missingIncludeSystem **/*s21*.cc **/*s21*.h *s21*.cc
 
 push:
 	git push origin develop
