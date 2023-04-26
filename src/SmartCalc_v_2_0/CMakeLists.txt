@@ -19,9 +19,15 @@ set(PROJECT_SOURCES
         smartcalcwindow.cpp
         smartcalcwindow.h
         smartcalcwindow.u
-        src/model
-        src/controller
-        src/view
+        ../model/s21_token.h
+        ../model/s21_tokenizer.h
+        ../model/s21_tokenizer.cc
+        ../model/s21_polish_notation.h
+        ../model/s21_polish_notation.cc
+        ../model/s21_model.h
+        ../model/s21_model.cc
+        ../controller/s21_controller.h
+        ../view/s21_view.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
