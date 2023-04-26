@@ -1,9 +1,6 @@
 #ifndef SMARTCALC_S21_VIEW_H_
 #define SMARTCALC_S21_VIEW_H_
 
-#include <stack>
-#include <string>
-
 #include "../controller/s21_controller.h"
 
 namespace s21 {
