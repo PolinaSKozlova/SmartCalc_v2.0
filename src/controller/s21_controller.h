@@ -2,7 +2,6 @@
 #define SMARTCALC_S21_CONTROLLER_H_
 
 #include "../model/s21_model.h"
-// #include "../view/s21_view.h"
 
 namespace s21 {
 class Controller {
@@ -20,7 +19,6 @@ class Controller {
     }
     // return output_;
   }
-  std::string GetAnswer() const { return model_.GetStringAnswer(); }
   std::string GetOutputAnswer() const { return output_; }
 
  private:
