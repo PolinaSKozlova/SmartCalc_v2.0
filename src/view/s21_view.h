@@ -14,7 +14,10 @@ class View {
   //   return *this;
   // }
   ~View() {}
-  std::string GetAnswer() const { return controller_.GetAnswer(); }
+  std::string GetAnswer() {
+    controller_.ParceAndCalculateExpression();
+    return controller_.GetOutputAnswer();
+  }
 
  private:
   s21::Controller controller_;
