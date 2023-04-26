@@ -17,7 +17,7 @@ enum class Priority { kZero = 0, kFirst, kSecond, kThird, kFourth };
 
 class Token {
  public:
-  explicit Token(double value, s21::Priority priority, std::string type,
+  explicit Token(double value, s21::Priority priority, const std::string& type,
                  bool is_binary = false)
       : value_(value),
         priority_(priority),

@@ -22,6 +22,7 @@ class Controller {
     }
     return count_result;
   }
+  std::string GetAnswer() const { return model_.GetStringAnswer(); }
 
  private:
   s21::MathCalculator model_;
