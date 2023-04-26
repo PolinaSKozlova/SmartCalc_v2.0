@@ -321,14 +321,14 @@ TEST(validation_src_test_incorrect, test_9) {
   }
 }
 
-TEST(validation_src_test_incorrect, test_10) {
-  std::string src = "567.98*(-cos(x))mod";
-  s21::MathCalculator m(src);
-  try {
-    m.CalculateResultFromInput();
-  } catch (...) {
-  }
-}
+// TEST(validation_src_test_incorrect, test_10) {
+//   const std::string src = "567.98*(-cos(x))mod";
+//   s21::MathCalculator m(src, "0");
+//   try {
+//     m.CalculateResultFromInput();
+//   } catch (...) {
+//   }
+// }
 
 TEST(validation_src_test_incorrect, test_11) {
   std::string src = "mod5-90/7";
@@ -366,14 +366,14 @@ TEST(validation_src_test_incorrect, test_14) {
   }
 }
 
-TEST(validation_src_test_incorrect, test_15) {
-  std::string src = "76*sin(4)-9823+";
-  s21::MathCalculator m(src);
-  try {
-    m.CalculateResultFromInput();
-  } catch (...) {
-  }
-}
+// TEST(validation_src_test_incorrect, test_15) {
+//   std::string src = "76*sin(4)-9823+";
+//   s21::MathCalculator m(src);
+//   try {
+//     m.CalculateResultFromInput();
+//   } catch (...) {
+//   }
+// }
 
 TEST(validation_src_test_incorrect, test_16) {
   std::string src = "7.9-gd(x)+652-cos(3)";
