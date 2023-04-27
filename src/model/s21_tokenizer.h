@@ -33,9 +33,9 @@ class Tokenizer {
   void CheckXValue() const;
   void CheckEdgeValues() const;
   void FinalInputCheck() const;
-  std::string input_src_;
-  std::vector<Token> tokens_;
-  std::string token_x_value_;
+  std::string input_src_{};
+  std::vector<Token> tokens_{};
+  std::string token_x_value_{};
 };
 }  // namespace s21
 
