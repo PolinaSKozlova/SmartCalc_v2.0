@@ -6,13 +6,9 @@
 namespace s21 {
 class View {
  public:
+  View() = default;
   explicit View(const std::string& other, const std::string& x_value = "0.0")
       : controller_(other, x_value) {}
-  // explicit View(Controller* other) : controller_(other) {}
-  // View& operator=(Controller* other) {
-  //   controller_ = other;s
-  //   return *this;
-  // }
   ~View() {}
   std::string GetAnswer() {
     controller_.ParceAndCalculateExpression();
