@@ -71,8 +71,8 @@ valgrind: tests
 
 clang:
 	cp ../materials/linters/.clang-format .clang-format
-	clang-format -i **/*s21*.cc **/*s21*.h s21*.cc *s21*.h
-	clang-format -n **/*s21*.cc **/*s21*.h s21*.cc *s21*.h
+	clang-format -i **/s21*.cc **/s21*.h 
+	clang-format -n **/s21*.cc **/s21*.h 
 	rm .clang-format
 
 cppcheck:
