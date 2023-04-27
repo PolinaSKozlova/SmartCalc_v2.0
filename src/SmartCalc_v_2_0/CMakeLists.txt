@@ -16,18 +16,18 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        smartcalcwindow.cpp
-        smartcalcwindow.h
-        smartcalcwindow.u
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+        ../model/s21_model.h
+        ../model/s21_model.cc
         ../model/s21_token.h
         ../model/s21_tokenizer.h
         ../model/s21_tokenizer.cc
         ../model/s21_polish_notation.h
         ../model/s21_polish_notation.cc
-        ../model/s21_model.h
-        ../model/s21_model.cc
-        ../controller/s21_controller.h
         ../view/s21_view.h
+        ../controller/s21_controller.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
