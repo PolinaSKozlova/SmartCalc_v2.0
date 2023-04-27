@@ -8,8 +8,9 @@ namespace s21 {
 class CreditInformation {
  public:
   CreditInformation(double credit_sum, int credit_term, double interest_rate,
-                    std::vector<double> monthly_payment, double payble_percents,
-                    double total_sum, bool term_in_years)
+                    const std::vector<double>& monthly_payment,
+                    double payble_percents, double total_sum,
+                    bool term_in_years)
       : credit_sum_(credit_sum),
         credit_term_(credit_term),
         interest_rate_(interest_rate),
