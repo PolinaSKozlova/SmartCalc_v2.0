@@ -464,3 +464,12 @@ TEST(validation_src_test_incorrect, test_25) {
   } catch (...) {
   }
 }
+
+TEST(validation_src_test_incorrect, test_26) {
+  std::string src = "++78-cos(3)";
+  s21::MathCalculator m(src);
+  try {
+    m.CalculateResultFromInput();
+  } catch (...) {
+  }
+}

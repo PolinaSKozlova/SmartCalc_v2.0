@@ -245,3 +245,19 @@ TEST(calculation_src_test, test_31) {
   m.CalculateResultFromInput();
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
+
+TEST(calculation_src_test, test_32) {
+  std::string src = "x*x^x";
+  s21::MathCalculator m(src, "7");
+  double result = 5764801;
+  m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
+
+TEST(calculation_src_test, test_33) {
+  std::string src = "x/x^(sqrt(x))";
+  s21::MathCalculator m(src, "4");
+  double result = 0.25;
+  m.CalculateResultFromInput();
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
