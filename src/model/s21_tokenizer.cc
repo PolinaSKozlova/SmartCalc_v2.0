@@ -7,21 +7,21 @@ std::vector<s21::Token> s21::Tokenizer::GetTokens() const noexcept {
 }
 
 void s21::Tokenizer::CreateTokenOutput() {
-  if (!input_src_.empty()) {
-    CheckHooksInInput();
-    CheckDotsInInput();
-    CheckXValue();
-    CreateTokens();
-    CheckEdgeValues();
-    CheckHooksAfterFunctions();
-    FinalInputCheck();
-  }
+  if (input_src_.empty()) return;
+
+  CheckHooksInInput();
+  CheckDotsInInput();
+  CheckXValue();
+  CreateTokens();
+  CheckEdgeValues();
+  CheckHooksAfterFunctions();
+  FinalInputCheck();
 }
 
 void s21::Tokenizer::SetNewValues(const std::string& input_src,
                                   const std::string& x) {
-  input_src_.clear();
-  token_x_value_.clear();
+  // input_src_.clear();
+  // token_x_value_.clear();
   input_src_ = input_src;
   token_x_value_ = x;
 }
@@ -56,6 +56,7 @@ double s21::Tokenizer::GetXValue() const noexcept {
 
 void s21::Tokenizer::CheckHooksInInput() const {
   int count_hooks = 0;
+
   for (auto current_sym = input_src_.cbegin(); current_sym != input_src_.cend();
        ++current_sym) {
     if (*current_sym == '(') ++count_hooks;
@@ -64,14 +65,15 @@ void s21::Tokenizer::CheckHooksInInput() const {
       throw std::invalid_argument("Empty hooks");
     }
   }
+
   if (count_hooks) throw std::invalid_argument("Hooks error");
 }
 
 void s21::Tokenizer::CheckDotsInInput() const {
   for (auto current_sym = ++input_src_.cbegin();
        current_sym != input_src_.cend(); ++current_sym) {
-    if (*current_sym == '.' && *(current_sym - 1) == '.')
-      throw std::invalid_argument("Dots error: two dots in input");
+    // if (*current_sym == '.' && *(current_sym - 1) == '.')
+    // throw std::invalid_argument("Dots error: two dots in input");
     if (*current_sym == '.' && !std::isdigit(*(current_sym - 1)) &&
         !std::isdigit(*(current_sym + 1))) {
       throw std::invalid_argument("Dots error: dot without number");
@@ -122,11 +124,12 @@ void s21::Tokenizer::CheckHooksAfterFunctions() const {
 }
 
 void s21::Tokenizer::CheckXValue() const {
+  if (token_x_value_ == ".") throw std::invalid_argument("Incorrect x value");
+
   for (auto iterator_to_num = token_x_value_.cbegin();
        iterator_to_num != token_x_value_.cend(); ++iterator_to_num) {
     if ((!std::isdigit(*iterator_to_num) && *iterator_to_num != '.') ||
-        (*iterator_to_num == '.' && *(iterator_to_num + 1) == '.') ||
-        (*iterator_to_num == '.' && token_x_value_.length() == 1)) {
+        (*iterator_to_num == '.' && *(iterator_to_num + 1) == '.')) {
       throw std::invalid_argument("Incorrect x value");
     }
   }
