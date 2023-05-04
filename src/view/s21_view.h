@@ -7,16 +7,17 @@ namespace s21 {
 class View {
  public:
   View() = default;
-  explicit View(const std::string& other, const std::string& x_value = "0.0")
-      : controller_(other, x_value) {}
+  explicit View(s21::Controller* other) : controller_(other) {}
+  // explicit View(const std::string& other, const std::string& x_value = "0.0")
+  //     : controller_(other, x_value) {}
   ~View() {}
   std::string GetAnswer() {
-    controller_.ParceAndCalculateExpression();
-    return controller_.GetOutputAnswer();
+    controller_->ParceAndCalculateExpression();
+    return controller_->GetOutputAnswer();
   }
 
  private:
-  s21::Controller controller_;
+  s21::Controller* controller_;
 };
 };  // namespace s21
 
