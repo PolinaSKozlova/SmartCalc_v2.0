@@ -13,7 +13,12 @@ class MathCalculator {
   ~MathCalculator() = default;
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
-  void CalculateResultFromInput();
+  void CalculateResultFromInput(const std::string &src,
+                                const std::string &x_value = "0.0");
+  void SetTokensNotationNewValues(const std::string &src,
+                                  const std::string &x_value = "0.0") {
+    tokens_notation_.SetTokensNewValues(src, x_value);
+  }
 
  private:
   void CountResult() noexcept;

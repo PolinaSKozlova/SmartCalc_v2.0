@@ -11,9 +11,10 @@ class Controller {
   // explicit Controller(const std::string &src, const std::string &x = "0.0")
   //     : model_(src, x) {}
   ~Controller() = default;
-  void ParceAndCalculateExpression() noexcept {
+  void ParceAndCalculateExpression(
+      const std::string &src, const std::string &x_value = "0.0") noexcept {
     try {
-      model_->CalculateResultFromInput();
+      model_->CalculateResultFromInput(src, x_value);
       output_ = model_->GetStringAnswer();
     } catch (std::invalid_argument &e) {
       output_ = e.what();
