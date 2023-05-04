@@ -20,11 +20,14 @@ void s21::Tokenizer::CreateTokenOutput() {
 
 void s21::Tokenizer::SetNewValues(const std::string& input_src,
                                   const std::string& x) {
+  input_src_.clear();
+  token_x_value_.clear();
   input_src_ = input_src;
   token_x_value_ = x;
 }
 
 void s21::Tokenizer::CreateTokens() {
+  tokens_.clear();
   auto current = input_src_.cbegin();
   while (current != input_src_.cend()) {
     if (std::isdigit(*current) || *current == '.') {
