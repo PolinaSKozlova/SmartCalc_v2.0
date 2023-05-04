@@ -16,7 +16,7 @@ class MathCalculator {
   void CalculateResultFromInput(const std::string &src,
                                 const std::string &x_value = "0.0");
   void SetTokensNotationNewValues(const std::string &src,
-                                  const std::string &x_value = "0.0") {
+                                  const std::string &x_value) {
     tokens_notation_.SetTokensNewValues(src, x_value);
   }
 

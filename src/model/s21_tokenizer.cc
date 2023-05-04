@@ -19,7 +19,7 @@ void s21::Tokenizer::CreateTokenOutput() {
 }
 
 void s21::Tokenizer::SetNewValues(const std::string& input_src,
-                                  const std::string& x = "0.0") {
+                                  const std::string& x) {
   input_src_ = input_src;
   token_x_value_ = x;
 }

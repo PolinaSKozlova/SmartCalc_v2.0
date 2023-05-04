@@ -1,7 +1,7 @@
 #include "s21_model.h"
 
-void s21::MathCalculator::CalculateResultFromInput(
-    const std::string &src, const std::string &x_value = "0.0") {
+void s21::MathCalculator::CalculateResultFromInput(const std::string &src,
+                                                   const std::string &x_value) {
   // try {
   tokens_notation_.SetTokensNewValues(src, x_value);
   output_tokens_ = tokens_notation_.CreateNotation();
