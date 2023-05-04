@@ -18,6 +18,12 @@ void s21::Tokenizer::CreateTokenOutput() {
   }
 }
 
+void s21::Tokenizer::SetNewValues(const std::string& input_src,
+                                  const std::string& x = "0.0") {
+  input_src_ = input_src;
+  token_x_value_ = x;
+}
+
 void s21::Tokenizer::CreateTokens() {
   auto current = input_src_.cbegin();
   while (current != input_src_.cend()) {

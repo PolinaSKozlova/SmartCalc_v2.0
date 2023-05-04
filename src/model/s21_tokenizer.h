@@ -21,6 +21,7 @@ class Tokenizer {
   std::vector<Token> GetTokens() const noexcept;
   double GetXValue() const noexcept;
   void CreateTokenOutput();
+  void SetNewValues(const std::string& input_src, const std::string& x = "0.0");
 
  private:
   void CreateTokens();

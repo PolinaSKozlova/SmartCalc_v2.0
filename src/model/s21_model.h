@@ -6,6 +6,7 @@
 namespace s21 {
 class MathCalculator {
  public:
+  MathCalculator() = default;
   explicit MathCalculator(const std::string &other,
                           const std::string &x_value = "0.0")
       : tokens_notation_(other, x_value) {}
