@@ -213,6 +213,9 @@ TEST(calculation_src_test, test_31) {
   double result = 0.0;
   m.CalculateResultFromInput("");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  m.CalculateResultFromInput("cos(1-0)");
+  result = 0.54030230586;
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_32) {
@@ -226,5 +229,15 @@ TEST(calculation_src_test, test_33) {
   s21::MathCalculator m;
   double result = 0.25;
   m.CalculateResultFromInput("x/x^(sqrt(x))", "4");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+}
+
+TEST(calculation_src_test, test_34) {
+  s21::MathCalculator m;
+  double result = 0.25;
+  m.CalculateResultFromInput("x/x^(sqrt(x))", "4");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  m.CalculateResultFromInput("x/x^(sqrt(x))");
+  result = 0.0;
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }

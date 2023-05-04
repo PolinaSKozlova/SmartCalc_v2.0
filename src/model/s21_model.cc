@@ -4,7 +4,7 @@ void s21::MathCalculator::CalculateResultFromInput(const std::string &src,
                                                    const std::string &x_value) {
   // try {
   tokens_notation_.SetTokensNewValues(src, x_value);
-  output_tokens_.clear();
+  if (!output_tokens_.empty()) output_tokens_.clear();
   output_tokens_ = tokens_notation_.CreateNotation();
   CountResult();
   // } catch (std::invalid_argument& e) {
