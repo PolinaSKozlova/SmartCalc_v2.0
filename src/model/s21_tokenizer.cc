@@ -18,41 +18,31 @@ void Tokenizer::CreateTokenOutput() {
 
 void Tokenizer::SetNewValues(const std::string& input_src,
                              const std::string& x) {
-  // input_src_.clear();
-  // token_x_value_.clear();
   input_src_ = input_src;
   token_x_value_ = x;
 }
 
-// ++78-cos(3)
-
 void Tokenizer::CreateTokens() {
   tokens_.clear();
   auto current = input_src_.cbegin();
-
   while (current != input_src_.cend()) {
     if (std::isdigit(*current) || *current == '.') {
       size_t shift = 0;
       tokens_.emplace_back(std::stod(&(*current), &shift), Priority::kZero,
                            "number");
       current += shift;
-    }
-
-    else if (std::isalpha(*current)) {
+    } else if (std::isalpha(*current)) {
       std::regex base_regex("([a-z]+)");
       std::sregex_iterator regex_it =
           std::sregex_iterator(current, input_src_.cend(), base_regex);
       std::smatch base_match = *regex_it;
-
       FillRecievedToken(base_match.str());
       current += base_match.length();
-
     } else {
       const std::string tmp{*current++};
       FillRecievedToken(tmp);
     }
   }
-
   FindUnarySign();
 }
 
@@ -62,7 +52,6 @@ double Tokenizer::GetXValue() const noexcept {
 
 void Tokenizer::CheckHooksInInput() const {
   int count_hooks = 0;
-
   for (auto current_sym = input_src_.cbegin(); current_sym != input_src_.cend();
        ++current_sym) {
     if (*current_sym == '(') ++count_hooks;
@@ -71,15 +60,12 @@ void Tokenizer::CheckHooksInInput() const {
       throw std::invalid_argument("Empty hooks");
     }
   }
-
   if (count_hooks) throw std::invalid_argument("Hooks error");
 }
 
 void Tokenizer::CheckDotsInInput() const {
   for (auto current_sym = ++input_src_.cbegin();
        current_sym != input_src_.cend(); ++current_sym) {
-    // if (*current_sym == '.' && *(current_sym - 1) == '.')
-    // throw std::invalid_argument("Dots error: two dots in input");
     if (*current_sym == '.' && !std::isdigit(*(current_sym - 1)) &&
         !std::isdigit(*(current_sym + 1))) {
       throw std::invalid_argument("Dots error: dot without number");
@@ -89,22 +75,19 @@ void Tokenizer::CheckDotsInInput() const {
 
 void Tokenizer::FillRecievedToken(const std::string& key) {
   auto search_token = valid_tokens.find(key);
-
   if (search_token == valid_tokens.cend())
     throw std::invalid_argument("Invalid token");
-
   tokens_.emplace_back(search_token->second);
-
-  if (key == "x") {
-    tokens_.back().value_ = GetXValue();
-  }
+  if (key == "x") tokens_.back().value_ = GetXValue();
 }
 
 void Tokenizer::FindUnarySign() noexcept {
-  if (tokens_.front().priority_ == Priority::kFirst) {
+  if (tokens_.begin()->priority_ == Priority::kFirst &&
+      ((++tokens_.begin())->priority_ == Priority::kZero ||
+       (++tokens_.begin())->priority_ == Priority::kFourth ||
+       (++tokens_.begin())->type_ == "(")) {
     tokens_.front() = FillUnarySign(tokens_.front());
   }
-
   for (auto current = tokens_.begin(); current != tokens_.end(); ++current) {
     if ((current->priority_ == Priority::kFirst ||
          current->priority_ == Priority::kSecond ||
@@ -136,23 +119,11 @@ void Tokenizer::CheckHooksAfterFunctions() const {
 }
 
 void Tokenizer::CheckXValue() const {
+  if (token_x_value_ == ".")
+    throw std::invalid_argument("X value can't be only dot");
   if (!std::regex_match(token_x_value_,
-                        std::regex("[0-9]*.[0-9]*")))  // 0.25 .25 0. .
-    throw std::invalid_argument("Incorrect x value HERE");
-
-  if (token_x_value_ == ".") throw std::invalid_argument("Incorrect x value");
-
-  // if (std::regex_search(token_x_value_, std::regex(".[0-9]*.")))
-  //   throw std::invalid_argument("Incorrect x value");
-
-  // for (auto iterator_to_num = token_x_value_.cbegin();
-  //      iterator_to_num != token_x_value_.cend(); ++iterator_to_num) {
-  //   if ((!std::isdigit(*iterator_to_num) && *iterator_to_num != '.') ||
-  //       (*iterator_to_num == '.' && *(iterator_to_num + 1) == '.') ||
-  //       (*iterator_to_num == '.' && token_x_value_.length() == 1)) {
-  //     throw std::invalid_argument("Incorrect x value");
-  //   }
-  // }
+                        std::regex("[0-9]*.[0-9]*e*-*\\+*[0-9]*")))
+    throw std::invalid_argument("Incorrect x value");
 }
 
 void Tokenizer::CheckEdgeValues() const {
