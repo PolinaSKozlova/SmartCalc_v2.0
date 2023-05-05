@@ -121,9 +121,8 @@ void Tokenizer::CheckXValue() const {
     throw std::invalid_argument("X value can't be only dot");
   if (!std::regex_match(
           token_x_value_,
-          // std::regex("([0-9]*.[0-9]*)|(\\d+(.)?\\d*[eE]([-+])?\\d+)")))
           std::regex(
-              "(\\d*[.]*\\d*)|"
+              "(([-+])?\\d*[.]*\\d*)|"
               "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
     throw std::invalid_argument("Incorrect x value");
 }
