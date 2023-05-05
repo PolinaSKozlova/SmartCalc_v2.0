@@ -457,3 +457,19 @@ TEST(validation_src_test_incorrect, test_30) {
   } catch (...) {
   }
 }
+
+TEST(validation_src_test_incorrect, test_31) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("++");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_321) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("/");
+  } catch (...) {
+  }
+}
