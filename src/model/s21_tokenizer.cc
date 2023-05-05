@@ -81,6 +81,7 @@ void Tokenizer::FillRecievedToken(const std::string& key) {
 }
 
 void Tokenizer::FindUnarySign() noexcept {
+  if (tokens_.size() < 2) return;
   if (tokens_.begin()->priority_ == Priority::kFirst &&
       ((++tokens_.begin())->priority_ == Priority::kZero ||
        (++tokens_.begin())->priority_ == Priority::kFourth ||
@@ -127,11 +128,10 @@ void Tokenizer::CheckXValue() const {
 }
 
 void Tokenizer::CheckEdgeValues() const {
-  if (tokens_.front().is_binary_)
-    throw std::invalid_argument("Missing operand");
+  if (tokens_.front().is_binary_) throw std::invalid_argument("Missing value");
   if (tokens_.back().is_binary_ ||
       tokens_.back().priority_ == Priority::kFourth)
-    throw std::invalid_argument("Missing operand");
+    throw std::invalid_argument("Missing value");
 }
 
 void Tokenizer::FinalInputCheck() const {
