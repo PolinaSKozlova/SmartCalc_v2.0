@@ -45,9 +45,7 @@ void Tokenizer::CreateTokens() {
   FindUnarySign();
 }
 
-double Tokenizer::GetXValue() const noexcept {
-  return std::stod(token_x_value_);
-}
+double Tokenizer::GetXValue() const { return std::stod(token_x_value_); }
 
 void Tokenizer::CheckHooksInInput() const {
   int count_hooks = 0;
@@ -123,7 +121,9 @@ void Tokenizer::CheckXValue() const {
     throw std::invalid_argument("X value can't be only dot");
   if (!std::regex_match(
           token_x_value_,
-          std::regex("([0-9]*.[0-9]*)|([0-9]+(.)?[0-9]*[eE]([-+])?[0-9]+)")))
+          // std::regex("([0-9]*.[0-9]*)|(\\d+(.)?\\d*[eE]([-+])?\\d+)")))
+          std::regex("(\\d*[.]*\\d*)|(((\\d+[.])|([.]\\d+)|(\\d+))?([eE]([-+]"
+                     ")?\\d+)?)")))
     throw std::invalid_argument("Incorrect x value");
 }
 

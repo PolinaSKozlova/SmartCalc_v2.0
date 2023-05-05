@@ -19,7 +19,6 @@ class Tokenizer {
       : input_src_(input_src), token_x_value_(x) {}
   ~Tokenizer() = default;
   std::vector<Token> GetTokens() const noexcept;
-  double GetXValue() const noexcept;
   void CreateTokenOutput();
   void SetNewValues(const std::string& input_src, const std::string& x = "0.0");
 
@@ -32,6 +31,7 @@ class Tokenizer {
   void FindUnarySign() noexcept;
   void CheckHooksAfterFunctions() const;
   void CheckXValue() const;
+  double GetXValue() const;
   void CheckEdgeValues() const;
   void FinalInputCheck() const;
   std::string input_src_{};
