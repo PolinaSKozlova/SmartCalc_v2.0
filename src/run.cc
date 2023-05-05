@@ -8,7 +8,15 @@
 // #include "model/s21_extra_classes.h"
 
 int main() {
-  const std::string src = "10-(1-6)";
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("96mod(x)", "5");
+    std::cout << m.GetAnswer() << std::endl;
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
+  }
+
+  // const std::string src = "10-(1-6)";
   // std::string src = "sqrt(5647*(9-(-78)))+46^3/250-log(1000)";
   // std::string src = "log(178)+634/2/0.5^3";
   // s21::MathCalculator mc(src);
