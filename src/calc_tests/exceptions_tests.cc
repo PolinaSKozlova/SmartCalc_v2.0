@@ -287,13 +287,13 @@ TEST(validation_src_test_incorrect, test_9) {
   }
 }
 
-// TEST(validation_src_test_incorrect, test_10) {
-//   try {
-//   s21::MathCalculator m;
-//     m.CalculateResultFromInput("567.98*(-cos(x))mod", "0");
-//   } catch (...) {
-//   }
-// }
+TEST(validation_src_test_incorrect, test_10) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("567.98*(-cos(x))mod");
+  } catch (...) {
+  }
+}
 
 TEST(validation_src_test_incorrect, test_11) {
   try {
@@ -327,14 +327,13 @@ TEST(validation_src_test_incorrect, test_14) {
   }
 }
 
-// TEST(validation_src_test_incorrect, test_15) {
-
-//   try {
-//   s21::MathCalculator m;
-//     m.CalculateResultFromInput("76*sin(4)-9823+");
-//   } catch (...) {
-//   }
-// }
+TEST(validation_src_test_incorrect, test_15) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("76*sin(4)-9823+");
+  } catch (...) {
+  }
+}
 
 TEST(validation_src_test_incorrect, test_16) {
   try {
@@ -466,10 +465,58 @@ TEST(validation_src_test_incorrect, test_31) {
   }
 }
 
-TEST(validation_src_test_incorrect, test_321) {
+TEST(validation_src_test_incorrect, test_32) {
   try {
     s21::MathCalculator m;
     m.CalculateResultFromInput("/");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_33) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("cos");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_34) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("mod");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_35) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("-1+");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_36) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("x", ".");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_37) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("100-x", "+");
+  } catch (...) {
+  }
+}
+
+TEST(validation_src_test_incorrect, test_38) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("100-x", "1e++");
   } catch (...) {
   }
 }

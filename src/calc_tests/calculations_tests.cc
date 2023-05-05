@@ -121,6 +121,9 @@ TEST(calculation_src_test, test_17) {
   double result = 439615.5;
   m.CalculateResultFromInput("879231*(1/2)+atan(0)/(sqrt(982-237*0.34))");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  result = 5000.56237908;
+  m.CalculateResultFromInput("cos(x)-x*(-5)", "1E3");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_18) {
