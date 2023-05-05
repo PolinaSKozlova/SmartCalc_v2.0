@@ -1,9 +1,9 @@
 #all, install, uninstall, clean, dvi, dist, tests, gcov_report
 CC = g++
 CC_FLAGS = -Wall -Wextra -Werror -std=c++17 #-pedantic-errors
-TEST_FLAGS = -lgtest -pthread
+TEST_FLAGS = -lgtest # -pthread
 COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
-SANITIZER_FLAGS = #-fsanitize=address
+SANITIZER_FLAGS = -fsanitize=address
 PROJECT_NAME = s21_SmartCalc_v_2_0
 SRCS=$(wildcard s21*.cc,*/s21*.cc)
 OBJ_FILES=$(patsubst %.cc,%.o,$(SRCS))
@@ -14,7 +14,7 @@ run: clean
 	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_*.cc  run.cc -o run -g
 #	$(CC) $(CC_FLAGS) $(SANITIZER_FLAGS) model/s21_model.cc model/s21_validation_model.cc model/s21_check_model.cc model/s21_count_model.cc run.cc -o run -g
 #	$(OBJ_FILES)
-#	./run
+	./run
 
 
 all: 
@@ -39,7 +39,7 @@ dist: clean
 
 tests: clean
 	clear
-	$(CC) $(CC_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
+	$(CC) $(CC_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS) $(SANITIZER_FLAGS)
 #	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS) $(SANITIZER_FLAGS) model/*.cc calc_tests/calculations_tests.cc calc_tests/main_tests.cc -o c_tests $(TEST_FLAGS)
 	./c_tests
 
@@ -70,13 +70,11 @@ valgrind: tests
 	all, clean, tests, gcov_report, install, uninstall, dvi, dist
 
 clang:
-	cp ../materials/linters/.clang-format .clang-format
-	clang-format -i **/s21*.cc **/s21*.h 
-	clang-format -n **/s21*.cc **/s21*.h 
-	rm .clang-format
+	clang-format -i --style=Google **/s21*.cc **/s21*.h 
+	clang-format -n --style=Google **/s21*.cc **/s21*.h
 
 cppcheck:
 	cppcheck --enable=all --language=c++ --suppress=missingIncludeSystem **/*s21*.cc **/*s21*.h *s21*.cc
 
 push:
-	git push origin develop
+	git push origin trial_develop
