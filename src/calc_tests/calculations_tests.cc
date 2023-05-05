@@ -193,6 +193,9 @@ TEST(calculation_src_test, test_27) {
   double result = -49;
   m.CalculateResultFromInput("96mod2-98*(1/2)");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  result = 9896;
+  m.CalculateResultFromInput("96mod(x)-98*x", "-1e+2");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_28) {
@@ -243,7 +246,7 @@ TEST(calculation_src_test, test_33) {
 TEST(calculation_src_test, test_34) {
   s21::MathCalculator m;
   double result = 0.25;
-  m.CalculateResultFromInput("x/x^(sqrt(x))", "4");
+  m.CalculateResultFromInput("x/x^(sqrt(x))", "+4");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
   m.CalculateResultFromInput("x/x^(sqrt(x))");
   result = 0.0;
