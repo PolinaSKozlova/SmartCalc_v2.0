@@ -6,7 +6,6 @@ std::vector<Token> Tokenizer::GetTokens() const noexcept { return tokens_; }
 
 void Tokenizer::CreateTokenOutput() {
   if (input_src_.empty()) return;
-
   CheckHooksInInput();
   CheckDotsInInput();
   CheckXValue();
@@ -138,8 +137,6 @@ void Tokenizer::CheckEdgeValues() const {
 void Tokenizer::FinalInputCheck() const {
   for (auto current_token = tokens_.cbegin(); current_token != --tokens_.cend();
        ++current_token) {
-    // CheckTokens(current_token->type_, (current_token + 1)->type_);
-
     if (current_token->priority_ == Priority::kZero &&
         ((current_token + 1)->priority_ == Priority::kFourth ||
          (current_token + 1)->type_ == "(")) {
@@ -157,27 +154,6 @@ void Tokenizer::FinalInputCheck() const {
          (current_token + 1)->priority_ != Priority::kFourth &&
          (current_token + 1)->type_ != "("))
       throw std::invalid_argument("Missing value");
-
-    // if (((current_token->priority_ == (current_token + 1)->priority_ ||
-    //       current_token->type_ == (current_token + 1)->type_)) &&
-    //     ((current_token->type_ != "(" || current_token->type_ != ")") &&
-    //      (current_token + 1)->priority_ != Priority::kThird)) {
-    //   std::cout << current_token->type_ << " " << (current_token + 1)->type_
-    //             << std::endl;
-    //   throw std::invalid_argument("Two equal tokens in a row");
-    // }
   }
 }
-
-// bool CheckTokens(std::string type1, std::string type2) {
-//   int i=0,j=0;
-
-//   if (type1 == "x")i = 0;
-
-// std::vector<std::vector<bool>> matrix = {
-
-// };
-
-// matrix[i][j];
-// }
-}  // namespace s21
+};  // namespace s21
