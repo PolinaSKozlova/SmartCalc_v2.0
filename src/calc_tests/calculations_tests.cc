@@ -16,6 +16,8 @@ TEST(calculation_src_test, test_2) {
   double result = -0.9999014;
   m.CalculateResultFromInput("+986*0.0000001-(91mod3)^3");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  m.CalculateResultFromInput("+986*x-(91mod3)^3", "1e-7");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_3) {
