@@ -102,6 +102,9 @@ TEST(calculation_src_test, test_15) {
   double result = 3.85919608528;
   m.CalculateResultFromInput("log(1000*ln(200*ln(1000)))");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  result = 1;
+  m.CalculateResultFromInput("10000*x", "1e-4");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_16) {
