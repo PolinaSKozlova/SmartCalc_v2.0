@@ -10,7 +10,7 @@
 int main() {
   try {
     s21::MathCalculator m;
-    m.CalculateResultFromInput("96mod(x)", "5");
+    m.CalculateResultFromInput("567.98*(-cos(x))mod");
     std::cout << m.GetAnswer() << std::endl;
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
