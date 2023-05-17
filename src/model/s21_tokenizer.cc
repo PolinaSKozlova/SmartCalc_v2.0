@@ -12,7 +12,8 @@ void Tokenizer::CreateTokenOutput() {
   CreateTokens();
   CheckEdgeValues();
   CheckHooksAfterFunctions();
-  FinalInputCheck();
+  // FinalInputCheck();
+  CheckWithAdjacencyMatrix();
 }
 
 void Tokenizer::SetNewValues(const std::string& input_src,
@@ -103,7 +104,7 @@ void Tokenizer::FindUnarySign() noexcept {
 Token Tokenizer::FillUnarySign(Token& other) noexcept {
   other.priority_ = Priority::kThird;
   other.is_binary_ = false;
-
+  other.type_id_ = 5;
   if (other.type_ == "sum") other.type_ = "u_plus";
   if (other.type_ == "sub") other.type_ = "u_minus";
   return other;
@@ -156,4 +157,23 @@ void Tokenizer::FinalInputCheck() const {
       throw std::invalid_argument("Missing value");
   }
 }
+void Tokenizer::CheckWithAdjacencyMatrix() const {
+  bool adjacency_matrix[][6] = {
+      /*
+       0  1  2  3  4  5*/
+      {0, 1, 0, 1, 0, 0},  //  0: x, number
+      {1, 0, 1, 0, 1, 1},  //  1: sum, sub, div, mult, mod, power
+      {1, 0, 1, 0, 1, 1},  //  2: (
+      {1, 1, 0, 1, 0, 0},  //  3: )
+      {0, 0, 1, 0, 0, 0},  //  4: sin, cos, tan, acos, asin, atan, sqrt, ln, log
+      {1, 0, 1, 0, 1, 0},  //  5: unary_plus, unary_minus
+  };
+  for (auto current_token = tokens_.cbegin(); current_token != --tokens_.cend();
+       ++current_token) {
+    auto next_token = current_token + 1;
+    if (!adjacency_matrix[current_token->type_id_][next_token->type_id_])
+      throw std::invalid_argument("Expression error");
+  }
+}
+
 };  // namespace s21

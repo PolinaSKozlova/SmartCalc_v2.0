@@ -34,6 +34,7 @@ class Tokenizer {
   double GetXValue() const;
   void CheckEdgeValues() const;
   void FinalInputCheck() const;
+  void CheckWithAdjacencyMatrix() const;
   std::string input_src_{};
   std::vector<Token> tokens_{};
   std::string token_x_value_{};
