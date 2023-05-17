@@ -1,6 +1,6 @@
 #include "s21_tokenizer.h"
 
-#include "s21_model.h"
+// #include "s21_model.h"
 namespace s21 {
 std::vector<Token> Tokenizer::GetTokens() const noexcept { return tokens_; }
 
@@ -12,7 +12,6 @@ void Tokenizer::CreateTokenOutput() {
   CreateTokens();
   CheckEdgeValues();
   CheckHooksAfterFunctions();
-  // FinalInputCheck();
   CheckWithAdjacencyMatrix();
 }
 
@@ -49,16 +48,12 @@ void Tokenizer::CreateTokens() {
 double Tokenizer::GetXValue() const { return std::stod(token_x_value_); }
 
 void Tokenizer::CheckHooksInInput() const {
-  int count_hooks = 0;
-  for (auto current_sym = input_src_.cbegin(); current_sym != input_src_.cend();
-       ++current_sym) {
-    if (*current_sym == '(') ++count_hooks;
-    if (*current_sym == ')') --count_hooks;
-    if (*current_sym == '(' && *(current_sym + 1) == ')') {
-      throw std::invalid_argument("Empty hooks");
-    }
+  int count_brackets = 0;
+  for (const char& current_sym : input_src_) {
+    if (current_sym == '(') ++count_brackets;
+    if (current_sym == ')') --count_brackets;
   }
-  if (count_hooks) throw std::invalid_argument("Hooks error");
+  if (count_brackets) throw std::invalid_argument("Brackets error");
 }
 
 void Tokenizer::CheckDotsInInput() const {
@@ -93,9 +88,7 @@ void Tokenizer::FindUnarySign() noexcept {
          current->priority_ == Priority::kFourth || current->type_ == "(" ||  //
          current->type_ == "^" ||                                             //
          current->type_ == "%")                                               //
-        && (current + 1)->priority_ == Priority::kFirst)
-
-    {
+        && (current + 1)->priority_ == Priority::kFirst) {
       *(current + 1) = FillUnarySign(*(current + 1));
     }
   }
@@ -113,7 +106,7 @@ Token Tokenizer::FillUnarySign(Token& other) noexcept {
 void Tokenizer::CheckHooksAfterFunctions() const {
   for (auto current = tokens_.cbegin(); current != tokens_.cend(); ++current) {
     if (current->priority_ == Priority::kFourth && (current + 1)->type_ != "(")
-      throw std::invalid_argument("Function without hooks");
+      throw std::invalid_argument("Function without brackets");
   }
 }
 
@@ -135,28 +128,6 @@ void Tokenizer::CheckEdgeValues() const {
     throw std::invalid_argument("Missing value");
 }
 
-void Tokenizer::FinalInputCheck() const {
-  for (auto current_token = tokens_.cbegin(); current_token != --tokens_.cend();
-       ++current_token) {
-    if (current_token->priority_ == Priority::kZero &&
-        ((current_token + 1)->priority_ == Priority::kFourth ||
-         (current_token + 1)->type_ == "(")) {
-      throw std::invalid_argument("Missing operator");
-    }
-    if ((current_token->priority_ == Priority::kSecond ||
-         current_token->priority_ == Priority::kFirst) &&
-        ((current_token + 1)->type_ == ")" ||
-         (current_token + 1)->type_ == "^" ||
-         (current_token + 1)->type_ == "%")) {
-      throw std::invalid_argument("Missing value");
-    }
-    if (current_token->is_binary_ &&
-        ((current_token + 1)->priority_ != Priority::kZero &&
-         (current_token + 1)->priority_ != Priority::kFourth &&
-         (current_token + 1)->type_ != "("))
-      throw std::invalid_argument("Missing value");
-  }
-}
 void Tokenizer::CheckWithAdjacencyMatrix() const {
   bool adjacency_matrix[][6] = {
       /*
