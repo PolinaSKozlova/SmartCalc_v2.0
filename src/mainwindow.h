@@ -14,11 +14,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-private slots:
-    void on_actionMathCalc_triggered();
+    void numbers();
+    void operations();
+    void trigonometry();
+    void on_clear_all_clicked();
+    void on_backspace_clicked();
 
 private:
     Ui::MainWindow *ui;
+
+
 };
 #endif // MAINWINDOW_H
