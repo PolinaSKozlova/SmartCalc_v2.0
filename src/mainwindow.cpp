@@ -48,7 +48,7 @@ MainWindow::~MainWindow()
 void MainWindow::numbers()
 {
     QPushButton *button =(QPushButton *)sender();
-    if (ui->result_show->text() == "Start calculate" || ui->result_show->text() == "ERROR" || ui->result_show->text() == "INCORRECT X") {
+    if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
         ui->result_show->setText("0");
     }
     if(ui->result_show->text().length() < 255) {
@@ -62,7 +62,7 @@ void MainWindow::numbers()
 
 void MainWindow::operations(){
     QPushButton *button =(QPushButton *)sender();
-    if (ui->result_show->text() == "Start calculate" || ui->result_show->text() == "ERROR" || ui->result_show->text() == "INCORRECT X") {
+    if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
         ui->result_show->setText("");
     }
     if(ui->result_show->text().length() < 255) {
@@ -73,7 +73,7 @@ void MainWindow::operations(){
 
 void MainWindow::trigonometry(){
     QPushButton *button =(QPushButton *)sender();
-    if (ui->result_show->text() == "Start calculate" || ui->result_show->text() == "ERROR" || ui->result_show->text() == "INCORRECT X"){
+    if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()){
         ui->result_show->setText("0");
     }
     if(ui->result_show->text().length() < 255) {
@@ -115,5 +115,11 @@ void MainWindow::on_equal_clicked()
          ui->result_show->setText(QString::fromStdString(e.what()));
     }
 
+}
+
+
+void MainWindow::on_clear_x_mode_clicked()
+{
+    ui->get_x_value->setText("0");
 }
 

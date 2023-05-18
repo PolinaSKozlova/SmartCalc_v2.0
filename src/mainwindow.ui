@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>575</height>
+    <width>1106</width>
+    <height>724</height>
    </rect>
   </property>
   <property name="font">
@@ -44,6 +44,9 @@
 													stop: 0 #f5b5da, stop: 1 #521839 );
 color: white;
 border: 1px solid #f2d0e4;</string>
+    </property>
+    <property name="text">
+     <string>Start calculate</string>
     </property>
     <property name="maxLength">
      <number>255</number>
@@ -1289,7 +1292,7 @@ QPushButton:pressed {
     <widget class="QLineEdit" name="get_x_value">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>10</x>
        <y>330</y>
        <width>171</width>
        <height>71</height>
@@ -1309,6 +1312,9 @@ QPushButton:pressed {
 color: white;
 border: 1px solid #f2d0e4;</string>
      </property>
+     <property name="text">
+      <string>0</string>
+     </property>
      <property name="maxLength">
       <number>255</number>
      </property>
@@ -1319,10 +1325,10 @@ border: 1px solid #f2d0e4;</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="hide_x_mode">
+    <widget class="QPushButton" name="clear_x_mode">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>190</x>
        <y>330</y>
        <width>81</width>
        <height>71</height>
@@ -1354,7 +1360,7 @@ QPushButton:pressed {
 }</string>
      </property>
      <property name="text">
-      <string>hide</string>
+      <string>del</string>
      </property>
     </widget>
    </widget>
@@ -1365,7 +1371,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>650</width>
+     <width>1106</width>
      <height>24</height>
     </rect>
    </property>

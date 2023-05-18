@@ -32,6 +32,8 @@ private slots:
     void on_clear_all_clicked();
     void on_backspace_clicked();
 
+    void on_clear_x_mode_clicked();
+
 private:
     Ui::MainWindow *ui;
     s21::Controller *controller_;
