@@ -7,12 +7,12 @@ namespace s21 {
 class Controller {
  public:
   Controller() = default;
-  explicit Controller(s21::MathCalculator *other) : model_(other) {}
-  // explicit Controller(const std::string &src, const std::string &x = "0.0")
-  //     : model_(src, x) {}
+  explicit Controller(s21::MathCalculator *other) : model_(other) {
+    std::cout << "controller constructor" << std::endl;
+  }
   ~Controller() = default;
-  void ParceAndCalculateExpression(
-      const std::string &src, const std::string &x_value = "0.0") noexcept {
+  void ParceAndCalculateExpression(const std::string &src,
+                                   const std::string &x_value = "0.0") {
     try {
       model_->CalculateResultFromInput(src, x_value);
       output_ = model_->GetStringAnswer();
@@ -26,8 +26,6 @@ class Controller {
  private:
   s21::MathCalculator *model_;
   std::string output_{};
-  // std::string x_value_;
-  // s21::View *view_;
 };
 };  // namespace s21
 
