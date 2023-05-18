@@ -7,9 +7,7 @@ namespace s21 {
 class Controller {
  public:
   Controller() = default;
-  explicit Controller(s21::MathCalculator *other) : model_(other) {
-    std::cout << "controller constructor" << std::endl;
-  }
+  explicit Controller(s21::MathCalculator *other) : model_(other) {}
   ~Controller() = default;
   void ParceAndCalculateExpression(const std::string &src,
                                    const std::string &x_value = "0.0") {
@@ -19,7 +17,6 @@ class Controller {
     } catch (std::invalid_argument &e) {
       output_ = e.what();
     }
-    // return output_;
   }
   std::string GetOutputAnswer() const { return output_; }
 
