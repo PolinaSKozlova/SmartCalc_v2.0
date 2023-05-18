@@ -34,9 +34,12 @@ private slots:
 
     void on_clear_x_mode_clicked();
 
+    void on_open_extra_mode_clicked();
+
 private:
     Ui::MainWindow *ui;
     s21::Controller *controller_;
+    bool open_extra_mode = false;
 
 };
 #endif // MAINWINDOW_H

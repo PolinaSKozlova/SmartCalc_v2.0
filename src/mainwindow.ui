@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
+    <width>1258</width>
     <height>724</height>
    </rect>
   </property>
@@ -25,9 +25,9 @@
    <widget class="QLineEdit" name="result_show">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>591</width>
+      <x>8</x>
+      <y>30</y>
+      <width>608</width>
       <height>81</height>
      </rect>
     </property>
@@ -58,13 +58,13 @@ border: 1px solid #f2d0e4;</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="main_frame">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>10</x>
       <y>120</y>
-      <width>561</width>
-      <height>421</height>
+      <width>1231</width>
+      <height>411</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -76,7 +76,7 @@ border: 1px solid #f2d0e4;</string>
     <widget class="QPushButton" name="nine">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>150</x>
        <y>90</y>
        <width>61</width>
        <height>71</height>
@@ -114,7 +114,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="eight">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>80</x>
        <y>90</y>
        <width>61</width>
        <height>71</height>
@@ -152,7 +152,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="seven">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>10</x>
        <y>90</y>
        <width>61</width>
        <height>71</height>
@@ -190,7 +190,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="five">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>80</x>
        <y>170</y>
        <width>61</width>
        <height>71</height>
@@ -228,7 +228,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="six">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>150</x>
        <y>170</y>
        <width>61</width>
        <height>71</height>
@@ -266,7 +266,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="four">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>10</x>
        <y>170</y>
        <width>61</width>
        <height>71</height>
@@ -304,7 +304,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="two">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>80</x>
        <y>250</y>
        <width>61</width>
        <height>71</height>
@@ -342,7 +342,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="three">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>150</x>
        <y>250</y>
        <width>61</width>
        <height>71</height>
@@ -380,7 +380,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="one">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>10</x>
        <y>250</y>
        <width>61</width>
        <height>71</height>
@@ -418,7 +418,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="zero">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>80</x>
        <y>330</y>
        <width>61</width>
        <height>71</height>
@@ -456,7 +456,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="dot">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>10</x>
        <y>330</y>
        <width>61</width>
        <height>71</height>
@@ -494,7 +494,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="backspace">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>150</x>
        <y>10</y>
        <width>61</width>
        <height>71</height>
@@ -532,7 +532,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="clear_all">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>220</x>
        <y>10</y>
        <width>61</width>
        <height>71</height>
@@ -570,7 +570,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="sub">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>220</x>
        <y>250</y>
        <width>61</width>
        <height>71</height>
@@ -608,7 +608,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="sum">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>220</x>
        <y>330</y>
        <width>61</width>
        <height>71</height>
@@ -646,7 +646,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="mult">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>220</x>
        <y>170</y>
        <width>61</width>
        <height>71</height>
@@ -684,7 +684,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="div">
      <property name="geometry">
       <rect>
-       <x>500</x>
+       <x>220</x>
        <y>90</y>
        <width>61</width>
        <height>71</height>
@@ -719,466 +719,10 @@ QPushButton:pressed {
       <string>/</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pow">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>10</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>^</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="natural_log">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>250</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>ln</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="tangens">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>90</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>tan</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="cosinus">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>90</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>cos</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="sinus">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>sin</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="arcosinus">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>170</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>acos</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="decimal_log">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>250</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>log</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="square_root">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>sqrt</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="mod">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>250</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>mod</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="variable_x">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>10</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>x</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="arcsinus">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>170</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>asin</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="arctangens">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>170</y>
-       <width>81</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-       <underline>false</underline>
-       <strikeout>false</strikeout>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-     </property>
-     <property name="text">
-      <string>atan</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="equal">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>150</x>
        <y>330</y>
        <width>61</width>
        <height>71</height>
@@ -1216,7 +760,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="open_bracket">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>10</x>
        <y>10</y>
        <width>61</width>
        <height>71</height>
@@ -1254,7 +798,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="close_bracket">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>80</x>
        <y>10</y>
        <width>61</width>
        <height>71</height>
@@ -1289,49 +833,13 @@ QPushButton:pressed {
       <string>)</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="get_x_value">
+    <widget class="QPushButton" name="open_extra_mode">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>330</y>
-       <width>171</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Shree Devanagari 714</family>
-       <pointsize>20</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
-													stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid #f2d0e4;</string>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-     <property name="maxLength">
-      <number>255</number>
-     </property>
-     <property name="frame">
-      <bool>false</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="clear_x_mode">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>330</y>
-       <width>81</width>
-       <height>71</height>
+       <x>298</x>
+       <y>10</y>
+       <width>16</width>
+       <height>391</height>
       </rect>
      </property>
      <property name="font">
@@ -1360,18 +868,601 @@ QPushButton:pressed {
 }</string>
      </property>
      <property name="text">
-      <string>del</string>
+      <string>&gt;</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="extra_frame">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>0</y>
+       <width>281</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLineEdit" name="get_x_value">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>330</y>
+        <width>171</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+													stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid #f2d0e4;</string>
+      </property>
+      <property name="text">
+       <string>Enter x value</string>
+      </property>
+      <property name="maxLength">
+       <number>255</number>
+      </property>
+      <property name="frame">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="variable_x">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>x</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tangens">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>90</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>tan</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="arcsinus">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>asin</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pow">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>10</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>^</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="sinus">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>sin</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="decimal_log">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>log</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cosinus">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>90</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>cos</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="arctangens">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>170</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>atan</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mod">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>250</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>mod</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="clear_x_mode">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>330</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>del</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="square_root">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>sqrt</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="arcosinus">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>170</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>acos</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="natural_log">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>250</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>ln</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="open_graph">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>10</y>
+       <width>16</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Shree Devanagari 714</family>
+       <pointsize>20</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+       <underline>false</underline>
+       <strikeout>false</strikeout>
+       <stylestrategy>PreferDefault</stylestrategy>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+     </property>
+     <property name="text">
+      <string>&gt;</string>
      </property>
     </widget>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1106</width>
+     <width>1258</width>
      <height>24</height>
     </rect>
    </property>

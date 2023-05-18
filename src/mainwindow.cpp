@@ -6,6 +6,8 @@ MainWindow::MainWindow(s21::Controller* controller, QWidget *parent)
     , ui(new Ui::MainWindow), controller_(controller)
 {
     ui->setupUi(this);
+    ui->main_frame->setFixedSize(321,411);
+    ui->result_show->setFixedSize(321,81);
 //    creditWind = new CreditWindow(this);
 //        ui->graph_window->setInteraction(QCP::iRangeDrag, true);
         connect(ui->zero, SIGNAL(clicked()),this,SLOT(numbers()));
@@ -121,5 +123,25 @@ void MainWindow::on_equal_clicked()
 void MainWindow::on_clear_x_mode_clicked()
 {
     ui->get_x_value->setText("0");
+}
+
+
+void MainWindow::on_open_extra_mode_clicked()
+{
+    if(!open_extra_mode){
+        open_extra_mode = true;
+        ui->open_extra_mode->setText("<");
+        ui->main_frame->setFixedSize(601,411);
+        ui->result_show->setFixedSize(608,81);
+        setFixedSize(623, 565);
+    } else {
+        open_extra_mode = false;
+        ui->open_extra_mode->setText(">");
+        ui->main_frame->setFixedSize(321,411);
+        ui->result_show->setFixedSize(321,81);
+        setFixedSize(337, 565);
+    }
+
+
 }
 
