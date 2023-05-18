@@ -28,6 +28,7 @@ set(PROJECT_SOURCES
         model/s21_polish_notation.cc
         model/s21_credit_calculator.h
         model/s21_credit_calculator.cc
+        controller/s21_controller.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
