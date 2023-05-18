@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     s21::CreditCalculator credit;
     s21::Controller controller(&model);
     MainWindow view(&controller);
-    view.setFixedSize(337, 565);
+    view.setFixedSize(325, 590);
     view.show();
     return a.exec();
 }
