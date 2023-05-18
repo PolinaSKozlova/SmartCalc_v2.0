@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(s21::Controller* controller, QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow), controller_(controller)
 {
     ui->setupUi(this);
 //    creditWind = new CreditWindow(this);
@@ -77,14 +77,10 @@ void MainWindow::trigonometry(){
         ui->result_show->setText("0");
     }
     if(ui->result_show->text().length() < 255) {
-        if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" || ui->result_show->text() == "inf" || ui->result_show->text() == "-inf") && button->text() != "^" ){
+        if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" || ui->result_show->text() == "inf" || ui->result_show->text() == "-inf")){
             ui->result_show->setText(button->text());
         } else{
-            if (ui->result_show->text() == "^"){
-                ui->result_show->setText(ui->result_show->text() + "pow");
-            } else {
-              ui->result_show->setText(ui->result_show->text() + button->text());
-            }
+              ui->result_show->setText(ui->result_show->text() + button->text()); 
         }
     }
 }
@@ -105,5 +101,19 @@ void MainWindow::on_backspace_clicked()
 void MainWindow::on_clear_all_clicked()
 {
     ui->result_show->setText("0");
+}
+
+
+void MainWindow::on_equal_clicked()
+{
+    std::string tmp_src = ui->result_show->text().toStdString();
+    std::string x_value = ui->get_x_value->text().toStdString();
+    try{
+     controller_->ParceAndCalculateExpression(tmp_src,x_value);
+     ui->result_show->setText(QString::fromStdString(controller_->GetOutputAnswer()));
+    } catch(std::invalid_argument &e){
+         ui->result_show->setText(QString::fromStdString(e.what()));
+    }
+
 }
 

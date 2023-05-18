@@ -1286,7 +1286,7 @@ QPushButton:pressed {
       <string>)</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="x_value">
+    <widget class="QLineEdit" name="get_x_value">
      <property name="geometry">
       <rect>
        <x>100</x>

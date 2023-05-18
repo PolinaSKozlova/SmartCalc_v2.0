@@ -20,8 +20,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(s21::Controller* controller, QWidget *parent = nullptr);
     ~MainWindow();
+
+
+private slots:
+    void on_equal_clicked();
     void numbers();
     void operations();
     void trigonometry();
@@ -30,7 +34,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-
+    s21::Controller *controller_;
 
 };
 #endif // MAINWINDOW_H
