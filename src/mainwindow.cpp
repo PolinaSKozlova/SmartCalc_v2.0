@@ -11,37 +11,36 @@ MainWindow::MainWindow(s21::Controller* controller, QWidget *parent)
     ui->main_mode_button->setChecked(true);
 //    creditWind = new CreditWindow(this);
 //        ui->graph_window->setInteraction(QCP::iRangeDrag, true);
-        connect(ui->zero, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->one, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->two, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->three, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->four, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->five, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->six, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->seven, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->eight, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->nine, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->exp, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->variable_x, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->dot, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->sum, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->sub, SIGNAL(clicked()),this,SLOT(numbers()));
-        connect(ui->div, SIGNAL(clicked()),this,SLOT(operations()));
-        connect(ui->mult, SIGNAL(clicked()),this,SLOT(operations()));
-        connect(ui->mod, SIGNAL(clicked()),this,SLOT(operations()));
-        connect(ui->square_root, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->pow, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->open_bracket, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->close_bracket, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->cosinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->sinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->tangens, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->arcosinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->arcsinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->arctangens, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->natural_log, SIGNAL(clicked()),this,SLOT(trigonometry()));
-        connect(ui->decimal_log, SIGNAL(clicked()),this,SLOT(trigonometry()));
-
+    connect(ui->zero, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->one, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->two, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->three, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->four, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->five, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->six, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->seven, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->eight, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->nine, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->exp, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->variable_x, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->dot, SIGNAL(clicked()),this,SLOT(numbers()));
+    connect(ui->sum, SIGNAL(clicked()),this,SLOT(sign()));
+    connect(ui->sub, SIGNAL(clicked()),this,SLOT(sign()));
+    connect(ui->div, SIGNAL(clicked()),this,SLOT(operations()));
+    connect(ui->mult, SIGNAL(clicked()),this,SLOT(operations()));
+    connect(ui->mod, SIGNAL(clicked()),this,SLOT(operations()));
+    connect(ui->square_root, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->pow, SIGNAL(clicked()),this,SLOT(operations()));
+    connect(ui->open_bracket, SIGNAL(clicked()),this,SLOT(brackets()));
+    connect(ui->close_bracket, SIGNAL(clicked()),this,SLOT(brackets()));
+    connect(ui->cosinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->sinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->tangens, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->arcosinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->arcsinus, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->arctangens, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->natural_log, SIGNAL(clicked()),this,SLOT(trigonometry()));
+    connect(ui->decimal_log, SIGNAL(clicked()),this,SLOT(trigonometry()));
 }
 
 MainWindow::~MainWindow()
@@ -72,7 +71,8 @@ void MainWindow::numbers()
     }
 }
 
-void MainWindow::operations(){
+void MainWindow::operations()
+{
     QPushButton *button =(QPushButton *)sender();
     if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
         ui->result_show->setText(ui->result_show->text());
@@ -83,29 +83,61 @@ void MainWindow::operations(){
 
 }
 
-void MainWindow::trigonometry(){
+void MainWindow::sign()
+{
+    QPushButton *button =(QPushButton *)sender();
+    if(expression_mode) {
+        if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
+            ui->result_show->setText(ui->result_show->text());
+        }
+        if(ui->result_show->text().length() < 255) {
+            ui->result_show->setText(ui->result_show->text() + button->text());
+        }
+    } else {
+        if(ui->get_x_value->text() == "Enter x value" || ui->get_x_value->text() == "0.0" || ui->get_x_value->text() == "Incorrect x value" || ui->get_x_value->text() == "X value can't be only dot") {
+            ui->get_x_value->setText(button->text());
+        } else {
+            ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+        }
+    }
+
+}
+
+void MainWindow::trigonometry()
+{
     QPushButton *button =(QPushButton *)sender();
     if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()){
         ui->result_show->setText("0");
     }
-    if(ui->result_show->text().length() < 255) {
+    if (ui->result_show->text().length() < 255) {
         if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" || ui->result_show->text() == "inf" || ui->result_show->text() == "-inf")){
-            ui->result_show->setText(button->text());
+            ui->result_show->setText(button->text() + "(");
         } else{
-              ui->result_show->setText(ui->result_show->text() + button->text()); 
+              ui->result_show->setText(ui->result_show->text() + button->text() + "(");
         }
     }
 }
 
+void MainWindow::brackets()
+{
+    QPushButton *button =(QPushButton *)sender();
+    if (ui->result_show->text() == "Start calculate" || ui->result_show->text().toStdString() == controller_->GetOutputAnswer()){
+        ui->result_show->setText("0");
+    }
+    if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" || ui->result_show->text() == "inf" || ui->result_show->text() == "-inf")){
+        ui->result_show->setText(button->text());
+    } else {
+          ui->result_show->setText(ui->result_show->text() + button->text());
+    }
+}
 
 void MainWindow::on_backspace_clicked()
 {
     QString text = ui->result_show->text();
        text.chop(1);
-       if (text.isEmpty())
-            {
-                text = "0";
-            }
+       if (text.isEmpty()) {
+            text = "0";
+       }
        ui->result_show->setText(text);
 }
 
@@ -158,9 +190,22 @@ void MainWindow::on_main_mode_button_clicked()
     expression_mode = true;
 }
 
-
 void MainWindow::on_x_mode_button_clicked()
 {
     expression_mode = false;
+}
+
+
+void MainWindow::on_open_graph_clicked()
+{
+    if(!open_graph_mode){
+        open_graph_mode = true;
+        ui->open_graph->setText("<");
+        setFixedSize(1500, 590);
+    } else {
+        open_graph_mode = false;
+        ui->open_graph->setText(">");
+        setFixedSize(635, 590);
+    }
 }
 

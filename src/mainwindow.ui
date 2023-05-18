@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1174</width>
+    <width>1500</width>
     <height>748</height>
    </rect>
   </property>
@@ -663,7 +663,7 @@ QPushButton:pressed {
        <x>417</x>
        <y>0</y>
        <width>211</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -1542,7 +1542,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1174</width>
+     <width>1500</width>
      <height>24</height>
     </rect>
    </property>

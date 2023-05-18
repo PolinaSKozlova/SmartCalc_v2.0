@@ -28,18 +28,22 @@ private slots:
     void on_equal_clicked();
     void numbers();
     void operations();
+    void sign();
     void trigonometry();
+    void brackets();
     void on_clear_all_clicked();
     void on_backspace_clicked();
     void on_open_extra_mode_clicked();
     void on_main_mode_button_clicked();
     void on_x_mode_button_clicked();
+    void on_open_graph_clicked();
 
 private:
     Ui::MainWindow *ui;
     s21::Controller *controller_;
     bool open_extra_mode = false;
     bool expression_mode = true;
+    bool open_graph_mode = false;
 
 };
 #endif // MAINWINDOW_H
