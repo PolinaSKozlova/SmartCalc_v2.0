@@ -116,7 +116,7 @@ void Tokenizer::CheckXValue() const {
   if (!std::regex_match(
           token_x_value_,
           std::regex(
-              "(([-+])?\\d*[.]*\\d*)|"
+              "(([-+])?\\d*[.]\\d*)|"
               "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
     throw std::invalid_argument("Incorrect x value");
 }
