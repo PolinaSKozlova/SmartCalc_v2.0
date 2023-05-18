@@ -7,6 +7,7 @@
 namespace s21 {
 class CreditInformation {
  public:
+  CreditInformation() = default;
   CreditInformation(double credit_sum, int credit_term, double interest_rate,
                     const std::vector<double>& monthly_payment,
                     double payble_percents, double total_sum,
@@ -32,6 +33,7 @@ class CreditInformation {
 
 class CreditCalculator {
  public:
+  CreditCalculator() = default;
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
   CreditInformation GetData() const noexcept { return data_.GetInformation(); }
