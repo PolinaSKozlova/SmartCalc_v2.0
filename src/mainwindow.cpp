@@ -57,7 +57,6 @@ void MainWindow::numbers()
         }else {
             ui->result_show->setText(ui->result_show->text() + button->text());
         }
-
     }
 }
 
@@ -90,10 +89,6 @@ void MainWindow::trigonometry(){
     }
 }
 
-void MainWindow::on_clear_all_clicked()
-{
-     ui->result_show->setText("0");
-}
 
 void MainWindow::on_backspace_clicked()
 {
@@ -107,5 +102,8 @@ void MainWindow::on_backspace_clicked()
 }
 
 
-
+void MainWindow::on_clear_all_clicked()
+{
+    ui->result_show->setText("0");
+}
 

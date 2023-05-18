@@ -2,6 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
+#include <iostream>
+#include <cctype>
+
+#include "model/s21_model.h"
+#include "model/s21_credit_calculator.h"
+#include "controller/s21_controller.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

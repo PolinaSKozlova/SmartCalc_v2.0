@@ -1,10 +1,5 @@
 #include "mainwindow.h"
 
-#include "model/s21_model.h"
-#include "model/s21_credit_calculator.h"
-#include "controller/s21_controller.h"
-
-
 #include <QApplication>
 
 int main(int argc, char *argv[])
