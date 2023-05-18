@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>656</width>
-    <height>624</height>
+    <width>1174</width>
+    <height>748</height>
    </rect>
   </property>
   <property name="font">
@@ -27,7 +27,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>271</width>
+      <width>581</width>
       <height>81</height>
      </rect>
     </property>
@@ -91,7 +91,7 @@ border: 1px solid #f2d0e4;</string>
      <widget class="QLineEdit" name="get_x_value">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>100</x>
         <y>330</y>
         <width>171</width>
         <height>71</height>
@@ -112,7 +112,7 @@ color: white;
 border: 1px solid #f2d0e4;</string>
       </property>
       <property name="text">
-       <string>0</string>
+       <string>0.0</string>
       </property>
       <property name="maxLength">
        <number>255</number>
@@ -127,8 +127,8 @@ border: 1px solid #f2d0e4;</string>
      <widget class="QPushButton" name="variable_x">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>10</y>
+        <x>10</x>
+        <y>330</y>
         <width>81</width>
         <height>71</height>
        </rect>
@@ -466,44 +466,6 @@ QPushButton:pressed {
        <string>mod</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="clear_x_mode">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>330</y>
-        <width>81</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Shree Devanagari 714</family>
-        <pointsize>20</pointsize>
-        <italic>true</italic>
-        <bold>true</bold>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-        <stylestrategy>PreferDefault</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f5b5da, stop: 1 #521839 );
-color: white;
-border: 1px solid white;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #521839, stop: 1 #f5b5da);
-}</string>
-      </property>
-      <property name="text">
-       <string>del</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="square_root">
       <property name="geometry">
        <rect>
@@ -656,6 +618,44 @@ QPushButton:pressed {
        <string>&gt;</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="exp">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Shree Devanagari 714</family>
+        <pointsize>20</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f5b5da, stop: 1 #521839 );
+color: white;
+border: 1px solid white;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #521839, stop: 1 #f5b5da);
+}</string>
+      </property>
+      <property name="text">
+       <string>e</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QFrame" name="frame">
      <property name="geometry">
@@ -672,7 +672,7 @@ QPushButton:pressed {
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QRadioButton" name="x_mode_button">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -696,7 +696,7 @@ QPushButton:pressed {
        <string>x mode</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QRadioButton" name="main_mode_button">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1542,7 +1542,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>656</width>
+     <width>1174</width>
      <height>24</height>
     </rect>
    </property>

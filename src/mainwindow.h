@@ -31,15 +31,15 @@ private slots:
     void trigonometry();
     void on_clear_all_clicked();
     void on_backspace_clicked();
-
-    void on_clear_x_mode_clicked();
-
     void on_open_extra_mode_clicked();
+    void on_main_mode_button_clicked();
+    void on_x_mode_button_clicked();
 
 private:
     Ui::MainWindow *ui;
     s21::Controller *controller_;
     bool open_extra_mode = false;
+    bool expression_mode = true;
 
 };
 #endif // MAINWINDOW_H
