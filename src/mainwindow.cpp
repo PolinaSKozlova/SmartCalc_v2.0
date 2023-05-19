@@ -9,7 +9,7 @@ MainWindow::MainWindow(s21::Controller* controller, QWidget *parent)
     ui->main_frame->setFixedSize(321,441);
     ui->result_show->setFixedSize(271,81);
     ui->main_mode_button->setChecked(true);
-//    credit = new s21::CreditCalculator(this);
+    credit_window = new CreditWindow(this);
     connect(ui->zero, SIGNAL(clicked()),this,SLOT(numbers()));
     connect(ui->one, SIGNAL(clicked()),this,SLOT(numbers()));
     connect(ui->two, SIGNAL(clicked()),this,SLOT(numbers()));
@@ -206,7 +206,7 @@ void MainWindow::on_open_graph_clicked()
 
 void MainWindow::on_actionMath_Calculator_triggered()
 {
-    //    creditWind->hide();
+        credit_window->hide();
     this->show();
     setFixedSize(325, 590);
 }
@@ -215,7 +215,6 @@ void MainWindow::on_actionMath_Calculator_triggered()
 void MainWindow::on_actionCredit_Calc_triggered()
 {
     this->hide();
-//    creditWind->show();
-//    setFixedSize(635, 590);
+    credit_window->show();
 }
 

@@ -46,6 +46,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    CreditWindow *credit_window;
     s21::Controller *controller_;
     bool open_extra_mode = false;
     bool expression_mode = true;
