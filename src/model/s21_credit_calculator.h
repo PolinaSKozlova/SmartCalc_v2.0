@@ -30,6 +30,7 @@ class CreditInformation {
     total_sum_ = other.total_sum_;
     credit_type_ = other.credit_type_;
     term_in_years_ = other.term_in_years_;
+    return *this;
   }
   ~CreditInformation() = default;
   CreditInformation GetInformation() const noexcept { return *this; }

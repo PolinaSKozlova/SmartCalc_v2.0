@@ -8,8 +8,7 @@ namespace s21 {
 class Controller {
  public:
   Controller() = default;
-  explicit Controller(s21::MathCalculator *other,
-                      s21::CreditCalculator *credit = nullptr)
+  explicit Controller(s21::MathCalculator *other, s21::CreditCalculator *credit)
       : model_(other), credit_(credit) {}
   ~Controller() = default;
   void ParceAndCalculateExpression(const std::string &src,
@@ -26,6 +25,14 @@ class Controller {
                       std::vector<double> &y_axes){
 
   };
+  void CountCredit() {
+    if (credit_->GetData().credit_type_) {
+      credit_->DifferntiatedMethod();
+    } else {
+      credit_->AnnuitetMethod();
+    }
+  };
+  s21::CreditInformation GetCreditData() const { return credit_->GetData(); }
 
  private:
   s21::MathCalculator *model_;
