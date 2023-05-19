@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        creditwindow.cpp
+        creditwindow.h
+        creditwindow.ui
         model/s21_model.h
         model/s21_model.cc
         model/s21_token.h
