@@ -22,6 +22,8 @@ class CreditInformation {
   ~CreditInformation() = default;
   CreditInformation GetInformation() const noexcept { return *this; }
   int FromYearsToMonths();
+
+ private:
   double credit_sum_;
   int credit_term_;
   double interest_rate_;
