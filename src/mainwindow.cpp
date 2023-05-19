@@ -206,7 +206,7 @@ void MainWindow::on_open_graph_clicked()
 
 void MainWindow::on_actionMath_Calculator_triggered()
 {
-        credit_window->hide();
+    credit_window->hide();
     this->show();
     setFixedSize(325, 590);
 }
