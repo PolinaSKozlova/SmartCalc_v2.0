@@ -1562,16 +1562,6 @@ QPushButton:pressed {
    </widget>
    <addaction name="menuChoose_calc_mode"/>
   </widget>
-  <action name="actionMathCalc">
-   <property name="text">
-    <string>MathCalc</string>
-   </property>
-  </action>
-  <action name="actionCredit_Calculator">
-   <property name="text">
-    <string>Credit Calculator</string>
-   </property>
-  </action>
   <action name="actionMath_Calculator">
    <property name="checkable">
     <bool>false</bool>

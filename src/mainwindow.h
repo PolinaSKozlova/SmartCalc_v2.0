@@ -9,6 +9,7 @@
 #include "model/s21_model.h"
 #include "model/s21_credit_calculator.h"
 #include "controller/s21_controller.h"
+#include "creditwindow.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -37,6 +38,11 @@ private slots:
     void on_main_mode_button_clicked();
     void on_x_mode_button_clicked();
     void on_open_graph_clicked();
+
+    void on_actionMath_Calculator_triggered();
+
+    void on_actionCredit_Calc_triggered();
+
 
 private:
     Ui::MainWindow *ui;
