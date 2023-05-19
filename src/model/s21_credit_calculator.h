@@ -21,9 +21,10 @@ class CreditInformation {
         term_in_years_(term_in_years) {}
   ~CreditInformation() = default;
   CreditInformation GetInformation() const noexcept { return *this; }
+  void CheckCreditValues(const std::string& sum, const std::string& term,
+                         const std::string& range);
   int FromYearsToMonths();
 
- private:
   double credit_sum_;
   int credit_term_;
   double interest_rate_;
