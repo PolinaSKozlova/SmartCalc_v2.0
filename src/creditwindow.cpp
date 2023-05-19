@@ -1,6 +1,7 @@
 #include "creditwindow.h"
 #include "ui_creditwindow.h"
 #include <QErrorMessage>
+#include <QMessageBox>
 
 
 CreditWindow::CreditWindow(QWidget *parent) :
@@ -32,19 +33,23 @@ void CreditWindow::on_years_clicked()
 }
 
 
-void CreditWindow::on_pushButton_clicked()
+void CreditWindow::on_count_clicked()
 {
    try {
         credit_data_.CheckCreditValues(ui->credit_sum->text().toStdString(),ui->credit_term->text().toStdString(), ui->credit_range->text().toStdString());
+        if(credit_data_.credit_type_){
+
+        } else {
+
+        }
     } catch(std::invalid_argument &e) {
-        QString msg_error = e.what();
-//        QMessageBox::critical(this, "ERROR", msg_error);
+        QMessageBox::critical(this, "ERROR", e.what());
     }
 
 }
 
 
-void CreditWindow::on_pushButton_2_clicked()
+void CreditWindow::on_clear_clicked()
 {
     ui->credit_range->clear();
     ui->credit_sum->clear();
@@ -55,5 +60,17 @@ void CreditWindow::on_pushButton_2_clicked()
     ui->list_of_payments->clear();
     ui->months->setChecked(true);
     ui->a_type->setChecked(true);
+}
+
+
+void CreditWindow::on_a_type_clicked()
+{
+    credit_data_.credit_type_ = false;
+}
+
+
+void CreditWindow::on_d_type_clicked()
+{
+     credit_data_.credit_type_ = true;
 }
 

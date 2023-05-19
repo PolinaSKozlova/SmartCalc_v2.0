@@ -82,6 +82,9 @@
 color: white;
 border: 1px solid white;</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
      <widget class="QLineEdit" name="credit_term">
       <property name="geometry">
@@ -109,6 +112,9 @@ border: 1px solid white;</string>
 color: white;
 border: 1px solid white;</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
      <widget class="QLineEdit" name="credit_range">
       <property name="geometry">
@@ -135,6 +141,9 @@ border: 1px solid white;</string>
        <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,													stop: 0 #d4e8ff, stop: 1 #003d82 );
 color: white;
 border: 1px solid white;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="currency_4">
@@ -364,7 +373,7 @@ border: 1px solid white;</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="count">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -398,7 +407,7 @@ QPushButton:pressed {
       <string>Рассчитать</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="clear">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -473,6 +482,12 @@ QPushButton:pressed {
 color: white;
 border: 1px solid white;</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="currency_1">
       <property name="geometry">
@@ -544,6 +559,12 @@ border: 1px solid white;</string>
 color: white;
 border: 1px solid white;</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLineEdit" name="result_total">
       <property name="geometry">
@@ -570,6 +591,9 @@ border: 1px solid white;</string>
        <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,													stop: 0 #d4e8ff, stop: 1 #003d82 );
 color: white;
 border: 1px solid white;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -672,10 +696,16 @@ border: 1px solid white;</string>
         <height>91</height>
        </rect>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,													stop: 0 #d4e8ff, stop: 1 #003d82 );
 color: white;
 border: 1px solid white;</string>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QWidget" name="">
