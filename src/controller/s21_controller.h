@@ -1,13 +1,16 @@
 #ifndef SMARTCALC_S21_CONTROLLER_H_
 #define SMARTCALC_S21_CONTROLLER_H_
 
+#include "../model/s21_credit_calculator.h"
 #include "../model/s21_model.h"
 
 namespace s21 {
 class Controller {
  public:
   Controller() = default;
-  explicit Controller(s21::MathCalculator *other) : model_(other) {}
+  explicit Controller(s21::MathCalculator *other,
+                      s21::CreditCalculator *credit = nullptr)
+      : model_(other), credit_(credit) {}
   ~Controller() = default;
   void ParceAndCalculateExpression(const std::string &src,
                                    const std::string &x_value = "0.0") {
@@ -19,9 +22,14 @@ class Controller {
     }
   }
   std::string GetOutputAnswer() const { return output_; }
+  void GetCoordinates(const std::vector<double> &x_axes,
+                      std::vector<double> &y_axes){
+
+  };
 
  private:
   s21::MathCalculator *model_;
+  s21::CreditCalculator *credit_;
   std::string output_{};
 };
 };  // namespace s21
