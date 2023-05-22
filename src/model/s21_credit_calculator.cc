@@ -45,7 +45,6 @@ void CreditCalculator::DifferntiatedMethod() noexcept {
   double perc_sum = 0;
   pay = data_.credit_sum_ / data_.credit_term_;
   data_.total_sum_ = data_.credit_sum_;
-  // for (int i = 0; i < data_.credit_term_; ++i) {
   int i = 0;
   while (i++ < data_.credit_term_) {
     data_.payble_percents_ = (data_.credit_sum_ * data_.interest_rate_) / 12;
