@@ -30,7 +30,7 @@ class Controller {
     try {
       credit_->CheckCreditValues(sum, term, range);
     } catch (std::invalid_argument &e) {
-      output_ = e.what();
+      throw e.what();
     }
     if (credit_->GetData().is_differntiated) {
       credit_->DifferntiatedMethod();
@@ -39,6 +39,13 @@ class Controller {
     }
   }
 
+  void SetTermInYears(bool term_in_years) {
+    credit_->SetTermInYears(term_in_years);
+  }
+
+  void SetCreditType(bool is_differntiated) {
+    credit_->SetCreditType(is_differntiated);
+  }
   s21::CreditInformation GetCreditData() { return credit_->GetData(); }
 
  private:
