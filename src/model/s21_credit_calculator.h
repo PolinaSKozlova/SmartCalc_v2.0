@@ -11,14 +11,14 @@ class CreditInformation {
   CreditInformation(double credit_sum, int credit_term, double interest_rate,
                     const std::vector<double>& monthly_payment,
                     double payble_percents, double total_sum,
-                    bool credit_type = false, bool term_in_years = false)
+                    bool is_differntiated = false, bool term_in_years = false)
       : credit_sum_(credit_sum),
         credit_term_(credit_term),
         interest_rate_(interest_rate),
         monthly_payment_(monthly_payment),
         payble_percents_(payble_percents),
         total_sum_(total_sum),
-        credit_type_(credit_type),
+        is_differntiated(is_differntiated),
         term_in_years_(term_in_years) {}
   CreditInformation(const CreditInformation& other) { *this = other; }
   CreditInformation& operator=(const CreditInformation& other) {
@@ -28,7 +28,7 @@ class CreditInformation {
     monthly_payment_ = other.monthly_payment_;
     payble_percents_ = other.payble_percents_;
     total_sum_ = other.total_sum_;
-    credit_type_ = other.credit_type_;
+    is_differntiated = other.is_differntiated;
     term_in_years_ = other.term_in_years_;
     return *this;
   }
@@ -44,7 +44,7 @@ class CreditInformation {
   std::vector<double> monthly_payment_;
   double payble_percents_;
   double total_sum_;
-  bool credit_type_;
+  bool is_differntiated;
   bool term_in_years_;
 };
 
@@ -54,6 +54,7 @@ class CreditCalculator {
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
   CreditInformation GetData() const noexcept { return data_.GetInformation(); }
+  void SetNewData(const CreditInformation& data);
   void AnnuitetMethod() noexcept;
   void DifferntiatedMethod() noexcept;
 
