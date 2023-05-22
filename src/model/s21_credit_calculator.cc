@@ -28,7 +28,7 @@ void CreditCalculator::CheckCreditValues(const std::string& sum,
 }
 
 void CreditCalculator::AnnuitetMethod() noexcept {
-  data_.FromYearsToMonths();
+  data_.credit_term_ = data_.FromYearsToMonths();
   data_.interest_rate_ = data_.interest_rate_ / 100 / 12;
   data_.monthly_payment_.push_back(RoundNumber(
       data_.credit_sum_ *
@@ -39,13 +39,15 @@ void CreditCalculator::AnnuitetMethod() noexcept {
 }
 
 void CreditCalculator::DifferntiatedMethod() noexcept {
-  data_.FromYearsToMonths();
+  data_.credit_term_ = data_.FromYearsToMonths();
   data_.interest_rate_ = data_.interest_rate_ / 100;
   double pay = 0;
   double perc_sum = 0;
   pay = data_.credit_sum_ / data_.credit_term_;
   data_.total_sum_ = data_.credit_sum_;
-  for (int i = 0; i < data_.credit_term_; ++i) {
+  // for (int i = 0; i < data_.credit_term_; ++i) {
+  int i = 0;
+  while (i++ < data_.credit_term_) {
     data_.payble_percents_ = (data_.credit_sum_ * data_.interest_rate_) / 12;
     data_.payble_percents_ = RoundNumber(data_.payble_percents_);
     data_.monthly_payment_.push_back(data_.payble_percents_ + pay);

@@ -2,6 +2,7 @@
 #define SMARTCALC_SRC_S21_CREDIT_CALCULATOR_H_
 
 #include <cmath>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -10,7 +11,9 @@ class CreditInformation {
  public:
   CreditInformation() = default;
   ~CreditInformation() = default;
-  int FromYearsToMonths();
+  int FromYearsToMonths() {
+    return term_in_years_ ? (credit_term_ * 12) : credit_term_;
+  }
   double credit_sum_{};
   int credit_term_{};
   double interest_rate_{};
@@ -26,9 +29,9 @@ class CreditCalculator {
   CreditCalculator() = default;
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
-  CreditInformation GetData() noexcept { return data_; }
-  void SetTermInYears(bool value) noexcept { data_.term_in_years_ = value; }
-  void SetCreditType(bool value) noexcept { data_.is_differntiated = value; }
+  CreditInformation GetData() const noexcept { return data_; }
+  void SetTermInYears(bool value) noexcept;
+  void SetCreditType(bool value) noexcept;
   void CheckCreditValues(const std::string& sum, const std::string& term,
                          const std::string& range);
   void AnnuitetMethod() noexcept;
