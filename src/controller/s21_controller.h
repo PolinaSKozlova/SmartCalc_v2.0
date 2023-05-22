@@ -30,7 +30,7 @@ class Controller {
     try {
       credit_->CheckCreditValues(sum, term, range);
     } catch (std::invalid_argument &e) {
-      throw e.what();
+      throw e;
     }
     if (credit_->GetData().is_differntiated) {
       credit_->DifferntiatedMethod();
