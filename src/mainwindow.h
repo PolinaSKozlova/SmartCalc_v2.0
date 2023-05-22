@@ -38,14 +38,9 @@ private slots:
     void on_main_mode_button_clicked();
     void on_x_mode_button_clicked();
     void on_open_graph_clicked();
-
     void on_actionMath_Calculator_triggered();
-
     void on_actionCredit_Calc_triggered();
-
-
     void on_pushButton_clicked();
-
     void on_print_graph_clicked();
 
 private:
