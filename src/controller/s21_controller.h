@@ -24,23 +24,22 @@ class Controller {
   // void GetCoordinates(const std::vector<double> &x_axes,
   //                     std::vector<double> &y_axes){
 
-  // };
+  // }
   void CountCredit(const std::string &sum, const std::string &term,
                    const std::string &range) {
-    {
-      try {
-        credit_->GetData().CheckCreditValues(sum, term, range);
-      } catch (std::invalid_argument &e) {
-        output_ = e.what();
-      }
-      if (credit_->GetData().is_differntiated) {
-        credit_->DifferntiatedMethod();
-      } else {
-        credit_->AnnuitetMethod();
-      }
-    };
+    try {
+      credit_->CheckCreditValues(sum, term, range);
+    } catch (std::invalid_argument &e) {
+      output_ = e.what();
+    }
+    if (credit_->GetData().is_differntiated) {
+      credit_->DifferntiatedMethod();
+    } else {
+      credit_->AnnuitetMethod();
+    }
   }
-  s21::CreditInformation GetCreditData() const { return credit_->GetData(); }
+
+  s21::CreditInformation GetCreditData() { return credit_->GetData(); }
 
  private:
   s21::MathCalculator *model_;
