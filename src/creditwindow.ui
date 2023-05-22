@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>895</width>
+    <width>877</width>
     <height>740</height>
    </rect>
   </property>
@@ -441,13 +441,13 @@ QPushButton:pressed {
       <string>Очистить</string>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_2">
+    <widget class="QFrame" name="result_frame">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>380</y>
        <width>851</width>
-       <height>321</height>
+       <height>331</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -691,7 +691,7 @@ border: 1px solid white;</string>
       <property name="geometry">
        <rect>
         <x>290</x>
-        <y>200</y>
+        <y>210</y>
         <width>391</width>
         <height>91</height>
        </rect>
@@ -708,11 +708,11 @@ border: 1px solid white;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>200</y>
+        <y>210</y>
         <width>261</width>
         <height>91</height>
        </rect>

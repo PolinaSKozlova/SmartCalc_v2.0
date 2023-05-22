@@ -12,6 +12,7 @@ CreditWindow::CreditWindow(s21::Controller *controller, QWidget *parent)
         setFixedSize(891,721);
         ui->months->setChecked(true);
         ui->a_type->setChecked(true);
+        ui->result_frame->setFixedSize(851, 201);
 }
 
 CreditWindow::~CreditWindow()
@@ -59,12 +60,14 @@ void CreditWindow::on_clear_clicked()
     ui->list_of_payments->clear();
     ui->months->setChecked(true);
     ui->a_type->setChecked(true);
+    ui->result_frame->setFixedSize(851, 201);
 }
 
 
 void CreditWindow::on_a_type_clicked()
 {
     controller_credit_->SetCreditType(false);
+    ui->result_frame->setFixedSize(851, 201);
 
 }
 
@@ -72,5 +75,6 @@ void CreditWindow::on_a_type_clicked()
 void CreditWindow::on_d_type_clicked()
 {
      controller_credit_->SetCreditType(true);
+     ui->result_frame->setFixedSize(851, 331);
 }
 
