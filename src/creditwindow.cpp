@@ -3,23 +3,23 @@
 #include <QErrorMessage>
 #include <QMessageBox>
 
-CreditWindow::CreditWindow(s21::Controller *controller, QWidget *parent)
-    :
-        controller_credit_(controller), QMainWindow(parent),
+CreditWindow::CreditWindow(s21::Controller *controller, QWidget *parent) :
+        controller_credit_(controller),
+        QMainWindow(parent),
         ui(new Ui::CreditWindow)
-    {
-        ui->setupUi(this);
-        setFixedSize(891,721);
-        ui->months->setChecked(true);
-        ui->a_type->setChecked(true);
-        ui->result_frame->setFixedSize(851, 201);
+{
+    ui->setupUi(this);
+    setFixedSize(891,721);
+    ui->months->setChecked(true);
+    ui->a_type->setChecked(true);
+    ui->result_frame->setFixedSize(851, 201);
 }
+
 
 CreditWindow::~CreditWindow()
 {
     delete ui;
 }
-
 
 
 void CreditWindow::on_months_clicked()
@@ -32,7 +32,6 @@ void CreditWindow::on_months_clicked()
 void CreditWindow::on_years_clicked()
 {
     controller_credit_->SetTermInYears(true);
-
 }
 
 
