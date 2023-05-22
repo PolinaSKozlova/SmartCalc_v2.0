@@ -15,6 +15,7 @@ class PolishNotation {
   std::vector<Token> GetOutputTokens() const noexcept {
     return output_notation_;
   }
+  double GetXValue() const { return tokens_.GetXValue(); }
   void SetTokensNewValues(const std::string& src,
                           const std::string& x_value = "0.0");
 

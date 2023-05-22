@@ -19,9 +19,12 @@ class MathCalculator {
                                   const std::string &x_value) {
     tokens_notation_.SetTokensNewValues(src, x_value);
   }
+  void CountCoordinates(const std::string &src, double x_min, double x_max,
+                        double y_min, double y_max, std::vector<double> &x_axes,
+                        std::vector<double> &y_axes);
 
  private:
-  void CountResult() noexcept;
+  void CountResult(double x_value) noexcept;
   PolishNotation tokens_notation_;
   std::vector<Token> output_tokens_{};
   double answer_{};

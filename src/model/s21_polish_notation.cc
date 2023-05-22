@@ -2,7 +2,6 @@
 
 std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
   tokens_.CreateTokenOutput();
-
   if (!output_notation_.empty()) output_notation_.clear();
   std::stack<Token> result_stack;
   std::vector<Token> copy_input(tokens_.GetTokens());
