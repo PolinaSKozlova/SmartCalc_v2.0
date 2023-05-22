@@ -21,10 +21,11 @@ class Controller {
     }
   }
   std::string GetOutputAnswer() const { return output_; }
-  // void GetCoordinates(const std::vector<double> &x_axes,
-  //                     std::vector<double> &y_axes){
-
-  // }
+  void GetCoordinates(const std::string &src, double x_min, double x_max,
+                      double y_min, double y_max, std::vector<double> &x_axes,
+                      std::vector<double> &y_axes) {
+    model_->CountCoordinates(src, x_min, x_max, y_min, y_max, x_axes, y_axes);
+  }
   void CountCredit(const std::string &sum, const std::string &term,
                    const std::string &range) {
     try {
