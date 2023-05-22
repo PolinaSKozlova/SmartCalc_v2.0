@@ -3,15 +3,15 @@
 #include <QErrorMessage>
 #include <QMessageBox>
 
-
-CreditWindow::CreditWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::CreditWindow)
-{
-    ui->setupUi(this);
-    setFixedSize(891,721);
-    ui->months->setChecked(true);
-    ui->a_type->setChecked(true);
+CreditWindow::CreditWindow(s21::Controller *controller, QWidget *parent)
+    :
+        controller_credit_(controller), QMainWindow(parent),
+        ui(new Ui::CreditWindow)
+    {
+        ui->setupUi(this);
+        setFixedSize(891,721);
+        ui->months->setChecked(true);
+        ui->a_type->setChecked(true);
 }
 
 CreditWindow::~CreditWindow()
@@ -36,8 +36,8 @@ void CreditWindow::on_years_clicked()
 void CreditWindow::on_count_clicked()
 {
    try {
-        credit_data_.CheckCreditValues(ui->credit_sum->text().toStdString(),ui->credit_term->text().toStdString(), ui->credit_range->text().toStdString());
-
+        controller_credit_->CountCredit(ui->credit_sum->text().toStdString(),ui->credit_term->text().toStdString(), ui->credit_range->text().toStdString());
+        ui->result_total->setText(QString::number(controller_credit_->GetCreditData().total_sum_));
     } catch(std::invalid_argument &e) {
         QMessageBox::critical(this, "ERROR", e.what());
     }
