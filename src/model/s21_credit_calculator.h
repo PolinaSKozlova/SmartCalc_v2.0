@@ -9,18 +9,19 @@ namespace s21 {
 class CreditInformation {
  public:
   CreditInformation() = default;
-  CreditInformation(double credit_sum, int credit_term, double interest_rate,
-                    const std::vector<double>& monthly_payment,
-                    double payble_percents, double total_sum,
-                    bool is_differntiated = false, bool term_in_years = false)
-      : credit_sum_(credit_sum),
-        credit_term_(credit_term),
-        interest_rate_(interest_rate),
-        monthly_payment_(monthly_payment),
-        payble_percents_(payble_percents),
-        total_sum_(total_sum),
-        is_differntiated(is_differntiated),
-        term_in_years_(term_in_years) {}
+  // CreditInformation(
+  //     double credit_sum, int credit_term, double interest_rate,
+  //     double payble_percents, double total_sum,
+  //     const std::vector<double>& monthly_payment = std::vector<double>(1),
+  //     bool is_differntiated = false, bool term_in_years = false)
+  //     : credit_sum_(credit_sum),
+  //       credit_term_(credit_term),
+  //       interest_rate_(interest_rate),
+  //       monthly_payment_(monthly_payment),
+  //       payble_percents_(payble_percents),
+  //       total_sum_(total_sum),
+  //       is_differntiated(is_differntiated),
+  //       term_in_years_(term_in_years) {}
   // CreditInformation(const CreditInformation& other) { *this = other; }
   // CreditInformation& operator=(const CreditInformation& other) {
   //   credit_sum_ = other.credit_sum_;
@@ -34,7 +35,7 @@ class CreditInformation {
   //   return *this;
   // }
   ~CreditInformation() = default;
-  CreditInformation GetInformation() const noexcept { return *this; }
+  CreditInformation GetInformation() noexcept { return *this; }
   void CheckCreditValues(const std::string& sum, const std::string& term,
                          const std::string& range);
   int FromYearsToMonths();
@@ -42,9 +43,9 @@ class CreditInformation {
   double credit_sum_{};
   int credit_term_{};
   double interest_rate_{};
-  std::vector<double> monthly_payment_{};
   double payble_percents_{};
   double total_sum_{};
+  std::vector<double> monthly_payment_;
   bool is_differntiated = false;
   bool term_in_years_ = false;
 };
@@ -54,7 +55,9 @@ class CreditCalculator {
   CreditCalculator() = default;
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
-  CreditInformation GetData() const noexcept { return data_.GetInformation(); }
+  CreditInformation GetData() noexcept { return data_.GetInformation(); }
+  void CheckCreditValues(const std::string& sum, const std::string& term,
+                         const std::string& range);
   void AnnuitetMethod() noexcept;
   void DifferntiatedMethod() noexcept;
 
