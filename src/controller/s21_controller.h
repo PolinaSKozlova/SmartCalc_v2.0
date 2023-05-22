@@ -38,15 +38,13 @@ class Controller {
       credit_->AnnuitetMethod();
     }
   }
-
   void SetTermInYears(bool term_in_years) {
     credit_->SetTermInYears(term_in_years);
   }
-
   void SetCreditType(bool is_differntiated) {
     credit_->SetCreditType(is_differntiated);
   }
-  s21::CreditInformation GetCreditData() { return credit_->GetData(); }
+  s21::CreditInformation GetCreditData() const { return credit_->GetData(); }
 
  private:
   s21::MathCalculator *model_;
