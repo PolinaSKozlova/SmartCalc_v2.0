@@ -195,11 +195,13 @@ void MainWindow::on_open_graph_clicked()
     if(!open_graph_mode){
         open_graph_mode = true;
         ui->open_graph->setText("<");
-        setFixedSize(1500, 590);
+        setFixedSize(1025, 590);
+        ui->main_frame->setFixedSize(1001, 441);
     } else {
         open_graph_mode = false;
         ui->open_graph->setText(">");
         setFixedSize(635, 590);
+        ui->main_frame->setFixedSize(631, 441);
     }
 }
 
@@ -217,4 +219,26 @@ void MainWindow::on_actionCredit_Calc_triggered()
     this->hide();
     credit_window->show();
 }
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->x_min->setValue(0.00);
+    ui->x_max->setValue(0.00);
+    ui->y_min->setValue(0.00);
+    ui->y_max->setValue(0.00);
+}
+
+
+void MainWindow::on_print_graph_clicked()
+{
+    double min_x = ui->x_min->value();
+    double max_x = ui->x_max->value();
+    double min_y = ui->y_min->value();
+    double max_y = ui->y_max->value();
+
+}
+
+
+
 
