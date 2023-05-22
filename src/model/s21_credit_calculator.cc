@@ -47,20 +47,6 @@ void s21::CreditCalculator::DifferntiatedMethod() noexcept {
   data_.payble_percents_ = perc_sum;
 }
 
-void s21::CreditInformation::CheckCreditValues(const std::string& sum,
-                                               const std::string& term,
-                                               const std::string& range) {
-  if (!std::regex_match(sum, std::regex("(\\d*[.]?\\d*)")))
-    throw std::invalid_argument("Incorrect sum value");
-  if (!std::regex_match(term, std::regex("\\d*")))
-    throw std::invalid_argument("Incorrect terms");
-  if (!std::regex_match(range, std::regex("(\\d*[.]?\\d*)")))
-    throw std::invalid_argument("Incorrect interest range");
-  credit_sum_ = std::stod(sum);
-  credit_term_ = std::stoi(term);
-  interest_rate_ = std::stod(range);
-}
-
 int s21::CreditInformation::FromYearsToMonths() {
   return term_in_years_ ? credit_term_ * 12 : credit_term_;
 }

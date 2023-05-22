@@ -10,9 +10,6 @@ class CreditInformation {
  public:
   CreditInformation() = default;
   ~CreditInformation() = default;
-  CreditInformation GetInformation() noexcept { return *this; }
-  void CheckCreditValues(const std::string& sum, const std::string& term,
-                         const std::string& range);
   int FromYearsToMonths();
   double credit_sum_{};
   int credit_term_{};
@@ -29,7 +26,9 @@ class CreditCalculator {
   CreditCalculator() = default;
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
-  CreditInformation GetData() noexcept { return data_.GetInformation(); }
+  CreditInformation GetData() noexcept { return data_; }
+  void SetTermInYears(bool value) noexcept { data_.term_in_years_ = value; }
+  void SetCreditType(bool value) noexcept { data_.is_differntiated = value; }
   void CheckCreditValues(const std::string& sum, const std::string& term,
                          const std::string& range);
   void AnnuitetMethod() noexcept;
