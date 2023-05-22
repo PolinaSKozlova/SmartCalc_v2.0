@@ -23,13 +23,15 @@ CreditWindow::~CreditWindow()
 
 void CreditWindow::on_months_clicked()
 {
-    credit_data_.term_in_years_ = false;
+    controller_credit_->SetTermInYears(false);
+
 }
 
 
 void CreditWindow::on_years_clicked()
 {
-    credit_data_.term_in_years_ = true;
+    controller_credit_->SetTermInYears(true);
+
 }
 
 
@@ -38,6 +40,7 @@ void CreditWindow::on_count_clicked()
    try {
         controller_credit_->CountCredit(ui->credit_sum->text().toStdString(),ui->credit_term->text().toStdString(), ui->credit_range->text().toStdString());
         ui->result_total->setText(QString::number(controller_credit_->GetCreditData().total_sum_));
+        ui->result_percents->setText(QString::number(controller_credit_->GetCreditData().payble_percents_));
     } catch(std::invalid_argument &e) {
         QMessageBox::critical(this, "ERROR", e.what());
     }
@@ -61,12 +64,13 @@ void CreditWindow::on_clear_clicked()
 
 void CreditWindow::on_a_type_clicked()
 {
-    credit_data_.is_differntiated = false;
+    controller_credit_->SetCreditType(false);
+
 }
 
 
 void CreditWindow::on_d_type_clicked()
 {
-     credit_data_.is_differntiated = true;
+     controller_credit_->SetCreditType(true);
 }
 
