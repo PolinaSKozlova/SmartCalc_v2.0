@@ -37,11 +37,11 @@ void s21::CreditCalculator::DifferntiatedMethod() noexcept {
 void s21::CreditInformation::CheckCreditValues(const std::string& sum,
                                                const std::string& term,
                                                const std::string& range) {
-  if (!std::regex_match(sum, std::regex("(\\d*[.]\\d*)")))
+  if (!std::regex_match(sum, std::regex("(\\d*[.]?\\d*)")))
     throw std::invalid_argument("Incorrect sum value");
   if (!std::regex_match(term, std::regex("\\d*")))
     throw std::invalid_argument("Incorrect terms");
-  if (!std::regex_match(range, std::regex("(\\d*[.]\\d*)")))
+  if (!std::regex_match(range, std::regex("(\\d*[.]?\\d*)")))
     throw std::invalid_argument("Incorrect interest range");
   credit_sum_ = std::stod(sum);
   credit_term_ = std::stoi(term);
