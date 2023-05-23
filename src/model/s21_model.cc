@@ -42,7 +42,6 @@ double MathCalculator::GetXValue(const std::string &x_value) const {
 }
 
 void MathCalculator::CountResult(double x_value) noexcept {
-  std::cout << "CountResult " << x_value << std::endl;
   std::stack<double> result_stack;
   for (auto &current_token : output_tokens_) {
     if (current_token.priority_ == s21::Priority::kZero) {
@@ -61,7 +60,6 @@ void MathCalculator::CountResult(double x_value) noexcept {
       result_stack.push(
           functions_for_count.find(current_token.type_)->second(arg_1, 0.0));
     }
-    std::cout << "current token  " << current_token.value_ << std::endl;
   }
   if (result_stack.size()) answer_ = result_stack.top();
 }
