@@ -8,7 +8,7 @@ void Tokenizer::CreateTokenOutput() {
   if (input_src_.empty()) return;
   CheckHooksInInput();
   CheckDotsInInput();
-  CheckXValue();
+  // CheckXValue();
   CreateTokens();
   CheckEdgeValues();
   CheckHooksAfterFunctions();
@@ -45,7 +45,7 @@ void Tokenizer::CreateTokens() {
   FindUnarySign();
 }
 
-double Tokenizer::GetXValue() const { return std::stod(token_x_value_); }
+// double Tokenizer::GetXValue() const { return std::stod(token_x_value_); }
 
 void Tokenizer::CheckHooksInInput() const {
   int count_brackets = 0;
@@ -71,7 +71,7 @@ void Tokenizer::FillRecievedToken(const std::string& key) {
   if (search_token == valid_tokens.cend())
     throw std::invalid_argument("Invalid token");
   tokens_.emplace_back(search_token->second);
-  if (key == "x") tokens_.back().value_ = GetXValue();
+  // if (key == "x") tokens_.back().value_ = GetXValue();
 }
 
 void Tokenizer::FindUnarySign() noexcept {
@@ -110,16 +110,16 @@ void Tokenizer::CheckHooksAfterFunctions() const {
   }
 }
 
-void Tokenizer::CheckXValue() const {
-  if (token_x_value_ == ".")
-    throw std::invalid_argument("X value can't be only dot");
-  if (!std::regex_match(
-          token_x_value_,
-          std::regex(
-              "(([-+])?\\d*[.]\\d*)|"
-              "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
-    throw std::invalid_argument("Incorrect x value");
-}
+// void Tokenizer::CheckXValue() const {
+//   if (token_x_value_ == ".")
+//     throw std::invalid_argument("X value can't be only dot");
+//   if (!std::regex_match(
+//           token_x_value_,
+//           std::regex(
+//               "(([-+])?\\d*[.]\\d*)|"
+//               "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
+//     throw std::invalid_argument("Incorrect x value");
+// }
 
 void Tokenizer::CheckEdgeValues() const {
   if (tokens_.front().is_binary_) throw std::invalid_argument("Missing value");
