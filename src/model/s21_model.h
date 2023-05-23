@@ -13,7 +13,7 @@ class MathCalculator {
   std::string GetStringAnswer() const noexcept;
   void CalculateResultFromInput(const std::string &src,
                                 const std::string &x_value = "0.0");
-  void SetTokensNotationNewValues(const std::string &src);
+  // void SetTokensNotationNewValues(const std::string &src);
   void CountCoordinates(const std::string &src, double x_min, double x_max,
                         double y_min, double y_max, std::vector<double> &x_axes,
                         std::vector<double> &y_axes);
