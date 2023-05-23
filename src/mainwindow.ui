@@ -1818,7 +1818,7 @@ QPushButton:pressed {
      </font>
     </property>
     <property name="title">
-     <string>Choose calc mode</string>
+     <string>Режим калькулятора</string>
     </property>
     <addaction name="actionMath_Calculator"/>
     <addaction name="actionCredit_Calc"/>
@@ -1834,7 +1834,7 @@ QPushButton:pressed {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Math Calculator</string>
+    <string>Стандартный калькулятор</string>
    </property>
    <property name="font">
     <font/>
@@ -1845,7 +1845,7 @@ QPushButton:pressed {
   </action>
   <action name="actionCredit_Calc">
    <property name="text">
-    <string>Credit Calc</string>
+    <string>Кредитный калькулятор</string>
    </property>
    <property name="font">
     <font/>
