@@ -236,4 +236,10 @@ void MainWindow::on_print_graph_clicked() {
   double max_x = ui->x_max->value();
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
+  std::vector<double> x_axes, y_axes;
+  try{
+    controller_->GetCoordinates(ui->result_show->text().toStdString(),min_x, max_x, min_y, max_y, x_axes, y_axes);
+  } catch (std::invalid_argument &e){
+    QMessageBox::critical(this, "ERROR", e.what());
+  }
 }

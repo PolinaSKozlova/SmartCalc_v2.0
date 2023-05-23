@@ -2,6 +2,8 @@
 #define CREDITWINDOW_H
 
 #include <QMainWindow>
+#include <QErrorMessage>
+#include <QMessageBox>
 
 #include "controller/s21_controller.h"
 #include "model/s21_credit_calculator.h"
