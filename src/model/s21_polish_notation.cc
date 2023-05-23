@@ -41,7 +41,6 @@ std::vector<s21::Token> s21::PolishNotation::CreateNotation() {
   return output_notation_;
 }
 
-void s21::PolishNotation::SetTokensNewValues(const std::string &src,
-                                             const std::string &x_value) {
-  tokens_.SetNewValues(src, x_value);
+void s21::PolishNotation::SetTokensNewValues(const std::string &src) {
+  tokens_.SetNewInput(src);
 }

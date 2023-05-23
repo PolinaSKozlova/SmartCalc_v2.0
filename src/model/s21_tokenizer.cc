@@ -1,6 +1,5 @@
 #include "s21_tokenizer.h"
 
-// #include "s21_model.h"
 namespace s21 {
 std::vector<Token> Tokenizer::GetTokens() const noexcept { return tokens_; }
 
@@ -8,17 +7,14 @@ void Tokenizer::CreateTokenOutput() {
   if (input_src_.empty()) return;
   CheckHooksInInput();
   CheckDotsInInput();
-  // CheckXValue();
   CreateTokens();
   CheckEdgeValues();
   CheckHooksAfterFunctions();
   CheckWithAdjacencyMatrix();
 }
 
-void Tokenizer::SetNewValues(const std::string& input_src,
-                             const std::string& x) {
+void Tokenizer::SetNewInput(const std::string& input_src) {
   input_src_ = input_src;
-  token_x_value_ = x;
 }
 
 void Tokenizer::CreateTokens() {
@@ -45,8 +41,6 @@ void Tokenizer::CreateTokens() {
   FindUnarySign();
 }
 
-// double Tokenizer::GetXValue() const { return std::stod(token_x_value_); }
-
 void Tokenizer::CheckHooksInInput() const {
   int count_brackets = 0;
   for (const char& current_sym : input_src_) {
@@ -71,7 +65,6 @@ void Tokenizer::FillRecievedToken(const std::string& key) {
   if (search_token == valid_tokens.cend())
     throw std::invalid_argument("Invalid token");
   tokens_.emplace_back(search_token->second);
-  // if (key == "x") tokens_.back().value_ = GetXValue();
 }
 
 void Tokenizer::FindUnarySign() noexcept {
@@ -110,17 +103,6 @@ void Tokenizer::CheckHooksAfterFunctions() const {
   }
 }
 
-// void Tokenizer::CheckXValue() const {
-//   if (token_x_value_ == ".")
-//     throw std::invalid_argument("X value can't be only dot");
-//   if (!std::regex_match(
-//           token_x_value_,
-//           std::regex(
-//               "(([-+])?\\d*[.]\\d*)|"
-//               "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
-//     throw std::invalid_argument("Incorrect x value");
-// }
-
 void Tokenizer::CheckEdgeValues() const {
   if (tokens_.front().is_binary_) throw std::invalid_argument("Missing value");
   if (tokens_.back().is_binary_ ||
@@ -146,5 +128,4 @@ void Tokenizer::CheckWithAdjacencyMatrix() const {
       throw std::invalid_argument("Expression error");
   }
 }
-
 };  // namespace s21

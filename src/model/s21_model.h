@@ -7,16 +7,13 @@ namespace s21 {
 class MathCalculator {
  public:
   MathCalculator() = default;
-  explicit MathCalculator(const std::string &other,
-                          const std::string &x_value = "0.0")
-      : tokens_notation_(other, x_value) {}
+  explicit MathCalculator(const std::string &other) : tokens_notation_(other) {}
   ~MathCalculator() = default;
   double GetAnswer() const noexcept;
   std::string GetStringAnswer() const noexcept;
   void CalculateResultFromInput(const std::string &src,
                                 const std::string &x_value = "0.0");
-  void SetTokensNotationNewValues(const std::string &src,
-                                  const std::string &x_value);
+  void SetTokensNotationNewValues(const std::string &src);
   // void CountCoordinates(const std::string &src, double x_min, double x_max,
   //                       double y_min, double y_max, std::vector<double>
   //                       &x_axes, std::vector<double> &y_axes);

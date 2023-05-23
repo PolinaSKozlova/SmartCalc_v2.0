@@ -7,17 +7,13 @@ namespace s21 {
 class PolishNotation {
  public:
   PolishNotation() = default;
-  explicit PolishNotation(const std::string& src,
-                          const std::string& x_value = "0.0")
-      : tokens_(src, x_value) {}
+  explicit PolishNotation(const std::string& src) : tokens_(src) {}
   ~PolishNotation() {}
   std::vector<Token> CreateNotation();
   std::vector<Token> GetOutputTokens() const noexcept {
     return output_notation_;
   }
-  // double GetXValue() const { return tokens_.GetXValue(); }
-  void SetTokensNewValues(const std::string& src,
-                          const std::string& x_value = "0.0");
+  void SetTokensNewValues(const std::string& src);
 
  private:
   Tokenizer tokens_;
