@@ -44,7 +44,7 @@ Copyright (c) verenach NOV 2022
 @item -inf - результат вычисления минус бесконечность.
 @end enumerate
 
-@section числа
+@section Числа
 @itemize *
 @item e - для записи числа в экспоненциальной форме;
 @item 0-9 - для записи чисел в поле ввода;
