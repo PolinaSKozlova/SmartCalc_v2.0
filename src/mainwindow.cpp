@@ -7,7 +7,6 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   ui->setupUi(this);
   ui->main_frame->setFixedSize(321, 441);
   ui->result_show->setFixedSize(271, 81);
-  ui->main_mode_button->setChecked(true);
   credit_window = new CreditWindow(this->controller_, this);
   connect(ui->zero, SIGNAL(clicked()), this, SLOT(numbers()));
   connect(ui->one, SIGNAL(clicked()), this, SLOT(numbers()));
@@ -48,32 +47,32 @@ MainWindow::~MainWindow() {
 
 void MainWindow::numbers() {
   QPushButton *button = (QPushButton *)sender();
-  if (expression_mode) {
-    if (ui->result_show->text() == "Start calculate" ||
-        ui->result_show->text().toStdString() ==
-            controller_->GetOutputAnswer()) {
-      ui->result_show->setText("0");
-    }
-    if (ui->result_show->text().length() < 255) {
-      if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-           ui->result_show->text() == "inf" ||
-           ui->result_show->text() == "-inf") &&
-          button->text() != ".") {
-        ui->result_show->setText(button->text());
+    if(ui->result_show->hasFocus()){
+        if (ui->result_show->text() == "Start calculate" ||
+            ui->result_show->text().toStdString() ==
+                controller_->GetOutputAnswer()) {
+          ui->result_show->setText("0");
+        }
+        if (ui->result_show->text().length() < 255) {
+          if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
+               ui->result_show->text() == "inf" ||
+               ui->result_show->text() == "-inf") &&
+              button->text() != ".") {
+            ui->result_show->setText(button->text());
+          } else {
+            ui->result_show->setText(ui->result_show->text() + button->text());
+          }
+        }
       } else {
-        ui->result_show->setText(ui->result_show->text() + button->text());
+        if (ui->get_x_value->text() == "Enter x value" ||
+            ui->get_x_value->text() == "0.0" ||
+            ui->get_x_value->text() == "Incorrect x value" ||
+            ui->get_x_value->text() == "X value can't be only dot") {
+          ui->get_x_value->setText(button->text());
+        } else {
+          ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+        }
       }
-    }
-  } else {
-    if (ui->get_x_value->text() == "Enter x value" ||
-        ui->get_x_value->text() == "0.0" ||
-        ui->get_x_value->text() == "Incorrect x value" ||
-        ui->get_x_value->text() == "X value can't be only dot") {
-      ui->get_x_value->setText(button->text());
-    } else {
-      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
-    }
-  }
 }
 
 void MainWindow::operations() {
@@ -89,25 +88,25 @@ void MainWindow::operations() {
 
 void MainWindow::sign() {
   QPushButton *button = (QPushButton *)sender();
-  if (expression_mode) {
-    if (ui->result_show->text() == "Start calculate" ||
-        ui->result_show->text().toStdString() ==
-            controller_->GetOutputAnswer()) {
-      ui->result_show->setText(ui->result_show->text());
-    }
-    if (ui->result_show->text().length() < 255) {
-      ui->result_show->setText(ui->result_show->text() + button->text());
-    }
-  } else {
-    if (ui->get_x_value->text() == "Enter x value" ||
-        ui->get_x_value->text() == "0.0" ||
-        ui->get_x_value->text() == "Incorrect x value" ||
-        ui->get_x_value->text() == "X value can't be only dot") {
-      ui->get_x_value->setText(button->text());
-    } else {
-      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
-    }
-  }
+   if (ui->result_show->hasFocus()) {
+        if (ui->result_show->text() == "Start calculate" ||
+            ui->result_show->text().toStdString() ==
+                controller_->GetOutputAnswer()) {
+          ui->result_show->setText(ui->result_show->text());
+        }
+        if (ui->result_show->text().length() < 255) {
+          ui->result_show->setText(ui->result_show->text() + button->text());
+        }
+      } else {
+        if (ui->get_x_value->text() == "Enter x value" ||
+            ui->get_x_value->text() == "0.0" ||
+            ui->get_x_value->text() == "Incorrect x value" ||
+            ui->get_x_value->text() == "X value can't be only dot") {
+          ui->get_x_value->setText(button->text());
+        } else {
+          ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+        }
+      }
 }
 
 void MainWindow::trigonometry() {
@@ -150,7 +149,7 @@ void MainWindow::brackets() {
 }
 
 void MainWindow::on_backspace_clicked() {
-   if(expression_mode){
+    if (ui->result_show->hasFocus()) {
        QString text = ui->result_show->text();
        text.chop(1);
        if (text.isEmpty()) {
@@ -168,11 +167,11 @@ void MainWindow::on_backspace_clicked() {
 }
 
 void MainWindow::on_clear_all_clicked() {
-  if (expression_mode) {
-    ui->result_show->setText("0");
-  } else {
-    ui->get_x_value->setText("0.0");
-  }
+    if(ui->result_show->hasFocus()){
+        ui->result_show->setText("0");
+      } else {
+        ui->get_x_value->setText("0.0");
+      }
 }
 
 void MainWindow::on_equal_clicked() {
@@ -199,9 +198,6 @@ void MainWindow::on_open_extra_mode_clicked() {
   }
 }
 
-void MainWindow::on_main_mode_button_clicked() { expression_mode = true; }
-
-void MainWindow::on_x_mode_button_clicked() { expression_mode = false; }
 
 void MainWindow::on_open_graph_clicked() {
   if (!open_graph_mode) {
