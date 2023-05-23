@@ -20,7 +20,7 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   connect(ui->eight, SIGNAL(clicked()), this, SLOT(numbers()));
   connect(ui->nine, SIGNAL(clicked()), this, SLOT(numbers()));
   connect(ui->exp, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->variable_x, SIGNAL(clicked()), this, SLOT(numbers()));
+  connect(ui->variable_x, SIGNAL(clicked()), this, SLOT(trigonometry()));
   connect(ui->dot, SIGNAL(clicked()), this, SLOT(numbers()));
   connect(ui->sum, SIGNAL(clicked()), this, SLOT(sign()));
   connect(ui->sub, SIGNAL(clicked()), this, SLOT(sign()));
@@ -120,9 +120,17 @@ void MainWindow::trigonometry() {
     if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
          ui->result_show->text() == "inf" ||
          ui->result_show->text() == "-inf")) {
-      ui->result_show->setText(button->text() + "(");
+        if (button->text() == "x"){
+            ui->result_show->setText(button->text());
+        } else {
+            ui->result_show->setText(button->text() + "(");
+        }
     } else {
-      ui->result_show->setText(ui->result_show->text() + button->text() + "(");
+        if (button->text() == "x"){
+             ui->result_show->setText(ui->result_show->text() + button->text());
+        } else {
+             ui->result_show->setText(ui->result_show->text() + button->text() + "(");
+        }
     }
   }
 }
@@ -142,12 +150,21 @@ void MainWindow::brackets() {
 }
 
 void MainWindow::on_backspace_clicked() {
-  QString text = ui->result_show->text();
-  text.chop(1);
-  if (text.isEmpty()) {
-    text = "0";
-  }
-  ui->result_show->setText(text);
+   if(expression_mode){
+       QString text = ui->result_show->text();
+       text.chop(1);
+       if (text.isEmpty()) {
+         text = "0";
+       }
+       ui->result_show->setText(text);
+   } else {
+       QString text = ui->get_x_value->text();
+       text.chop(1);
+       if (text.isEmpty()) {
+         text = "0";
+       }
+       ui->get_x_value->setText(text);
+   }
 }
 
 void MainWindow::on_clear_all_clicked() {
