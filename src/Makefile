@@ -13,7 +13,7 @@ run: clean
 	clear
 	$(CC) $(CC_FLAGS)  model/s21_*.cc  run.cc -o run -g
 #	$(OBJ_FILES)
-#	./run
+	./run
 
 
 all: 
@@ -34,7 +34,7 @@ dvi: clean
 	open report/index.html
 
 dist: clean
-	tar -czf SmartCalcPro.tar.gz s21_* Makefile SmartCalc 
+	tar -czf SmartCalcPro.tar.gz Makefile model controller CMakeLists.txt creditwindow.* mainwindow.* main.cpp
 
 tests: clean
 	clear
