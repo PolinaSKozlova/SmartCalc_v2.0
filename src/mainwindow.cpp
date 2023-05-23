@@ -64,8 +64,7 @@ void MainWindow::numbers() {
           }
         }
       } else {
-        if (ui->get_x_value->text() == "Enter x value" ||
-            ui->get_x_value->text() == "0.0" ||
+        if (ui->get_x_value->text() == "0.0" ||
             ui->get_x_value->text() == "Incorrect x value" ||
             ui->get_x_value->text() == "X value can't be only dot") {
           ui->get_x_value->setText(button->text());
@@ -175,11 +174,10 @@ void MainWindow::on_clear_all_clicked() {
 }
 
 void MainWindow::on_equal_clicked() {
-  std::string tmp_src = ui->result_show->text().toStdString();
-  std::string x_value = ui->get_x_value->text().toStdString();
-  controller_->ParceAndCalculateExpression(tmp_src, x_value);
-  ui->result_show->setText(
-      QString::fromStdString(controller_->GetOutputAnswer()));
+    std::string tmp_src = ui->result_show->text().toStdString();
+    std::string x_value = ui->get_x_value->text().toStdString();
+    controller_->ParceAndCalculateExpression(tmp_src, x_value);
+    ui->result_show->setText(QString::fromStdString(controller_->GetOutputAnswer()));
 }
 
 void MainWindow::on_open_extra_mode_clicked() {
