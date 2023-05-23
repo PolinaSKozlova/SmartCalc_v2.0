@@ -12,18 +12,23 @@ void MathCalculator::SetTokensNotationNewValues(const std::string &src) {
   tokens_notation_.SetTokensNewValues(src);
 }
 
-// void MathCalculator::CountCoordinates(const std::string &src, double x_min,
-//                                       double x_max, double y_min, double
-//                                       y_max, std::vector<double> &x_axes,
-//                                       std::vector<double> &y_axes) {
-//   if (x_min > x_max) throw std::invalid_argument("x_min > x_max");
-//   if (y_min > y_max) throw std::invalid_argument("y_min > y_max");
-//   tokens_notation_.SetTokensNewValues(src);
-//   output_tokens_ = tokens_notation_.CreateNotation();
-//   int dots = 3000;
-//   double step = (x_max - x_min) / dots;
-//   CountResult(step);
-// }
+void MathCalculator::CountCoordinates(const std::string &src, double x_min,
+                                      double x_max, double y_min, double y_max,
+                                      std::vector<double> &x_axes,
+                                      std::vector<double> &y_axes) {
+  if (x_min > x_max) throw std::invalid_argument("x_min > x_max");
+  if (y_min > y_max) throw std::invalid_argument("y_min > y_max");
+  tokens_notation_.SetTokensNewValues(src);
+  output_tokens_ = tokens_notation_.CreateNotation();
+  int dots = 3000;
+  double step = (x_max - x_min) / dots;
+  for (int i = 0; i < dots; ++i) {
+    double x = x_min + step * i;
+    CountResult(x);
+    x_axes.push_back(x);
+    y_axes.push_back(GetAnswer());
+  }
+}
 
 void MathCalculator::CheckXValue(const std::string &x_value) const {
   if (x_value == ".") throw std::invalid_argument("X value can't be only dot");
