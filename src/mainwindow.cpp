@@ -243,3 +243,9 @@ void MainWindow::on_print_graph_clicked() {
     QMessageBox::critical(this, "ERROR", e.what());
   }
 }
+
+void MainWindow::on_actionDeposit_calc_triggered()
+{
+    QMessageBox::information(this,"Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
+}
+

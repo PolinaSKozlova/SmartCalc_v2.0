@@ -19,7 +19,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #5e1640;</string>
+   <string notr="true">background-color: #5e1640;
+color: white;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="result_show">
@@ -1813,16 +1814,22 @@ QPushButton:pressed {
    <widget class="QMenu" name="menuChoose_calc_mode">
     <property name="font">
      <font>
+      <family>Shree Devanagari 714</family>
       <pointsize>15</pointsize>
       <italic>true</italic>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="title">
      <string>Режим калькулятора</string>
     </property>
     <addaction name="actionMath_Calculator"/>
+    <addaction name="separator"/>
     <addaction name="actionCredit_Calc"/>
     <addaction name="separator"/>
+    <addaction name="actionDeposit_calc"/>
    </widget>
    <addaction name="menuChoose_calc_mode"/>
   </widget>
@@ -1837,7 +1844,10 @@ QPushButton:pressed {
     <string>Стандартный калькулятор</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <family>Shree Devanagari 714</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
    <property name="menuRole">
     <enum>QAction::TextHeuristicRole</enum>
@@ -1848,7 +1858,21 @@ QPushButton:pressed {
     <string>Кредитный калькулятор</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <family>Shree Devanagari 714</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionDeposit_calc">
+   <property name="text">
+    <string>Депозитный калькулятор</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Shree Devanagari 714</family>
+     <pointsize>15</pointsize>
+    </font>
    </property>
   </action>
  </widget>

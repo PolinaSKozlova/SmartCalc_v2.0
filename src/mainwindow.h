@@ -41,6 +41,8 @@ private slots:
     void on_pushButton_clicked();
     void on_print_graph_clicked();
 
+    void on_actionDeposit_calc_triggered();
+
 private:
     Ui::MainWindow *ui;
     CreditWindow *credit_window;
