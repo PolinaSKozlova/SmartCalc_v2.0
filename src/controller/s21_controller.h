@@ -29,9 +29,10 @@ class Controller {
   void CountCredit(const std::string &sum, const std::string &term,
                    const std::string &range) {
     try {
-      credit_->CheckCreditValues(sum, term, range);
+      credit_->FillData(sum, term, range);
     } catch (std::invalid_argument &e) {
       throw e;
+      // output_ = e.what();
     }
     if (credit_->GetData().is_differntiated) {
       credit_->DifferntiatedMethod();
