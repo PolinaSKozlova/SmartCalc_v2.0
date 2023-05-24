@@ -26,11 +26,15 @@ void CreditCalculator::CheckCreditValues(const std::string& sum,
     throw std::invalid_argument("Empty values");
   data_.credit_sum_ = std::stod(sum);
   data_.credit_term_ = std::stoi(term);
+  data_.credit_term_ = data_.FromYearsToMonths();
+  if ((data_.credit_term_ > 100 && data_.term_in_years_) ||
+      (data_.credit_term_ > 1200 && !data_.term_in_years_))
+    throw std::invalid_argument("Too long term");
   data_.interest_rate_ = std::stod(range);
 }
 
 void CreditCalculator::AnnuitetMethod() noexcept {
-  data_.credit_term_ = data_.FromYearsToMonths();
+  // data_.credit_term_ = data_.FromYearsToMonths();
   if (!data_.monthly_payment_.empty()) data_.monthly_payment_.clear();
   data_.interest_rate_ = data_.interest_rate_ / 100 / 12;
   data_.monthly_payment_.push_back(RoundNumber(
@@ -42,7 +46,7 @@ void CreditCalculator::AnnuitetMethod() noexcept {
 }
 
 void CreditCalculator::DifferntiatedMethod() noexcept {
-  data_.credit_term_ = data_.FromYearsToMonths();
+  // data_.credit_term_ = data_.FromYearsToMonths();
   if (!data_.monthly_payment_.empty()) data_.monthly_payment_.clear();
   data_.interest_rate_ = data_.interest_rate_ / 100;
   double pay = 0;
