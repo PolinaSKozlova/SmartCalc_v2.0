@@ -22,12 +22,12 @@ class CreditInformation {
         total_sum_(total_sum),
         is_differntiated(is_differntiated),
         term_in_years_(term_in_years) {
-    FromYearsToMonths();
+    credit_term = FromYearsToMonths();
   }
 
   ~CreditInformation() = default;
   int FromYearsToMonths() {
-    return term_in_years_ ? (credit_term_ *= 12) : credit_term_;
+    return term_in_years_ ? (credit_term_ * 12) : credit_term_;
   }
   double credit_sum_{};
   int credit_term_{};
@@ -47,12 +47,15 @@ class CreditCalculator {
   CreditInformation GetData() const noexcept { return data_; }
   void SetTermInYears(bool value) noexcept;
   void SetCreditType(bool value) noexcept;
-  void CheckCreditValues(const std::string& sum, const std::string& term,
-                         const std::string& range);
+  void FillData(const std::string& sum, const std::string& term,
+                const std::string& range);
   void AnnuitetMethod() noexcept;
   void DifferntiatedMethod() noexcept;
 
  private:
+  void CheckCreditValues(const std::string& sum, const std::string& term,
+                         const std::string& range) const;
+  void CheckTerms() const;
   CreditInformation data_{};
 };
 };  // namespace s21
