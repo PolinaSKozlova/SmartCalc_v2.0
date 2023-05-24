@@ -24,7 +24,6 @@ class CreditInformation {
         term_in_years_(term_in_years) {
     credit_term = FromYearsToMonths();
   }
-
   ~CreditInformation() = default;
   int FromYearsToMonths() {
     return term_in_years_ ? (credit_term_ * 12) : credit_term_;
