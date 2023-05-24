@@ -34,6 +34,9 @@ class Token {
 
 const std::map<const std::string, Token> valid_tokens{
     {"x", Token(0.0, s21::Priority::kZero, "x")},
+    {"nan", Token(0.0 / 0.0, s21::Priority::kZero, "nan")},
+    {"inf", Token(1.0 / 0.0, s21::Priority::kZero, "inf")},
+    {"-inf", Token(-1.0 / 0.0, s21::Priority::kZero, "-inf")},
     {"+", Token(0.0, s21::Priority::kFirst, "sum", 1, true)},
     {"-", Token(0.0, s21::Priority::kFirst, "sub", 1, true)},
     {"*", Token(0.0, s21::Priority::kSecond, "*", 1, true)},
@@ -41,8 +44,6 @@ const std::map<const std::string, Token> valid_tokens{
     {"(", Token(0.0, s21::Priority::kThird, "(", 2)},
     {")", Token(0.0, s21::Priority::kThird, ")", 3)},
     {"^", Token(0.0, s21::Priority::kThird, "^", 1, true)},
-    // {"u_plus", Token(0.0, s21::Priority::kThird, "u_plus", 5)},
-    // {"u_minus", Token(0.0, s21::Priority::kThird, "u_minus", 5)},
     {"cos", Token(0.0, s21::Priority::kFourth, "cos", 4)},
     {"sin", Token(0.0, s21::Priority::kFourth, "sin", 4)},
     {"tan", Token(0.0, s21::Priority::kFourth, "tan", 4)},
