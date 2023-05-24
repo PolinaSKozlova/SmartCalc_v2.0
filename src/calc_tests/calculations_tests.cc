@@ -252,3 +252,9 @@ TEST(calculation_src_test, test_34) {
   result = 0.0;
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
+
+TEST(calculation_src_test, test_35) {
+  s21::MathCalculator m;
+  m.CalculateResultFromInput("100/400");
+  EXPECT_EQ(m.GetStringAnswer(), "0.25");
+}
