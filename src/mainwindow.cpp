@@ -222,7 +222,7 @@ void MainWindow::on_actionCredit_Calc_triggered() {
   credit_window->show();
 }
 
-void MainWindow::on_pushButton_clicked() {
+void MainWindow::on_clear_values_clicked() {
   ui->x_min->setValue(0.00);
   ui->x_max->setValue(0.00);
   ui->y_min->setValue(0.00);
@@ -245,5 +245,7 @@ void MainWindow::on_print_graph_clicked() {
 void MainWindow::on_actionDeposit_calc_triggered()
 {
     QMessageBox::information(this,"Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
+    credit_window->hide();
+    this->show();
 }
 
