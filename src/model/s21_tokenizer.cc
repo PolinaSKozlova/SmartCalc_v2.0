@@ -117,7 +117,7 @@ void Tokenizer::CheckWithAdjacencyMatrix() const {
       {0, 1, 0, 1, 0, 0},  //  0: x, number
       {1, 0, 1, 0, 1, 1},  //  1: sum, sub, div, mult, mod, power
       {1, 0, 1, 0, 1, 1},  //  2: (
-      {1, 1, 0, 1, 0, 0},  //  3: )
+      {0, 1, 0, 1, 0, 0},  //  3: )
       {0, 0, 1, 0, 0, 0},  //  4: sin, cos, tan, acos, asin, atan, sqrt, ln, log
       {1, 0, 1, 0, 1, 0},  //  5: unary_plus, unary_minus
   };
