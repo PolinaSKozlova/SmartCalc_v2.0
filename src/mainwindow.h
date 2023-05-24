@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtCharts/QChartView>
 #include <QMainWindow>
 #include <QVector>
 #include <iostream>
