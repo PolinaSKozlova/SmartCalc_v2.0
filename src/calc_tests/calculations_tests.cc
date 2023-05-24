@@ -257,4 +257,26 @@ TEST(calculation_src_test, test_35) {
   s21::MathCalculator m;
   m.CalculateResultFromInput("100/400");
   EXPECT_EQ(m.GetStringAnswer(), "0.25");
+  m.CalculateResultFromInput("acos(5)");
+  EXPECT_EQ(m.GetStringAnswer(), "nan");
+}
+
+TEST(calculation_src_test, test_36) {
+  s21::MathCalculator m;
+  std::vector<double> x_axes, y_axes;
+  m.CountCoordinates("x", -34, 4, 0, 29, x_axes, y_axes);
+  EXPECT_EQ(x_axes.front(), -34);
+  EXPECT_NEAR(x_axes.back(), 3.98733, 1e-05);
+  EXPECT_EQ(y_axes.front(), -34);
+  EXPECT_NEAR(y_axes.back(), 3.98733, 1e-05);
+}
+
+TEST(calculation_src_test, test_37) {
+  s21::MathCalculator m;
+  std::vector<double> x_axes, y_axes;
+  m.CountCoordinates("cos(x)", -1, 1, -2, 2, x_axes, y_axes);
+  EXPECT_EQ(x_axes.front(), -1);
+  EXPECT_NEAR(x_axes.back(), 0.9993333, 1e-05);
+  EXPECT_NEAR(y_axes.front(), 0.540302, 1e-05);
+  EXPECT_NEAR(y_axes.back(), 0.540863, 1e-05);
 }

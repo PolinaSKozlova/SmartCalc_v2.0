@@ -82,8 +82,7 @@ TEST(credit_incorrect_test, test_4) {
 TEST(credit_incorrect_test, test_5) {
   try {
     s21::CreditCalculator cr;
-    cr.SetTermInYears(true);
-    cr.FillData("2000000", "101", "12");
+    cr.FillData("2000000", "", "12");
   } catch (...) {
   }
 }
