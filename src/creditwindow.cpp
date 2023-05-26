@@ -2,6 +2,7 @@
 #include "ui_creditwindow.h"
 #include <QErrorMessage>
 #include <QMessageBox>
+#include "mainwindow.h"
 
 CreditWindow::CreditWindow(s21::Controller *controller, QWidget *parent) :
         controller_credit_(controller),
@@ -83,5 +84,21 @@ void CreditWindow::on_d_type_clicked()
 {
      controller_credit_->SetCreditType(true);
      ui->result_frame->setFixedSize(851, 331);
+}
+
+
+void CreditWindow::on_actionMathCalc_triggered()
+{
+    this->hide();
+    MainWindow *mainwindow = new MainWindow(controller_credit_);
+    mainwindow->setFixedSize(325, 590);
+    mainwindow->show();
+}
+
+
+void CreditWindow::on_actionDepositCalc_triggered()
+{
+    QMessageBox::information(this,"Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
+    this->show();
 }
 

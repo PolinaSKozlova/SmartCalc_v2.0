@@ -766,6 +766,58 @@ border: 1px solid white;</string>
     </widget>
    </widget>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>877</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuhello">
+    <property name="font">
+     <font>
+      <family>Shree Devanagari 714</family>
+      <pointsize>15</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="title">
+     <string>Режим калькулятора</string>
+    </property>
+    <addaction name="actionMathCalc"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionDepositCalc"/>
+   </widget>
+   <addaction name="menuhello"/>
+  </widget>
+  <action name="actionMathCalc">
+   <property name="text">
+    <string>Стандратный калькулятор</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Shree Devanagari 714</family>
+     <pointsize>15</pointsize>
+     <italic>true</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionDepositCalc">
+   <property name="text">
+    <string>Депозитный калькулятор</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Shree Devanagari 714</family>
+     <pointsize>15</pointsize>
+     <italic>true</italic>
+    </font>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
