@@ -1,8 +1,8 @@
 #ifndef CREDITWINDOW_H
 #define CREDITWINDOW_H
 
-#include <QMainWindow>
 #include <QErrorMessage>
+#include <QMainWindow>
 #include <QMessageBox>
 
 #include "controller/s21_controller.h"
@@ -20,6 +20,9 @@ class CreditWindow : public QMainWindow {
                         QWidget *parent = nullptr);
   ~CreditWindow();
 
+ signals:
+  void showParent();
+
  private slots:
   void on_months_clicked();
   void on_years_clicked();
@@ -30,7 +33,7 @@ class CreditWindow : public QMainWindow {
   void on_actionMathCalc_triggered();
   void on_actionDepositCalc_triggered();
 
-private:
+ private:
   Ui::CreditWindow *ui;
   s21::Controller *controller_credit_;
 };

@@ -38,7 +38,8 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   connect(ui->arctangens, SIGNAL(clicked()), this, SLOT(trigonometry()));
   connect(ui->natural_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
   connect(ui->decimal_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
-
+  connect(credit_window, &CreditWindow::showParent, this,
+          &MainWindow::on_actionMath_Calculator_triggered);
 }
 
 MainWindow::~MainWindow() {
@@ -48,31 +49,31 @@ MainWindow::~MainWindow() {
 
 void MainWindow::numbers() {
   QPushButton *button = (QPushButton *)sender();
-    if(ui->result_show->hasFocus()){
-        if (ui->result_show->text() == "Start calculate" ||
-            ui->result_show->text().toStdString() ==
-                controller_->GetOutputAnswer()) {
-          ui->result_show->setText("0");
-        }
-        if (ui->result_show->text().length() < 255) {
-          if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-               ui->result_show->text() == "inf" ||
-               ui->result_show->text() == "-inf") &&
-              button->text() != ".") {
-            ui->result_show->setText(button->text());
-          } else {
-            ui->result_show->setText(ui->result_show->text() + button->text());
-          }
-        }
+  if (ui->result_show->hasFocus()) {
+    if (ui->result_show->text() == "Start calculate" ||
+        ui->result_show->text().toStdString() ==
+            controller_->GetOutputAnswer()) {
+      ui->result_show->setText("0");
+    }
+    if (ui->result_show->text().length() < 255) {
+      if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
+           ui->result_show->text() == "inf" ||
+           ui->result_show->text() == "-inf") &&
+          button->text() != ".") {
+        ui->result_show->setText(button->text());
       } else {
-        if (ui->get_x_value->text() == "0.0" ||
-            ui->get_x_value->text() == "Incorrect x value" ||
-            ui->get_x_value->text() == "X value can't be only dot") {
-          ui->get_x_value->setText(button->text());
-        } else {
-          ui->get_x_value->setText(ui->get_x_value->text() + button->text());
-        }
+        ui->result_show->setText(ui->result_show->text() + button->text());
       }
+    }
+  } else {
+    if (ui->get_x_value->text() == "0.0" ||
+        ui->get_x_value->text() == "Incorrect x value" ||
+        ui->get_x_value->text() == "X value can't be only dot") {
+      ui->get_x_value->setText(button->text());
+    } else {
+      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+    }
+  }
 }
 
 void MainWindow::operations() {
@@ -88,25 +89,25 @@ void MainWindow::operations() {
 
 void MainWindow::sign() {
   QPushButton *button = (QPushButton *)sender();
-   if (ui->result_show->hasFocus()) {
-        if (ui->result_show->text() == "Start calculate" ||
-            ui->result_show->text().toStdString() ==
-                controller_->GetOutputAnswer()) {
-          ui->result_show->setText(ui->result_show->text());
-        }
-        if (ui->result_show->text().length() < 255) {
-          ui->result_show->setText(ui->result_show->text() + button->text());
-        }
-      } else {
-        if (ui->get_x_value->text() == "Enter x value" ||
-            ui->get_x_value->text() == "0.0" ||
-            ui->get_x_value->text() == "Incorrect x value" ||
-            ui->get_x_value->text() == "X value can't be only dot") {
-          ui->get_x_value->setText(button->text());
-        } else {
-          ui->get_x_value->setText(ui->get_x_value->text() + button->text());
-        }
-      }
+  if (ui->result_show->hasFocus()) {
+    if (ui->result_show->text() == "Start calculate" ||
+        ui->result_show->text().toStdString() ==
+            controller_->GetOutputAnswer()) {
+      ui->result_show->setText(ui->result_show->text());
+    }
+    if (ui->result_show->text().length() < 255) {
+      ui->result_show->setText(ui->result_show->text() + button->text());
+    }
+  } else {
+    if (ui->get_x_value->text() == "Enter x value" ||
+        ui->get_x_value->text() == "0.0" ||
+        ui->get_x_value->text() == "Incorrect x value" ||
+        ui->get_x_value->text() == "X value can't be only dot") {
+      ui->get_x_value->setText(button->text());
+    } else {
+      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+    }
+  }
 }
 
 void MainWindow::trigonometry() {
@@ -119,17 +120,18 @@ void MainWindow::trigonometry() {
     if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
          ui->result_show->text() == "inf" ||
          ui->result_show->text() == "-inf")) {
-        if (button->text() == "x"){
-            ui->result_show->setText(button->text());
-        } else {
-            ui->result_show->setText(button->text() + "(");
-        }
+      if (button->text() == "x") {
+        ui->result_show->setText(button->text());
+      } else {
+        ui->result_show->setText(button->text() + "(");
+      }
     } else {
-        if (button->text() == "x"){
-             ui->result_show->setText(ui->result_show->text() + button->text());
-        } else {
-             ui->result_show->setText(ui->result_show->text() + button->text() + "(");
-        }
+      if (button->text() == "x") {
+        ui->result_show->setText(ui->result_show->text() + button->text());
+      } else {
+        ui->result_show->setText(ui->result_show->text() + button->text() +
+                                 "(");
+      }
     }
   }
 }
@@ -149,36 +151,37 @@ void MainWindow::brackets() {
 }
 
 void MainWindow::on_backspace_clicked() {
-    if (ui->result_show->hasFocus()) {
-       QString text = ui->result_show->text();
-       text.chop(1);
-       if (text.isEmpty()) {
-         text = "0";
-       }
-       ui->result_show->setText(text);
-   } else {
-       QString text = ui->get_x_value->text();
-       text.chop(1);
-       if (text.isEmpty()) {
-         text = "0";
-       }
-       ui->get_x_value->setText(text);
-   }
+  if (ui->result_show->hasFocus()) {
+    QString text = ui->result_show->text();
+    text.chop(1);
+    if (text.isEmpty()) {
+      text = "0";
+    }
+    ui->result_show->setText(text);
+  } else {
+    QString text = ui->get_x_value->text();
+    text.chop(1);
+    if (text.isEmpty()) {
+      text = "0";
+    }
+    ui->get_x_value->setText(text);
+  }
 }
 
 void MainWindow::on_clear_all_clicked() {
-    if(ui->result_show->hasFocus()){
-        ui->result_show->setText("0");
-      } else {
-        ui->get_x_value->setText("0.0");
-      }
+  if (ui->result_show->hasFocus()) {
+    ui->result_show->setText("0");
+  } else {
+    ui->get_x_value->setText("0.0");
+  }
 }
 
 void MainWindow::on_equal_clicked() {
-    std::string tmp_src = ui->result_show->text().toStdString();
-    std::string x_value = ui->get_x_value->text().toStdString();
-    controller_->ParceAndCalculateExpression(tmp_src, x_value);
-    ui->result_show->setText(QString::fromStdString(controller_->GetOutputAnswer()));
+  std::string tmp_src = ui->result_show->text().toStdString();
+  std::string x_value = ui->get_x_value->text().toStdString();
+  controller_->ParceAndCalculateExpression(tmp_src, x_value);
+  ui->result_show->setText(
+      QString::fromStdString(controller_->GetOutputAnswer()));
 }
 
 void MainWindow::on_open_extra_mode_clicked() {
@@ -197,7 +200,6 @@ void MainWindow::on_open_extra_mode_clicked() {
   }
 }
 
-
 void MainWindow::on_open_graph_clicked() {
   if (!open_graph_mode) {
     open_graph_mode = true;
@@ -215,12 +217,16 @@ void MainWindow::on_open_graph_clicked() {
 void MainWindow::on_actionMath_Calculator_triggered() {
   credit_window->hide();
   this->show();
-  setFixedSize(325, 590);
 }
 
 void MainWindow::on_actionCredit_Calc_triggered() {
   this->hide();
   credit_window->show();
+}
+
+void MainWindow::on_actionDeposit_calc_triggered() {
+  QMessageBox::information(this, "Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
+  this->show();
 }
 
 void MainWindow::on_clear_values_clicked() {
@@ -236,18 +242,10 @@ void MainWindow::on_print_graph_clicked() {
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
   std::vector<double> x_axes, y_axes;
-  try{
-    controller_->GetCoordinates(ui->result_show->text().toStdString(),min_x, max_x, min_y, max_y, x_axes, y_axes);
-  } catch (std::invalid_argument &e){
+  try {
+    controller_->GetCoordinates(ui->result_show->text().toStdString(), min_x,
+                                max_x, min_y, max_y, x_axes, y_axes);
+  } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }
 }
-
-void MainWindow::on_actionDeposit_calc_triggered()
-{
-    QMessageBox::information(this,"Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
-    this->show();
-}
-
-
-

@@ -1838,7 +1838,6 @@ QPushButton:pressed {
     <property name="title">
      <string>Режим калькулятора</string>
     </property>
-    <addaction name="actionMath_Calculator"/>
     <addaction name="separator"/>
     <addaction name="actionCredit_Calc"/>
     <addaction name="separator"/>
@@ -1846,29 +1845,6 @@ QPushButton:pressed {
    </widget>
    <addaction name="menuChoose_calc_mode"/>
   </widget>
-  <action name="actionMath_Calculator">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Стандартный калькулятор</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Shree Devanagari 714</family>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+1</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::TextHeuristicRole</enum>
-   </property>
-  </action>
   <action name="actionCredit_Calc">
    <property name="text">
     <string>Кредитный калькулятор</string>
