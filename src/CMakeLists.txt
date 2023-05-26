@@ -13,26 +13,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-#find_package(Qt5_DIR COMPONENTS Widgets Charts REQUIRED) # для qcharts
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
-        creditwindow.cpp
-        creditwindow.h
-        creditwindow.ui
-        model/s21_model.h
-        model/s21_model.cc
-        model/s21_token.h
-        model/s21_tokenizer.h
-        model/s21_tokenizer.cc
-        model/s21_polish_notation.h
-        model/s21_polish_notation.cc
-        model/s21_credit_calculator.h
-        model/s21_credit_calculator.cc
-        controller/s21_controller.h
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    creditwindow.cpp
+    creditwindow.h
+    creditwindow.ui
+    model/s21_model.h
+    model/s21_model.cc
+    model/s21_token.h
+    model/s21_tokenizer.h
+    model/s21_tokenizer.cc
+    model/s21_polish_notation.h
+    model/s21_polish_notation.cc
+    model/s21_credit_calculator.h
+    model/s21_credit_calculator.cc
+    controller/s21_controller.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -40,17 +39,19 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
+
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET SmartCalc_v_2_0 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
+# set_property(TARGET SmartCalc_v_2_0 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+# ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
         add_library(SmartCalc_v_2_0 SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+
+    # Define properties for Android with Qt 5 after find_package() calls as:
+    # set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(SmartCalc_v_2_0
             ${PROJECT_SOURCES}
@@ -59,8 +60,8 @@ else()
 endif()
 
 target_link_libraries(SmartCalc_v_2_0 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-#target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::Charts) # для qcharts
 
+# target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets Qt5::Charts) # для qcharts
 set_target_properties(SmartCalc_v_2_0 PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

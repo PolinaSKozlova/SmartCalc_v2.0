@@ -19,9 +19,8 @@ run: clean
 all: 
 
 install: clean
-	qmake -o build/Makefile SmartCalc/SmartCalc.pro CONFIG+=qtquickcompiler
-	make -C build/ first
-	rm -rf build/*.o build/*.h build/*.cpp build/Makefile
+	cmake -S . -B build -G "Unix Makefiles"
+	make -C build
 
 uninstall:
 	rm -rf build
