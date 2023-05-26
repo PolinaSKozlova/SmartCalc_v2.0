@@ -1804,16 +1804,6 @@ QPushButton:pressed {
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="graph_widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>1020</x>
-      <y>170</y>
-      <width>421</width>
-      <height>321</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

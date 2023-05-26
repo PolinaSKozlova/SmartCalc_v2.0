@@ -245,6 +245,14 @@ void MainWindow::on_print_graph_clicked() {
   try {
     controller_->GetCoordinates(ui->result_show->text().toStdString(), min_x,
                                 max_x, min_y, max_y, x_axes, y_axes);
+    QDialog graphic;
+    graphic.setDisabled(false);
+    QLineSeries *series = new QLineSeries();
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Simple line chart example");
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }
