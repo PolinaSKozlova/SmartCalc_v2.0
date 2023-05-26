@@ -7,7 +7,6 @@
 
 #include "controller/s21_controller.h"
 #include "model/s21_credit_calculator.h"
-//#include "mainwindow.h"
 
 namespace Ui {
 class CreditWindow;
@@ -29,12 +28,10 @@ class CreditWindow : public QMainWindow {
   void on_a_type_clicked();
   void on_d_type_clicked();
   void on_actionMathCalc_triggered();
-
   void on_actionDepositCalc_triggered();
 
 private:
   Ui::CreditWindow *ui;
-//  MainWindow *mainwindow;
   s21::Controller *controller_credit_;
 };
 

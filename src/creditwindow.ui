@@ -805,6 +805,9 @@ border: 1px solid white;</string>
      <bold>false</bold>
     </font>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
   </action>
   <action name="actionDepositCalc">
    <property name="text">
@@ -816,6 +819,9 @@ border: 1px solid white;</string>
      <pointsize>15</pointsize>
      <italic>true</italic>
     </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+3</string>
    </property>
   </action>
  </widget>
