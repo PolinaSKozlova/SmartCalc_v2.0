@@ -1734,7 +1734,7 @@ border: 1px solid #f2d0e4;</string>
        <string>Y MIN</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="clear_values">
       <property name="geometry">
        <rect>
         <x>40</x>

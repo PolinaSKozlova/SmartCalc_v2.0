@@ -38,6 +38,7 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   connect(ui->arctangens, SIGNAL(clicked()), this, SLOT(trigonometry()));
   connect(ui->natural_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
   connect(ui->decimal_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
+
 }
 
 MainWindow::~MainWindow() {
@@ -245,7 +246,8 @@ void MainWindow::on_print_graph_clicked() {
 void MainWindow::on_actionDeposit_calc_triggered()
 {
     QMessageBox::information(this,"Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
-    credit_window->hide();
     this->show();
 }
+
+
 

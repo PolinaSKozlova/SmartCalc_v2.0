@@ -37,11 +37,10 @@ private slots:
     void on_backspace_clicked();
     void on_open_extra_mode_clicked();
     void on_open_graph_clicked();
+    void on_clear_values_clicked();
     void on_actionMath_Calculator_triggered();
     void on_actionCredit_Calc_triggered();
-    void on_pushButton_clicked();
     void on_print_graph_clicked();
-
     void on_actionDeposit_calc_triggered();
 
 private:
