@@ -55,6 +55,8 @@ class CreditCalculator {
   void CheckCreditValues(const std::string& sum, const std::string& term,
                          const std::string& range) const;
   void CheckTerms() const;
+  void CheckSum() const;
+  void CheckRange() const;
   CreditInformation data_{};
 };
 };  // namespace s21

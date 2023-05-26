@@ -20,7 +20,9 @@ void CreditCalculator::FillData(const std::string& sum, const std::string& term,
   data_.credit_term_ = data_.FromYearsToMonths();
   CheckTerms();
   data_.credit_sum_ = std::stod(sum);
+  CheckSum();
   data_.interest_rate_ = std::stod(range);
+  CheckRange();
 }
 
 void CreditCalculator::AnnuitetMethod() noexcept {
@@ -70,6 +72,15 @@ void CreditCalculator::CheckTerms() const {
   if ((data_.credit_term_ > 100 && data_.term_in_years_) ||
       (data_.credit_term_ > 1200 && !data_.term_in_years_))
     throw std::invalid_argument("Too long term");
+}
+
+void CreditCalculator::CheckSum() const {
+  if (!data_.credit_sum_) throw std::invalid_argument("Credit sum cant't be 0");
+}
+
+void CreditCalculator::CheckRange() const {
+  if (!data_.interest_rate_)
+    throw std::invalid_argument("Credit rate cant't be 0");
 }
 
 };  // namespace s21
