@@ -242,21 +242,30 @@ void MainWindow::on_print_graph_clicked() {
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
   std::vector<double> x_axes, y_axes;
+  //  QVector<double> x_axes, y_axes;
   try {
     controller_->GetCoordinates(ui->result_show->text().toStdString(), min_x,
                                 max_x, min_y, max_y, x_axes, y_axes);
+
     QDialog graphic;
     graphic.setDisabled(false);
-    QLineSeries *series = new QLineSeries();
+    series = new QLineSeries();
     for (int i = 0; i < x_axes.size(); ++i) {
+      //      if (series == nullptr || fabs(y_axes[i]) > 100000) {
+      //        QColor series_color;
+      //        if (series != nullptr) {
+      //          series_color = series->color();
+      //        }
+      //              series = new QLineSeries();
+      //        series->setColor(series_color);
+      //      }
       *series << QPointF(x_axes[i], y_axes[i]);
     }
     series->setMarkerSize(15.0);
     QChart *chart = new QChart();
-    chart->legend()->hide();
+    //    chart->legend()->hide();
     chart->addSeries(series);
     chart->setTitle("Graphic of function " + ui->result_show->text());
-
     QValueAxis *axisX = new QValueAxis();
     axisX->setRange(min_x, max_x);
     axisX->setTickCount((max_x - min_x) + 1);
@@ -279,6 +288,7 @@ void MainWindow::on_print_graph_clicked() {
     graphic.setLayout(new QVBoxLayout());
     graphic.layout()->addWidget(chartView);
     graphic.exec();
+    chart->removeAllSeries();
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }

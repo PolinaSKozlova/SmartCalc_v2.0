@@ -50,6 +50,7 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
   s21::Controller *controller_;
+  QLineSeries *series;
   bool open_extra_mode = false;
   bool open_graph_mode = false;
 };
