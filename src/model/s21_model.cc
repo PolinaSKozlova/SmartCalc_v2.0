@@ -28,10 +28,14 @@ void MathCalculator::CountCoordinates(const std::string &src, double x_min,
   while (x <= x_max) {
     // for (int i = 0; i < x; ++i) {
     // double x = x_min + step * i;
-    x += (x_max - x_min) / 3000;
+    x += (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
     CountResult(x);
-    x_axes.push_back(x);
-    y_axes.push_back(GetAnswer());
+
+    if (!isnan(GetAnswer())) {
+      std::cout << "x " << x << " answ " << GetAnswer() << std::endl;
+      x_axes.push_back(x);
+      y_axes.push_back(GetAnswer());
+    }
   }
 }
 
