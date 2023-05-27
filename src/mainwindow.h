@@ -4,6 +4,7 @@
 #include <QtWidgets/qlayout.h>
 
 #include <QMainWindow>
+#include <QValueAxis>
 #include <QVector>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>

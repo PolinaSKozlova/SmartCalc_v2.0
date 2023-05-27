@@ -248,11 +248,37 @@ void MainWindow::on_print_graph_clicked() {
     QDialog graphic;
     graphic.setDisabled(false);
     QLineSeries *series = new QLineSeries();
+    for (int i = 0; i < x_axes.size(); ++i) {
+      *series << QPointF(x_axes[i], y_axes[i]);
+    }
+    series->setMarkerSize(15.0);
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->addSeries(series);
-    chart->createDefaultAxes();
-    chart->setTitle("Simple line chart example");
+    chart->setTitle("Graphic of function " + ui->result_show->text());
+
+    QValueAxis *axisX = new QValueAxis();
+    axisX->setRange(min_x, max_x);
+    axisX->setTickCount((max_x - min_x) + 1);
+    axisX->setLinePenColor(series->pen().color());
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+    QValueAxis *axisY = new QValueAxis();
+    axisY->setRange(min_y, max_y);
+    axisY->setTickCount((max_y - min_y) + 1);
+    axisY->setLinePenColor(series->pen().color());
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    chart->axes(Qt::Horizontal, series).back()->setTitleText("axe X");
+    chart->axes(Qt::Vertical, series).back()->setTitleText("axe Y");
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setMinimumSize(640, 480);
+    graphic.setLayout(new QVBoxLayout());
+    graphic.layout()->addWidget(chartView);
+    graphic.exec();
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }
