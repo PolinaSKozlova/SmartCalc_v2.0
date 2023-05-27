@@ -251,14 +251,14 @@ void MainWindow::on_print_graph_clicked() {
     graphic.setDisabled(false);
     series = new QLineSeries();
     for (int i = 0; i < x_axes.size(); ++i) {
-      //      if (series == nullptr || fabs(y_axes[i]) > 100000) {
-      //        QColor series_color;
-      //        if (series != nullptr) {
-      //          series_color = series->color();
-      //        }
-      //              series = new QLineSeries();
-      //        series->setColor(series_color);
-      //      }
+      if (series == nullptr || fabs(y_axes[i] - y_axes[i + 1]) > 100) {
+        QColor series_color;
+        if (series != nullptr) {
+          series_color = series->color();
+        }
+        series = new QLineSeries();
+        series->setColor(series_color);
+      }
       *series << QPointF(x_axes[i], y_axes[i]);
     }
     series->setMarkerSize(15.0);
