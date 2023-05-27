@@ -16,14 +16,19 @@ void MathCalculator::CountCoordinates(const std::string &src, double x_min,
                                       double x_max, double y_min, double y_max,
                                       std::vector<double> &x_axes,
                                       std::vector<double> &y_axes) {
-  if (x_min > x_max) throw std::invalid_argument("x_min > x_max");
-  if (y_min > y_max) throw std::invalid_argument("y_min > y_max");
+  if (x_min >= x_max) throw std::invalid_argument("x_min > x_max");
+  if (y_min >= y_max) throw std::invalid_argument("y_min > y_max");
+  if (!x_axes.empty()) x_axes.clear();
+  if (!y_axes.empty()) y_axes.clear();
   tokens_notation_.SetTokensNewValues(src);
   output_tokens_ = tokens_notation_.CreateNotation();
-  int dots = 3000;
-  double step = (x_max - x_min) / dots;
-  for (int i = 0; i < dots; ++i) {
-    double x = x_min + step * i;
+  // int dots = 3000;
+  // double step = (x_max - x_min) / dots;
+  double x = x_min;
+  while (x <= x_max) {
+    // for (int i = 0; i < x; ++i) {
+    // double x = x_min + step * i;
+    x += (x_max - x_min) / 3000;
     CountResult(x);
     x_axes.push_back(x);
     y_axes.push_back(GetAnswer());

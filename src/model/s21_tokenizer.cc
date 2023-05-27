@@ -27,12 +27,17 @@ void Tokenizer::CreateTokens() {
                            "number");
       current += shift;
     } else if (std::isalpha(*current)) {
-      std::regex base_regex("([a-z]+)");
-      std::sregex_iterator regex_it =
-          std::sregex_iterator(current, input_src_.cend(), base_regex);
-      std::smatch base_match = *regex_it;
-      FillRecievedToken(base_match.str());
-      current += base_match.length();
+      if (*current == 'x') {
+        FillRecievedToken("x");
+        current++;
+      } else {
+        std::regex base_regex("([a-w]+)");
+        std::sregex_iterator regex_it =
+            std::sregex_iterator(current, input_src_.cend(), base_regex);
+        std::smatch base_match = *regex_it;
+        FillRecievedToken(base_match.str());
+        current += base_match.length();
+      }
     } else {
       const std::string tmp{*current++};
       FillRecievedToken(tmp);
