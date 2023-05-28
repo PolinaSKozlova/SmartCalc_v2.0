@@ -11,6 +11,7 @@
 #include <cctype>
 #include <iostream>
 
+#include "chartarea.h"
 #include "controller/s21_controller.h"
 #include "creditwindow.h"
 #include "model/s21_credit_calculator.h"
@@ -50,7 +51,8 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
   s21::Controller *controller_;
-  QLineSeries *series;
+  ChartArea *chart_window;
+  //  QLineSeries *series;
   bool open_extra_mode = false;
   bool open_graph_mode = false;
 };

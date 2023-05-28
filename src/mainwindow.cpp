@@ -234,6 +234,7 @@ void MainWindow::on_clear_values_clicked() {
   ui->x_max->setValue(0.00);
   ui->y_min->setValue(0.00);
   ui->y_max->setValue(0.00);
+  ui->graph_widget->chart()->removeAllSeries();
 }
 
 void MainWindow::on_print_graph_clicked() {
@@ -242,53 +243,61 @@ void MainWindow::on_print_graph_clicked() {
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
   std::vector<double> x_axes, y_axes;
-  //  QVector<double> x_axes, y_axes;
+  //  setFixedSize(1501, 830);
+  setMinimumSize(1681, 879);
   try {
     controller_->GetCoordinates(ui->result_show->text().toStdString(), min_x,
                                 max_x, min_y, max_y, x_axes, y_axes);
+    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, x_axes, y_axes,
+                                ui->result_show->text());
+    //    ui->graph_widget->print_graph_from_charts();
+    //    ui->graph_widget->setChart(ui->graph_widget->print_graph_from_charts());
 
-    QDialog graphic;
-    graphic.setDisabled(false);
-    series = new QLineSeries();
-    for (int i = 0; i < x_axes.size(); ++i) {
-      if (series == nullptr || fabs(y_axes[i] - y_axes[i + 1]) > 100) {
-        QColor series_color;
-        if (series != nullptr) {
-          series_color = series->color();
-        }
-        series = new QLineSeries();
-        series->setColor(series_color);
-      }
-      *series << QPointF(x_axes[i], y_axes[i]);
-    }
-    series->setMarkerSize(15.0);
-    QChart *chart = new QChart();
-    //    chart->legend()->hide();
-    chart->addSeries(series);
-    chart->setTitle("Graphic of function " + ui->result_show->text());
-    QValueAxis *axisX = new QValueAxis();
-    axisX->setRange(min_x, max_x);
-    axisX->setTickCount((max_x - min_x) + 1);
-    axisX->setLinePenColor(series->pen().color());
-    chart->addAxis(axisX, Qt::AlignBottom);
-    series->attachAxis(axisX);
+    //    QDialog graphic;
+    //    graphic.setDisabled(false);
+    //    series = new QLineSeries();
+    //    for (int i = 0; i < x_axes.size(); ++i) {
+    //      if (series == nullptr || fabs(y_axes[i] - y_axes[i + 1]) > 100) {
+    //        QColor series_color;
+    //        if (series != nullptr) {
+    //          series_color = series->color();
+    //        }
+    //        series = new QLineSeries();
+    //        series->setColor(series_color);
+    //      }
 
-    QValueAxis *axisY = new QValueAxis();
-    axisY->setRange(min_y, max_y);
-    axisY->setTickCount((max_y - min_y) + 1);
-    axisY->setLinePenColor(series->pen().color());
-    chart->addAxis(axisY, Qt::AlignLeft);
-    series->attachAxis(axisY);
+    //      *series << QPointF(x_axes[i], y_axes[i]);
+    //    }
+    //    series->setMarkerSize(15.0);
+    //    QChart *chart = new QChart();
+    //    //    chart->legend()->hide();
+    //    chart->addSeries(series);
+    //    chart->setTitle("Graphic of function " + ui->result_show->text());
+    //    QValueAxis *axisX = new QValueAxis();
+    //    axisX->setRange(min_x, max_x);
+    //    axisX->setTickCount((max_x - min_x) + 1);
+    //    axisX->setLinePenColor(series->pen().color());
+    //    chart->addAxis(axisX, Qt::AlignBottom);
+    //    series->attachAxis(axisX);
 
-    chart->axes(Qt::Horizontal, series).back()->setTitleText("axe X");
-    chart->axes(Qt::Vertical, series).back()->setTitleText("axe Y");
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setMinimumSize(640, 480);
-    graphic.setLayout(new QVBoxLayout());
-    graphic.layout()->addWidget(chartView);
-    graphic.exec();
-    chart->removeAllSeries();
+    //    QValueAxis *axisY = new QValueAxis();
+    //    axisY->setRange(min_y, max_y);
+    //    axisY->setTickCount((max_y - min_y) + 1);
+    //    axisY->setLinePenColor(series->pen().color());
+    //    chart->addAxis(axisY, Qt::AlignLeft);
+    //    series->attachAxis(axisY);
+
+    //    chart->axes(Qt::Horizontal, series).back()->setTitleText("axe X");
+    //    chart->axes(Qt::Vertical, series).back()->setTitleText("axe Y");
+    //    QChartView *chartView = new QChartView(chart);
+    //    chartView->setRenderHint(QPainter::Antialiasing);
+    //    chartView->setMinimumSize(640, 480);
+
+    //    ui->graph_widget->setChart(chart);
+    //    graphic.setLayout(new QVBoxLayout());
+    //    graphic.layout()->addWidget(chartView);
+    //    graphic.exec();
+    //    chart->removeAllSeries();
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }

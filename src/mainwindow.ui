@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1501</width>
-    <height>826</height>
+    <width>1681</width>
+    <height>879</height>
    </rect>
   </property>
   <property name="font">
@@ -1807,10 +1807,10 @@ QPushButton:pressed {
    <widget class="ChartArea" name="graph_widget" native="true">
     <property name="geometry">
      <rect>
-      <x>1050</x>
-      <y>200</y>
-      <width>261</width>
-      <height>241</height>
+      <x>1010</x>
+      <y>30</y>
+      <width>661</width>
+      <height>631</height>
      </rect>
     </property>
    </widget>
@@ -1820,7 +1820,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1501</width>
+     <width>1681</width>
      <height>24</height>
     </rect>
    </property>
