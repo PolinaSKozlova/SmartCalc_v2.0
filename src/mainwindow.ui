@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1681</width>
-    <height>879</height>
+    <width>2097</width>
+    <height>894</height>
    </rect>
   </property>
   <property name="font">
@@ -1809,8 +1809,8 @@ QPushButton:pressed {
      <rect>
       <x>1010</x>
       <y>30</y>
-      <width>661</width>
-      <height>631</height>
+      <width>1041</width>
+      <height>801</height>
      </rect>
     </property>
    </widget>
@@ -1820,7 +1820,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1681</width>
+     <width>2097</width>
      <height>24</height>
     </rect>
    </property>

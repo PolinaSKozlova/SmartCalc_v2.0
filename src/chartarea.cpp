@@ -7,6 +7,8 @@ ChartArea::ChartArea(QWidget *parent) : QChartView{parent} {
   axisX = new QValueAxis();
   axisY = new QValueAxis();
   setRenderHint(QPainter::Antialiasing);
+
+  chart()->zoomIn();
 }
 
 void ChartArea::SetValues(double min_x, double max_x, double min_y,
@@ -23,6 +25,7 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
   series = new QLineSeries();
   for (int i = 0; i < x_axis.size(); ++i) {
     //    if (series == nullptr || (y_axis[i] > max_y || y_axis[i] < min_y)) {
+    //      chart()->addSeries(series);
     //      QColor series_color;
     //      if (series != nullptr) {
     //        series_color = series->color();
@@ -48,4 +51,22 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
   chart()->addAxis(axisY, Qt::AlignLeft);
   series->attachAxis(axisY);
   chart()->axes(Qt::Vertical, series).back()->setTitleText("axe Y");
+}
+
+void ChartArea::wheelEvent(QWheelEvent *event) {
+  qreal zoom = event->angleDelta().y() > 0 ? 0.5 : 1.5;
+  chart()->zoom(zoom);
+  update();
+}
+
+void ChartArea::mouseMoveEvent(QMouseEvent *event) {
+  bool leftClick = event->buttons() & Qt::LeftButton;
+  beginPoint = event->pos();
+  if (leftClick) {
+    mousePoint = event->pos();
+    chart()->scroll(beginPoint.x() - mousePoint.x(),
+                    beginPoint.y() - mousePoint.y());
+    update();
+    beginPoint = mousePoint;
+  }
 }
