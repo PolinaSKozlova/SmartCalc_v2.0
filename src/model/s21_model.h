@@ -14,13 +14,14 @@ class MathCalculator {
   void CalculateResultFromInput(const std::string &src,
                                 const std::string &x_value = "0.0");
   void CountCoordinates(const std::string &src, double x_min, double x_max,
-                        double y_min, double y_max, std::vector<double> &x_axes,
-                        std::vector<double> &y_axes);
+                        double y_min, double y_max, std::vector<double> &x_axis,
+                        std::vector<double> &y_axis);
 
  private:
   void CheckXValue(const std::string &x_value) const;
   double GetXValue(const std::string &x_value) const;
   void CountResult(double x_value) noexcept;
+  double GetStep(double x_min, double x_max);
   PolishNotation tokens_notation_;
   std::vector<Token> output_tokens_{};
   double answer_{};

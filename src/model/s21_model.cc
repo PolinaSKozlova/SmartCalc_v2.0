@@ -10,29 +10,22 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
 
 void MathCalculator::CountCoordinates(const std::string &src, double x_min,
                                       double x_max, double y_min, double y_max,
-                                      std::vector<double> &x_axes,
-                                      std::vector<double> &y_axes) {
+                                      std::vector<double> &x_axis,
+                                      std::vector<double> &y_axis) {
   if (x_min >= x_max) throw std::invalid_argument("x_min > x_max");
   if (y_min >= y_max) throw std::invalid_argument("y_min > y_max");
-  if (!x_axes.empty()) x_axes.clear();
-  if (!y_axes.empty()) y_axes.clear();
+  if (!x_axis.empty()) x_axis.clear();
+  if (!y_axis.empty()) y_axis.clear();
   tokens_notation_.SetTokensNewValues(src);
   output_tokens_ = tokens_notation_.CreateNotation();
-  double step = 0;
-  if ((x_max + fabs(x_min) < 100)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
-  } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
-  } else if ((x_max + fabs(x_min)) >= 1000) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)));
-  }
+  double step = GetStep(x_min, x_max);
   double x = x_min;
   while (x < x_max) {
     x += step;
     CountResult(x);
     if (!isnan(GetAnswer())) {
-      x_axes.push_back(x);
-      y_axes.push_back(GetAnswer());
+      x_axis.push_back(x);
+      y_axis.push_back(GetAnswer());
     }
   }
 }
@@ -73,6 +66,18 @@ void MathCalculator::CountResult(double x_value) noexcept {
     }
   }
   if (result_stack.size()) answer_ = result_stack.top();
+}
+
+double MathCalculator::GetStep(double x_min, double x_max) {
+  double step = 0;
+  if ((x_max + fabs(x_min) < 100)) {
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
+  } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
+  } else if ((x_max + fabs(x_min)) >= 1000) {
+    step = (x_max - x_min) / ((x_max + fabs(x_min)));
+  }
+  return step;
 }
 
 double MathCalculator::GetAnswer() const noexcept { return answer_; }
