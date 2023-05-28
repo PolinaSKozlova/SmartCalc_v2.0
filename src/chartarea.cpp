@@ -4,6 +4,8 @@
 
 ChartArea::ChartArea(QWidget *parent) : QChartView{parent} {
   chart()->createDefaultAxes();
+  axisX = new QValueAxis();
+  axisY = new QValueAxis();
   setRenderHint(QPainter::Antialiasing);
 }
 
@@ -34,14 +36,12 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
   series->setMarkerSize(15.0);
   chart()->addSeries(series);
   chart()->setTitle("Graphic of function " + function_name);
-  QValueAxis *axisX = new QValueAxis();
   axisX->setRange(min_x_, max_x_);
   axisX->setTickCount((max_x_ - min_x_) + 1);
   axisX->setLinePenColor(series->pen().color());
   chart()->addAxis(axisX, Qt::AlignBottom);
   series->attachAxis(axisX);
   chart()->axes(Qt::Horizontal, series).back()->setTitleText("axe X");
-  QValueAxis *axisY = new QValueAxis();
   axisY->setRange(min_y_, max_y_);
   axisY->setTickCount((max_y_ - min_y_) + 1);
   axisY->setLinePenColor(series->pen().color());

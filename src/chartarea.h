@@ -20,6 +20,7 @@ class ChartArea : public QChartView {
   std::vector<double> x_axis_, y_axis_;
   double min_x_{}, max_x_{}, min_y_{}, max_y_{};
   QString function_name_;
+  QValueAxis *axisX, *axisY;
 };
 
 #endif  // CHARTAREA_H
