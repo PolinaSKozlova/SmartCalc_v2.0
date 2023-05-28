@@ -8,10 +8,6 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
   CountResult(GetXValue(x_value));
 }
 
-// void MathCalculator::SetTokensNotationNewValues(const std::string &src) {
-//   tokens_notation_.SetTokensNewValues(src);
-// }
-
 void MathCalculator::CountCoordinates(const std::string &src, double x_min,
                                       double x_max, double y_min, double y_max,
                                       std::vector<double> &x_axes,
