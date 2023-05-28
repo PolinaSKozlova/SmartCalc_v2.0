@@ -30,18 +30,11 @@ void MathCalculator::CountCoordinates(const std::string &src, double x_min,
   } else if ((x_max + fabs(x_min)) >= 1000) {
     step = (x_max - x_min) / ((x_max + fabs(x_min)));
   }
-  // double step = (x_max - x_min) / dots;
   double x = x_min;
-  // std::cout << "step is " << step << std::endl;
   while (x < x_max) {
-    // for (int i = 0; i < x; ++i) {
-    // double x = x_min + step * i;
-    // x += (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
     x += step;
     CountResult(x);
-
     if (!isnan(GetAnswer())) {
-      // std::cout << "x " << x << " answ " << GetAnswer() << std::endl;
       x_axes.push_back(x);
       y_axes.push_back(GetAnswer());
     }
