@@ -32,11 +32,11 @@ class MainWindow : public QMainWindow {
 
  private slots:
   void on_equal_clicked();
-  void numbers();
-  void operations();
-  void sign();
-  void trigonometry();
-  void brackets();
+  void numbers(QAbstractButton *button);
+  void operations(QAbstractButton *button);
+  void sign(QAbstractButton *button);
+  void trigonometry(QAbstractButton *button);
+  void brackets(QAbstractButton *button);
   void on_clear_all_clicked();
   void on_backspace_clicked();
   void on_open_extra_mode_clicked();

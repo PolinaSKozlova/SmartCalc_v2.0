@@ -8,36 +8,16 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   ui->main_frame->setFixedSize(321, 441);
   ui->result_show->setFixedSize(271, 81);
   credit_window = new CreditWindow(this->controller_, this);
-  connect(ui->zero, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->one, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->two, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->three, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->four, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->five, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->six, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->seven, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->eight, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->nine, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->exp, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->variable_x, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->dot, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->sum, SIGNAL(clicked()), this, SLOT(sign()));
-  connect(ui->sub, SIGNAL(clicked()), this, SLOT(sign()));
-  connect(ui->div, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->mult, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->mod, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->square_root, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->pow, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->open_bracket, SIGNAL(clicked()), this, SLOT(brackets()));
-  connect(ui->close_bracket, SIGNAL(clicked()), this, SLOT(brackets()));
-  connect(ui->cosinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->sinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->tangens, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->arcosinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->arcsinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->arctangens, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->natural_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->decimal_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
+  connect(ui->buttonNumbers, &QButtonGroup::buttonClicked, this,
+          &MainWindow::numbers);
+  connect(ui->buttonBrackets, &QButtonGroup::buttonClicked, this,
+          &MainWindow::brackets);
+  connect(ui->buttonOperations, &QButtonGroup::buttonClicked, this,
+          &MainWindow::operations);
+  connect(ui->buttonSign, &QButtonGroup::buttonClicked, this,
+          &MainWindow::sign);
+  connect(ui->buttonTrigonometry, &QButtonGroup::buttonClicked, this,
+          &MainWindow::trigonometry);
   connect(credit_window, &CreditWindow::showParent, this,
           &MainWindow::on_actionMath_Calculator_triggered);
 }
@@ -47,8 +27,7 @@ MainWindow::~MainWindow() {
   delete ui;
 }
 
-void MainWindow::numbers() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::numbers(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
     if (ui->result_show->text() == "Start calculate" ||
         ui->result_show->text().toStdString() ==
@@ -76,8 +55,7 @@ void MainWindow::numbers() {
   }
 }
 
-void MainWindow::operations() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::operations(QAbstractButton *button) {
   if (ui->result_show->text() == "Start calculate" ||
       ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
     ui->result_show->setText(ui->result_show->text());
@@ -87,8 +65,7 @@ void MainWindow::operations() {
   }
 }
 
-void MainWindow::sign() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::sign(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
     if (ui->result_show->text() == "Start calculate" ||
         ui->result_show->text().toStdString() ==
@@ -110,8 +87,7 @@ void MainWindow::sign() {
   }
 }
 
-void MainWindow::trigonometry() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::trigonometry(QAbstractButton *button) {
   if (ui->result_show->text() == "Start calculate" ||
       ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
     ui->result_show->setText("0");
@@ -136,8 +112,7 @@ void MainWindow::trigonometry() {
   }
 }
 
-void MainWindow::brackets() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::brackets(QAbstractButton *button) {
   if (ui->result_show->text() == "Start calculate" ||
       ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
     ui->result_show->setText("0");
