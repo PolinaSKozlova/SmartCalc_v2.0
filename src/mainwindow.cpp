@@ -246,8 +246,9 @@ void MainWindow::on_print_graph_clicked() {
   std::vector<double> x_axes, y_axes;
   setMinimumSize(2100, 895);
   try {
-    controller_->GetCoordinates(ui->result_show->text().toStdString(), min_x,
-                                max_x, min_y, max_y, x_axes, y_axes);
+    controller_->GetCoordinatesForChartArea(
+        ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y,
+        x_axes, y_axes);
     ui->graph_widget->setFixedSize(1041, 801);
     ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, x_axes, y_axes,
                                 ui->result_show->text());
