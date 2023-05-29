@@ -204,7 +204,7 @@ void MainWindow::on_open_graph_clicked() {
   if (!open_graph_mode) {
     open_graph_mode = true;
     ui->open_graph->setText("<");
-    setFixedSize(1025, 590);
+    setFixedSize(2100, 895);
     ui->main_frame->setFixedSize(1001, 441);
   } else {
     open_graph_mode = false;
@@ -235,6 +235,7 @@ void MainWindow::on_clear_values_clicked() {
   ui->y_min->setValue(0.00);
   ui->y_max->setValue(0.00);
   ui->graph_widget->chart()->removeAllSeries();
+  ui->graph_widget->SetDefaultAxis();
 }
 
 void MainWindow::on_print_graph_clicked() {
@@ -245,8 +246,9 @@ void MainWindow::on_print_graph_clicked() {
   std::vector<double> x_axes, y_axes;
   setMinimumSize(2100, 895);
   try {
-    controller_->GetCoordinates(ui->result_show->text().toStdString(), min_x,
-                                max_x, min_y, max_y, x_axes, y_axes);
+    controller_->GetCoordinatesForChartArea(
+        ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y,
+        x_axes, y_axes);
     ui->graph_widget->setFixedSize(1041, 801);
     ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, x_axes, y_axes,
                                 ui->result_show->text());

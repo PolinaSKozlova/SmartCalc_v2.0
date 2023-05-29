@@ -8,10 +8,11 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
   CountResult(GetXValue(x_value));
 }
 
-void MathCalculator::CountCoordinates(const std::string &src, double x_min,
-                                      double x_max, double y_min, double y_max,
-                                      std::vector<double> &x_axis,
-                                      std::vector<double> &y_axis) {
+void MathCalculator::CountCoordinatesForChartArea(const std::string &src,
+                                                  double x_min, double x_max,
+                                                  double y_min, double y_max,
+                                                  std::vector<double> &x_axis,
+                                                  std::vector<double> &y_axis) {
   if (x_min >= x_max) throw std::invalid_argument("x_min > x_max");
   if (y_min >= y_max) throw std::invalid_argument("y_min > y_max");
   if (!x_axis.empty()) x_axis.clear();
