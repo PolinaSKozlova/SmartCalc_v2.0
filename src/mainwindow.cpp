@@ -84,8 +84,8 @@ void MainWindow::on_clear_all_clicked() {
 }
 
 void MainWindow::on_equal_clicked() {
-  std::string tmp_src = ui->result_show->text().toStdString();
-  std::string x_value = ui->get_x_value->text().toStdString();
+  std::string tmp_src = ui->result_show->text().replace(" ", "").toStdString();
+  std::string x_value = ui->get_x_value->text().replace(" ", "").toStdString();
   controller_->ParceAndCalculateExpression(tmp_src, x_value);
   ui->result_show->setText(
       QString::fromStdString(controller_->GetOutputAnswer()));
@@ -113,6 +113,7 @@ void MainWindow::on_open_graph_clicked() {
     ui->open_graph->setText("<");
     setFixedSize(2100, 895);
     ui->main_frame->setFixedSize(1001, 441);
+    ui->graph_widget->SetDefaultAxis();
   } else {
     open_graph_mode = false;
     ui->open_graph->setText(">");
