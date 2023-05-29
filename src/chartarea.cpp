@@ -7,7 +7,6 @@ ChartArea::ChartArea(QWidget *parent) : QChartView{parent} {
   axisX = new QValueAxis();
   axisY = new QValueAxis();
   setRenderHint(QPainter::Antialiasing);
-
   chart()->zoomIn();
 }
 
@@ -39,6 +38,7 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
   series->setMarkerSize(15.0);
   chart()->addSeries(series);
   chart()->setTitle("Graphic of function " + function_name);
+
   axisX->setRange(min_x_, max_x_);
   axisX->setTickCount((max_x_ - min_x_) + 1);
   axisX->setLinePenColor(series->pen().color());
@@ -61,12 +61,19 @@ void ChartArea::wheelEvent(QWheelEvent *event) {
 
 void ChartArea::mouseMoveEvent(QMouseEvent *event) {
   bool leftClick = event->buttons() & Qt::LeftButton;
-  beginPoint = event->pos();
   if (leftClick) {
-    mousePoint = event->pos();
-    chart()->scroll(beginPoint.x() - mousePoint.x(),
-                    beginPoint.y() - mousePoint.y());
+    static QPointF mousePoint;
+    beginPoint = event->position();
+    chart()->scroll((mousePoint.x() - beginPoint.x()) / 4,
+                    mousePoint.y() - beginPoint.y());
+    mousePoint = beginPoint;
     update();
-    beginPoint = mousePoint;
   }
+}
+
+void ChartArea::SetDefaultAxis() {
+  axisX->setRange(0.0, 5.0);
+  axisX->setTickCount(6);
+  axisY->setRange(0.0, 5.0);
+  axisY->setTickCount(6);
 }
