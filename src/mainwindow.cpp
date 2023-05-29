@@ -30,21 +30,8 @@ MainWindow::~MainWindow() {
 void MainWindow::numbers(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
     SetTextToResult(button);
-    //    if ((ui->result_show->text() == "Start calculate" ||
-    //         ui->result_show->text().toStdString() ==
-    //             controller_->GetOutputAnswer() ||
-    //         ui->result_show->text() == "0") &&
-    //        button->text() != ".") {
-    //      ui->result_show->clear();
-    //    }
-    //    ui->result_show->insert(button->text());
   } else {
-    if (ui->get_x_value->text() == "0.0") {
-      ui->get_x_value->clear();
-      ui->get_x_value->insert(button->text());
-    } else {
-      ui->get_x_value->insert(button->text());
-    }
+    SetTextToX(button);
   }
 }
 
@@ -59,17 +46,8 @@ void MainWindow::operations(QAbstractButton *button) {
 void MainWindow::sign(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
     SetTextToResult(button);
-    //    if (ui->result_show->text() == "Start calculate" ||
-    //        ui->result_show->text().toStdString() ==
-    //            controller_->GetOutputAnswer()) {
-    //      ui->result_show->clear();
-    //    }
-    //    ui->result_show->insert(button->text());
   } else {
-    if (ui->get_x_value->text() == "0.0") {
-      ui->get_x_value->clear();
-    }
-    ui->get_x_value->insert(button->text());
+    SetTextToX(button);
   }
 }
 
@@ -100,21 +78,7 @@ void MainWindow::trigonometry(QAbstractButton *button) {
   }
 }
 
-void MainWindow::brackets(QAbstractButton *button) {
-  SetTextToResult(button);
-  //  if (ui->result_show->text() == "Start calculate" ||
-  //      ui->result_show->text().toStdString() ==
-  //      controller_->GetOutputAnswer()) {
-  //    ui->result_show->setText("0");
-  //  }
-  //  if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-  //       ui->result_show->text() == "inf" || ui->result_show->text() ==
-  //       "-inf")) {
-  //    ui->result_show->setText(button->text());
-  //  } else {
-  //    ui->result_show->setText(ui->result_show->text() + button->text());
-  //  }
-}
+void MainWindow::brackets(QAbstractButton *button) { SetTextToResult(button); }
 
 void MainWindow::on_backspace_clicked() {
   if (ui->result_show->hasFocus()) {
@@ -204,6 +168,13 @@ void MainWindow::SetTextToResult(QAbstractButton *button) {
     ui->result_show->clear();
   }
   ui->result_show->insert(button->text());
+}
+
+void MainWindow::SetTextToX(QAbstractButton *button) {
+  if (ui->get_x_value->text() == "0.0") {
+    ui->get_x_value->clear();
+  }
+  ui->get_x_value->insert(button->text());
 }
 
 void MainWindow::on_clear_values_clicked() {

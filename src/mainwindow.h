@@ -49,6 +49,7 @@ class MainWindow : public QMainWindow {
 
  private:
   void SetTextToResult(QAbstractButton *button);
+  void SetTextToX(QAbstractButton *button);
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
   s21::Controller *controller_;
