@@ -23,7 +23,7 @@ void MathCalculator::CountCoordinates(const std::string &src, double x_min,
   while (x < x_max) {
     x += step;
     CountResult(x);
-    if (!isnan(GetAnswer())) {
+    if (!std::isnan(GetAnswer())) {
       x_axis.push_back(x);
       y_axis.push_back(GetAnswer());
     }
