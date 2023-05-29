@@ -3,9 +3,11 @@
 namespace s21 {
 void MathCalculator::CalculateResultFromInput(const std::string &src,
                                               const std::string &x_value) {
-  tokens_notation_.SetTokensNewValues(src);
-  output_tokens_ = tokens_notation_.CreateNotation();
-  CountResult(GetXValue(x_value));
+  if (!src.empty()) {
+    tokens_notation_.SetTokensNewValues(src);
+    output_tokens_ = tokens_notation_.CreateNotation();
+    CountResult(GetXValue(x_value));
+  }
 }
 
 void MathCalculator::CountCoordinatesForChartArea(const std::string &src,
