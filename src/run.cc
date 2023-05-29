@@ -10,32 +10,26 @@
 int main() {
   try {
     s21::MathCalculator m;
-    m.CalculateResultFromInput("sqrt(5647*(9-(-78)))");
+    m.CalculateResultFromInput("+986*x-(91mod3)^3");
     std::cout << m.GetAnswer() << std::endl;
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
 
-  // const std::string src = "10-(1-6)";
-  // std::string src = "sqrt(5647*(9-(-78)))+46^3/250-log(1000)";
-  // std::string src = "log(178)+634/2/0.5^3";
-  // s21::MathCalculator mc(src);
-  // mc.CalculateResultFromInput();
-  // std::cout << "result " << mc.GetAnswer() << std::endl;
+  // s21::CreditCalculator cr;
+  // s21::Controller c(&m, &cr);
+  // std::vector<double> mp;
+  // s21::CreditInformation info(2000000, 2, 12.5, mp);
+  // s21::CreditCalculator cr(info);
+  // cr.SetTermInYears(true);
 
-  // s21::Controller c(src);
-  // c.ParceAndCalculateExpression();
-  // std::cout << "result " << c.GetOutputAnswer() << std::endl;
-  // double res = 987.65 ^ (1 / 2) + 7 * tan(3 / 0.5);
-  // std::cout << "res " << res << std::endl;
+  // cr.AnnuitetMethod();
+
+  // std::cout << cr.GetData().credit_sum_ << " " << cr.GetData().credit_term_
+  //           << " " << cr.GetData().term_in_years_ << " "
+  //           << cr.GetData().interest_rate_ << " " << std::endl;
+  // std::cout << cr.GetData().total_sum_ << " "
+  //           << cr.GetData().monthly_payment_.front() << " "
+  //           << cr.GetData().payble_percents_ << std::endl;
   return 0;
 }
-
-// model/s21_model.h
-// model/s21_model.cc
-// model/s21_token.h
-// model/s21_tokenizer.h
-// model/s21_tokenizer.cc
-// model/s21_polish_notation.h
-// model/s21_polish_notation.cc
-// controller/s21_controller.h
