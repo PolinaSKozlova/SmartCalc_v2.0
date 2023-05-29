@@ -204,7 +204,7 @@ void MainWindow::on_open_graph_clicked() {
   if (!open_graph_mode) {
     open_graph_mode = true;
     ui->open_graph->setText("<");
-    setFixedSize(1025, 590);
+    setFixedSize(2100, 895);
     ui->main_frame->setFixedSize(1001, 441);
   } else {
     open_graph_mode = false;
