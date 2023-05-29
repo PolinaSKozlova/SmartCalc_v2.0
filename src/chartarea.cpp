@@ -24,15 +24,17 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
   chart()->removeAllSeries();
   series = new QLineSeries();
   for (int i = 0; i < x_axis.size(); ++i) {
-    //    if (series == nullptr || (y_axis[i] > max_y || y_axis[i] < min_y)) {
-    //      chart()->addSeries(series);
-    //      QColor series_color;
-    //      if (series != nullptr) {
-    //        series_color = series->color();
-    //      }
-    //      series = new QLineSeries();
-    //      series->setColor(series_color);
-    //    }
+    //        if (series == nullptr || (y_axis[i] > max_y || y_axis[i] < min_y))
+    //        {
+    if (series == nullptr || (0 - y_axis[i] > 0 && 0 - y_axis[i + 1] < 0)) {
+      QColor series_color;
+      if (series != nullptr) {
+        series_color = series->color();
+      }
+      chart()->addSeries(series);
+      series = new QLineSeries();
+      series->setColor(series_color);
+    }
 
     *series << QPointF(x_axis[i], y_axis[i]);
   }
