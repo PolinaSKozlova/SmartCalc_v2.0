@@ -235,6 +235,7 @@ void MainWindow::on_clear_values_clicked() {
   ui->y_min->setValue(0.00);
   ui->y_max->setValue(0.00);
   ui->graph_widget->chart()->removeAllSeries();
+  ui->graph_widget->SetDefaultAxis();
 }
 
 void MainWindow::on_print_graph_clicked() {
