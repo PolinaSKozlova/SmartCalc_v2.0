@@ -3,6 +3,7 @@
 
 #include <QtWidgets/qlayout.h>
 
+#include <QLineEdit>
 #include <QMainWindow>
 #include <QValueAxis>
 #include <QVector>
@@ -50,6 +51,7 @@ class MainWindow : public QMainWindow {
  private:
   void SetTextToResult(QAbstractButton *button);
   void SetTextToX(QAbstractButton *button);
+  void DeleteOneValue(QLineEdit *line);
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
   s21::Controller *controller_;

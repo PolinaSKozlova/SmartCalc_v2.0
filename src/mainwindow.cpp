@@ -57,23 +57,19 @@ void MainWindow::trigonometry(QAbstractButton *button) {
   ui->result_show->setCursorPosition(ui->result_show->cursorPosition() - 1);
 }
 
-void MainWindow::brackets(QAbstractButton *button) { SetTextToResult(button); }
+void MainWindow::brackets(QAbstractButton *button) {
+  SetTextToResult(button);
+  if (button->text() == "(") {
+    ui->result_show->insert(")");
+    ui->result_show->setCursorPosition(ui->result_show->cursorPosition() - 1);
+  }
+}
 
 void MainWindow::on_backspace_clicked() {
   if (ui->result_show->hasFocus()) {
-    QString text = ui->result_show->text();
-    text.chop(1);
-    if (text.isEmpty()) {
-      text = "0";
-    }
-    ui->result_show->setText(text);
+    DeleteOneValue(ui->result_show);
   } else {
-    QString text = ui->get_x_value->text();
-    text.chop(1);
-    if (text.isEmpty()) {
-      text = "0";
-    }
-    ui->get_x_value->setText(text);
+    DeleteOneValue(ui->get_x_value);
   }
 }
 
@@ -156,6 +152,15 @@ void MainWindow::SetTextToX(QAbstractButton *button) {
   ui->get_x_value->insert(button->text());
 }
 
+void MainWindow::DeleteOneValue(QLineEdit *line) {
+  QString text = line->text();
+  text.chop(1);
+  if (text.isEmpty()) {
+    text = "0";
+  }
+  line->setText(text);
+}
+
 void MainWindow::on_clear_values_clicked() {
   ui->x_min->setValue(0.00);
   ui->x_max->setValue(0.00);
@@ -171,7 +176,7 @@ void MainWindow::on_print_graph_clicked() {
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
   std::vector<double> x_axes, y_axes;
-  setMinimumSize(2100, 895);
+  //  setMinimumSize(2100, 895);
   try {
     controller_->GetCoordinatesForChartArea(
         ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y,
