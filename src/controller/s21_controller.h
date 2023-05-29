@@ -16,14 +16,18 @@ class Controller {
     try {
       model_->CalculateResultFromInput(src, x_value);
       output_ = model_->GetStringAnswer();
+      has_exception = false;
     } catch (std::invalid_argument &e) {
       output_ = e.what();
+      has_exception = true;
     }
   }
   std::string GetOutputAnswer() const { return output_; }
-  void GetCoordinatesForChartArea(const std::string &src, double x_min, double x_max,
-                      double y_min, double y_max, std::vector<double> &x_axes,
-                      std::vector<double> &y_axes) {
+  bool GetHasException() const { return has_exception; }
+  void GetCoordinatesForChartArea(const std::string &src, double x_min,
+                                  double x_max, double y_min, double y_max,
+                                  std::vector<double> &x_axes,
+                                  std::vector<double> &y_axes) {
     model_->CountCoordinatesForChartArea(src, x_min, x_max, y_min, y_max,
                                          x_axes, y_axes);
   }
@@ -31,9 +35,11 @@ class Controller {
                    const std::string &range) {
     try {
       credit_->FillData(sum, term, range);
+      has_exception = false;
     } catch (std::invalid_argument &e) {
       throw e;
       output_ = e.what();
+      has_exception = true;
     }
     if (credit_->GetData().is_differntiated) {
       credit_->DifferntiatedMethod();
@@ -53,6 +59,7 @@ class Controller {
   s21::MathCalculator *model_;
   s21::CreditCalculator *credit_;
   std::string output_{};
+  bool has_exception = false;
 };
 };  // namespace s21
 
