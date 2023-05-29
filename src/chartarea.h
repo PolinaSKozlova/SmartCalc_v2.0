@@ -15,9 +15,9 @@ class ChartArea : public QChartView {
   explicit ChartArea(QWidget *parent = nullptr);
   void SetValues(double, double, double, double, std::vector<double>,
                  std::vector<double>, QString);
+  void SetDefaultAxis();
   void wheelEvent(QWheelEvent *event);
   void mouseMoveEvent(QMouseEvent *event);
-  void SetDefaultAxis();
 
  public:
   QLineSeries *series;
@@ -25,7 +25,6 @@ class ChartArea : public QChartView {
   double min_x_{}, max_x_{}, min_y_{}, max_y_{};
   QString function_name_;
   QValueAxis *axisX, *axisY;
-  QPointF beginPoint;
 };
 
 #endif  // CHARTAREA_H

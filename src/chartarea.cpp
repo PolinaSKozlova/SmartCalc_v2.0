@@ -6,6 +6,7 @@ ChartArea::ChartArea(QWidget *parent) : QChartView{parent} {
   chart()->createDefaultAxes();
   axisX = new QValueAxis();
   axisY = new QValueAxis();
+  SetDefaultAxis();
   setRenderHint(QPainter::Antialiasing);
   chart()->zoomIn();
 }
@@ -60,15 +61,13 @@ void ChartArea::wheelEvent(QWheelEvent *event) {
 }
 
 void ChartArea::mouseMoveEvent(QMouseEvent *event) {
-  bool leftClick = event->buttons() & Qt::LeftButton;
-  if (leftClick) {
-    static QPointF mousePoint;
-    beginPoint = event->position();
-    chart()->scroll((mousePoint.x() - beginPoint.x()) / 4,
-                    mousePoint.y() - beginPoint.y());
-    mousePoint = beginPoint;
+  static QPointF mouse_position;
+  if (event->buttons() & Qt::LeftButton) {
+    QPointF scale = QPointF(event->position() - mouse_position);
+    chart()->scroll(-scale.x(), scale.y());
     update();
   }
+  mouse_position = event->position();
 }
 
 void ChartArea::SetDefaultAxis() {
