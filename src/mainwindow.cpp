@@ -52,30 +52,9 @@ void MainWindow::sign(QAbstractButton *button) {
 }
 
 void MainWindow::trigonometry(QAbstractButton *button) {
-  if (ui->result_show->text() == "Start calculate" ||
-      ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
-    ui->result_show->setText("0");
-  }
-  if (ui->result_show->text().length() < 255) {
-    if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-         ui->result_show->text() == "inf" ||
-         ui->result_show->text() == "-inf")) {
-      if (button->text() == "x") {
-        ui->result_show->setText(button->text());
-      } else {
-        ui->result_show->setText(button->text() + "()");
-        ui->result_show->setCursorPosition(ui->result_show->cursorPosition() -
-                                           1);
-      }
-    } else {
-      if (button->text() == "x") {
-        ui->result_show->setText(ui->result_show->text() + button->text());
-      } else {
-        ui->result_show->setText(ui->result_show->text() + button->text() +
-                                 "(");
-      }
-    }
-  }
+  SetTextToResult(button);
+  ui->result_show->insert("()");
+  ui->result_show->setCursorPosition(ui->result_show->cursorPosition() - 1);
 }
 
 void MainWindow::brackets(QAbstractButton *button) { SetTextToResult(button); }
