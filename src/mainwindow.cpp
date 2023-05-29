@@ -29,28 +29,21 @@ MainWindow::~MainWindow() {
 
 void MainWindow::numbers(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
-    if (ui->result_show->text() == "Start calculate" ||
-        ui->result_show->text().toStdString() ==
-            controller_->GetOutputAnswer()) {
-      ui->result_show->setText("0");
-    }
-    if (ui->result_show->text().length() < 255) {
-      if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-           ui->result_show->text() == "inf" ||
-           ui->result_show->text() == "-inf") &&
-          button->text() != ".") {
-        ui->result_show->setText(button->text());
-      } else {
-        ui->result_show->setText(ui->result_show->text() + button->text());
-      }
-    }
+    SetTextToResult(button);
+    //    if ((ui->result_show->text() == "Start calculate" ||
+    //         ui->result_show->text().toStdString() ==
+    //             controller_->GetOutputAnswer() ||
+    //         ui->result_show->text() == "0") &&
+    //        button->text() != ".") {
+    //      ui->result_show->clear();
+    //    }
+    //    ui->result_show->insert(button->text());
   } else {
-    if (ui->get_x_value->text() == "0.0" ||
-        ui->get_x_value->text() == "Incorrect x value" ||
-        ui->get_x_value->text() == "X value can't be only dot") {
-      ui->get_x_value->setText(button->text());
+    if (ui->get_x_value->text() == "0.0") {
+      ui->get_x_value->clear();
+      ui->get_x_value->insert(button->text());
     } else {
-      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+      ui->get_x_value->insert(button->text());
     }
   }
 }
@@ -58,32 +51,25 @@ void MainWindow::numbers(QAbstractButton *button) {
 void MainWindow::operations(QAbstractButton *button) {
   if (ui->result_show->text() == "Start calculate" ||
       ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
-    ui->result_show->setText(ui->result_show->text());
+    ui->result_show->clear();
   }
-  if (ui->result_show->text().length() < 255) {
-    ui->result_show->setText(ui->result_show->text() + button->text());
-  }
+  ui->result_show->insert(button->text());
 }
 
 void MainWindow::sign(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
-    if (ui->result_show->text() == "Start calculate" ||
-        ui->result_show->text().toStdString() ==
-            controller_->GetOutputAnswer()) {
-      ui->result_show->setText(ui->result_show->text());
-    }
-    if (ui->result_show->text().length() < 255) {
-      ui->result_show->setText(ui->result_show->text() + button->text());
-    }
+    SetTextToResult(button);
+    //    if (ui->result_show->text() == "Start calculate" ||
+    //        ui->result_show->text().toStdString() ==
+    //            controller_->GetOutputAnswer()) {
+    //      ui->result_show->clear();
+    //    }
+    //    ui->result_show->insert(button->text());
   } else {
-    if (ui->get_x_value->text() == "Enter x value" ||
-        ui->get_x_value->text() == "0.0" ||
-        ui->get_x_value->text() == "Incorrect x value" ||
-        ui->get_x_value->text() == "X value can't be only dot") {
-      ui->get_x_value->setText(button->text());
-    } else {
-      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
+    if (ui->get_x_value->text() == "0.0") {
+      ui->get_x_value->clear();
     }
+    ui->get_x_value->insert(button->text());
   }
 }
 
@@ -99,7 +85,9 @@ void MainWindow::trigonometry(QAbstractButton *button) {
       if (button->text() == "x") {
         ui->result_show->setText(button->text());
       } else {
-        ui->result_show->setText(button->text() + "(");
+        ui->result_show->setText(button->text() + "()");
+        ui->result_show->setCursorPosition(ui->result_show->cursorPosition() -
+                                           1);
       }
     } else {
       if (button->text() == "x") {
@@ -113,16 +101,19 @@ void MainWindow::trigonometry(QAbstractButton *button) {
 }
 
 void MainWindow::brackets(QAbstractButton *button) {
-  if (ui->result_show->text() == "Start calculate" ||
-      ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
-    ui->result_show->setText("0");
-  }
-  if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-       ui->result_show->text() == "inf" || ui->result_show->text() == "-inf")) {
-    ui->result_show->setText(button->text());
-  } else {
-    ui->result_show->setText(ui->result_show->text() + button->text());
-  }
+  SetTextToResult(button);
+  //  if (ui->result_show->text() == "Start calculate" ||
+  //      ui->result_show->text().toStdString() ==
+  //      controller_->GetOutputAnswer()) {
+  //    ui->result_show->setText("0");
+  //  }
+  //  if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
+  //       ui->result_show->text() == "inf" || ui->result_show->text() ==
+  //       "-inf")) {
+  //    ui->result_show->setText(button->text());
+  //  } else {
+  //    ui->result_show->setText(ui->result_show->text() + button->text());
+  //  }
 }
 
 void MainWindow::on_backspace_clicked() {
@@ -202,6 +193,17 @@ void MainWindow::on_actionCredit_Calc_triggered() {
 void MainWindow::on_actionDeposit_calc_triggered() {
   QMessageBox::information(this, "Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
   this->show();
+}
+
+void MainWindow::SetTextToResult(QAbstractButton *button) {
+  if ((ui->result_show->text() == "Start calculate" ||
+       ui->result_show->text().toStdString() ==
+           controller_->GetOutputAnswer() ||
+       ui->result_show->text() == "0") &&
+      button->text() != ".") {
+    ui->result_show->clear();
+  }
+  ui->result_show->insert(button->text());
 }
 
 void MainWindow::on_clear_values_clicked() {

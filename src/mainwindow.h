@@ -48,6 +48,7 @@ class MainWindow : public QMainWindow {
   void on_actionDeposit_calc_triggered();
 
  private:
+  void SetTextToResult(QAbstractButton *button);
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
   s21::Controller *controller_;
