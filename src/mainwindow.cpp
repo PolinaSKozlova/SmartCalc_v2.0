@@ -37,7 +37,9 @@ void MainWindow::numbers(QAbstractButton *button) {
 
 void MainWindow::operations(QAbstractButton *button) {
   if (ui->result_show->text() == "Start calculate" ||
-      ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
+      (ui->result_show->text().toStdString() ==
+           controller_->GetOutputAnswer() &&
+       controller_->GetHasException())) {
     ui->result_show->clear();
   }
   ui->result_show->insert(button->text());
