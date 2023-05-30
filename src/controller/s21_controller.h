@@ -24,9 +24,9 @@ class Controller {
   }
   std::string GetOutputAnswer() const { return output_; }
   bool GetHasException() const { return has_exception; }
-  std::vector<std::pair<double, double>> GetCoordinatesForChartArea(
-      const std::string &src, double x_min, double x_max, double y_min,
-      double y_max) {
+  std::pair<std::vector<double>, std::vector<double>>
+  GetCoordinatesForChartArea(const std::string &src, double x_min, double x_max,
+                             double y_min, double y_max) {
     return model_->CountCoordinatesForChartArea(src, x_min, x_max, y_min,
                                                 y_max);
   }
