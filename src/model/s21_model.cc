@@ -10,15 +10,20 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
   }
 }
 
-void MathCalculator::CountCoordinatesForChartArea(const std::string &src,
-                                                  double x_min, double x_max,
-                                                  double y_min, double y_max,
-                                                  std::vector<double> &x_axis,
-                                                  std::vector<double> &y_axis) {
+// void MathCalculator::CountCoordinatesForChartArea(const std::string &src,
+//                                                   double x_min, double x_max,
+//                                                   double y_min, double y_max,
+//                                                   std::vector<double>
+//                                                   &x_axis,
+//                                                   std::vector<double>
+//                                                   &y_axis) {
+std::vector<std::pair<double, double>>
+MathCalculator::CountCoordinatesForChartArea(const std::string &src,
+                                             double x_min, double x_max,
+                                             double y_min, double y_max) {
+  std::vector<std::pair<double, double>> pairs_of_xy;
   if (x_min >= x_max) throw std::invalid_argument("x_min > x_max");
   if (y_min >= y_max) throw std::invalid_argument("y_min > y_max");
-  if (!x_axis.empty()) x_axis.clear();
-  if (!y_axis.empty()) y_axis.clear();
   tokens_notation_.SetTokensNewValues(src);
   output_tokens_ = tokens_notation_.CreateNotation();
   double step = GetStep(x_min, x_max);
@@ -27,10 +32,11 @@ void MathCalculator::CountCoordinatesForChartArea(const std::string &src,
     x += step;
     CountResult(x);
     if (!isnan(GetAnswer())) {
-      x_axis.push_back(x);
-      y_axis.push_back(GetAnswer());
+      pairs_of_xy.push_back(std::make_pair(x, GetAnswer()));
     }
+    // std::cout << "x+step " << x << " y " << GetAnswer() << std::endl;
   }
+  return pairs_of_xy;
 }
 
 void MathCalculator::CheckXValue(const std::string &x_value) const {
@@ -74,12 +80,13 @@ void MathCalculator::CountResult(double x_value) noexcept {
 double MathCalculator::GetStep(double x_min, double x_max) {
   double step = 0;
   if ((x_max + fabs(x_min) < 100)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 50);
   } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
     step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
   } else if ((x_max + fabs(x_min)) >= 1000) {
     step = (x_max - x_min) / ((x_max + fabs(x_min)));
   }
+  step = round(step * 100) / 100;
   return step;
 }
 
