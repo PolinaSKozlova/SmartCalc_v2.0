@@ -10,18 +10,11 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
   }
 }
 
-// void MathCalculator::CountCoordinatesForChartArea(const std::string &src,
-//                                                   double x_min, double x_max,
-//                                                   double y_min, double y_max,
-//                                                   std::vector<double>
-//                                                   &x_axis,
-//                                                   std::vector<double>
-//                                                   &y_axis) {
-std::vector<std::pair<double, double>>
+std::pair<std::vector<double>, std::vector<double>>
 MathCalculator::CountCoordinatesForChartArea(const std::string &src,
                                              double x_min, double x_max,
                                              double y_min, double y_max) {
-  std::vector<std::pair<double, double>> pairs_of_xy;
+  std::vector<double> x_axis, y_axis;
   if (x_min >= x_max) throw std::invalid_argument("x_min > x_max");
   if (y_min >= y_max) throw std::invalid_argument("y_min > y_max");
   tokens_notation_.SetTokensNewValues(src);
@@ -32,11 +25,11 @@ MathCalculator::CountCoordinatesForChartArea(const std::string &src,
     x += step;
     CountResult(x);
     if (!isnan(GetAnswer())) {
-      pairs_of_xy.push_back(std::make_pair(x, GetAnswer()));
+      x_axis.push_back(x);
+      y_axis.push_back(GetAnswer());
     }
-    // std::cout << "x+step " << x << " y " << GetAnswer() << std::endl;
   }
-  return pairs_of_xy;
+  return std::make_pair(x_axis, y_axis);
 }
 
 void MathCalculator::CheckXValue(const std::string &x_value) const {
@@ -80,7 +73,7 @@ void MathCalculator::CountResult(double x_value) noexcept {
 double MathCalculator::GetStep(double x_min, double x_max) {
   double step = 0;
   if ((x_max + fabs(x_min) < 100)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 50);
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
   } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
     step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
   } else if ((x_max + fabs(x_min)) >= 1000) {

@@ -13,9 +13,9 @@ class MathCalculator {
   std::string GetStringAnswer() const noexcept;
   void CalculateResultFromInput(const std::string &src,
                                 const std::string &x_value = "0.0");
-  std::vector<std::pair<double, double>> CountCoordinatesForChartArea(
-      const std::string &src, double x_min, double x_max, double y_min,
-      double y_max);
+  std::pair<std::vector<double>, std::vector<double>>
+  CountCoordinatesForChartArea(const std::string &src, double x_min,
+                               double x_max, double y_min, double y_max);
 
  private:
   void CheckXValue(const std::string &x_value) const;
@@ -26,7 +26,6 @@ class MathCalculator {
   std::vector<Token> output_tokens_{};
   double answer_{};
 };
-
 };  // namespace s21
 
 #endif  // SMARTCALC_SRC_S21_MODEL_H_
