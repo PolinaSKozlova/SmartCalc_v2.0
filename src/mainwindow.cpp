@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include "./ui_mainwindow.h"
+#include "plot/qcustomplot.h"
 
 MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller_(controller) {
@@ -178,8 +179,6 @@ void MainWindow::on_print_graph_clicked() {
   double max_x = ui->x_max->value();
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
-
-  //  setMinimumSize(2100, 895);
   try {
     std::vector<std::pair<double, double>> vector_pairs_of_xy =
         controller_->GetCoordinatesForChartArea(
