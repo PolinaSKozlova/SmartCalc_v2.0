@@ -24,12 +24,11 @@ class Controller {
   }
   std::string GetOutputAnswer() const { return output_; }
   bool GetHasException() const { return has_exception; }
-  void GetCoordinatesForChartArea(const std::string &src, double x_min,
-                                  double x_max, double y_min, double y_max,
-                                  std::vector<double> &x_axes,
-                                  std::vector<double> &y_axes) {
-    model_->CountCoordinatesForChartArea(src, x_min, x_max, y_min, y_max,
-                                         x_axes, y_axes);
+  std::vector<std::pair<double, double>> GetCoordinatesForChartArea(
+      const std::string &src, double x_min, double x_max, double y_min,
+      double y_max) {
+    return model_->CountCoordinatesForChartArea(src, x_min, x_max, y_min,
+                                                y_max);
   }
   void CountCredit(const std::string &sum, const std::string &term,
                    const std::string &range) {
