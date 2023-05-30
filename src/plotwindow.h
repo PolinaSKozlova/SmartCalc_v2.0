@@ -20,6 +20,8 @@ class PlotWindow : public QMainWindow {
 
  private:
   Ui::PlotWindow *ui;
+  void SetValueForAxisX(double, double, QString);
+  void SetValueForAxisY(double, double, QString);
 };
 
 #endif  // PLOTWINDOW_H

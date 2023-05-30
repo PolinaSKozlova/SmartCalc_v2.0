@@ -19,7 +19,7 @@ void PlotWindow::MakePlotArea(
   QVector<double> y_axis(vector_of_pairs.second.begin(),
                          vector_of_pairs.second.end());
   ui->graph_widget->addGraph();
-  ui->graph_widget->legend->setVisible(true);
+  //  ui->graph_widget->legend->setVisible(true);
   ui->graph_widget->xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
   ui->graph_widget->yAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
   ui->graph_widget->setInteraction(QCP::iRangeZoom, true);
@@ -29,18 +29,24 @@ void PlotWindow::MakePlotArea(
   ui->graph_widget->graph(0)->setData(x_axis, y_axis);
   ui->graph_widget->graph(0)->setPen(QPen(Qt ::green, 2));
   ui->graph_widget->graph(0)->setLineStyle(QCPGraph::lsLine);
-  ui->graph_widget->xAxis->setLabel("X");
-  ui->graph_widget->yAxis->setLabel("Y");
-  ui->graph_widget->xAxis->setRange(min_x, max_x);
-  ui->graph_widget->yAxis->setRange(min_y, max_y);
+  SetValueForAxisX(min_x, max_x, "X");
+  SetValueForAxisY(min_x, max_x, "Y");
   ui->graph_widget->replot();
 }
 
 void PlotWindow::ClearPlot() {
   ui->graph_widget->clearGraphs();
-  ui->graph_widget->xAxis->setRange(0, 5);
-  ui->graph_widget->yAxis->setRange(0, 5);
-  ui->graph_widget->xAxis->setLabel(" ");
-  ui->graph_widget->yAxis->setLabel(" ");
+  SetValueForAxisX(0, 5, " ");
+  SetValueForAxisY(0, 5, " ");
   ui->graph_widget->replot();
+}
+
+void PlotWindow::SetValueForAxisX(double min, double max, QString name) {
+  ui->graph_widget->xAxis->setRange(min, max);
+  ui->graph_widget->xAxis->setLabel(name);
+}
+
+void PlotWindow::SetValueForAxisY(double min, double max, QString name) {
+  ui->graph_widget->yAxis->setRange(min, max);
+  ui->graph_widget->yAxis->setLabel(name);
 }
