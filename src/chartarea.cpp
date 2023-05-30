@@ -8,48 +8,78 @@ ChartArea::ChartArea(QWidget *parent) : QChartView{parent} {
   axisY = new QValueAxis();
   SetDefaultAxis();
   setRenderHint(QPainter::Antialiasing);
-  chart()->zoomIn();
 }
 
+// void ChartArea::SetValues(double min_x, double max_x, double min_y,
+//                           double max_y, std::vector<double> x_axis,
+//                           std::vector<double> y_axis, QString function_name)
+//                           {
 void ChartArea::SetValues(double min_x, double max_x, double min_y,
-                          double max_y, std::vector<double> x_axis,
-                          std::vector<double> y_axis, QString function_name) {
-  min_x_ = min_x;
-  max_x_ = max_x;
-  min_y_ = min_y;
-  max_y_ = max_y;
-  x_axis_ = x_axis;
-  y_axis_ = y_axis;
-  function_name_ = function_name;
+                          double max_y,
+                          std::vector<std::pair<double, double>> pairs_xy,
+                          QString function_name) {
   chart()->removeAllSeries();
+  //  QScatterSeries *series = new QScatterSeries();
   series = new QLineSeries();
-  for (int i = 0; i < x_axis.size(); ++i) {
-    //        if (series == nullptr || (y_axis[i] > max_y || y_axis[i] < min_y))
-    //        {
-    if (series == nullptr || (0 - y_axis[i] > 0 && 0 - y_axis[i + 1] < 0)) {
+  //  for (int i = 0; i < x_axis.size() - 1; ++i) {
+  int i = 0;
+  double previous_x = min_x;
+  double previous_y = min_y;
+  for (auto &current : pairs_xy) {
+    //    if (current.second > max_y || current.second < min_y) {
+    if (fabs((current.second - previous_y) / (current.first - previous_x)) >
+            (max_y + fabs(min_y)) &&
+        ((current.second * previous_y) < 0)) {
+      chart()->addSeries(series);
       QColor series_color;
       if (series != nullptr) {
         series_color = series->color();
       }
-      chart()->addSeries(series);
+      series->clear();
       series = new QLineSeries();
+      std::cout << "add new series" << std::endl;
       series->setColor(series_color);
     }
+    *series << QPointF(qreal(current.first), qreal(current.second));
+    previous_x = current.first;
+    previous_y = current.second;
+    std::cout << i++ << " " << (double)series->at(i).x() << " "
+              << (double)series->at(i).y() << std::endl;
+    std::cout << "iterator " << current.first << " " << current.second
+              << std::endl;
+    // if (series == nullptr || (y_axis[i] > max_y || y_axis[i] <
+    //     min_y)) {
+    //       //    if ((y_axis[i] * y_axis[i + 1] < 0) &&
+    //       //        fabs((y_axis[i + 1] - y_axis[i]) / (x_axis[i + 1] -
+    //       x_axis[i]))
+    //       //        >
+    //       //            (max_y + fabs(min_y))) {
+    //       chart()->addSeries(series);
+    //       QColor series_color;
+    //       if (series != nullptr) {
+    //         series_color = series->color();
+    //       }
 
-    *series << QPointF(x_axis[i], y_axis[i]);
+    //      series = new QLineSeries();
+    //      series->setColor(series_color);
+    //    } else {
+    //    *series << QPointF(x_axis[i], y_axis[i]);
+    //    std::cout << series->at(i).x() << " " << series->at(i).y() <<
+    //    std::endl;
+    //    }
   }
-  series->setMarkerSize(15.0);
+  series->setMarkerSize(12.0);
   chart()->addSeries(series);
   chart()->setTitle("Graphic of function " + function_name);
 
-  axisX->setRange(min_x_, max_x_);
-  axisX->setTickCount((max_x_ - min_x_) + 1);
+  axisX->setRange(min_x, max_x);
+  axisX->setTickCount((max_x - min_x) + 1);
   axisX->setLinePenColor(series->pen().color());
   chart()->addAxis(axisX, Qt::AlignBottom);
   series->attachAxis(axisX);
   chart()->axes(Qt::Horizontal, series).back()->setTitleText("axe X");
-  axisY->setRange(min_y_, max_y_);
-  axisY->setTickCount((max_y_ - min_y_) + 1);
+  axisY->setRange(min_y, max_y);
+  axisY->setTickCount((max_y - min_y) + 1);
   axisY->setLinePenColor(series->pen().color());
   chart()->addAxis(axisY, Qt::AlignLeft);
   series->attachAxis(axisY);
@@ -77,4 +107,5 @@ void ChartArea::SetDefaultAxis() {
   axisX->setTickCount(6);
   axisY->setRange(0.0, 5.0);
   axisY->setTickCount(6);
+  chart()->setTitle("Graphic of function");
 }
