@@ -26,13 +26,9 @@ void PlotWindow::MakePlotArea(
   ui->graph_widget->setInteraction(QCP::iRangeDrag, true);
   ui->graph_widget->xAxis->setSubTickPen(QPen(Qt::blue, 1));
   ui->graph_widget->yAxis->setSubTickPen(QPen(Qt::blue, 1));
-
   ui->graph_widget->graph(0)->setData(x_axis, y_axis);
-
   ui->graph_widget->graph(0)->setPen(QPen(Qt ::green, 2));
-  ui->graph_widget->graph(0)->setLineStyle(QCPGraph::lsNone);
-  ui->graph_widget->graph(0)->setScatterStyle(
-      QCPScatterStyle(QCPScatterStyle::ssDot, 3));
+  ui->graph_widget->graph(0)->setLineStyle(QCPGraph::lsLine);
   ui->graph_widget->xAxis->setLabel("X");
   ui->graph_widget->yAxis->setLabel("Y");
   ui->graph_widget->xAxis->setRange(min_x, max_x);
