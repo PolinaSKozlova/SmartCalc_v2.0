@@ -9,6 +9,7 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   ui->main_frame->setFixedSize(321, 441);
   ui->result_show->setFixedSize(271, 81);
   credit_window = new CreditWindow(this->controller_, this);
+  plot_window = new PlotWindow(this);
   connect(ui->buttonNumbers, &QButtonGroup::buttonClicked, this,
           &MainWindow::numbers);
   connect(ui->buttonBrackets, &QButtonGroup::buttonClicked, this,
@@ -170,6 +171,7 @@ void MainWindow::on_clear_values_clicked() {
   ui->x_max->setValue(0.00);
   ui->y_min->setValue(0.00);
   ui->y_max->setValue(0.00);
+  plot_window->ClearPlot();
   ui->graph_widget->chart()->removeAllSeries();
   ui->graph_widget->SetDefaultAxis();
 }
@@ -180,12 +182,16 @@ void MainWindow::on_print_graph_clicked() {
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
   try {
-    std::vector<std::pair<double, double>> vector_pairs_of_xy =
+    std::pair<std::vector<double>, std::vector<double>> vector_pairs_of_xy =
         controller_->GetCoordinatesForChartArea(
             ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y);
     ui->graph_widget->setFixedSize(1041, 801);
-    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, vector_pairs_of_xy,
-                                ui->result_show->text());
+    //    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y,
+    //    vector_pairs_of_xy,
+    //                                ui->result_show->text());
+    plot_window->ClearPlot();
+    plot_window->MakePlotArea(min_x, max_x, min_y, max_y, vector_pairs_of_xy);
+    plot_window->show();
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }

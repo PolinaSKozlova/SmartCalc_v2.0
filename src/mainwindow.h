@@ -17,6 +17,7 @@
 #include "creditwindow.h"
 #include "model/s21_credit_calculator.h"
 #include "model/s21_model.h"
+#include "plotwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -54,6 +55,7 @@ class MainWindow : public QMainWindow {
   void DeleteOneValue(QLineEdit *line);
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
+  PlotWindow *plot_window;
   s21::Controller *controller_;
   ChartArea *chart_window;
   bool open_extra_mode = false;
