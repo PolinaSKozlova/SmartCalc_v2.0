@@ -24,10 +24,14 @@ MathCalculator::CountCoordinatesForChartArea(const std::string &src,
   while (x < x_max) {
     x += step;
     CountResult(x);
-    if (!isnan(GetAnswer())) {
+
+    if (!std::isnan(GetAnswer())) {
       x_axis.push_back(x);
       y_axis.push_back(GetAnswer());
     }
+    // else {
+    //   y_axis.push_back((std::numeric_limits<double>::quiet_NaN()));
+    // }
   }
   return std::make_pair(x_axis, y_axis);
 }
