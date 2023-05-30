@@ -178,14 +178,14 @@ void MainWindow::on_print_graph_clicked() {
   double max_x = ui->x_max->value();
   double min_y = ui->y_min->value();
   double max_y = ui->y_max->value();
-  std::vector<double> x_axes, y_axes;
+
   //  setMinimumSize(2100, 895);
   try {
-    controller_->GetCoordinatesForChartArea(
-        ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y,
-        x_axes, y_axes);
+    std::vector<std::pair<double, double>> vector_pairs_of_xy =
+        controller_->GetCoordinatesForChartArea(
+            ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y);
     ui->graph_widget->setFixedSize(1041, 801);
-    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, x_axes, y_axes,
+    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, vector_pairs_of_xy,
                                 ui->result_show->text());
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());

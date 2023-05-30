@@ -1616,6 +1616,9 @@ border: 1px solid #f2d0e4;</string>
       <property name="maximum">
        <double>1000.000000000000000</double>
       </property>
+      <property name="value">
+       <double>5.000000000000000</double>
+      </property>
      </widget>
      <widget class="QDoubleSpinBox" name="x_max">
       <property name="geometry">
@@ -1652,6 +1655,9 @@ border: 1px solid #f2d0e4;</string>
       </property>
       <property name="maximum">
        <double>1000.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>5.000000000000000</double>
       </property>
      </widget>
      <widget class="QDoubleSpinBox" name="y_min">
@@ -1690,6 +1696,9 @@ border: 1px solid #f2d0e4;</string>
       <property name="maximum">
        <double>1000.000000000000000</double>
       </property>
+      <property name="value">
+       <double>-5.000000000000000</double>
+      </property>
      </widget>
      <widget class="QDoubleSpinBox" name="x_min">
       <property name="geometry">
@@ -1726,6 +1735,9 @@ border: 1px solid #f2d0e4;</string>
       </property>
       <property name="maximum">
        <double>1000.000000000000000</double>
+      </property>
+      <property name="value">
+       <double>-5.000000000000000</double>
       </property>
      </widget>
      <widget class="QLabel" name="label_for_x_min">
@@ -1975,10 +1987,10 @@ QPushButton:pressed {
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonNumbers"/>
-  <buttongroup name="buttonTrigonometry"/>
-  <buttongroup name="buttonSign"/>
-  <buttongroup name="buttonBrackets"/>
   <buttongroup name="buttonOperations"/>
+  <buttongroup name="buttonBrackets"/>
+  <buttongroup name="buttonTrigonometry"/>
+  <buttongroup name="buttonNumbers"/>
+  <buttongroup name="buttonSign"/>
  </buttongroups>
 </ui>
