@@ -22,6 +22,7 @@ install: clean
 	cmake -S . -B build -G "Unix Makefiles"
 	make -C build
 	cd ./build && rm -rf CMakeFiles SmartCalc_v_2_0_autogen cmake_install.cmake CMakeCache.txt Makefile
+	open build
 
 uninstall:
 	rm -rf build
