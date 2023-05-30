@@ -26,6 +26,7 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
 
 MainWindow::~MainWindow() {
   delete credit_window;
+  delete plot_window;
   delete ui;
 }
 
@@ -79,7 +80,7 @@ void MainWindow::on_backspace_clicked() {
 
 void MainWindow::on_clear_all_clicked() {
   if (ui->result_show->hasFocus()) {
-    ui->result_show->setText("0");
+    ui->result_show->setText("0.0");
   } else {
     ui->get_x_value->setText("0.0");
   }
@@ -113,9 +114,8 @@ void MainWindow::on_open_graph_clicked() {
   if (!open_graph_mode) {
     open_graph_mode = true;
     ui->open_graph->setText("<");
-    setFixedSize(2100, 895);
+    setFixedSize(1015, 621);
     ui->main_frame->setFixedSize(1001, 441);
-    ui->graph_widget->SetDefaultAxis();
   } else {
     open_graph_mode = false;
     ui->open_graph->setText(">");
@@ -172,8 +172,6 @@ void MainWindow::on_clear_values_clicked() {
   ui->y_min->setValue(0.00);
   ui->y_max->setValue(0.00);
   plot_window->ClearPlot();
-  ui->graph_widget->chart()->removeAllSeries();
-  ui->graph_widget->SetDefaultAxis();
 }
 
 void MainWindow::on_print_graph_clicked() {
@@ -185,13 +183,11 @@ void MainWindow::on_print_graph_clicked() {
     std::pair<std::vector<double>, std::vector<double>> vector_pairs_of_xy =
         controller_->GetCoordinatesForChartArea(
             ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y);
-    ui->graph_widget->setFixedSize(1041, 801);
-    //    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y,
-    //    vector_pairs_of_xy,
-    //                                ui->result_show->text());
     plot_window->ClearPlot();
     plot_window->MakePlotArea(min_x, max_x, min_y, max_y, vector_pairs_of_xy);
     plot_window->show();
+    plot_window->setWindowFlag(Qt::WindowStaysOnTopHint);
+
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }
