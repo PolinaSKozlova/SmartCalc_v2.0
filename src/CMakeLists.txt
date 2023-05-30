@@ -42,6 +42,9 @@ set(PROJECT_SOURCES
     plotwindow.ui
 )
 
+
+include_directories(plot)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(SmartCalc_v_2_0
         MANUAL_FINALIZATION
