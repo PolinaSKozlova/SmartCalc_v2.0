@@ -33,10 +33,10 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
         series_color = series->color();
       }
       //      series->clear();
-      for (auto it : series->points()) {
-        std::cout << "function gap x " << it.x() << " y " << it.y()
-                  << std::endl;
-      }
+      //      for (auto it : series->points()) {
+      //        std::cout << "function gap x " << it.x() << " y " << it.y()
+      //                  << std::endl;
+      //      }
       series = new QLineSeries();
       series->setColor(series_color);
       chart()->addSeries(series);
@@ -45,9 +45,9 @@ void ChartArea::SetValues(double min_x, double max_x, double min_y,
     previous_x = current.first;
     previous_y = current.second;
   }
-  for (auto it : series->points()) {
-    std::cout << "x " << it.x() << " y " << it.y() << std::endl;
-  }
+  //  for (auto it : series->points()) {
+  //    std::cout << "x " << it.x() << " y " << it.y() << std::endl;
+  //  }
   series->setMarkerSize(12.0);
   chart()->addSeries(series);
   chart()->setTitle("Graphic of function " + function_name);
