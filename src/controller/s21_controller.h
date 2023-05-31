@@ -24,10 +24,10 @@ class Controller {
   }
   std::string GetOutputAnswer() const { return output_; }
   bool GetHasException() const { return has_exception; }
-  std::pair<std::vector<double>, std::vector<double>>
-  GetCoordinatesForChartArea(const std::string &src,
-                             MaxMinValues max_min_values) {
-    return model_->CountCoordinatesForChartArea(src, max_min_values);
+  void GetCoordinatesForChartArea(
+      const std::string &src, MaxMinValues max_min_values,
+      std::pair<std::vector<double>, std::vector<double>> xy_pairs) {
+    model_->CountCoordinatesForChartArea(src, max_min_values, xy_pairs);
   }
   void CountCredit(const std::string &sum, const std::string &term,
                    const std::string &range) {
