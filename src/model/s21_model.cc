@@ -43,8 +43,6 @@ void MathCalculator::CountCoordinatesForChartArea(
   output_tokens_ = tokens_notation_.CreateNotation();
   double step = GetStep(max_min_values.min_x_, max_min_values.max_x_);
   double x = max_min_values.min_x_;
-  double previous_x = max_min_values.min_x_;
-  double previous_y = max_min_values.min_y_;
   while (x <= max_min_values.max_x_) {
     x += step;
     CountResult(x);
@@ -55,8 +53,6 @@ void MathCalculator::CountCoordinatesForChartArea(
     } else {
       xy_pairs.second.push_back((std::numeric_limits<double>::quiet_NaN()));
     }
-    previous_x = x;
-    previous_y = GetAnswer();
   }
 }
 
