@@ -263,20 +263,28 @@ TEST(calculation_src_test, test_35) {
 
 TEST(calculation_src_test, test_36) {
   s21::MathCalculator m;
-  std::vector<double> x_axes, y_axes;
-  m.CountCoordinates("x", -34, 4, 0, 29, x_axes, y_axes);
-  EXPECT_NEAR(x_axes.front(), -33.9873, 1e-02);
-  EXPECT_NEAR(x_axes.back(), 4, 1e-02);
-  EXPECT_NEAR(y_axes.front(), -33.9873, 1e-02);
-  EXPECT_NEAR(y_axes.back(), 4, 1e-02);
+  m.CalculateResultFromInput("3modx-7^(1/2)", "9");
+  EXPECT_NEAR(m.GetAnswer(), 0.35424868, ACCURACY);
 }
 
 TEST(calculation_src_test, test_37) {
   s21::MathCalculator m;
-  std::vector<double> x_axes, y_axes;
-  m.CountCoordinates("cos(x)", -1, 1, -2, 2, x_axes, y_axes);
-  EXPECT_NEAR(x_axes.front(), -0.999333, 1e-02);
-  EXPECT_NEAR(x_axes.back(), 0.9993333, 1e-02);
-  EXPECT_NEAR(y_axes.front(), 0.54086316, 1e-02);
-  EXPECT_NEAR(y_axes.back(), 0.5403023, 1e-02);
+  std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+  s21::MaxMinValues mmv(-34, 4, 0, 29);
+  m.CountCoordinatesForChartArea("x", mmv, xy_pairs);
+  EXPECT_NEAR(xy_pairs.first.front(), -33.9873, 1e-02);
+  EXPECT_NEAR(xy_pairs.first.back(), 4, 1e-02);
+  EXPECT_NEAR(xy_pairs.second.front(), -33.9873, 1e-02);
+  EXPECT_NEAR(xy_pairs.second.back(), 4, 1e-02);
+}
+
+TEST(calculation_src_test, test_38) {
+  s21::MathCalculator m;
+  std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+  s21::MaxMinValues mmv(-1, 1, -2, 2);
+  m.CountCoordinatesForChartArea("cos(x)", mmv, xy_pairs);
+  EXPECT_NEAR(xy_pairs.first.front(), -0.999333, 1e-02);
+  EXPECT_NEAR(xy_pairs.first.back(), 0.9993333, 1e-02);
+  EXPECT_NEAR(xy_pairs.second.front(), 0.54086316, 1e-02);
+  EXPECT_NEAR(xy_pairs.second.back(), 0.5403023, 1e-02);
 }
