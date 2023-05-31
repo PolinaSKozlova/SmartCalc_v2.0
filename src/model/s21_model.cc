@@ -10,30 +10,32 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
   }
 }
 
-std::pair<std::vector<double>, std::vector<double>>
-MathCalculator::CountCoordinatesForChartArea(const std::string &src,
-                                             MaxMinValues max_min_values) {
-  std::vector<double> x_axis, y_axis;
+void MathCalculator::CountCoordinatesForChartArea(
+    const std::string &src, MaxMinValues max_min_values,
+    std::pair<std::vector<double>, std::vector<double>> xy_pairs) {
   if (max_min_values.min_x_ >= max_min_values.max_x_)
     throw std::invalid_argument("x_min > x_max");
   if (max_min_values.min_y_ >= max_min_values.max_y_)
     throw std::invalid_argument("y_min > y_max");
+  if (!xy_pairs.first.empty()) xy_pairs.first.clear();
+  if (!xy_pairs.second.empty()) xy_pairs.second.clear();
   tokens_notation_.SetTokensNewValues(src);
   output_tokens_ = tokens_notation_.CreateNotation();
   double step = GetStep(max_min_values.min_x_, max_min_values.max_x_);
   double x = max_min_values.min_x_;
-  while (x < max_min_values.max_x_) {
+  while (x <= max_min_values.max_x_) {
     x += step;
     CountResult(x);
     if (!std::isnan(GetAnswer())) {
-      x_axis.push_back(x);
-      y_axis.push_back(GetAnswer());
+      // x_axis.push_back(x);
+      // y_axis.push_back(GetAnswer());
+      xy_pairs.first.push_back(x);
+      xy_pairs.second.push_back(GetAnswer());
     }
     // else {
     //   y_axis.push_back((std::numeric_limits<double>::quiet_NaN()));
     // }
   }
-  return std::make_pair(x_axis, y_axis);
 }
 
 void MathCalculator::CheckXValue(const std::string &x_value) const {

@@ -23,9 +23,9 @@ class MathCalculator {
   std::string GetStringAnswer() const noexcept;
   void CalculateResultFromInput(const std::string &src,
                                 const std::string &x_value = "0.0");
-  std::pair<std::vector<double>, std::vector<double>>
-  CountCoordinatesForChartArea(const std::string &src,
-                               MaxMinValues max_min_values);
+  void CountCoordinatesForChartArea(
+      const std::string &src, MaxMinValues max_min_values,
+      std::pair<std::vector<double>, std::vector<double>> xy_pairs);
 
  private:
   void CheckXValue(const std::string &x_value) const;
