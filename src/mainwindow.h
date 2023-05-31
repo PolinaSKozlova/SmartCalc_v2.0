@@ -60,5 +60,6 @@ class MainWindow : public QMainWindow {
   ChartArea *chart_window;
   bool open_extra_mode = false;
   bool open_graph_mode = false;
+  s21::MaxMinValues mmv;
 };
 #endif  // MAINWINDOW_H

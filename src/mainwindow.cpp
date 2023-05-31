@@ -143,7 +143,7 @@ void MainWindow::SetTextToResult(QAbstractButton *button) {
   if ((ui->result_show->text() == "Start calculate" ||
        ui->result_show->text().toStdString() ==
            controller_->GetOutputAnswer() ||
-       ui->result_show->text() == "0") &&
+       ui->result_show->text() == "0.0") &&
       button->text() != ".") {
     ui->result_show->clear();
   }
@@ -161,7 +161,7 @@ void MainWindow::DeleteOneValue(QLineEdit *line) {
   QString text = line->text();
   text.chop(1);
   if (text.isEmpty()) {
-    text = "0";
+    text = "0.0";
   }
   line->setText(text);
 }
@@ -175,16 +175,16 @@ void MainWindow::on_clear_values_clicked() {
 }
 
 void MainWindow::on_print_graph_clicked() {
-  double min_x = ui->x_min->value();
-  double max_x = ui->x_max->value();
-  double min_y = ui->y_min->value();
-  double max_y = ui->y_max->value();
+  mmv.min_x_ = ui->x_min->value();
+  mmv.max_x_ = ui->x_max->value();
+  mmv.min_y_ = ui->y_min->value();
+  mmv.max_y_ = ui->y_max->value();
   try {
     std::pair<std::vector<double>, std::vector<double>> vector_pairs_of_xy =
         controller_->GetCoordinatesForChartArea(
-            ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y);
+            ui->result_show->text().toStdString(), mmv);
     plot_window->ClearPlot();
-    plot_window->MakePlotArea(min_x, max_x, min_y, max_y, vector_pairs_of_xy);
+    plot_window->MakePlotArea(mmv, vector_pairs_of_xy);
     plot_window->show();
     plot_window->setWindowFlag(Qt::WindowStaysOnTopHint);
 

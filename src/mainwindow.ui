@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>CalcWindow</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #5e1640;
