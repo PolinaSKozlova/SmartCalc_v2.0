@@ -25,7 +25,7 @@ class MathCalculator {
                                 const std::string &x_value = "0.0");
   void CountCoordinatesForChartArea(
       const std::string &src, MaxMinValues max_min_values,
-      std::pair<std::vector<double>, std::vector<double>> xy_pairs);
+      std::pair<std::vector<double>, std::vector<double>> &xy_pairs);
 
  private:
   void CheckXValue(const std::string &x_value) const;

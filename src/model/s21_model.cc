@@ -12,7 +12,7 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
 
 void MathCalculator::CountCoordinatesForChartArea(
     const std::string &src, MaxMinValues max_min_values,
-    std::pair<std::vector<double>, std::vector<double>> xy_pairs) {
+    std::pair<std::vector<double>, std::vector<double>> &xy_pairs) {
   if (max_min_values.min_x_ >= max_min_values.max_x_)
     throw std::invalid_argument("x_min > x_max");
   if (max_min_values.min_y_ >= max_min_values.max_y_)
@@ -27,8 +27,6 @@ void MathCalculator::CountCoordinatesForChartArea(
     x += step;
     CountResult(x);
     if (!std::isnan(GetAnswer())) {
-      // x_axis.push_back(x);
-      // y_axis.push_back(GetAnswer());
       xy_pairs.first.push_back(x);
       xy_pairs.second.push_back(GetAnswer());
     }
