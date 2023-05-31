@@ -17,7 +17,7 @@ class Controller {
       model_->CalculateResultFromInput(src, x_value);
       output_ = model_->GetStringAnswer();
       has_exception = false;
-    } catch (std::invalid_argument &e) {
+    } catch (std::exception &e) {
       output_ = e.what();
       has_exception = true;
     }
@@ -34,7 +34,7 @@ class Controller {
     try {
       credit_->FillData(sum, term, range);
       has_exception = false;
-    } catch (std::invalid_argument &e) {
+    } catch (std::exception &e) {
       throw e;
       output_ = e.what();
       has_exception = true;
