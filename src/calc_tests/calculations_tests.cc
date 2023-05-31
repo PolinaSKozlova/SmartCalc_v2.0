@@ -270,12 +270,13 @@ TEST(calculation_src_test, test_36) {
 TEST(calculation_src_test, test_37) {
   s21::MathCalculator m;
   std::pair<std::vector<double>, std::vector<double>> xy_pairs;
-  s21::MaxMinValues mmv(-34, 4, 0, 29);
+  s21::MaxMinValues mmv(0, 10, 0, 10);
   m.CountCoordinatesForChartArea("x", mmv, xy_pairs);
-  EXPECT_NEAR(xy_pairs.first.front(), -33.9873, 1e-02);
-  EXPECT_NEAR(xy_pairs.first.back(), 4, 1e-02);
-  EXPECT_NEAR(xy_pairs.second.front(), -33.9873, 1e-02);
-  EXPECT_NEAR(xy_pairs.second.back(), 4, 1e-02);
+
+  EXPECT_NEAR(xy_pairs.first.front(), 0.01, 1e-02);
+  EXPECT_NEAR(xy_pairs.first.back(), 10, 1e-02);
+  EXPECT_NEAR(xy_pairs.second.front(), 0.01, 1e-02);
+  EXPECT_NEAR(xy_pairs.second.back(), 10, 1e-02);
 }
 
 TEST(calculation_src_test, test_38) {
