@@ -104,6 +104,8 @@ void MainWindow::on_open_extra_mode_clicked() {
   } else {
     open_extra_mode = false;
     ui->open_extra_mode->setText(">");
+    open_graph_mode = false;
+    ui->open_graph->setText(">");
     ui->main_frame->setFixedSize(321, 441);
     ui->result_show->setFixedSize(271, 81);
     setFixedSize(325, 590);
@@ -180,11 +182,11 @@ void MainWindow::on_print_graph_clicked() {
   mmv.min_y_ = ui->y_min->value();
   mmv.max_y_ = ui->y_max->value();
   try {
-    std::pair<std::vector<double>, std::vector<double>> vector_pairs_of_xy =
-        controller_->GetCoordinatesForChartArea(
-            ui->result_show->text().toStdString(), mmv);
+    std::pair<std::vector<double>, std::vector<double>> vector_of_xy_pairs;
+    controller_->GetCoordinatesForChartArea(
+        ui->result_show->text().toStdString(), mmv, vector_of_xy_pairs);
     plot_window->ClearPlot();
-    plot_window->MakePlotArea(mmv, vector_pairs_of_xy);
+    plot_window->MakePlotArea(mmv, vector_of_xy_pairs);
     plot_window->show();
     plot_window->setWindowFlag(Qt::WindowStaysOnTopHint);
 
