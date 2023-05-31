@@ -186,7 +186,7 @@ void MainWindow::on_print_graph_clicked() {
     controller_->GetCoordinatesForChartArea(
         ui->result_show->text().toStdString(), mmv, vector_of_xy_pairs);
     plot_window->ClearPlot();
-    plot_window->MakePlotArea(mmv, vector_of_xy_pairs);
+    plot_window->MakePlotArea(mmv, vector_of_xy_pairs, ui->result_show->text());
     plot_window->setWindowFlag(Qt::WindowStaysOnTopHint);
     plot_window->show();
   } catch (std::invalid_argument &e) {
