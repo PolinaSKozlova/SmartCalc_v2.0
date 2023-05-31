@@ -12,19 +12,19 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
 
 std::pair<std::vector<double>, std::vector<double>>
 MathCalculator::CountCoordinatesForChartArea(const std::string &src,
-                                             double x_min, double x_max,
-                                             double y_min, double y_max) {
+                                             MaxMinValues max_min_values) {
   std::vector<double> x_axis, y_axis;
-  if (x_min >= x_max) throw std::invalid_argument("x_min > x_max");
-  if (y_min >= y_max) throw std::invalid_argument("y_min > y_max");
+  if (max_min_values.min_x_ >= max_min_values.max_x_)
+    throw std::invalid_argument("x_min > x_max");
+  if (max_min_values.min_y_ >= max_min_values.max_y_)
+    throw std::invalid_argument("y_min > y_max");
   tokens_notation_.SetTokensNewValues(src);
   output_tokens_ = tokens_notation_.CreateNotation();
-  double step = GetStep(x_min, x_max);
-  double x = x_min;
-  while (x < x_max) {
+  double step = GetStep(max_min_values.min_x_, max_min_values.max_x_);
+  double x = max_min_values.min_x_;
+  while (x < max_min_values.max_x_) {
     x += step;
     CountResult(x);
-
     if (!std::isnan(GetAnswer())) {
       x_axis.push_back(x);
       y_axis.push_back(GetAnswer());
