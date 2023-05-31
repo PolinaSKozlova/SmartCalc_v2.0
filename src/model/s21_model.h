@@ -32,6 +32,7 @@ class MathCalculator {
   double GetXValue(const std::string &x_value) const;
   void CountResult(double x_value) noexcept;
   double GetStep(double x_min, double x_max);
+  void CheckMaxMin(MaxMinValues max_min_values) const;
   PolishNotation tokens_notation_;
   std::vector<Token> output_tokens_{};
   double answer_{};

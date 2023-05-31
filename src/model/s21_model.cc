@@ -10,47 +10,6 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
   }
 }
 
-void MathCalculator::CountCoordinatesForChartArea(
-    const std::string &src, MaxMinValues max_min_values,
-    std::pair<std::vector<double>, std::vector<double>> &xy_pairs) {
-  if (max_min_values.min_x_ >= max_min_values.max_x_)
-    throw std::invalid_argument("x_min > x_max");
-  if (max_min_values.min_y_ >= max_min_values.max_y_)
-    throw std::invalid_argument("y_min > y_max");
-  if (!xy_pairs.first.empty()) xy_pairs.first.clear();
-  if (!xy_pairs.second.empty()) xy_pairs.second.clear();
-  tokens_notation_.SetTokensNewValues(src);
-  output_tokens_ = tokens_notation_.CreateNotation();
-  double step = GetStep(max_min_values.min_x_, max_min_values.max_x_);
-  double x = max_min_values.min_x_;
-  while (x <= max_min_values.max_x_) {
-    x += step;
-    CountResult(x);
-    if (!std::isnan(GetAnswer())) {
-      xy_pairs.first.push_back(x);
-      xy_pairs.second.push_back(GetAnswer());
-    }
-    // else {
-    //   y_axis.push_back((std::numeric_limits<double>::quiet_NaN()));
-    // }
-  }
-}
-
-void MathCalculator::CheckXValue(const std::string &x_value) const {
-  if (x_value == ".") throw std::invalid_argument("X value can't be only dot");
-  if (!std::regex_match(
-          x_value,
-          std::regex(
-              "(([-+])?\\d*[.]\\d*)|"
-              "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
-    throw std::invalid_argument("Incorrect x value");
-}
-
-double MathCalculator::GetXValue(const std::string &x_value) const {
-  CheckXValue(x_value);
-  return std::stod(x_value);
-}
-
 void MathCalculator::CountResult(double x_value) noexcept {
   std::stack<double> result_stack;
   for (auto &current_token : output_tokens_) {
@@ -74,17 +33,62 @@ void MathCalculator::CountResult(double x_value) noexcept {
   if (result_stack.size()) answer_ = result_stack.top();
 }
 
+void MathCalculator::CountCoordinatesForChartArea(
+    const std::string &src, MaxMinValues max_min_values,
+    std::pair<std::vector<double>, std::vector<double>> &xy_pairs) {
+  CheckMaxMin(max_min_values);
+  if (!xy_pairs.first.empty()) xy_pairs.first.clear();
+  if (!xy_pairs.second.empty()) xy_pairs.second.clear();
+  tokens_notation_.SetTokensNewValues(src);
+  output_tokens_ = tokens_notation_.CreateNotation();
+  double step = GetStep(max_min_values.min_x_, max_min_values.max_x_);
+  double x = max_min_values.min_x_;
+  while (x <= max_min_values.max_x_) {
+    x += step;
+    CountResult(x);
+    xy_pairs.first.push_back(x);
+    if (GetAnswer() <= max_min_values.max_y_ &&
+        GetAnswer() >= max_min_values.min_y_) {
+      xy_pairs.second.push_back(GetAnswer());
+    } else {
+      xy_pairs.second.push_back((std::numeric_limits<double>::quiet_NaN()));
+    }
+  }
+}
+
+void MathCalculator::CheckXValue(const std::string &x_value) const {
+  if (x_value == ".") throw std::invalid_argument("X value can't be only dot");
+  if (!std::regex_match(
+          x_value,
+          std::regex(
+              "(([-+])?\\d*[.]\\d*)|"
+              "((([-+])?((\\d+[.])|([.]\\d+)|(\\d+)))?([eE]([-+])?\\d+)?)")))
+    throw std::invalid_argument("Incorrect x value");
+}
+
+double MathCalculator::GetXValue(const std::string &x_value) const {
+  CheckXValue(x_value);
+  return std::stod(x_value);
+}
+
 double MathCalculator::GetStep(double x_min, double x_max) {
   double step = 0;
   if ((x_max + fabs(x_min) < 100)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 200);
   } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 50);
   } else if ((x_max + fabs(x_min)) >= 1000) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)));
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
   }
   step = round(step * 100) / 100;
   return step;
+}
+
+void MathCalculator::CheckMaxMin(MaxMinValues max_min_values) const {
+  if (max_min_values.min_x_ >= max_min_values.max_x_)
+    throw std::invalid_argument("x_min > x_max");
+  if (max_min_values.min_y_ >= max_min_values.max_y_)
+    throw std::invalid_argument("y_min > y_max");
 }
 
 double MathCalculator::GetAnswer() const noexcept { return answer_; }

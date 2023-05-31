@@ -10,9 +10,7 @@ class PolishNotation {
   explicit PolishNotation(const std::string& src) : tokens_(src) {}
   ~PolishNotation() {}
   std::vector<Token> CreateNotation();
-  std::vector<Token> GetOutputTokens() const noexcept {
-    return output_notation_;
-  }
+  std::vector<Token> GetOutputTokens() const noexcept;
   void SetTokensNewValues(const std::string& src);
 
  private:
