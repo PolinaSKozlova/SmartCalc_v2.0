@@ -43,16 +43,20 @@ void MathCalculator::CountCoordinatesForChartArea(
   output_tokens_ = tokens_notation_.CreateNotation();
   double step = GetStep(max_min_values.min_x_, max_min_values.max_x_);
   double x = max_min_values.min_x_;
+  double previous_x = max_min_values.min_x_;
+  double previous_y = max_min_values.min_y_;
   while (x <= max_min_values.max_x_) {
     x += step;
     CountResult(x);
     xy_pairs.first.push_back(x);
-    if (GetAnswer() <= max_min_values.max_y_ &&
-        GetAnswer() >= max_min_values.min_y_) {
+    if (GetAnswer() <= max_min_values.max_y_ * 1.2 &&
+        GetAnswer() >= max_min_values.min_y_ * 1.2) {
       xy_pairs.second.push_back(GetAnswer());
     } else {
       xy_pairs.second.push_back((std::numeric_limits<double>::quiet_NaN()));
     }
+    previous_x = x;
+    previous_y = GetAnswer();
   }
 }
 
@@ -74,11 +78,11 @@ double MathCalculator::GetXValue(const std::string &x_value) const {
 double MathCalculator::GetStep(double x_min, double x_max) {
   double step = 0;
   if ((x_max + fabs(x_min) < 100)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 200);
+    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
   } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 50);
-  } else if ((x_max + fabs(x_min)) >= 1000) {
     step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
+  } else if ((x_max + fabs(x_min)) >= 1000) {
+    step = (x_max - x_min) / ((x_max + fabs(x_min)));
   }
   step = round(step * 100) / 100;
   return step;
