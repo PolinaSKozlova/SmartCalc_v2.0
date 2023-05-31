@@ -12,7 +12,7 @@ PlotWindow::PlotWindow(QWidget *parent)
 PlotWindow::~PlotWindow() { delete ui; }
 
 void PlotWindow::MakePlotArea(
-    double min_x, double max_x, double min_y, double max_y,
+    s21::MaxMinValues mmv,
     std::pair<std::vector<double>, std::vector<double>> vector_of_pairs) {
   QVector<double> x_axis(vector_of_pairs.first.begin(),
                          vector_of_pairs.first.end());
@@ -29,8 +29,8 @@ void PlotWindow::MakePlotArea(
   ui->graph_widget->graph(0)->setData(x_axis, y_axis);
   ui->graph_widget->graph(0)->setPen(QPen(Qt ::green, 2));
   ui->graph_widget->graph(0)->setLineStyle(QCPGraph::lsLine);
-  SetValueForAxisX(min_x, max_x, "X");
-  SetValueForAxisY(min_x, max_x, "Y");
+  SetValueForAxisX(mmv.min_x_, mmv.max_x_, "X");
+  SetValueForAxisY(mmv.min_y_, mmv.max_y_, "Y");
   ui->graph_widget->replot();
 }
 
