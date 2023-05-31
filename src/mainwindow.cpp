@@ -187,9 +187,8 @@ void MainWindow::on_print_graph_clicked() {
         ui->result_show->text().toStdString(), mmv, vector_of_xy_pairs);
     plot_window->ClearPlot();
     plot_window->MakePlotArea(mmv, vector_of_xy_pairs);
-    plot_window->show();
     plot_window->setWindowFlag(Qt::WindowStaysOnTopHint);
-
+    plot_window->show();
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }
