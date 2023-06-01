@@ -19,11 +19,11 @@ class Controller {
       has_exception = false;
     } catch (std::exception &e) {
       output_ = "Number is too large or too small to count";
+      has_exception = true;
     } catch (std::invalid_argument &e) {
       output_ = e.what();
+      has_exception = true;
     }
-
-    has_exception = true;
   }
   std::string GetOutputAnswer() const { return output_; }
   bool GetHasException() const { return has_exception; }
@@ -39,7 +39,6 @@ class Controller {
       has_exception = false;
     } catch (std::exception &e) {
       output_ = e.what();
-      throw e;
       has_exception = true;
     }
   }
