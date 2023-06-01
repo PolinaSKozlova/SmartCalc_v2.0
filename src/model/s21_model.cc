@@ -73,14 +73,16 @@ double MathCalculator::GetXValue(const std::string &x_value) const {
 
 double MathCalculator::GetStep(double x_min, double x_max) {
   double step = 0;
-  if ((x_max + fabs(x_min) < 100)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 100);
-  } else if (((x_max + fabs(x_min)) >= 100 && (x_max + fabs(x_min)) < 1000)) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)) * 10);
-  } else if ((x_max + fabs(x_min)) >= 1000) {
-    step = (x_max - x_min) / ((x_max + fabs(x_min)));
+  double diff = x_max - x_min;
+  if (diff < 100) {
+    step = diff / 10000.0;
+  } else if (diff >= 100 && diff < 1000) {
+    step = diff / 5000.0;
+  } else if (diff >= 1000 && diff < 10000) {
+    step = diff / 1000.0;
+  } else if (diff >= 10000) {
+    step = diff / 100.0;
   }
-  step = round(step * 100) / 100;
   return step;
 }
 
