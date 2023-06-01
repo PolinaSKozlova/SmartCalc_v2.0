@@ -23,8 +23,12 @@ void Tokenizer::CreateTokens() {
   while (current != input_src_.cend()) {
     if (std::isdigit(*current) || *current == '.') {
       size_t shift = 0;
-      tokens_.emplace_back(std::stod(&(*current), &shift), Priority::kZero,
-                           "number");
+      try {
+        tokens_.emplace_back(std::stod(&(*current), &shift), Priority::kZero,
+                             "number");
+      } catch (std::exception& e) {
+        throw std::invalid_argument("Can't convert number");
+      }
       current += shift;
     } else if (std::isalpha(*current)) {
       if (*current == 'x') {
