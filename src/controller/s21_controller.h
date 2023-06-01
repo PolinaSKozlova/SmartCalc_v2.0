@@ -25,8 +25,6 @@ class Controller {
       has_exception = true;
     }
   }
-  std::string GetOutputAnswer() const { return output_; }
-  bool GetHasException() const { return has_exception; }
   void GetCoordinatesForChartArea(
       const std::string &src, MaxMinValues max_min_values,
       std::pair<std::vector<double>, std::vector<double>> &xy_pairs) {
@@ -48,6 +46,8 @@ class Controller {
   void SetCreditType(bool is_differntiated) {
     credit_->SetCreditType(is_differntiated);
   }
+  std::string GetOutputAnswer() const { return output_; }
+  bool GetHasException() const { return has_exception; }
   s21::CreditInformation GetCreditData() const { return credit_->GetData(); }
 
  private:
