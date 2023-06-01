@@ -111,7 +111,8 @@ void Tokenizer::CheckHooksAfterFunctions() const {
 void Tokenizer::CheckEdgeValues() const {
   if (tokens_.front().is_binary_) throw std::invalid_argument("Missing value");
   if (tokens_.back().is_binary_ ||
-      tokens_.back().priority_ == Priority::kFourth)
+      tokens_.back().priority_ == Priority::kFourth ||
+      tokens_.back().type_id_ == 5)
     throw std::invalid_argument("Missing value");
 }
 
