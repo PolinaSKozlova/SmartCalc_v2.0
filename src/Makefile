@@ -9,13 +9,6 @@ SRCS=$(wildcard s21*.cc,*/s21*.cc)
 OBJ_FILES=$(patsubst %.cc,%.o,$(SRCS))
 REPORT_DIR = report
 
-run: clean
-	clear
-	$(CC) $(CC_FLAGS)  model/s21_*.cc  run.cc -o run -g
-#	$(OBJ_FILES)
-	./run
-
-
 all: 
 
 install: clean
