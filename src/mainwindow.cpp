@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include "./ui_mainwindow.h"
+#include "plot/qcustomplot.h"
 
 MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller_(controller) {
@@ -8,177 +9,86 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   ui->main_frame->setFixedSize(321, 441);
   ui->result_show->setFixedSize(271, 81);
   credit_window = new CreditWindow(this->controller_, this);
-  connect(ui->zero, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->one, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->two, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->three, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->four, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->five, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->six, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->seven, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->eight, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->nine, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->exp, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->variable_x, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->dot, SIGNAL(clicked()), this, SLOT(numbers()));
-  connect(ui->sum, SIGNAL(clicked()), this, SLOT(sign()));
-  connect(ui->sub, SIGNAL(clicked()), this, SLOT(sign()));
-  connect(ui->div, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->mult, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->mod, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->square_root, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->pow, SIGNAL(clicked()), this, SLOT(operations()));
-  connect(ui->open_bracket, SIGNAL(clicked()), this, SLOT(brackets()));
-  connect(ui->close_bracket, SIGNAL(clicked()), this, SLOT(brackets()));
-  connect(ui->cosinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->sinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->tangens, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->arcosinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->arcsinus, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->arctangens, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->natural_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
-  connect(ui->decimal_log, SIGNAL(clicked()), this, SLOT(trigonometry()));
+  plot_window = new PlotWindow(this);
+  connect(ui->buttonNumbers, &QButtonGroup::buttonClicked, this,
+          &MainWindow::numbers);
+  connect(ui->buttonBrackets, &QButtonGroup::buttonClicked, this,
+          &MainWindow::brackets);
+  connect(ui->buttonOperations, &QButtonGroup::buttonClicked, this,
+          &MainWindow::operations);
+  connect(ui->buttonSign, &QButtonGroup::buttonClicked, this,
+          &MainWindow::sign);
+  connect(ui->buttonTrigonometry, &QButtonGroup::buttonClicked, this,
+          &MainWindow::trigonometry);
   connect(credit_window, &CreditWindow::showParent, this,
           &MainWindow::on_actionMath_Calculator_triggered);
 }
 
 MainWindow::~MainWindow() {
   delete credit_window;
+  delete plot_window;
   delete ui;
 }
 
-void MainWindow::numbers() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::numbers(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
-    if (ui->result_show->text() == "Start calculate" ||
-        ui->result_show->text().toStdString() ==
-            controller_->GetOutputAnswer()) {
-      ui->result_show->setText("0");
-    }
-    if (ui->result_show->text().length() < 255) {
-      if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-           ui->result_show->text() == "inf" ||
-           ui->result_show->text() == "-inf") &&
-          button->text() != ".") {
-        ui->result_show->setText(button->text());
-      } else {
-        ui->result_show->setText(ui->result_show->text() + button->text());
-      }
-    }
+    SetTextToResult(button);
   } else {
-    if (ui->get_x_value->text() == "0.0" ||
-        ui->get_x_value->text() == "Incorrect x value" ||
-        ui->get_x_value->text() == "X value can't be only dot") {
-      ui->get_x_value->setText(button->text());
-    } else {
-      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
-    }
+    SetTextToX(button);
   }
 }
 
-void MainWindow::operations() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::operations(QAbstractButton *button) {
   if (ui->result_show->text() == "Start calculate" ||
-      ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
-    ui->result_show->setText(ui->result_show->text());
+      (ui->result_show->text().toStdString() ==
+           controller_->GetOutputAnswer() &&
+       controller_->GetHasException())) {
+    ui->result_show->clear();
   }
-  if (ui->result_show->text().length() < 255) {
-    ui->result_show->setText(ui->result_show->text() + button->text());
-  }
+  ui->result_show->insert(button->text());
 }
 
-void MainWindow::sign() {
-  QPushButton *button = (QPushButton *)sender();
+void MainWindow::sign(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
-    if (ui->result_show->text() == "Start calculate" ||
-        ui->result_show->text().toStdString() ==
-            controller_->GetOutputAnswer()) {
-      ui->result_show->setText(ui->result_show->text());
-    }
-    if (ui->result_show->text().length() < 255) {
-      ui->result_show->setText(ui->result_show->text() + button->text());
-    }
+    SetTextToResult(button);
   } else {
-    if (ui->get_x_value->text() == "Enter x value" ||
-        ui->get_x_value->text() == "0.0" ||
-        ui->get_x_value->text() == "Incorrect x value" ||
-        ui->get_x_value->text() == "X value can't be only dot") {
-      ui->get_x_value->setText(button->text());
-    } else {
-      ui->get_x_value->setText(ui->get_x_value->text() + button->text());
-    }
+    SetTextToX(button);
   }
 }
 
-void MainWindow::trigonometry() {
-  QPushButton *button = (QPushButton *)sender();
-  if (ui->result_show->text() == "Start calculate" ||
-      ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
-    ui->result_show->setText("0");
-  }
-  if (ui->result_show->text().length() < 255) {
-    if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-         ui->result_show->text() == "inf" ||
-         ui->result_show->text() == "-inf")) {
-      if (button->text() == "x") {
-        ui->result_show->setText(button->text());
-      } else {
-        ui->result_show->setText(button->text() + "(");
-      }
-    } else {
-      if (button->text() == "x") {
-        ui->result_show->setText(ui->result_show->text() + button->text());
-      } else {
-        ui->result_show->setText(ui->result_show->text() + button->text() +
-                                 "(");
-      }
-    }
-  }
+void MainWindow::trigonometry(QAbstractButton *button) {
+  SetTextToResult(button);
+  ui->result_show->insert("()");
+  ui->result_show->setCursorPosition(ui->result_show->cursorPosition() - 1);
 }
 
-void MainWindow::brackets() {
-  QPushButton *button = (QPushButton *)sender();
-  if (ui->result_show->text() == "Start calculate" ||
-      ui->result_show->text().toStdString() == controller_->GetOutputAnswer()) {
-    ui->result_show->setText("0");
-  }
-  if ((ui->result_show->text() == "0" || ui->result_show->text() == "nan" ||
-       ui->result_show->text() == "inf" || ui->result_show->text() == "-inf")) {
-    ui->result_show->setText(button->text());
-  } else {
-    ui->result_show->setText(ui->result_show->text() + button->text());
+void MainWindow::brackets(QAbstractButton *button) {
+  SetTextToResult(button);
+  if (button->text() == "(") {
+    ui->result_show->insert(")");
+    ui->result_show->setCursorPosition(ui->result_show->cursorPosition() - 1);
   }
 }
 
 void MainWindow::on_backspace_clicked() {
   if (ui->result_show->hasFocus()) {
-    QString text = ui->result_show->text();
-    text.chop(1);
-    if (text.isEmpty()) {
-      text = "0";
-    }
-    ui->result_show->setText(text);
+    DeleteOneValue(ui->result_show);
   } else {
-    QString text = ui->get_x_value->text();
-    text.chop(1);
-    if (text.isEmpty()) {
-      text = "0";
-    }
-    ui->get_x_value->setText(text);
+    DeleteOneValue(ui->get_x_value);
   }
 }
 
 void MainWindow::on_clear_all_clicked() {
   if (ui->result_show->hasFocus()) {
-    ui->result_show->setText("0");
+    ui->result_show->setText("0.0");
   } else {
     ui->get_x_value->setText("0.0");
   }
 }
 
 void MainWindow::on_equal_clicked() {
-  std::string tmp_src = ui->result_show->text().toStdString();
-  std::string x_value = ui->get_x_value->text().toStdString();
+  std::string tmp_src = ui->result_show->text().replace(" ", "").toStdString();
+  std::string x_value = ui->get_x_value->text().replace(" ", "").toStdString();
   controller_->ParceAndCalculateExpression(tmp_src, x_value);
   ui->result_show->setText(
       QString::fromStdString(controller_->GetOutputAnswer()));
@@ -194,6 +104,8 @@ void MainWindow::on_open_extra_mode_clicked() {
   } else {
     open_extra_mode = false;
     ui->open_extra_mode->setText(">");
+    open_graph_mode = false;
+    ui->open_graph->setText(">");
     ui->main_frame->setFixedSize(321, 441);
     ui->result_show->setFixedSize(271, 81);
     setFixedSize(325, 590);
@@ -204,7 +116,7 @@ void MainWindow::on_open_graph_clicked() {
   if (!open_graph_mode) {
     open_graph_mode = true;
     ui->open_graph->setText("<");
-    setFixedSize(2100, 895);
+    setFixedSize(1015, 621);
     ui->main_frame->setFixedSize(1001, 441);
   } else {
     open_graph_mode = false;
@@ -229,29 +141,54 @@ void MainWindow::on_actionDeposit_calc_triggered() {
   this->show();
 }
 
+void MainWindow::SetTextToResult(QAbstractButton *button) {
+  if ((ui->result_show->text() == "Start calculate" ||
+       ui->result_show->text().toStdString() ==
+           controller_->GetOutputAnswer() ||
+       ui->result_show->text() == "0.0") &&
+      button->text() != ".") {
+    ui->result_show->clear();
+  }
+  ui->result_show->insert(button->text());
+}
+
+void MainWindow::SetTextToX(QAbstractButton *button) {
+  if (ui->get_x_value->text() == "0.0") {
+    ui->get_x_value->clear();
+  }
+  ui->get_x_value->insert(button->text());
+}
+
+void MainWindow::DeleteOneValue(QLineEdit *line) {
+  QString text = line->text();
+  text.chop(1);
+  if (text.isEmpty()) {
+    text = "0.0";
+  }
+  line->setText(text);
+}
+
 void MainWindow::on_clear_values_clicked() {
   ui->x_min->setValue(0.00);
   ui->x_max->setValue(0.00);
   ui->y_min->setValue(0.00);
   ui->y_max->setValue(0.00);
-  ui->graph_widget->chart()->removeAllSeries();
-  ui->graph_widget->SetDefaultAxis();
+  plot_window->ClearPlot();
 }
 
 void MainWindow::on_print_graph_clicked() {
-  double min_x = ui->x_min->value();
-  double max_x = ui->x_max->value();
-  double min_y = ui->y_min->value();
-  double max_y = ui->y_max->value();
-  std::vector<double> x_axes, y_axes;
-  setMinimumSize(2100, 895);
+  mmv.min_x_ = ui->x_min->value();
+  mmv.max_x_ = ui->x_max->value();
+  mmv.min_y_ = ui->y_min->value();
+  mmv.max_y_ = ui->y_max->value();
   try {
+    std::pair<std::vector<double>, std::vector<double>> vector_of_xy_pairs;
     controller_->GetCoordinatesForChartArea(
-        ui->result_show->text().toStdString(), min_x, max_x, min_y, max_y,
-        x_axes, y_axes);
-    ui->graph_widget->setFixedSize(1041, 801);
-    ui->graph_widget->SetValues(min_x, max_x, min_y, max_y, x_axes, y_axes,
-                                ui->result_show->text());
+        ui->result_show->text().toStdString(), mmv, vector_of_xy_pairs);
+    plot_window->ClearPlot();
+    plot_window->MakePlotArea(mmv, vector_of_xy_pairs, ui->result_show->text());
+    plot_window->setWindowFlag(Qt::WindowStaysOnTopHint);
+    plot_window->show();
   } catch (std::invalid_argument &e) {
     QMessageBox::critical(this, "ERROR", e.what());
   }

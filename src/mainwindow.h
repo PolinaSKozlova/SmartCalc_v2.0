@@ -3,6 +3,7 @@
 
 #include <QtWidgets/qlayout.h>
 
+#include <QLineEdit>
 #include <QMainWindow>
 #include <QValueAxis>
 #include <QVector>
@@ -16,6 +17,7 @@
 #include "creditwindow.h"
 #include "model/s21_credit_calculator.h"
 #include "model/s21_model.h"
+#include "plotwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,11 +34,11 @@ class MainWindow : public QMainWindow {
 
  private slots:
   void on_equal_clicked();
-  void numbers();
-  void operations();
-  void sign();
-  void trigonometry();
-  void brackets();
+  void numbers(QAbstractButton *button);
+  void operations(QAbstractButton *button);
+  void sign(QAbstractButton *button);
+  void trigonometry(QAbstractButton *button);
+  void brackets(QAbstractButton *button);
   void on_clear_all_clicked();
   void on_backspace_clicked();
   void on_open_extra_mode_clicked();
@@ -48,12 +50,16 @@ class MainWindow : public QMainWindow {
   void on_actionDeposit_calc_triggered();
 
  private:
+  void SetTextToResult(QAbstractButton *button);
+  void SetTextToX(QAbstractButton *button);
+  void DeleteOneValue(QLineEdit *line);
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
+  PlotWindow *plot_window;
   s21::Controller *controller_;
   ChartArea *chart_window;
-  //  QLineSeries *series;
   bool open_extra_mode = false;
   bool open_graph_mode = false;
+  s21::MaxMinValues mmv;
 };
 #endif  // MAINWINDOW_H

@@ -45,4 +45,9 @@ std::vector<Token> PolishNotation::CreateNotation() {
 void PolishNotation::SetTokensNewValues(const std::string &src) {
   tokens_.SetNewInput(src);
 }
+
+std::vector<Token> PolishNotation::GetOutputTokens() const noexcept {
+  return output_notation_;
+}
+
 };  // namespace s21
