@@ -80,7 +80,7 @@ void Tokenizer::FindUnarySign() noexcept {
        (++tokens_.begin())->type_ == "(")) {
     tokens_.front() = FillUnarySign(tokens_.front());
   }
-  for (auto current = tokens_.begin(); current != tokens_.end(); ++current) {
+  for (auto current = tokens_.begin(); current != --tokens_.end(); ++current) {
     if ((current->priority_ == Priority::kFirst ||
          current->priority_ == Priority::kSecond ||
          current->priority_ == Priority::kFourth || current->type_ == "(" ||  //
