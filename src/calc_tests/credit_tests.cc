@@ -86,3 +86,18 @@ TEST(credit_incorrect_test, test_5) {
   } catch (...) {
   }
 }
+TEST(credit_incorrect_test, test_6) {
+  try {
+    s21::CreditCalculator cr;
+    cr.FillData("2000000", "0", "12");
+  } catch (...) {
+  }
+}
+
+TEST(credit_incorrect_test, test_7) {
+  try {
+    s21::CreditCalculator cr;
+    cr.FillData("2000000", "10", "0");
+  } catch (...) {
+  }
+}

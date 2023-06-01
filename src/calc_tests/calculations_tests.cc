@@ -186,6 +186,9 @@ TEST(calculation_src_test, test_26) {
   double result = 2.0044135;
   m.CalculateResultFromInput("2+tan(45)/(7-90*(-4))");
   EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
+  result = -0.3047384;
+  m.CalculateResultFromInput("cos(23.4+tan(23*(0-23)))");
+  EXPECT_NEAR(result, m.GetAnswer(), ACCURACY);
 }
 
 TEST(calculation_src_test, test_27) {
