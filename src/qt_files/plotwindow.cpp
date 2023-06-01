@@ -1,6 +1,6 @@
 #include "plotwindow.h"
 
-#include "plot/qcustomplot.h"
+#include "../plot/qcustomplot.h"
 #include "ui_plotwindow.h"
 
 PlotWindow::PlotWindow(QWidget *parent)

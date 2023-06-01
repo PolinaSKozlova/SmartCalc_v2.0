@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
+#include "../plot/qcustomplot.h"
 #include "./ui_mainwindow.h"
-#include "plot/qcustomplot.h"
 
 MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller_(controller) {

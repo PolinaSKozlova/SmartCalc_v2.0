@@ -16,13 +16,13 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets PrintSupport)
 find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui)
 
 set(PROJECT_SOURCES
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    creditwindow.cpp
-    creditwindow.h
-    creditwindow.ui
+    qt_files/main.cpp
+    qt_files/mainwindow.cpp
+    qt_files/mainwindow.h
+    qt_files/mainwindow.ui
+    qt_files/creditwindow.cpp
+    qt_files/creditwindow.h
+    qt_files/creditwindow.ui
     model/s21_model.h
     model/s21_model.cc
     model/s21_token.h
@@ -33,17 +33,16 @@ set(PROJECT_SOURCES
     model/s21_credit_calculator.h
     model/s21_credit_calculator.cc
     controller/s21_controller.h
-    chartarea.h
-    chartarea.cpp
     plot/qcustomplot.cpp
     plot/qcustomplot.h
-    plotwindow.cpp
-    plotwindow.h
-    plotwindow.ui
+    qt_files/plotwindow.cpp
+    qt_files/plotwindow.h
+    qt_files/plotwindow.ui
 )
 
 
 include_directories(plot)
+include_directories(qt_files)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(SmartCalc_v_2_0

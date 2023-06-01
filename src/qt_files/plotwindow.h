@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "model/s21_model.h"
+#include "../model/s21_model.h"
 
 namespace Ui {
 class PlotWindow;
@@ -15,9 +15,6 @@ class PlotWindow : public QMainWindow {
  public:
   explicit PlotWindow(QWidget *parent = nullptr);
   ~PlotWindow();
-  //  void MakePlotArea(
-  //      double min_x, double max_x, double min_y, double max_y,
-  //      std::pair<std::vector<double>, std::vector<double>> vector_of_pairs);
   void MakePlotArea(
       s21::MaxMinValues values,
       std::pair<std::vector<double>, std::vector<double>> vector_of_pairs,

@@ -5,8 +5,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 
-#include "controller/s21_controller.h"
-#include "model/s21_credit_calculator.h"
+#include "../controller/s21_controller.h"
+#include "../model/s21_credit_calculator.h"
 
 namespace Ui {
 class CreditWindow;
