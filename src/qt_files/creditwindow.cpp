@@ -27,10 +27,14 @@ void CreditWindow::on_years_clicked() {
 }
 
 void CreditWindow::on_count_clicked() {
-  try {
-    controller_credit_->CountCredit(ui->credit_sum->text().toStdString(),
-                                    ui->credit_term->text().toStdString(),
-                                    ui->credit_range->text().toStdString());
+  controller_credit_->CountCredit(ui->credit_sum->text().toStdString(),
+                                  ui->credit_term->text().toStdString(),
+                                  ui->credit_range->text().toStdString());
+  if (controller_credit_->GetHasException()) {
+    QMessageBox::critical(
+        this, "ERROR",
+        QString::fromStdString(controller_credit_->GetOutputAnswer()));
+  } else {
     ui->result_total->setText(QString::number(
         controller_credit_->GetCreditData().total_sum_, 'q', 2));
     ui->result_percents->setText(QString::number(
@@ -58,8 +62,6 @@ void CreditWindow::on_count_clicked() {
           controller_credit_->GetCreditData().monthly_payment_.front(), 'q',
           2));
     }
-  } catch (std::invalid_argument &e) {
-    QMessageBox::critical(this, "ERROR", e.what());
   }
 }
 
