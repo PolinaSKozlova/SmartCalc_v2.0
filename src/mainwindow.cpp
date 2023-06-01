@@ -39,18 +39,12 @@ void MainWindow::numbers(QAbstractButton *button) {
 }
 
 void MainWindow::operations(QAbstractButton *button) {
-  if (ui->result_show->text() == "Start calculate" ||
-      (ui->result_show->text().toStdString() ==
-           controller_->GetOutputAnswer() &&
-       controller_->GetHasException())) {
-    ui->result_show->clear();
-  }
-  ui->result_show->insert(button->text());
+  SetOperationsOrSign(button);
 }
 
 void MainWindow::sign(QAbstractButton *button) {
   if (ui->result_show->hasFocus()) {
-    SetTextToResult(button);
+    SetOperationsOrSign(button);
   } else {
     SetTextToX(button);
   }
@@ -80,9 +74,9 @@ void MainWindow::on_backspace_clicked() {
 
 void MainWindow::on_clear_all_clicked() {
   if (ui->result_show->hasFocus()) {
-    ui->result_show->setText("0.0");
+    ui->result_show->setText("0");
   } else {
-    ui->get_x_value->setText("0.0");
+    ui->get_x_value->setText("0");
   }
 }
 
@@ -145,7 +139,7 @@ void MainWindow::SetTextToResult(QAbstractButton *button) {
   if ((ui->result_show->text() == "Start calculate" ||
        ui->result_show->text().toStdString() ==
            controller_->GetOutputAnswer() ||
-       ui->result_show->text() == "0.0") &&
+       ui->result_show->text() == "0") &&
       button->text() != ".") {
     ui->result_show->clear();
   }
@@ -153,17 +147,27 @@ void MainWindow::SetTextToResult(QAbstractButton *button) {
 }
 
 void MainWindow::SetTextToX(QAbstractButton *button) {
-  if (ui->get_x_value->text() == "0.0") {
+  if (ui->get_x_value->text() == "0") {
     ui->get_x_value->clear();
   }
   ui->get_x_value->insert(button->text());
+}
+
+void MainWindow::SetOperationsOrSign(QAbstractButton *button) {
+  if (ui->result_show->text() == "Start calculate" ||
+      (ui->result_show->text().toStdString() ==
+           controller_->GetOutputAnswer() &&
+       controller_->GetHasException())) {
+    ui->result_show->clear();
+  }
+  ui->result_show->insert(button->text());
 }
 
 void MainWindow::DeleteOneValue(QLineEdit *line) {
   QString text = line->text();
   text.chop(1);
   if (text.isEmpty()) {
-    text = "0.0";
+    text = "0";
   }
   line->setText(text);
 }

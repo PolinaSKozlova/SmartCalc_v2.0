@@ -52,6 +52,7 @@ class MainWindow : public QMainWindow {
  private:
   void SetTextToResult(QAbstractButton *button);
   void SetTextToX(QAbstractButton *button);
+  void SetOperationsOrSign(QAbstractButton *button);
   void DeleteOneValue(QLineEdit *line);
   Ui::MainWindow *ui;
   CreditWindow *credit_window;

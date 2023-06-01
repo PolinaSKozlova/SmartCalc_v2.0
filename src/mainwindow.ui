@@ -113,7 +113,7 @@ color: white;
 border: 1px solid #f2d0e4;</string>
       </property>
       <property name="text">
-       <string>0.0</string>
+       <string>0</string>
       </property>
       <property name="maxLength">
        <number>255</number>
@@ -1988,9 +1988,9 @@ QPushButton:pressed {
  <connections/>
  <buttongroups>
   <buttongroup name="buttonOperations"/>
-  <buttongroup name="buttonBrackets"/>
-  <buttongroup name="buttonTrigonometry"/>
   <buttongroup name="buttonNumbers"/>
+  <buttongroup name="buttonTrigonometry"/>
   <buttongroup name="buttonSign"/>
+  <buttongroup name="buttonBrackets"/>
  </buttongroups>
 </ui>
