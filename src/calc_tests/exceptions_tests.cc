@@ -325,13 +325,13 @@ TEST(validation_src_test_incorrect, test_14) {
 }
 
 // ошибка на валгринде
-// TEST(validation_src_test_incorrect, test_15) {
-//   try {
-//     s21::MathCalculator m;
-//     m.CalculateResultFromInput("76*sin(4)-9823+");
-//   } catch (std::exception& e) {
-//   }
-// }
+TEST(validation_src_test_incorrect, test_15) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("76*sin(4)-9823+");
+  } catch (std::exception& e) {
+  }
+}
 
 TEST(validation_src_test_incorrect, test_16) {
   try {
@@ -523,6 +523,26 @@ TEST(validation_src_test_incorrect, test_39) {
   try {
     s21::MathCalculator m;
     m.CalculateResultFromInput("1e+10000000000000");
+  } catch (std::exception& e) {
+  }
+}
+
+TEST(plot_ares_src_test_incorrect, test_1) {
+  try {
+    s21::MathCalculator m;
+    std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+    s21::MaxMinValues mmv(1, -10, -2, 2);
+    m.CountCoordinatesForChartArea("cos(x)", mmv, xy_pairs);
+  } catch (std::exception& e) {
+  }
+}
+
+TEST(plot_ares_src_test_incorrect, test_2) {
+  try {
+    s21::MathCalculator m;
+    std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+    s21::MaxMinValues mmv(1, 10, 2, 0);
+    m.CountCoordinatesForChartArea("cos(x)", mmv, xy_pairs);
   } catch (std::exception& e) {
   }
 }
