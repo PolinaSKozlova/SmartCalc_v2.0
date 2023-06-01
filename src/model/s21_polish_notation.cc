@@ -19,9 +19,6 @@ std::vector<Token> PolishNotation::CreateNotation() {
       };
       result_stack.pop();
     } else {
-      // if (current_token.type_ == "(") {
-      //   result_stack.push(current_token);
-      // } else {
       while (!result_stack.empty() &&
              ((result_stack.top().priority_ >= current_token.priority_ &&
                current_token.type_ != "^") ||
@@ -32,7 +29,6 @@ std::vector<Token> PolishNotation::CreateNotation() {
         result_stack.pop();
       }
       result_stack.push(current_token);
-      // }
     }
   }
   while (!result_stack.empty()) {
