@@ -270,7 +270,7 @@ TEST(calculation_src_test, test_36) {
   EXPECT_NEAR(m.GetAnswer(), 0.35424868, ACCURACY);
 }
 
-TEST(calculation_src_test, test_37) {
+TEST(get_coordinates_for_chart_area_test, test_1) {
   s21::MathCalculator m;
   std::pair<std::vector<double>, std::vector<double>> xy_pairs;
   s21::MaxMinValues mmv(0, 10, 0, 10);
@@ -282,7 +282,7 @@ TEST(calculation_src_test, test_37) {
   EXPECT_NEAR(xy_pairs.second.back(), 10, 1e-02);
 }
 
-TEST(calculation_src_test, test_38) {
+TEST(get_coordinates_for_chart_area_test, test_2) {
   s21::MathCalculator m;
   std::pair<std::vector<double>, std::vector<double>> xy_pairs;
   s21::MaxMinValues mmv(-1, 1, -2, 2);
@@ -291,4 +291,18 @@ TEST(calculation_src_test, test_38) {
   EXPECT_NEAR(xy_pairs.first.back(), 0.9993333, 1e-02);
   EXPECT_NEAR(xy_pairs.second.front(), 0.54086316, 1e-02);
   EXPECT_NEAR(xy_pairs.second.back(), 0.5403023, 1e-02);
+}
+
+TEST(get_coordinates_for_chart_area_test, test_3) {
+  s21::MathCalculator m;
+  std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+  s21::MaxMinValues mmv(-100, 1000, -25, 25);
+  m.CountCoordinatesForChartArea("tan(x)", mmv, xy_pairs);
+}
+
+TEST(get_coordinates_for_chart_area_test, test_4) {
+  s21::MathCalculator m;
+  std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+  s21::MaxMinValues mmv(-100, 100, -25, 25);
+  m.CountCoordinatesForChartArea("tan(x)", mmv, xy_pairs);
 }
