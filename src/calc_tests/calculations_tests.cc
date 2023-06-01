@@ -306,3 +306,10 @@ TEST(get_coordinates_for_chart_area_test, test_4) {
   s21::MaxMinValues mmv(-100, 100, -25, 25);
   m.CountCoordinatesForChartArea("tan(x)", mmv, xy_pairs);
 }
+
+TEST(get_coordinates_for_chart_area_test, test_5) {
+  s21::MathCalculator m;
+  std::pair<std::vector<double>, std::vector<double>> xy_pairs;
+  s21::MaxMinValues mmv(-100000, 100000, -25, 25);
+  m.CountCoordinatesForChartArea("x+1", mmv, xy_pairs);
+}
