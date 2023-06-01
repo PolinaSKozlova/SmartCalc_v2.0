@@ -117,8 +117,6 @@ void Tokenizer::CheckEdgeValues() const {
 
 void Tokenizer::CheckWithAdjacencyMatrix() const {
   bool adjacency_matrix[][6] = {
-      /*
-       0  1  2  3  4  5*/
       {0, 1, 0, 1, 0, 0},  //  0: x, number
       {1, 0, 1, 0, 1, 1},  //  1: sum, sub, div, mult, mod, power
       {1, 0, 1, 0, 1, 1},  //  2: (
