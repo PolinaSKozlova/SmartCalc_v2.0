@@ -44,14 +44,16 @@ class CreditCalculator {
   explicit CreditCalculator(const CreditInformation& data) : data_(data) {}
   ~CreditCalculator() = default;
   CreditInformation GetData() const noexcept { return data_; }
+  void CalculateCredit(const std::string& sum, const std::string& term,
+                       const std::string& range);
   void SetTermInYears(bool value) noexcept;
   void SetCreditType(bool value) noexcept;
   void FillData(const std::string& sum, const std::string& term,
                 const std::string& range);
-  void AnnuitetMethod() noexcept;
-  void DifferntiatedMethod() noexcept;
 
  private:
+  void AnnuitetMethod() noexcept;
+  void DifferntiatedMethod() noexcept;
   void CheckCreditValues(const std::string& sum, const std::string& term,
                          const std::string& range) const;
   void CheckTerms() const;

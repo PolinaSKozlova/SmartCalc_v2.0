@@ -5,6 +5,14 @@
 namespace s21 {
 static double RoundNumber(double value) { return round(value * 100) / 100; }
 
+void CreditCalculator::CalculateCredit(const std::string& sum,
+                                       const std::string& term,
+                                       const std::string& range) {
+  FillData(sum, term, range);
+  if (data_.is_differntiated) DifferntiatedMethod();
+  if (!data_.is_differntiated) AnnuitetMethod();
+}
+
 void CreditCalculator::SetTermInYears(bool value) noexcept {
   data_.term_in_years_ = value;
 }
