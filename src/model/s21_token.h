@@ -1,5 +1,5 @@
-#ifndef SMARTCALC_SRC_S21_TOKEN_H_
-#define SMARTCALC_SRC_S21_TOKEN_H_
+#ifndef SMARTCALC_S21_TOKEN_H_
+#define SMARTCALC_S21_TOKEN_H_
 
 #include <cctype>
 #include <cmath>

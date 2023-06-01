@@ -1,5 +1,5 @@
-#ifndef SMARTCALC_SRC_S21_MODEL_H_
-#define SMARTCALC_SRC_S21_MODEL_H_
+#ifndef SMARTCALC_S21_MODEL_H_
+#define SMARTCALC_S21_MODEL_H_
 
 #include "s21_polish_notation.h"
 
