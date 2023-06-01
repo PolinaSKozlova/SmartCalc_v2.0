@@ -18,9 +18,6 @@ class Controller {
       output_ = model_->GetStringAnswer();
       has_exception = false;
     } catch (std::exception &e) {
-      output_ = "Number is too large or too small to count";
-      has_exception = true;
-    } catch (std::invalid_argument &e) {
       output_ = e.what();
       has_exception = true;
     }
