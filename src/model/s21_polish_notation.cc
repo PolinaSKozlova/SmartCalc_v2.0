@@ -19,20 +19,20 @@ std::vector<Token> PolishNotation::CreateNotation() {
       };
       result_stack.pop();
     } else {
-      if (current_token.type_ == "(") {
-        result_stack.push(current_token);
-      } else {
-        while (!result_stack.empty() &&
-               ((result_stack.top().priority_ >= current_token.priority_ &&
-                 current_token.type_ != "^") ||
-                (result_stack.top().priority_ > current_token.priority_ &&
-                 current_token.type_ == "^")) &&
-               result_stack.top().type_ != "(") {
-          output_notation_.push_back(result_stack.top());
-          result_stack.pop();
-        }
-        result_stack.push(current_token);
+      // if (current_token.type_ == "(") {
+      //   result_stack.push(current_token);
+      // } else {
+      while (!result_stack.empty() &&
+             ((result_stack.top().priority_ >= current_token.priority_ &&
+               current_token.type_ != "^") ||
+              (result_stack.top().priority_ > current_token.priority_ &&
+               current_token.type_ == "^")) &&
+             result_stack.top().type_ != "(") {
+        output_notation_.push_back(result_stack.top());
+        result_stack.pop();
       }
+      result_stack.push(current_token);
+      // }
     }
   }
   while (!result_stack.empty()) {
@@ -42,12 +42,12 @@ std::vector<Token> PolishNotation::CreateNotation() {
   return output_notation_;
 }
 
-void PolishNotation::SetTokensNewValues(const std::string &src) {
+void PolishNotation::SetTokensNewValues(const std::string &src) noexcept {
   tokens_.SetNewInput(src);
 }
 
-std::vector<Token> PolishNotation::GetOutputTokens() const noexcept {
-  return output_notation_;
-}
+// std::vector<Token> PolishNotation::GetOutputTokens() const noexcept {
+//   return output_notation_;
+// }
 
 };  // namespace s21
