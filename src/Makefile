@@ -23,15 +23,15 @@ uninstall:
 clean:
 	rm -rf *.o *.gcno *.gcda *.info *.a $(REPORT_DIR) c_tests run *.dSYM SmartCalcPro.tar.gz
 
-dvi: clean
+dvi:
 	makeinfo -o report --html --no-warn --no-validate --force doc.texi
 	open report/index.html
 
-dist: clean
+dist:
 	tar -czf SmartCalcPro.tar.gz Makefile model controller plot qt_files calc_tests doc.texi CMakeLists.txt
 	open .
 
-tests: clean
+tests: 
 	clear
 	$(CC) $(CC_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
 	./c_tests
