@@ -4,6 +4,7 @@ namespace s21 {
 void MathCalculator::CalculateResultFromInput(const std::string &src,
                                               const std::string &x_value) {
   if (!src.empty()) {
+    answer_ = 0.0;
     tokens_notation_.SetTokensNewValues(src);
     output_tokens_ = tokens_notation_.CreateNotation();
     CountResult(GetXValue(x_value));
