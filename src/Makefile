@@ -21,7 +21,7 @@ uninstall:
 	rm -rf build
 
 clean:
-	rm -rf *.o *.gcno *.gcda *.info *.a $(REPORT_DIR) c_tests run *.dSYM SmartCalcPro.tar.gz
+	rm -rf *.o *.gcno *.gcda *.info *.a $(REPORT_DIR) c_tests run *.dSYM SmartCalcPro.tar.gz CMakeLists.txt.user
 
 dvi:
 	makeinfo -o report --html --no-warn --no-validate --force doc.texi
