@@ -35,7 +35,12 @@ void Tokenizer::CreateTokens() {
         FillRecievedToken("x");
         current++;
       } else {
-        std::regex base_regex("([a-w]+)");
+        std::regex base_regex;
+        if (*current == 'm') {
+          base_regex = "(mod)";
+        } else {
+          base_regex = "([a-w,yz]+)";
+        }
         std::sregex_iterator regex_it =
             std::sregex_iterator(current, input_src_.cend(), base_regex);
         std::smatch base_match = *regex_it;
