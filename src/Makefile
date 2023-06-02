@@ -28,7 +28,8 @@ dvi: clean
 	open report/index.html
 
 dist: clean
-	tar -czf SmartCalcPro.tar.gz Makefile model controller CMakeLists.txt creditwindow.* mainwindow.* main.cpp
+	tar -czf SmartCalcPro.tar.gz Makefile model controller plot qt_files calc_tests doc.texi CMakeLists.txt
+	open .
 
 tests: clean
 	clear
