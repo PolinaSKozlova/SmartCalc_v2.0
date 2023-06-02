@@ -24,7 +24,6 @@ std::vector<Token> PolishNotation::CreateNotation() {
                current_token.type_ != "^" && current_token.type_id_ != 5) ||
               (result_stack.top().priority_ > current_token.priority_ &&
                (current_token.type_ == "^" || current_token.type_id_ == 5))) &&
-             // current_token.type_ == "^")) &&
              result_stack.top().type_ != "(") {
         output_notation_.push_back(result_stack.top());
         result_stack.pop();
