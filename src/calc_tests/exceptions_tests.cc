@@ -283,14 +283,13 @@ TEST(validation_src_test_incorrect, test_9) {
   }
 }
 
-// ошибка на валгринде
-// TEST(validation_src_test_incorrect, test_10) {
-//   try {
-//     s21::MathCalculator m;
-//     m.CalculateResultFromInput("567.98*(-cos(x))mod");
-//   } catch (std::exception& e) {
-//   }
-// }
+TEST(validation_src_test_incorrect, test_10) {
+  try {
+    s21::MathCalculator m;
+    m.CalculateResultFromInput("567.98*(-cos(x))mod");
+  } catch (std::exception& e) {
+  }
+}
 
 TEST(validation_src_test_incorrect, test_11) {
   try {
@@ -324,7 +323,6 @@ TEST(validation_src_test_incorrect, test_14) {
   }
 }
 
-// ошибка на валгринде
 TEST(validation_src_test_incorrect, test_15) {
   try {
     s21::MathCalculator m;
