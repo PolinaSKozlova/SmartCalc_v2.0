@@ -16,11 +16,11 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets PrintSupport)
 find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui)
 
 set(PROJECT_SOURCES
-    qt_files/main.cpp
-    qt_files/mainwindow.cpp
+    qt_files/main.cc
+    qt_files/mainwindow.cc
     qt_files/mainwindow.h
     qt_files/mainwindow.ui
-    qt_files/creditwindow.cpp
+    qt_files/creditwindow.cc
     qt_files/creditwindow.h
     qt_files/creditwindow.ui
     model/s21_model.h
@@ -35,11 +35,10 @@ set(PROJECT_SOURCES
     controller/s21_controller.h
     plot/qcustomplot.cpp
     plot/qcustomplot.h
-    qt_files/plotwindow.cpp
+    qt_files/plotwindow.cc
     qt_files/plotwindow.h
     qt_files/plotwindow.ui
 )
-
 
 include_directories(plot)
 include_directories(qt_files)
