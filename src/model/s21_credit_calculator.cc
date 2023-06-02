@@ -77,9 +77,7 @@ void CreditCalculator::CheckCreditValues(const std::string& sum,
 }
 
 void CreditCalculator::CheckTerms() const {
-  if ((data_.credit_term_ > 100 && data_.term_in_years_) ||
-      (data_.credit_term_ > 1200 && !data_.term_in_years_))
-    throw std::invalid_argument("Too long term");
+  if (data_.credit_term_ > 600) throw std::invalid_argument("Too long term");
   if (!data_.credit_term_)
     throw std::invalid_argument("Credit term can't be 0");
 }
