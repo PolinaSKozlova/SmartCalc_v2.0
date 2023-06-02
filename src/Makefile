@@ -11,7 +11,7 @@ REPORT_DIR = report
 
 all: install
 
-install: clean
+install:
 	cmake -S . -B build -G "Unix Makefiles"
 	make -C build
 	cd ./build && rm -rf CMakeFiles SmartCalc_v_2_0_autogen cmake_install.cmake CMakeCache.txt Makefile
@@ -36,7 +36,7 @@ tests:
 	$(CC) $(CC_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
 	./c_tests
 
-gcov_report: clean
+gcov_report:
 	clear
 	$(CC) $(CC_FLAGS) $(COVERAGE_FLAGS) $(SANITIZER_FLAGS) model/*.cc calc_tests/*_tests.cc -o c_tests $(TEST_FLAGS)
 	./c_tests
