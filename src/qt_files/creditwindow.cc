@@ -40,6 +40,7 @@ void CreditWindow::on_count_clicked() {
     ui->result_percents->setText(QString::number(
         controller_credit_->GetCreditData().payble_percents_, 'q', 2));
     if (controller_credit_->GetCreditData().is_differntiated) {
+      ui->list_of_payments->clear();
       ui->result_monthly_pay->setText(
           QString::number(
               controller_credit_->GetCreditData().monthly_payment_.front(), 'q',
