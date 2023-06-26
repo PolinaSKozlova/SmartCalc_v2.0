@@ -12,9 +12,9 @@
 #include <cctype>
 #include <iostream>
 
-#include "../controller/s21_controller.h"
-#include "../model/s21_credit_calculator.h"
-#include "../model/s21_model.h"
+#include "../controller/controller.h"
+#include "../model/credit_calculator.h"
+#include "../model/model.h"
 #include "creditwindow.h"
 #include "plotwindow.h"
 
@@ -28,7 +28,7 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
+  MainWindow(smartcalc::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
 
  private slots:

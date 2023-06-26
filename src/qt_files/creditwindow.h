@@ -5,8 +5,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 
-#include "../controller/s21_controller.h"
-#include "../model/s21_credit_calculator.h"
+#include "../controller/controller.h"
+#include "../model/credit_calculator.h"
 
 namespace Ui {
 class CreditWindow;
@@ -16,7 +16,7 @@ class CreditWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  explicit CreditWindow(s21::Controller *controller = nullptr,
+  explicit CreditWindow(smartcalc::Controller *controller = nullptr,
                         QWidget *parent = nullptr);
   ~CreditWindow();
 

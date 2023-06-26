@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "../model/s21_model.h"
+#include "../model/model.h"
 
 namespace Ui {
 class PlotWindow;

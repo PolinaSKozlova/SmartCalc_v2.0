@@ -1,15 +1,15 @@
-#include "s21_polish_notation.h"
+#include "polish_notation.h"
 
-namespace s21 {
+namespace smartcalc {
 std::vector<Token> PolishNotation::CreateNotation() {
   tokens_.CreateTokenOutput();
   if (!output_notation_.empty()) output_notation_.clear();
   std::stack<Token> result_stack;
   std::vector<Token> copy_input(tokens_.GetTokens());
   for (const Token &current_token : copy_input) {
-    if (current_token.priority_ == s21::Priority::kZero) {
+    if (current_token.priority_ == smartcalc::Priority::kZero) {
       output_notation_.push_back(current_token);
-    } else if (current_token.priority_ == s21::Priority::kFourth ||
+    } else if (current_token.priority_ == smartcalc::Priority::kFourth ||
                current_token.type_ == "(") {
       result_stack.push(current_token);
     } else if (current_token.type_ == ")") {
@@ -42,4 +42,4 @@ void PolishNotation::SetTokensNewValues(const std::string &src) noexcept {
   tokens_.SetNewInput(src);
 }
 
-};  // namespace s21
+};  // namespace smartcalc
