@@ -12,7 +12,7 @@ PlotWindow::PlotWindow(QWidget *parent)
 PlotWindow::~PlotWindow() { delete ui; }
 
 void PlotWindow::MakePlotArea(
-    s21::MaxMinValues mmv,
+    smartcalc::MaxMinValues mmv,
     std::pair<std::vector<double>, std::vector<double>> vector_of_pairs,
     QString name) {
   QVector<double> x_vector(vector_of_pairs.first.begin(),

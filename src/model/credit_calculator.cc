@@ -1,8 +1,8 @@
-#include "s21_credit_calculator.h"
+#include "credit_calculator.h"
 
 #include <regex>
 
-namespace s21 {
+namespace smartcalc {
 static double RoundNumber(double value) { return round(value * 100) / 100; }
 
 void CreditCalculator::CalculateCredit(const std::string& sum,
@@ -91,4 +91,4 @@ void CreditCalculator::CheckRange() const {
     throw std::invalid_argument("Credit rate cant't be 0");
 }
 
-};  // namespace s21
+};  // namespace smartcalc

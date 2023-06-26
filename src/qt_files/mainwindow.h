@@ -56,9 +56,9 @@ class MainWindow : public QMainWindow {
   Ui::MainWindow *ui;
   CreditWindow *credit_window;
   PlotWindow *plot_window;
-  s21::Controller *controller_;
+  smartcalc::Controller *controller_;
   bool open_extra_mode = false;
   bool open_graph_mode = false;
-  s21::MaxMinValues mmv;
+  smartcalc::MaxMinValues mmv;
 };
 #endif  // MAINWINDOW_H

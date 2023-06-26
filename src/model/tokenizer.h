@@ -1,9 +1,9 @@
-#ifndef SMARTCALC_S21_TOKENIZER_H_
-#define SMARTCALC_S21_TOKENIZER_H_
+#ifndef SMARTCALC_TOKENIZER_H_
+#define SMARTCALC_TOKENIZER_H_
 
-#include "s21_token.h"
+#include "token.h"
 
-namespace s21 {
+namespace smartcalc {
 class Tokenizer {
  public:
   Tokenizer() = default;
@@ -26,6 +26,6 @@ class Tokenizer {
   std::string input_src_{};
   std::vector<Token> tokens_{};
 };
-}  // namespace s21
+}  // namespace smartcalc
 
-#endif  // SMARTCALC_SRC_S21_TOKENIZER_H_
+#endif  // SMARTCALC_TOKENIZER_H_

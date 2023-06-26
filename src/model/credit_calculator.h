@@ -1,12 +1,12 @@
-#ifndef SMARTCALC_S21_CREDIT_CALCULATOR_H_
-#define SMARTCALC_S21_CREDIT_CALCULATOR_H_
+#ifndef SMARTCALC_CREDIT_CALCULATOR_H_
+#define SMARTCALC_CREDIT_CALCULATOR_H_
 
 #include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
 
-namespace s21 {
+namespace smartcalc {
 class CreditInformation {
  public:
   CreditInformation() = default;
@@ -61,6 +61,6 @@ class CreditCalculator {
   void CheckRange() const;
   CreditInformation data_{};
 };
-};  // namespace s21
+};  // namespace smartcalc
 
-#endif  // SMARTCALC_SRC_S21_CREDIT_CALCULATOR_H_
+#endif  // SMARTCALC_CREDIT_CALCULATOR_H_

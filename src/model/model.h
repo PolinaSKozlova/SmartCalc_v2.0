@@ -1,9 +1,9 @@
-#ifndef SMARTCALC_S21_MODEL_H_
-#define SMARTCALC_S21_MODEL_H_
+#ifndef SMARTCALC_MODEL_H_
+#define SMARTCALC_MODEL_H_
 
-#include "s21_polish_notation.h"
+#include "polish_notation.h"
 
-namespace s21 {
+namespace smartcalc {
 struct MaxMinValues {
   MaxMinValues() = default;
   MaxMinValues(double min_x, double max_x, double min_y, double max_y)
@@ -37,6 +37,6 @@ class MathCalculator {
   std::vector<Token> output_tokens_{};
   double answer_{};
 };
-};  // namespace s21
+};  // namespace smartcalc
 
-#endif  // SMARTCALC_SRC_S21_MODEL_H_
+#endif  // SMARTCALC_SRC_MODEL_H_

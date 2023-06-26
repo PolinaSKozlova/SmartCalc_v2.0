@@ -1,6 +1,6 @@
-#include "s21_model.h"
+#include "model.h"
 
-namespace s21 {
+namespace smartcalc {
 void MathCalculator::CalculateResultFromInput(const std::string &src,
                                               const std::string &x_value) {
   if (!src.empty()) {
@@ -14,7 +14,7 @@ void MathCalculator::CalculateResultFromInput(const std::string &src,
 void MathCalculator::CountResult(double x_value) noexcept {
   std::stack<double> result_stack;
   for (auto &current_token : output_tokens_) {
-    if (current_token.priority_ == s21::Priority::kZero) {
+    if (current_token.priority_ == smartcalc::Priority::kZero) {
       if (current_token.type_ == "x") current_token.value_ = x_value;
       result_stack.push(current_token.value_);
     } else if (current_token.is_binary_) {
@@ -102,4 +102,4 @@ std::string MathCalculator::GetStringAnswer() const noexcept {
   oss << answer_;
   return oss.str();
 }
-};  // namespace s21
+};  // namespace smartcalc

@@ -16,7 +16,7 @@ class PlotWindow : public QMainWindow {
   explicit PlotWindow(QWidget *parent = nullptr);
   ~PlotWindow();
   void MakePlotArea(
-      s21::MaxMinValues values,
+      smartcalc::MaxMinValues values,
       std::pair<std::vector<double>, std::vector<double>> vector_of_pairs,
       QString name);
   void ClearPlot();

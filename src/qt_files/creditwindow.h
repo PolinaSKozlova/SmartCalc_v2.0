@@ -35,7 +35,7 @@ class CreditWindow : public QMainWindow {
 
  private:
   Ui::CreditWindow *ui;
-  s21::Controller *controller_credit_;
+  smartcalc::Controller *controller_credit_;
 };
 
 #endif  // CREDITWINDOW_H

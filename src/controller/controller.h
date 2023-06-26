@@ -1,14 +1,15 @@
-#ifndef SMARTCALC_S21_CONTROLLER_H_
-#define SMARTCALC_S21_CONTROLLER_H_
+#ifndef SMARTCALC_CONTROLLER_H_
+#define SMARTCALC_CONTROLLER_H_
 
-#include "../model/s21_credit_calculator.h"
-#include "../model/s21_model.h"
+#include "../model/credit_calculator.h"
+#include "../model/model.h"
 
-namespace s21 {
+namespace smartcalc {
 class Controller {
  public:
   Controller() = default;
-  explicit Controller(s21::MathCalculator *other, s21::CreditCalculator *credit)
+  explicit Controller(smartcalc::MathCalculator *other,
+                      smartcalc::CreditCalculator *credit)
       : model_(other), credit_(credit) {}
   ~Controller() = default;
   void ParceAndCalculateExpression(const std::string &src,
@@ -45,14 +46,16 @@ class Controller {
   }
   std::string GetOutputAnswer() const { return output_; }
   bool GetHasException() const { return has_exception; }
-  s21::CreditInformation GetCreditData() const { return credit_->GetData(); }
+  smartcalc::CreditInformation GetCreditData() const {
+    return credit_->GetData();
+  }
 
  private:
-  s21::MathCalculator *model_;
-  s21::CreditCalculator *credit_;
+  smartcalc::MathCalculator *model_;
+  smartcalc::CreditCalculator *credit_;
   std::string output_{};
   bool has_exception = false;
 };
-};  // namespace s21
+};  // namespace smartcalc
 
-#endif  // SMARTCALC_S21_CONTROLLER_H_
+#endif  // SMARTCALC_CONTROLLER_H_

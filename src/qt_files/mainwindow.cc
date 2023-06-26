@@ -3,7 +3,7 @@
 #include "../plot/qcustomplot.h"
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
+MainWindow::MainWindow(smartcalc::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller_(controller) {
   ui->setupUi(this);
   ui->main_frame->setFixedSize(321, 441);

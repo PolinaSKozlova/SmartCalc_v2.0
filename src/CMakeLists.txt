@@ -23,16 +23,16 @@ set(PROJECT_SOURCES
     qt_files/creditwindow.cc
     qt_files/creditwindow.h
     qt_files/creditwindow.ui
-    model/s21_model.h
-    model/s21_model.cc
-    model/s21_token.h
-    model/s21_tokenizer.h
-    model/s21_tokenizer.cc
-    model/s21_polish_notation.h
-    model/s21_polish_notation.cc
-    model/s21_credit_calculator.h
-    model/s21_credit_calculator.cc
-    controller/s21_controller.h
+    model/model.h
+    model/model.cc
+    model/token.h
+    model/tokenizer.h
+    model/tokenizer.cc
+    model/polish_notation.h
+    model/polish_notation.cc
+    model/credit_calculator.h
+    model/credit_calculator.cc
+    controller/controller.h
     plot/qcustomplot.cpp
     plot/qcustomplot.h
     qt_files/plotwindow.cc

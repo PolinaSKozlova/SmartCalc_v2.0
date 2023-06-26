@@ -1,6 +1,6 @@
-#include "s21_tokenizer.h"
+#include "tokenizer.h"
 
-namespace s21 {
+namespace smartcalc {
 std::vector<Token> Tokenizer::GetTokens() const noexcept { return tokens_; }
 
 void Tokenizer::CreateTokenOutput() {
@@ -141,4 +141,4 @@ void Tokenizer::CheckWithAdjacencyMatrix() const {
       throw std::invalid_argument("Expression error");
   }
 }
-};  // namespace s21
+};  // namespace smartcalc

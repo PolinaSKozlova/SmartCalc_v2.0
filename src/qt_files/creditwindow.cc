@@ -5,7 +5,7 @@
 
 #include "ui_creditwindow.h"
 
-CreditWindow::CreditWindow(s21::Controller *controller, QWidget *parent)
+CreditWindow::CreditWindow(smartcalc::Controller *controller, QWidget *parent)
     : controller_credit_(controller),
       QMainWindow(parent),
       ui(new Ui::CreditWindow) {
@@ -89,11 +89,11 @@ void CreditWindow::on_d_type_clicked() {
 }
 
 void CreditWindow::on_actionMathCalc_triggered() {
-  this->hide();
+  hide();
   emit showParent();
 }
 
 void CreditWindow::on_actionDepositCalc_triggered() {
   QMessageBox::information(this, "Справка", "Раздел в разработке ¯| _(ツ)_ |¯");
-  this->show();
+  show();
 }

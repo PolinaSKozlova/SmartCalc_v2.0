@@ -1,9 +1,9 @@
-#ifndef SMARTCALC_S21_POLISHNOTATION_H_
-#define SMARTCALC_S21_POLISHNOTATION_H_
+#ifndef SMARTCALC_POLISHNOTATION_H_
+#define SMARTCALC_POLISHNOTATION_H_
 
-#include "s21_tokenizer.h"
+#include "tokenizer.h"
 
-namespace s21 {
+namespace smartcalc {
 class PolishNotation {
  public:
   PolishNotation() = default;
@@ -16,6 +16,6 @@ class PolishNotation {
   Tokenizer tokens_;
   std::vector<Token> output_notation_{};
 };
-}  // namespace s21
+}  // namespace smartcalc
 
-#endif  // SMARTCALC_SRC_S21_POLISHNOTATION_H_
+#endif  // SMARTCALC_POLISHNOTATION_H_
